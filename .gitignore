@@ -1,5 +1,7 @@
 .DS_Store
 /.build
+/.worktrees
+/Artifacts/
 /Packages
 /*.xcodeproj
 xcuserdata/
@@ -8,3 +10,10 @@ DerivedData/
 *.tl
 Tests/Apps/Apps.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 __pycache__/
+.DS_Store
+.build/
+Benchmarks/SizeHost/.derived-data/
+Benchmarks/SizeHost/.archives/
+Benchmarks/SizeHost/TDLibKitSizeHost.xcodeproj/
+Benchmarks/SizeHost/Baseline/.derived-data/
+Benchmarks/SizeHost/Baseline/TDLibKitSizeHost.xcodeproj/

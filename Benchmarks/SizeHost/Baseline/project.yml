@@ -1,0 +1,58 @@
+name: TDLibKitSizeHost
+
+options:
+  minimumXcodeGenVersion: 2.44.1
+  deploymentTarget:
+    iOS: "15.0"
+
+packages:
+  TDLibKit:
+    url: https://github.com/Swiftgram/TDLibKit
+    exactVersion: 1.5.2-tdlib-1.8.66-022d6020
+
+settings:
+  base:
+    CODE_SIGNING_ALLOWED: NO
+    COPY_PHASE_STRIP: YES
+    DEAD_CODE_STRIPPING: YES
+    DEBUG_INFORMATION_FORMAT: dwarf
+    ENABLE_TESTABILITY: NO
+    GCC_GENERATE_DEBUGGING_SYMBOLS: NO
+    LD_GENERATE_MAP_FILE: YES
+    LD_MAP_FILE_PATH: "$(PROJECT_TEMP_DIR)/$(PRODUCT_NAME)-Baseline-LinkMap-$(CURRENT_ARCH).txt"
+    STRIP_INSTALLED_PRODUCT: YES
+    SWIFT_COMPILATION_MODE: wholemodule
+    SWIFT_OPTIMIZATION_LEVEL: -Osize
+
+targets:
+  TDLibKitSizeHost:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources
+    dependencies:
+      - package: TDLibKit
+        product: TDLibKit
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        PRODUCT_BUNDLE_IDENTIFIER: app.tdlibkit.size-host
+        PRODUCT_NAME: TDLibKitSizeHost
+        SUPPORTED_PLATFORMS: iphoneos
+        SUPPORTS_MACCATALYST: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+schemes:
+  TDLibKitSizeHost:
+    build:
+      targets:
+        TDLibKitSizeHost: all
+    archive:
+      config: Release

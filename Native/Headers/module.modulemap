@@ -1,0 +1,4 @@
+module TdStatic {
+    umbrella "td"
+    export *
+}

@@ -1,37 +1,62 @@
-// swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-// DO NOT EDIT! Generated automatically. See scripts/swift_package_generator.py
+// swift-tools-version: 6.0
 
 import PackageDescription
-
-
 
 let package = Package(
     name: "TDLibKit",
     platforms: [
-        // Following versions of https://github.com/Swiftgram/TDLibFramework/blob/main/Package.swift
-        .iOS(.v12),
-        .macOS(.v10_15),
-        .watchOS(.v4),
-        .tvOS(.v12)
+        .iOS(.v15),
+        .macOS(.v12),
+        .watchOS(.v8),
+        .tvOS(.v15),
+        .visionOS(.v1)
     ],
     products: [
-        .library(
-            name: "TDLibKit",
-            targets: ["TDLibKit"]),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/Swiftgram/TDLibFramework", .exact("1.8.67-d1085f9c")),
+        .library(name: "TDLibKit", type: .static, targets: ["TDLibKit"]),
+        .library(name: "TDLibKitShared", type: .dynamic, targets: ["TDLibKit"]),
+        .library(name: "TDLibCxxBridge", type: .static, targets: ["TDLibCxxBridge"])
     ],
     targets: [
+        .binaryTarget(
+            name: "TdStatic",
+            url: "https://github.com/levochkaa/TDLibKit/releases/download/tdstatic-1.8.67-d1085f9c-preview.1/TdStatic.xcframework.zip",
+            checksum: "9c4080f92cea892dd110ffa78c7cf4762fb2cb6c53ced6c107f1cd17eb048783"
+        ),
+        .target(
+            name: "TDLibCxxBridge",
+            dependencies: ["TdStatic"],
+            path: "Sources/TDLibCxxBridge",
+            publicHeadersPath: "include",
+            cxxSettings: [
+                .unsafeFlags([
+                    "-std=c++17",
+                    "-fno-exceptions",
+                    "-fno-rtti",
+                    "-fvisibility=hidden",
+                    "-fvisibility-inlines-hidden"
+                ])
+            ],
+            linkerSettings: [
+                .linkedLibrary("c++"),
+                .linkedLibrary("z")
+            ]
+        ),
         .target(
             name: "TDLibKit",
-            dependencies: ["TDLibFramework"]
+            dependencies: ["TDLibCxxBridge"],
+            path: "Sources/TDLibKitNative",
+            swiftSettings: [
+                .interoperabilityMode(.Cxx)
+            ]
         ),
         .testTarget(
             name: "TDLibKitTests",
-            dependencies: ["TDLibKit"]
-        ),
-    ]
+            dependencies: ["TDLibKit", "TDLibCxxBridge"],
+            path: "Tests/TDLibKitNativeTests",
+            swiftSettings: [
+                .interoperabilityMode(.Cxx)
+            ]
+        )
+    ],
+    cxxLanguageStandard: .cxx17
 )
-
