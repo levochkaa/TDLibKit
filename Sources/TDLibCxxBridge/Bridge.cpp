@@ -39,15 +39,15 @@ struct NativeFunctionStorage {
 struct NativeObjectRoot {
   explicit NativeObjectRoot(api::object_ptr<api::Object> object) noexcept : object_(std::move(object)) {
   }
-  api::object_ptr<api::Object> object_;
+  const api::object_ptr<api::Object> object_;
 };
 
 struct NativeObjectStorage {
-  NativeObjectStorage(std::shared_ptr<NativeObjectRoot> root, const api::Object *object) noexcept
+  NativeObjectStorage(std::shared_ptr<const NativeObjectRoot> root, const api::Object *object) noexcept
       : root_(std::move(root)), object_(object) {
   }
-  std::shared_ptr<NativeObjectRoot> root_;
-  const api::Object *object_{nullptr};
+  const std::shared_ptr<const NativeObjectRoot> root_;
+  const api::Object *const object_;
 };
 
 struct NativeManagerStorage {
@@ -88,6 +88,28 @@ struct NativeArgumentsStorage {
   std::vector<NativeArgument> values_;
 };
 
+namespace {
+
+api::object_ptr<api::Object> generated_clone_schema_object(
+    const api::Object *object, bool &valid) noexcept;
+
+template <class T>
+api::object_ptr<T> clone_schema_value(const api::object_ptr<T> &object, bool &valid) noexcept {
+  return api::move_object_as<T>(generated_clone_schema_object(object.get(), valid));
+}
+
+template <class T>
+std::vector<T> clone_schema_value(const std::vector<T> &values, bool &valid) noexcept {
+  std::vector<T> result;
+  result.reserve(values.size());
+  for (const auto &value : values) {
+    result.push_back(clone_schema_value(value, valid));
+  }
+  return result;
+}
+
+}  // namespace
+
 struct NativeArgumentAccess {
   template <class T>
   static T *at(NativeArgumentsStorage &arguments, std::size_t index) noexcept {
@@ -123,15 +145,17 @@ struct NativeArgumentAccess {
   }
 
   template <class T>
-  static api::object_ptr<T> take_native_object(NativeObject &object) noexcept {
-    if (object.storage_ == nullptr || object.storage_->root_ == nullptr ||
-        object.storage_->root_->object_ == nullptr ||
-        object.storage_->object_ != object.storage_->root_->object_.get()) {
+  static api::object_ptr<T> clone_native_object(const NativeObject &object, bool &valid) noexcept {
+    // A default handle is an explicit null. Any other invalid handle is an error.
+    if (object.storage_ == nullptr) {
       return nullptr;
     }
-    auto base = std::move(object.storage_->root_->object_);
-    object.storage_->object_ = nullptr;
-    return api::move_object_as<T>(std::move(base));
+    if (!object.is_valid()) {
+      valid = false;
+      return nullptr;
+    }
+    // Clone the selected subtree, including when this handle is a child view.
+    return api::move_object_as<T>(generated_clone_schema_object(object.storage_->object_, valid));
   }
 
   static bool type_is_allowed(
@@ -142,10 +166,12 @@ struct NativeArgumentAccess {
   static bool object_matches(
       NativeArgumentsStorage &arguments,
       std::size_t index,
-      std::initializer_list<std::int32_t> allowed) noexcept {
+      std::initializer_list<std::int32_t> allowed,
+      bool nullable) noexcept {
     auto *value = at<NativeObject>(arguments, index);
     return value != nullptr &&
-        (!value->is_valid() || type_is_allowed(value->type_id(), allowed));
+        ((value->storage_ == nullptr && nullable) ||
+         (value->is_valid() && type_is_allowed(value->type_id(), allowed)));
   }
 
   static bool object_vector_matches(
@@ -157,7 +183,7 @@ struct NativeArgumentAccess {
       return false;
     }
     for (const auto &value : *values) {
-      if (value.is_valid() && !type_is_allowed(value.type_id(), allowed)) {
+      if (!value.is_valid() || !type_is_allowed(value.type_id(), allowed)) {
         return false;
       }
     }
@@ -174,7 +200,7 @@ struct NativeArgumentAccess {
     }
     for (const auto &row : *rows) {
       for (const auto &value : row) {
-        if (value.is_valid() && !type_is_allowed(value.type_id(), allowed)) {
+        if (!value.is_valid() || !type_is_allowed(value.type_id(), allowed)) {
           return false;
         }
       }
@@ -184,9 +210,9 @@ struct NativeArgumentAccess {
 
   template <class T>
   static api::object_ptr<T> object_at(
-      NativeArgumentsStorage &arguments, std::size_t index) noexcept {
+      NativeArgumentsStorage &arguments, std::size_t index, bool &valid) noexcept {
     auto *value = at<NativeObject>(arguments, index);
-    return value == nullptr ? nullptr : take_native_object<T>(*value);
+    return value == nullptr ? nullptr : clone_native_object<T>(*value, valid);
   }
 
   static NativeInt32Vector int32_vector_at(
@@ -209,7 +235,7 @@ struct NativeArgumentAccess {
 
   template <class T>
   static std::vector<api::object_ptr<T>> object_vector_at(
-      NativeArgumentsStorage &arguments, std::size_t index) noexcept {
+      NativeArgumentsStorage &arguments, std::size_t index, bool &valid) noexcept {
     std::vector<api::object_ptr<T>> result;
     auto *values = at<NativeObjectVector>(arguments, index);
     if (values == nullptr) {
@@ -217,14 +243,14 @@ struct NativeArgumentAccess {
     }
     result.reserve(values->size());
     for (auto &value : *values) {
-      result.push_back(take_native_object<T>(value));
+      result.push_back(clone_native_object<T>(value, valid));
     }
     return result;
   }
 
   template <class T>
   static std::vector<std::vector<api::object_ptr<T>>> nested_object_vector_at(
-      NativeArgumentsStorage &arguments, std::size_t index) noexcept {
+      NativeArgumentsStorage &arguments, std::size_t index, bool &valid) noexcept {
     std::vector<std::vector<api::object_ptr<T>>> result;
     auto *rows = at<NativeNestedObjectVector>(arguments, index);
     if (rows == nullptr) {
@@ -235,7 +261,7 @@ struct NativeArgumentAccess {
       std::vector<api::object_ptr<T>> native_row;
       native_row.reserve(row.size());
       for (auto &value : row) {
-        native_row.push_back(take_native_object<T>(value));
+        native_row.push_back(clone_native_object<T>(value, valid));
       }
       result.push_back(std::move(native_row));
     }

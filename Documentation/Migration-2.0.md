@@ -46,6 +46,23 @@ TDLib errors are thrown as `TDLibError`. Updates are delivered through the
 client's ordered `AsyncStream<TDNativeUpdate>`. Call `close()` and then manager
 `shutdown()` during orderly application termination.
 
+Models are reusable immutable views, including nested objects obtained from
+responses. Passing a model to a request or another model's initializer copies
+its native subtree for the new owner, preserving the source model and all its
+Swift copies. You can retain model values in application state without creating
+a fresh native model for every use:
+
+```swift
+let list = TDNativeChatList.chatListFolder(.init(chatFolderId: folderID))
+let load = TDNativeRequests.loadChats(chatList: list, limit: 200)
+let get = TDNativeRequests.getChats(chatList: list, limit: 200)
+```
+
+Each `TDRequest` can still be sent only once. Build a new request for retries;
+its model parameters can be reused. Explicit `nil` remains valid only for
+schema-optional object parameters. Missing required objects and mismatched
+native types are rejected before reaching TDLib.
+
 Every target importing TDLibKit must enable Swift C++ interoperability.
 
 If the app and one or more extensions all use TDLibKit, depend on the

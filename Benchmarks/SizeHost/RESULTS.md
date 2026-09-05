@@ -12,6 +12,16 @@ is excluded.
 | TDLibKit 2 native / full schema / Release `-O3` | 30,983,288 | 0 | 30,983,288 | -19,353,839 (-38.45%) |
 | TDLibKit 2 native / full schema / MinSizeRel `-Os` | 25,546,472 | 0 | 25,546,472 | -24,790,655 (-49.25%) |
 | TDLibKit 2 native / full schema / Release `-Oz` | 22,340,824 | 0 | 22,340,824 | -27,996,303 (-55.62%) |
+| TDLibKit 2 native / reusable model ownership / Release `-Oz` | 22,603,200 | 0 | 22,603,200 | -27,733,927 (-55.10%) |
+
+The reusable-model ownership change was measured on 2026-09-05 with Xcode
+26.6.0 using the same size host. Its generated native subtree copier is retained
+in the linked executable. The increase over the previous native implementation
+is 262,376 bytes (1.17%), below the existing 50,337,126-byte limit. Validation for
+this change includes all 14 macOS tests, all 7 ownership tests under Thread
+Sanitizer, the native transport gate, and the arm64 iOS Release archive. The size
+host archive emitted Xcode's App Intents metadata and interface-orientation
+warnings; these measurements do not represent a warning-free host build.
 
 The earlier 125 MB figure was an estimate, not a measured limit. The stored
 regression threshold is therefore one byte below the actual same-host baseline:

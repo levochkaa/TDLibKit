@@ -973,7 +973,11 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
         if category == "object":
             assert field.type_ref.name is not None
             ids = ", ".join(allowed_ids(field.type_ref.name))
-            return f"NativeArgumentAccess::object_matches(arguments, {index}, {{{ids}}})"
+            nullable = "true" if field.is_optional else "false"
+            return (
+                f"NativeArgumentAccess::object_matches(arguments, {index}, "
+                f"{{{ids}}}, {nullable})"
+            )
         if category == "object_vector":
             assert field.type_ref.element is not None and field.type_ref.element.name is not None
             ids = ", ".join(allowed_ids(field.type_ref.element.name))
@@ -1004,7 +1008,7 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
             return f"NativeArgumentAccess::buffer_at(arguments, {index})"
         if category == "object":
             assert type_ref.name is not None
-            return f"NativeArgumentAccess::object_at<api::{type_ref.name}>(arguments, {index})"
+            return f"NativeArgumentAccess::object_at<api::{type_ref.name}>(arguments, {index}, valid)"
         if category == "int32_vector":
             return f"NativeArgumentAccess::int32_vector_at(arguments, {index})"
         if category == "int64_vector":
@@ -1015,7 +1019,7 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
             assert type_ref.element is not None and type_ref.element.name is not None
             return (
                 f"NativeArgumentAccess::object_vector_at<api::{type_ref.element.name}>"
-                f"(arguments, {index})"
+                f"(arguments, {index}, valid)"
             )
         if category == "nested_object_vector":
             assert type_ref.element is not None and type_ref.element.element is not None
@@ -1023,7 +1027,7 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
             assert nested.name is not None
             return (
                 f"NativeArgumentAccess::nested_object_vector_at<api::{nested.name}>"
-                f"(arguments, {index})"
+                f"(arguments, {index}, valid)"
             )
         raise ValueError(f"Unsupported factory field: {field}")
 
@@ -1046,9 +1050,17 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
                 condition = validate(field, index)
                 if condition is not None:
                     lines.append(f"      if (!{condition}) return nullptr;")
+            has_objects = any(
+                field_category(field.type_ref) in {"object", "object_vector", "nested_object_vector"}
+                for field in declaration.fields
+            )
+            if has_objects:
+                lines.append("      bool valid = true;")
             lines.append(f"      auto result = api::make_object<api::{declaration.name}>();")
             for index, field in enumerate(declaration.fields):
                 lines.append(f"      result->{field.name}_ = {value(field, index)};")
+            if has_objects:
+                lines.append("      if (!valid) return nullptr;")
             lines.append(
                 f"      return api::object_ptr<api::{base_type}>(std::move(result));"
             )
@@ -1060,7 +1072,26 @@ def render_factory_cpp(declarations: list[Declaration]) -> str:
         "// Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.\n"
         f"// TDLib commit: {PINNED_COMMIT}\n\n"
     )
-    return header + factory("generated_make_schema_object", objects, "Object") + factory(
+    clone = [
+        "api::object_ptr<api::Object> generated_clone_schema_object(",
+        "    const api::Object *object, bool &valid) noexcept {",
+        "  if (object == nullptr) return nullptr;",
+        "  switch (object->get_id()) {",
+    ]
+    for declaration in objects:
+        clone.append(f"    case api::{declaration.name}::ID: {{")
+        if declaration.fields:
+            clone.append(f"      const auto *value = static_cast<const api::{declaration.name} *>(object);")
+        clone.append(f"      auto result = api::make_object<api::{declaration.name}>();")
+        for field in declaration.fields:
+            expression = f"value->{field.name}_"
+            if field_category(field.type_ref) in {"object", "object_vector", "nested_object_vector"}:
+                expression = f"clone_schema_value({expression}, valid)"
+            clone.append(f"      result->{field.name}_ = {expression};")
+        clone.append("      return api::object_ptr<api::Object>(std::move(result));")
+        clone.append("    }")
+    clone.extend(["    default:", "      valid = false;", "      return nullptr;", "  }", "}", ""])
+    return header + "\n".join(clone) + factory("generated_make_schema_object", objects, "Object") + factory(
         "generated_make_schema_function",
         [item for item in declarations if item.is_function],
         "Function",

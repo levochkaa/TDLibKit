@@ -60,8 +60,12 @@ await manager.shutdown()
 
 Generated `TDNative…` models are thin owned views. A nested view shares the
 native root lifetime and never exposes a borrowed TDLib pointer. Scalars and
-strings/bytes are copied only when read. Object inputs are RAII handles consumed
-once when moved into a parent or request.
+strings/bytes are copied when read. Models share immutable native storage and
+can be copied, retained, and reused across requests, including nested views
+obtained from responses. Each parent or request receives an independent native
+copy of its object inputs; constructing or sending it never invalidates the
+original models. Only the `TDRequest` itself is single-use: create a new request
+for each send, reusing the same model parameters as needed.
 
 The deterministic generator covers 3,205 TL declarations (2,183 objects,
 1,022 functions), 211 unions, 592 schema-documented optional object pointers,
@@ -133,8 +137,8 @@ swift test
 ./scripts/check-size.sh
 ```
 
-The current same-host thinned arm64 Release result is 22,340,824 bytes versus
-the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-55.62%). See
+The current same-host thinned arm64 Release result is 22,603,200 bytes versus
+the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-55.10%). See
 [the size report](Benchmarks/SizeHost/RESULTS.md) and
 [the architecture decision](Documentation/Architecture.md).
 

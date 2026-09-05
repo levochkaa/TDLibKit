@@ -94,6 +94,12 @@ final class GeneratedSchemaTests: XCTestCase {
         let ownedMessage = update.message
         XCTAssertEqual(ownedMessage.id, 42)
         XCTAssertEqual(ownedMessage.chatId, -100)
+        guard case .messageSenderUser(let sender) = ownedMessage.senderId,
+              case .messageSenderUser(let receiver) = ownedMessage.receiverId else {
+            return XCTFail("Expected both occurrences of the shared sender")
+        }
+        XCTAssertEqual(sender.userId, 1)
+        XCTAssertEqual(receiver.userId, 1)
         guard case .messageText(let ownedText) = ownedMessage.content else {
             return XCTFail("Expected nested messageText")
         }
