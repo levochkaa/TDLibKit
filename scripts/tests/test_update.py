@@ -73,6 +73,15 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(list(self.root.iterdir()), [self.root / "Package.swift"])
         self.assertEqual((self.root / "Package.swift").read_bytes(), before)
 
+    def test_stable_binary_release_url_does_not_require_sha_in_its_tag(self):
+        manifest = update.updated_manifest(
+            self.manifest,
+            "https://github.com/levochkaa/TDLibKit/releases/download/2.0.0/TdStatic.xcframework.zip",
+            "a" * 64,
+        )
+        (self.root / "Package.swift").write_text(manifest)
+        self.assertEqual(self.invoke(), 0)
+
     def test_check_reports_available_update_without_building_or_writing(self):
         self.assertEqual(self.invoke("--check", target="1" * 40), 2)
         self.assertEqual(self.invoke("--check"), 0)

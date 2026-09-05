@@ -160,7 +160,7 @@ def main():
         raise ValueError(f"Preparation is incomplete. Review the diff and use --resume --ref {commit}.")
     if current and not (args.rebuild or args.resume):
         # A failed preparation may have moved the source pin, but not the binary pin.
-        if commit[:8] not in (ROOT / "Package.swift").read_text():
+        if commit != versions["tdlib_artifact_commit"]:
             raise ValueError("Source update is incomplete. Review the diff and rerun with --rebuild.")
         metadata = output / "release.json"
         if metadata.exists():
@@ -214,6 +214,8 @@ def main():
     url = f"https://github.com/{RELEASE_REPO}/releases/download/{tag}/{asset.name}"
     manifest = ROOT / "Package.swift"
     manifest.write_text(updated_manifest(manifest.read_text(), url, checksum))
+    versions["tdlib_artifact_commit"] = commit
+    (ROOT / "versions.json").write_text(json.dumps(versions, indent=4) + "\n")
     release = dict(repo=RELEASE_REPO, tag=tag, url=url, checksum=checksum,
                    asset=str(asset), tdlib_commit=commit, tdlib_version=versions["tdlib_version"])
     metadata = output / "release.json"

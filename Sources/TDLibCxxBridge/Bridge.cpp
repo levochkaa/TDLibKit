@@ -1,5 +1,9 @@
 #include "TDLibCxxBridge/Bridge.hpp"
 
+// Keep implementation symbols private without SwiftPM unsafeFlags, which would
+// prevent consumers from selecting this package by a semantic version.
+#pragma GCC visibility push(hidden)
+
 #include "td/telegram/Client.h"
 #include "td/telegram/td_api.h"
 #include "td/telegram/td_api.hpp"
@@ -861,3 +865,5 @@ NativeObject NativeManager::execute(NativeFunction request) noexcept {
 }
 
 }  // namespace tdlibkit
+
+#pragma GCC visibility pop

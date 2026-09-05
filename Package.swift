@@ -9,7 +9,7 @@ let tdStatic: Target = useLocalTDStatic
     ? .binaryTarget(name: "TdStatic", path: "Artifacts/TdStatic.xcframework")
     : .binaryTarget(
         name: "TdStatic",
-        url: "https://github.com/levochkaa/TDLibKit/releases/download/tdstatic-1.8.67-d1085f9c-preview.1/TdStatic.xcframework.zip",
+        url: "https://github.com/levochkaa/TDLibKit/releases/download/2.0.0/TdStatic.xcframework.zip",
         checksum: "9c4080f92cea892dd110ffa78c7cf4762fb2cb6c53ced6c107f1cd17eb048783"
     )
 
@@ -34,15 +34,6 @@ let package = Package(
             dependencies: ["TdStatic"],
             path: "Sources/TDLibCxxBridge",
             publicHeadersPath: "include",
-            cxxSettings: [
-                .unsafeFlags([
-                    "-std=c++17",
-                    "-fno-exceptions",
-                    "-fno-rtti",
-                    "-fvisibility=hidden",
-                    "-fvisibility-inlines-hidden"
-                ])
-            ],
             linkerSettings: [
                 .linkedLibrary("c++"),
                 .linkedLibrary("z")

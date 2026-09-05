@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def read_versions(root=ROOT):
     versions = json.loads((root / "versions.json").read_text())
-    for key in ("tdlib_commit", "python_apple_support_commit"):
+    for key in ("tdlib_commit", "tdlib_artifact_commit", "python_apple_support_commit"):
         if not re.fullmatch(r"[0-9a-f]{40}", versions[key]):
             raise ValueError(f"versions.json: {key} must be a full commit SHA")
     for key in ("tdlib_version", "openssl_version"):

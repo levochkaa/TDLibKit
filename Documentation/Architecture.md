@@ -28,8 +28,11 @@ mutated or transferred out of its owner.
 Only the function owned by `TDRequest` is consumed once and moved into TDLib;
 reusing its model parameters in a new request is supported. Incoming responses
 and updates remain native views without eager copying. All exported bridge
-methods are `noexcept`, and the bridge is built with C++ exceptions and RTTI
-disabled.
+methods are `noexcept`. The prebuilt TDLib archives disable C++ exceptions and
+RTTI. The source bridge uses the consumer toolchain's defaults and source-level
+hidden visibility; it does not expose exceptions across its `noexcept` boundary.
+The package declares C++17 with SwiftPM's supported manifest setting and contains
+no `unsafeFlags`, so it can be consumed through semantic-version requirements.
 
 ## Concurrency
 
@@ -64,6 +67,9 @@ installed host measured 30,983,288 bytes with Release `-O3`, 25,546,472 with
 MinSizeRel `-Os`, and 22,340,824 with Release `-Oz`. After adding reusable model
 ownership and the generated native subtree copier, the same Release `-Oz` host
 measures 22,603,200 bytes, an increase of 262,376 bytes (1.17%).
+For the semver-compatible 2.0.0 manifest, the source bridge uses compiler defaults
+instead of `unsafeFlags`; the same host measures 23,083,584 bytes, still 54.14%
+below the JSON baseline. TDLib's prebuilt archive remains unchanged.
 ThinLTO is not selected yet because the raw bitcode archive is not accepted by
 the raw-library XCFramework creator. App-bundle measurements, not archive or
 repository size, decide the configuration.

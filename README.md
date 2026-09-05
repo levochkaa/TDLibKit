@@ -35,6 +35,16 @@ The prebuilt `TdStatic.xcframework` is distributed as a GitHub Release asset.
 `Package.swift` pins both its immutable release URL and SwiftPM checksum, so
 package consumers do not need this repository's local build output.
 
+Use the stable package version from this fork:
+
+```swift
+.package(url: "https://github.com/levochkaa/TDLibKit.git", exact: "2.0.0")
+```
+
+For apps with extensions, select `TDLibKitShared` from that dependency. The
+manifest uses supported SwiftPM settings, so exact and version-range requirements
+work without switching to a branch or commit pin.
+
 ## Swift usage
 
 The manager is an actor. It owns one native `td::ClientManager`, uses globally
@@ -179,6 +189,7 @@ templates, or rvalue-reference APIs.
 
 ```sh
 ./scripts/check-native.sh
+./scripts/check-semver.py
 swift test
 ./scripts/test.sh iOS-simulator 26.5 'iPhone 17 Pro' test
 ./scripts/test.sh watchOS-simulator '' '' build
@@ -187,8 +198,8 @@ swift test
 ./scripts/check-size.sh
 ```
 
-The current same-host thinned arm64 Release result is 22,603,200 bytes versus
-the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-55.10%). See
+The current same-host thinned arm64 Release result is 23,083,584 bytes versus
+the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-54.14%). See
 [the size report](Benchmarks/SizeHost/RESULTS.md) and
 [the architecture decision](Documentation/Architecture.md).
 

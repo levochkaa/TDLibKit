@@ -33,5 +33,9 @@ rg -q '#include "td/telegram/Client.h"' Sources/TDLibCxxBridge/Bridge.cpp
 rg -q '#include "td/telegram/td_api.h"' Sources/TDLibCxxBridge/Bridge.cpp
 rg -q '#include "td/telegram/td_api.hpp"' Sources/TDLibCxxBridge/Bridge.cpp
 rg -q 'interoperabilityMode\(\.Cxx\)' Package.swift
+if rg -n '\.unsafeFlags\(' Package.swift; then
+  echo "error: unsafeFlags prevent semantic-version package dependencies" >&2
+  exit 1
+fi
 
 echo "native graph gate passed"

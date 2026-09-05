@@ -13,6 +13,15 @@ is excluded.
 | TDLibKit 2 native / full schema / MinSizeRel `-Os` | 25,546,472 | 0 | 25,546,472 | -24,790,655 (-49.25%) |
 | TDLibKit 2 native / full schema / Release `-Oz` | 22,340,824 | 0 | 22,340,824 | -27,996,303 (-55.62%) |
 | TDLibKit 2 native / reusable model ownership / Release `-Oz` | 22,603,200 | 0 | 22,603,200 | -27,733,927 (-55.10%) |
+| TDLibKit 2.0.0 / semver-compatible source bridge / Release `-Oz` | 23,083,584 | 0 | 23,083,584 | -27,253,543 (-54.14%) |
+
+The 2.0.0 package removes SwiftPM `unsafeFlags` so external applications can
+select it by semantic version. TDLib's binary keeps its original build flags;
+the source bridge uses the consumer toolchain defaults and source-level hidden
+visibility. The same-host Release archive measured 23,083,584 bytes on 2026-09-05
+with Xcode 26.6.0: 480,384 bytes (2.13%) above the previous native bridge and below
+the existing size limit. The archive emitted Xcode's App Intents metadata warning.
+The exact-version shared-library consumer and all 14 macOS native tests passed.
 
 The reusable-model ownership change was measured on 2026-09-05 with Xcode
 26.6.0 using the same size host. Its generated native subtree copier is retained
