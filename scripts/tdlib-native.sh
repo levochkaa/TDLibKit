@@ -6,9 +6,8 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd -P)"
 TD_DIR="$ROOT_DIR/Vendor/td"
 BUILD_ROOT="$ROOT_DIR/.build/tdlib-native"
 HEADERS_DIR="$ROOT_DIR/Native/Headers"
-PINNED_COMMIT="d1085f9cebc5a62379991ae1652673954f229c1f"
-OPENSSL_SUPPORT_COMMIT="6f43aba0ddd5a9f52f39775d0141bd4363614020"
-OPENSSL_VERSION="3.1.5"
+version_values="$(python3 "$SCRIPT_DIR/native_versions.py" python_apple_support_commit openssl_version)"
+read -r OPENSSL_SUPPORT_COMMIT OPENSSL_VERSION <<< "$version_values"
 BUILD_JOBS=8
 
 usage() {
@@ -31,10 +30,10 @@ usage() {
   echo "  --skip-generate                       Reuse already generated pinned TD sources"
   echo ""
   echo "OpenSSL options:"
-  echo "  --platform <platform|all>             Build an OpenSSL 3.1.5 prefix"
+  echo "  --platform <platform|all>             Build the pinned OpenSSL prefix"
   echo "  --arch <arm64|x86_64>                 Default: arm64"
   echo "  --output-root <directory>             Default: .build/tdlib-native/openssl"
-  echo "  --xcode <Xcode.app>                   Default: /Applications/Xcode-26.6.0.app"
+  echo "  --xcode <Xcode.app>                   Default: selected Xcode"
 }
 
 fail() {
@@ -43,10 +42,7 @@ fail() {
 }
 
 verify_pin() {
-  [[ -d "$TD_DIR/.git" || -f "$TD_DIR/.git" ]] || fail "Vendor/td submodule is not initialized"
-  local actual
-  actual="$(git -C "$TD_DIR" rev-parse HEAD)"
-  [[ "$actual" == "$PINNED_COMMIT" ]] || fail "Vendor/td is $actual, expected $PINNED_COMMIT"
+  python3 "$SCRIPT_DIR/native_versions.py" --verify
 }
 
 generate_sources() {
@@ -70,10 +66,12 @@ generate_sources() {
 }
 
 build_openssl() {
+  verify_pin
   local platform=""
   local arch="arm64"
   local output_root="$BUILD_ROOT/openssl"
-  local xcode="/Applications/Xcode-26.6.0.app"
+  local xcode="${DEVELOPER_DIR:-$(xcode-select -p)}"
+  xcode="${xcode%/Contents/Developer}"
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -179,6 +177,7 @@ find_archive() {
 }
 
 build_tdstatic() {
+  verify_pin
   local platform=""
   local arch="arm64"
   local configuration="Release"
@@ -366,7 +365,14 @@ verify_artifact() {
   trap 'rm -rf "$temp_dir"' EXIT
 
   local library
+  local library_count=0
   while IFS= read -r library; do
+    library_count=$((library_count + 1))
+    local header
+    for header in td/telegram/Client.h td/telegram/td_api.h td/telegram/td_api.hpp td/tl/TlObject.h; do
+      cmp -s "$HEADERS_DIR/$header" "$(dirname "$library")/Headers/$header" ||
+        fail "Artifact headers differ from the pinned source: $library ($header)"
+    done
     local archs
     archs="$(lipo -archs "$library")"
     local arch
@@ -380,6 +386,7 @@ verify_artifact() {
       verify_thin_archive "$thin"
     done
   done < <(find "$artifact" -type f -name '*.a' | sort)
+  [[ "$library_count" -gt 0 ]] || fail "Artifact contains no static libraries: $artifact"
 
   trap - EXIT
   rm -rf "$temp_dir"

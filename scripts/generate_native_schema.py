@@ -16,6 +16,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from native_versions import read_versions, verify_source
+
 
 ROOT = Path(__file__).resolve().parent.parent
 TL_PATH = ROOT / "Vendor/td/td/generate/scheme/td_api.tl"
@@ -24,7 +26,7 @@ DEFAULT_OUTPUT = ROOT / "Native/Generated/schema.json"
 DEFAULT_ACCESS_OUTPUT = ROOT / "Sources/TDLibCxxBridge/Generated/SchemaAccess.inc"
 DEFAULT_SWIFT_OUTPUT = ROOT / "Sources/TDLibKitNative/Generated/SchemaViews.swift"
 DEFAULT_FACTORY_OUTPUT = ROOT / "Sources/TDLibCxxBridge/Generated/SchemaFactory.inc"
-PINNED_COMMIT = "d1085f9cebc5a62379991ae1652673954f229c1f"
+PINNED_COMMIT = read_versions()["tdlib_commit"]
 PRIMITIVES = {"Bool", "bytes", "double", "int32", "int53", "int64", "string"}
 BUILTIN_DECLARATIONS = {
     "double",
@@ -154,7 +156,10 @@ def parse_declarations(tl: str, ids: dict[str, int]) -> list[Declaration]:
             if field_match is None:
                 raise ValueError(f"Invalid field token at td_api.tl:{line_number}: {token}")
             field_name, field_type = field_match.groups()
-            type_ref = parse_type(field_type)
+            try:
+                type_ref = parse_type(field_type)
+            except ValueError as error:
+                raise ValueError(f"td_api.tl:{line_number} {name}.{field_name}: {error}") from error
             fields.append(
                 Field(
                     name=field_name,
@@ -1107,6 +1112,8 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
+    verify_source()
+
     if not TL_PATH.is_file():
         parser.error(f"Missing pinned schema: {TL_PATH}")
     if not HEADER_PATH.is_file():
@@ -1174,4 +1181,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except ValueError as error:
+        sys.exit(f"Schema generation stopped: {error}")

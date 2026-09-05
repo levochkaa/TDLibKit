@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+export TDLIBKIT_USE_LOCAL_TDSTATIC=1
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd -P)"

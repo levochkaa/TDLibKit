@@ -51,8 +51,8 @@ unions, constructors, and typed requests.
 
 The generated graph covers scalar values, vectors, nested vectors, bytes,
 int53, and Int64 without Codable or JSON transport. Object nullability comes
-from the matching `//@field` documentation in pinned `td_api.tl`; 592 object
-fields explicitly mention null and remain optional. Required fields fail fast
+from the matching `//@field` documentation in pinned `td_api.tl`; object
+fields that explicitly mention null remain optional. Required fields fail fast
 if the native contract is violated. TL `int32` is Swift `Int` at the façade and
 uses an exact checked conversion only when entering C++.
 

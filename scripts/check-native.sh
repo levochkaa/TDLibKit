@@ -3,20 +3,15 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd -P)"
-PINNED_COMMIT="d1085f9cebc5a62379991ae1652673954f229c1f"
 
 cd "$ROOT_DIR"
 
-actual_commit="$(git -C Vendor/td rev-parse HEAD)"
-[[ "$actual_commit" == "$PINNED_COMMIT" ]] || {
-  echo "error: Vendor/td is $actual_commit, expected $PINNED_COMMIT" >&2
-  exit 1
-}
+python3 scripts/native_versions.py --verify
 
 ./scripts/generate_native_schema.py --check
 
 artifact="$ROOT_DIR/Artifacts/TdStatic.xcframework"
-if [[ ! -d "$artifact" ]]; then
+if [[ "${TDLIBKIT_USE_LOCAL_TDSTATIC:-0}" != "1" ]]; then
   swift package resolve
   artifact="$(find "$ROOT_DIR/.build/artifacts" -type d -name TdStatic.xcframework -print -quit)"
   [[ -n "$artifact" ]] || {

@@ -1,128 +1,61 @@
 name: CI
 
-# Controls when the workflow will run
 on:
   push:
-    branches: [main]
+    branches: [main, "codex/**"]
     paths:
-      - "version" # on version updates
+      - "versions.json"
+      - "Vendor/td"
       - "Package.swift"
-      - "Package.resolved"
+      - "Sources/**"
+      - "Native/**"
       - "Tests/**"
-      - .github/workflows/ci.yml
       - "scripts/**"
+      - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 */12 * * *' # Every 12 hours
-
-  # Allows you to run this workflow manually from the Actions tab
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  TDLIB_REPO: https://github.com/tdlib/td
-  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
-
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  update:
-    runs-on: macos-15
+  upstream:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Check for a new upstream revision
+        run: |
+          status=0
+          ./scripts/update.py --check || status=$?
+          if [ "$status" -eq 2 ]; then
+            echo "::notice::New TDLib available. Run ./scripts/update.py on macOS."
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
 
-      - name: Update package
-        run: ./scripts/update.py
-        env:
-          GH_TOKEN: ${{ github.token }}
-      
-      - run: rm -rf .git
-  
-      - name: Upload Workspace
-        uses: actions/upload-artifact@v4
-        with:
-          name: TDLibKit-${{ github.sha }}
-          path: .
-          if-no-files-found: error
-
-  test:
-    runs-on: macos-15
-    needs: [update]
-    strategy:
-      matrix:
-        include:
-          - platform: "macOS"
-          - platform: "iOS-simulator"
-            os_list: "18.5"
-            device_name: "iPhone 16"
-          - platform: "tvOS-simulator"
-            os_list: "18.5"
-            device_name: "Apple TV 4K (3rd generation) (at 1080p)"
-          # Became much slower on CI with macos-14 images, while working fine locally
-          # we will only build them
-          - platform: "watchOS-simulator"
-            os_list: "11.5"
-            device_name: "Apple Watch Series 10 (46mm)"
-            action: "build"
-          - platform: "visionOS-simulator"
-            os_list: "2.3"
-            device_name: "Apple Vision Pro"
-            action: "build"
+  native:
+    if: github.event_name != 'schedule'
+    runs-on: macos-26
     steps:
-      - name: Download Workspace
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
         with:
-          name: TDLibKit-${{ github.sha }}
-          path: .
-
-      - name: Tests (${{ matrix.platform }})
+          submodules: true
+      - name: Install generation tools
+        run: brew install cmake gperf
+      - name: Test updater and unsupported schema diagnostics
+        run: python3 -m unittest discover -s scripts/tests -v
+      - name: Generate official TDLib headers
+        run: ./scripts/tdlib-native.sh generate
+      - name: Verify generated schema and published native artifact
         run: |
-          chmod +x ./scripts/test.sh 
-          ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}" "${{ matrix.action }}" || ./scripts/test.sh ${{ matrix.platform }} "${{ matrix.os_list }}" "${{ matrix.device_name }}" "${{ matrix.action }}" 
-  
-  release:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    runs-on: macos-15
-    needs: [test]
-    steps:
-      - name: Setup Git
-        uses: actions/checkout@v4
-
-      - name: Download Workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: TDLibKit-${{ github.sha }}
-          path: .
-
-      - name: Commit Files
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add . || true
-
-          export COMMIT_VERSION=$(python3 <<EOF
-          import json
-          import os
-          with open("versions.json") as f:
-              versions = json.load(f)
-          print(f"{versions["package"]}-tdlib-{versions['tdlib_version']}-{versions['tdlib_commit']}", end="")
-          EOF
-          )
-
-          git commit -m "[no ci] Version ${COMMIT_VERSION}" || true
-
-      - name: Push update
-        run: git push origin main || true
-
-      - name: Release
-        run: |
-          chmod +x ./scripts/*
-          ./scripts/release.py
-        env:
-          GH_TOKEN: ${{ github.token }}
+          ./scripts/check-native.sh
+          git diff --exit-code -- Native/Headers
+      - name: Swift native tests
+        run: swift test --jobs 2
