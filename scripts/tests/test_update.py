@@ -94,15 +94,17 @@ class UpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "incomplete"):
             self.invoke()
 
-    def test_prepared_update_can_be_published_without_rebuilding(self):
+    def test_prepared_update_is_reported_without_rebuilding(self):
         metadata = self.root / ".build/tdlib-update" / self.versions["tdlib_commit"] / "release.json"
         metadata.parent.mkdir(parents=True)
-        metadata.write_text("{}")
+        metadata.write_text(json.dumps({"tag": native_versions.package_version(self.versions)}))
         with patch.object(update, "run") as run:
             self.assertEqual(self.invoke(), 0)
             run.assert_not_called()
-            self.assertEqual(self.invoke("--publish"), 0)
-            run.assert_called_once_with(self.root / "scripts/release.py", metadata)
+            metadata.write_text(json.dumps({"tag": "1.9.9-tdlib-1.8.0-00000000"}))
+            with self.assertRaisesRegex(ValueError, "--rebuild"):
+                self.invoke()
+            run.assert_not_called()
 
     def test_moved_source_pin_with_old_binary_cannot_report_current(self):
         self.versions["tdlib_commit"] = "2" * 40
@@ -125,6 +127,22 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(update.schema_delta(before, after), {
             "added": ["added"], "removed": ["removed"], "changed": ["same"], "counts": {},
         })
+
+
+class PackageVersionTests(unittest.TestCase):
+    def test_tag_combines_package_and_tdlib_versions(self):
+        versions = dict(package="2.0.0", tdlib_version="1.8.68",
+                        tdlib_commit="c15d3f5a5de6e3ba5839822c451152e5e18bb700")
+        self.assertEqual(native_versions.package_version(versions), "2.0.0-tdlib-1.8.68-c15d3f5a")
+
+    def test_package_must_be_plain_semver(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            versions = native_versions.read_versions()
+            versions["package"] = "2.0.0-tdlib-1.8.68-c15d3f5a"
+            (root / "versions.json").write_text(json.dumps(versions))
+            with self.assertRaisesRegex(ValueError, "invalid package"):
+                native_versions.read_versions(root)
 
 
 class SchemaFailureTests(unittest.TestCase):
@@ -196,7 +214,7 @@ class PreparationTests(unittest.TestCase):
                  patch.object(update, "validate_candidate") as validate, \
                  contextlib.redirect_stdout(io.StringIO()):
                 build.side_effect = subprocess.CalledProcessError(1, "native-build")
-                with patch.object(sys, "argv", common + ["--publish"]):
+                with patch.object(sys, "argv", common):
                     with self.assertRaises(subprocess.CalledProcessError):
                         update.main()
                 validate.assert_not_called()
@@ -212,7 +230,10 @@ class PreparationTests(unittest.TestCase):
                 self.assertFalse((output / "in-progress").exists())
                 self.assertEqual(json.loads((output / "schema-delta.json").read_text())["added"], ["newObject"])
                 self.assertIn('checksum: "' + "a" * 64 + '"', manifest.read_text())
-                self.assertEqual(json.loads((output / "release.json").read_text())["tdlib_commit"], target)
+                record = json.loads((output / "release.json").read_text())
+                tag = f"{versions['package']}-tdlib-1.8.68-{target[:8]}"
+                self.assertEqual((record["tdlib_commit"], record["tag"]), (target, tag))
+                self.assertIn(f'url: "{update.asset_url(tag)}"', manifest.read_text())
                 self.assertFalse(any(call[0].endswith("release.py") for call in calls))
 
 
@@ -225,14 +246,15 @@ class PublicationTests(unittest.TestCase):
         self.asset.write_bytes(b"verified fixture archive")
         self.versions = native_versions.read_versions()
         self.checksum = release.sha256(self.asset)
-        tag = f"tdstatic-{self.versions['tdlib_version']}-{self.versions['tdlib_commit'][:8]}-{self.checksum[:12]}"
+        tag = native_versions.package_version(self.versions)
         self.record = dict(repo=update.RELEASE_REPO, tag=tag, checksum=self.checksum,
                            tdlib_commit=self.versions["tdlib_commit"], asset=str(self.asset),
-                           url=f"https://github.com/{update.RELEASE_REPO}/releases/download/{tag}/{self.asset.name}")
+                           url=update.asset_url(tag))
         self.metadata = self.root / "release.json"
         self.metadata.write_text(json.dumps(self.record))
         manifest = (update.ROOT / "Package.swift").read_text()
         (self.root / "Package.swift").write_text(update.updated_manifest(manifest, self.record["url"], self.checksum))
+        self.head = "c" * 40
 
     def invoke(self, run):
         with patch.object(release, "ROOT", self.root), \
@@ -242,6 +264,25 @@ class PublicationTests(unittest.TestCase):
              contextlib.redirect_stdout(io.StringIO()):
             release.main()
 
+    def github(self, calls, *, dirty="", tag_commit=None, releases=(), download=b"verified fixture archive"):
+        def run(*args, **kwargs):
+            calls.append(args)
+            if args[:2] == ("git", "status"):
+                return dirty
+            if args[:2] == ("git", "rev-parse"):
+                return self.head
+            if args[:2] == ("git", "ls-remote"):
+                return f"{tag_commit}\trefs/tags/{self.record['tag']}" if tag_commit else ""
+            if args[:2] == ("gh", "api"):
+                return json.dumps([list(releases)])
+            if args[:3] == ("gh", "release", "download"):
+                (Path(args[-1]) / self.asset.name).write_bytes(download)
+        return run
+
+    @staticmethod
+    def published(calls):
+        return [args for args in calls if args[:2] == ("git", "push") or args[:3] == ("gh", "release", "create")]
+
     def test_changed_archive_is_rejected_before_contacting_github(self):
         self.asset.write_bytes(b"unverified replacement")
         calls = []
@@ -249,31 +290,52 @@ class PublicationTests(unittest.TestCase):
             self.invoke(lambda *args, **kwargs: calls.append(args))
         self.assertEqual(calls, [])
 
+    def test_uncommitted_candidate_is_rejected_before_contacting_github(self):
+        calls = []
+        with self.assertRaisesRegex(ValueError, "Commit the prepared update"):
+            self.invoke(self.github(calls, dirty=" M Package.swift"))
+        self.assertFalse(any(args[0] == "gh" or args[:2] == ("git", "ls-remote") for args in calls))
+
+    def test_existing_tag_on_another_commit_is_not_moved(self):
+        calls = []
+        with self.assertRaisesRegex(ValueError, "already points"):
+            self.invoke(self.github(calls, tag_commit="d" * 40))
+        self.assertEqual(self.published(calls), [])
+
     def test_api_failure_is_not_treated_as_absent_release(self):
         calls = []
+        github = self.github(calls)
 
         def run(*args, **kwargs):
-            calls.append(args)
             if args[:2] == ("gh", "api"):
+                calls.append(args)
                 raise subprocess.CalledProcessError(1, "gh api")
+            return github(*args, **kwargs)
 
         with self.assertRaises(subprocess.CalledProcessError):
             self.invoke(run)
-        self.assertFalse(any(args[:3] == ("gh", "release", "create") for args in calls))
+        self.assertEqual(self.published(calls), [])
+
+    def test_publishes_tag_then_release_then_checks_remote_consumer(self):
+        calls = []
+        self.invoke(self.github(calls))
+        tag = self.record["tag"]
+        index = {name: next(i for i, args in enumerate(calls) if match(args)) for name, match in {
+            "push": lambda args: args[:2] == ("git", "push") and args[-1] == f"{self.head}:refs/tags/{tag}",
+            "create": lambda args: args[:4] == ("gh", "release", "create", tag) and "--verify-tag" in args,
+            "download": lambda args: args[:3] == ("gh", "release", "download"),
+            "consumer": lambda args: str(args[0]).endswith("check-semver.py") and "--url" in args,
+        }.items()}
+        self.assertLess(index["push"], index["create"])
+        self.assertLess(index["create"], index["download"])
+        self.assertLess(index["download"], index["consumer"])
 
     def test_existing_asset_is_read_back_without_overwrite_and_checksum_mismatch_fails(self):
         calls = []
-
-        def run(*args, **kwargs):
-            calls.append(args)
-            if args[:2] == ("gh", "api"):
-                return json.dumps([[{"tag_name": self.record["tag"], "draft": False}]])
-            if args[:3] == ("gh", "release", "download"):
-                (Path(args[-1]) / self.asset.name).write_bytes(b"wrong remote bytes")
-
+        existing = [{"tag_name": self.record["tag"], "draft": False}]
         with self.assertRaisesRegex(ValueError, "checksum mismatch"):
-            self.invoke(run)
-        self.assertFalse(any(args[:3] == ("gh", "release", "create") for args in calls))
+            self.invoke(self.github(calls, tag_commit=self.head, releases=existing, download=b"wrong remote bytes"))
+        self.assertEqual(self.published(calls), [])
 
 
 class ArtifactFailureTests(unittest.TestCase):

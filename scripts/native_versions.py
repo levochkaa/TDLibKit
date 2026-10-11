@@ -15,10 +15,15 @@ def read_versions(root=ROOT):
     for key in ("tdlib_commit", "tdlib_artifact_commit", "python_apple_support_commit"):
         if not re.fullmatch(r"[0-9a-f]{40}", versions[key]):
             raise ValueError(f"versions.json: {key} must be a full commit SHA")
-    for key in ("tdlib_version", "openssl_version"):
+    for key in ("package", "tdlib_version", "openssl_version"):
         if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", versions[key]):
             raise ValueError(f"versions.json: invalid {key}")
     return versions
+
+
+def package_version(versions):
+    """Release tag: TDLibKit version, then the TDLib version and source commit."""
+    return f"{versions['package']}-tdlib-{versions['tdlib_version']}-{versions['tdlib_commit'][:8]}"
 
 
 def tdlib_version(cmake):
@@ -49,6 +54,8 @@ if __name__ == "__main__":
     try:
         if sys.argv[1:] == ["--verify"]:
             verify_source()
+        elif sys.argv[1:] == ["--package-version"]:
+            print(package_version(read_versions()))
         else:
             versions = read_versions()
             print(" ".join(versions[key] for key in sys.argv[1:]))

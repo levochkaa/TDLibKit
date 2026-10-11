@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import tempfile
 
-from native_versions import ROOT, read_versions
+from native_versions import ROOT, package_version, read_versions
 
 
 def run(*args, cwd, env):
@@ -21,7 +21,7 @@ def main():
     parser.add_argument("--url", help="Published Git URL; otherwise test a tagged snapshot of this working tree")
     args = parser.parse_args()
     versions = read_versions()
-    version = versions["package"]
+    version = package_version(versions)
     env = dict(os.environ)
     env.pop("TDLIBKIT_USE_LOCAL_TDSTATIC", None)
     with tempfile.TemporaryDirectory(prefix="tdlibkit-semver-") as directory:

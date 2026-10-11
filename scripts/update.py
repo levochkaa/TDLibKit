@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare a complete native TDLib update. Remote publication is opt-in."""
+"""Prepare a complete native TDLib update. Publication is a separate release.py step."""
 
 import argparse
 import json
@@ -11,10 +11,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from native_versions import ROOT, read_versions, tdlib_version
+from native_versions import ROOT, package_version, read_versions, tdlib_version
 
 UPSTREAM = "https://github.com/tdlib/td.git"
 RELEASE_REPO = "levochkaa/TDLibKit"
+ASSET = "TdStatic.xcframework.zip"
 PLATFORMS = (
     "macos", "ios", "ios-simulator", "watchos", "watchos-simulator",
     "tvos", "tvos-simulator", "visionos", "visionos-simulator",
@@ -31,6 +32,10 @@ def run(*args, capture=False, cwd=None, env=None):
     result = subprocess.run(command, cwd=cwd or ROOT, env=env, check=True, text=True,
                             stdout=subprocess.PIPE if capture else None)
     return result.stdout.strip() if capture else None
+
+
+def asset_url(tag):
+    return f"https://github.com/{RELEASE_REPO}/releases/download/{tag}/{ASSET}"
 
 
 def resolve_ref(ref):
@@ -135,14 +140,13 @@ def main():
     parser.add_argument("--check", action="store_true", help="Only compare upstream; exit 2 if an update exists")
     parser.add_argument("--rebuild", action="store_true", help="Rebuild even when already current")
     parser.add_argument("--resume", action="store_true", help="Resume a stopped preparation, keeping reviewed local edits")
-    parser.add_argument("--publish", action="store_true", help="Also publish the verified binary GitHub release")
     parser.add_argument("--jobs", type=int, default=8)
     parser.add_argument("--xcode", type=Path, help="Xcode.app; defaults to DEVELOPER_DIR / xcode-select")
     args = parser.parse_args()
     if args.jobs < 1:
         parser.error("--jobs must be positive")
-    if args.check and (args.rebuild or args.publish or args.resume):
-        parser.error("--check cannot be combined with --rebuild, --resume or --publish")
+    if args.check and (args.rebuild or args.resume):
+        parser.error("--check cannot be combined with --rebuild or --resume")
 
     versions = read_versions()
     commit = resolve_ref(args.ref)
@@ -164,10 +168,11 @@ def main():
             raise ValueError("Source update is incomplete. Review the diff and rerun with --rebuild.")
         metadata = output / "release.json"
         if metadata.exists():
-            if args.publish:
-                run(ROOT / "scripts/release.py", metadata)
-            else:
-                print(f"Already prepared: {metadata}. Use --publish to publish/verify the binary release.")
+            tag = json.loads(metadata.read_text()).get("tag")
+            if tag != package_version(versions):
+                raise ValueError(f"Prepared {tag}, but versions.json selects {package_version(versions)}. "
+                                 "Rerun with --rebuild.")
+            print(f"Already prepared {tag}. Commit it, then run ./scripts/release.py {shlex.quote(str(metadata))}")
             return 0
         print("Already up to date; no files changed and no build/publication needed.")
         return 0
@@ -204,14 +209,14 @@ def main():
     build_matrix(env, xcode, args.jobs)
     validate_candidate(env, output)
 
-    asset = output / "TdStatic.xcframework.zip"
+    asset = output / ASSET
     if asset.exists():
         asset.unlink()
     run("ditto", "-c", "-k", "--sequesterRsrc", "--keepParent", ROOT / "Artifacts/TdStatic.xcframework", asset)
     checksum = run("swift", "package", "compute-checksum", asset, capture=True)
-    # A content suffix permits a new immutable asset if the same TD commit is rebuilt.
-    tag = f"tdstatic-{versions['tdlib_version']}-{commit[:8]}-{checksum[:12]}"
-    url = f"https://github.com/{RELEASE_REPO}/releases/download/{tag}/{asset.name}"
+    # The package tag owns its binary. Bump versions.json "package" to republish the same TDLib commit.
+    tag = package_version(versions)
+    url = asset_url(tag)
     manifest = ROOT / "Package.swift"
     manifest.write_text(updated_manifest(manifest.read_text(), url, checksum))
     versions["tdlib_artifact_commit"] = commit
@@ -222,14 +227,11 @@ def main():
     metadata.write_text(json.dumps(release, indent=2) + "\n")
     run("git", "diff", "--check")
     in_progress.unlink()
-    print(f"Prepared TDLib {versions['tdlib_version']}: {metadata}")
-    if args.publish:
-        run(ROOT / "scripts/release.py", metadata)
-    else:
-        print("Binary is local. Package.swift now points to its pending release URL.")
-        print("Local builds: TDLIBKIT_USE_LOCAL_TDSTATIC=1 swift test")
-        print(f"Publish when ready: ./scripts/release.py {shlex.quote(str(metadata))}")
-    print("Review and commit the source changes before pushing the package. No source commit or push was made.")
+    print(f"Prepared {tag}: {metadata}")
+    print("Binary is local. Package.swift now points to its pending release URL.")
+    print("Local builds: TDLIBKIT_USE_LOCAL_TDSTATIC=1 swift test")
+    print("Review and commit the source changes. No source commit or push was made.")
+    print(f"Then publish the tag and binary: ./scripts/release.py {shlex.quote(str(metadata))}")
     return 0
 
 

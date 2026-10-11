@@ -35,15 +35,34 @@ The prebuilt `TdStatic.xcframework` is distributed as a GitHub Release asset.
 `Package.swift` pins both its immutable release URL and SwiftPM checksum, so
 package consumers do not need this repository's local build output.
 
-Use the stable package version from this fork:
+## Versions
 
-```swift
-.package(url: "https://github.com/levochkaa/TDLibKit.git", exact: "2.0.0")
+Like upstream TDLibKit 1.x, a release tag combines the TDLibKit version with the
+TDLib version and source commit:
+
+```text
+2.0.0-tdlib-1.8.68-c15d3f5a
+│     │     │      └── tdlib/td commit (first 8 characters)
+│     │     └── TDLib version
+│     └── literal separator
+└── TDLibKit version, `"package"` in versions.json
 ```
 
+Each tag has its own GitHub Release with the matching `TdStatic.xcframework.zip`.
+Pin the exact tag:
+
+```swift
+.package(url: "https://github.com/levochkaa/TDLibKit.git", exact: "2.0.0-tdlib-1.8.68-c15d3f5a")
+```
+
+SemVer treats these tags as pre-releases and orders two commits of the same
+TDLib version by commit hash. Version ranges therefore do not reliably select the
+newest TDLib build; use `exact`. Change `"package"` when the Swift/C++ wrapper
+changes or when the same TDLib commit must be published again.
+
 For apps with extensions, select `TDLibKitShared` from that dependency. The
-manifest uses supported SwiftPM settings, so exact and version-range requirements
-work without switching to a branch or commit pin.
+manifest uses supported SwiftPM settings, so the exact version requirement works
+without switching to a branch or commit pin.
 
 ## Swift usage
 
@@ -116,16 +135,23 @@ though it requires only one command. Source/build caches are reused.
 ./scripts/update.py --check             # Read-only; 0 = current, 2 = update available
 ./scripts/update.py --ref <full-sha>    # Reproducible target instead of latest master
 ./scripts/update.py --rebuild           # Rebuild the current source pin
-./scripts/update.py --publish           # Prepare, verify and publish the binary asset
+./scripts/update.py --xcode <Xcode.app> # Build with a specific Xcode
 ```
 
 By default the result is local: `Package.swift` points to a **pending** immutable
-release URL, and the ZIP plus `release.json` are under `.build/tdlib-update/<sha>/`.
-Use `TDLIBKIT_USE_LOCAL_TDSTATIC=1 swift test` to test that candidate. Publish it
-later with `./scripts/release.py <path-to-release.json>`; the publisher downloads
-the uploaded asset, verifies its checksum and resolves the remote SwiftPM package.
-It never replaces or deletes an existing release. Review, commit and push the
-package source changes after the binary has been published.
+release URL under the new version tag, and the ZIP plus `release.json` are under
+`.build/tdlib-update/<sha>/`. Use `TDLIBKIT_USE_LOCAL_TDSTATIC=1 swift test` to
+test that candidate. Then publish it:
+
+1. Review and commit the update. The working tree must be clean.
+2. Run `./scripts/release.py <path-to-release.json>`. It pushes the version tag
+   for `HEAD`, creates the GitHub Release with the binary and schema delta,
+   downloads the asset to verify its checksum, and builds and runs an external
+   package that resolves the exact tag from GitHub.
+3. Push the branch. CI then resolves the already published binary.
+
+The publisher never moves an existing tag or replaces an existing asset; a retry
+only verifies what is already published.
 
 Start with clean update-owned files. A failed build leaves its source changes
 and logs available for inspection. After fixing the reported issue, resume with
@@ -219,5 +245,5 @@ Migration from the 1.x Codable API is intentionally breaking; see
   to `xcodebuild -create-xcframework -library`; it remains unselected until a
   tested static-framework packaging path exists.
 
-No source commit or push is performed by these scripts. Only `update.py --publish`
-or an explicit `release.py` invocation creates a binary release/tag.
+No source commit or branch push is performed by these scripts. Only `release.py`
+creates and pushes a version tag and its GitHub Release.
