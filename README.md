@@ -224,8 +224,8 @@ swift test
 ./scripts/check-size.sh
 ```
 
-The current same-host thinned arm64 Release result is 23,083,584 bytes versus
-the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-54.14%). See
+The current same-host thinned arm64 Release result is 23,637,432 bytes versus
+the measured 50,337,127-byte TDLibKit 1.5.2 baseline (-53.04%). See
 [the size report](Benchmarks/SizeHost/RESULTS.md) and
 [the architecture decision](Documentation/Architecture.md).
 

@@ -570,12 +570,13 @@ class animatedEmoji final : public Object {
   int32 sticker_height_;
   int32 fitzpatrick_type_;
   object_ptr<file> sound_;
+  bool is_regular_emoji_;
 
   animatedEmoji();
 
-  animatedEmoji(object_ptr<sticker> &&sticker_, int32 sticker_width_, int32 sticker_height_, int32 fitzpatrick_type_, object_ptr<file> &&sound_);
+  animatedEmoji(object_ptr<sticker> &&sticker_, int32 sticker_width_, int32 sticker_height_, int32 fitzpatrick_type_, object_ptr<file> &&sound_, bool is_regular_emoji_);
 
-  static const std::int32_t ID = 1378918079;
+  static const std::int32_t ID = 664777067;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -8277,6 +8278,60 @@ class createdBasicGroupChat final : public Object {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class currencies final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<string> currencies_;
+
+  currencies();
+
+  explicit currencies(array<string> &&currencies_);
+
+  static const std::int32_t ID = 1505110915;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class currencyExchangeRate final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string currency_;
+  double rate_;
+
+  currencyExchangeRate();
+
+  currencyExchangeRate(string const &currency_, double rate_);
+
+  static const std::int32_t ID = 1584927178;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class currencyExchangeRate;
+
+class currencyExchangeRates final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<object_ptr<currencyExchangeRate>> rates_;
+
+  currencyExchangeRates();
+
+  explicit currencyExchangeRates(array<object_ptr<currencyExchangeRate>> &&rates_);
+
+  static const std::int32_t ID = -443719949;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class currentWeather final : public Object {
   std::int32_t get_id() const final {
     return ID;
@@ -15805,6 +15860,8 @@ class StoryContentType;
 
 class TargetChat;
 
+class TonWalletTransferReceiver;
+
 class WebAppOpenMode;
 
 class chatAdministratorRights;
@@ -15812,6 +15869,8 @@ class chatAdministratorRights;
 class formattedText;
 
 class proxy;
+
+class tonConnectConnectRequest;
 
 class InternalLinkType: public Object {
  public:
@@ -16683,6 +16742,46 @@ class internalLinkTypeTheme final : public InternalLinkType {
   explicit internalLinkTypeTheme(string const &theme_name_);
 
   static const std::int32_t ID = -200935417;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class internalLinkTypeTonConnect final : public InternalLinkType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int32 version_;
+  string dapp_client_id_;
+  object_ptr<tonConnectConnectRequest> connect_request_;
+  string return_strategy_;
+  string rpc_request_;
+  string trace_id_;
+
+  internalLinkTypeTonConnect();
+
+  internalLinkTypeTonConnect(int32 version_, string const &dapp_client_id_, object_ptr<tonConnectConnectRequest> &&connect_request_, string const &return_strategy_, string const &rpc_request_, string const &trace_id_);
+
+  static const std::int32_t ID = -637887696;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class internalLinkTypeTonWalletTransfer final : public InternalLinkType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<TonWalletTransferReceiver> receiver_;
+  int53 gram_amount_;
+
+  internalLinkTypeTonWalletTransfer();
+
+  internalLinkTypeTonWalletTransfer(object_ptr<TonWalletTransferReceiver> &&receiver_, int53 gram_amount_);
+
+  static const std::int32_t ID = -1697768710;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -18784,6 +18883,8 @@ class SuggestedPostPrice;
 
 class SuggestedPostRefundReason;
 
+class TonConnectRequestState;
+
 class UpgradedGiftOrigin;
 
 class alternativeVideo;
@@ -20351,6 +20452,49 @@ class messageGiveawayPrizeStars final : public MessageContent {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class messageTonWalletTransfer final : public MessageContent {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 sender_user_id_;
+  string transaction_id_;
+  string peer_address_;
+  int53 amount_;
+  string comment_;
+  bool is_comment_encrypted_;
+
+  messageTonWalletTransfer();
+
+  messageTonWalletTransfer(int53 sender_user_id_, string const &transaction_id_, string const &peer_address_, int53 amount_, string const &comment_, bool is_comment_encrypted_);
+
+  static const std::int32_t ID = -1872034960;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class messageTonConnectRequest final : public MessageContent {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  object_ptr<TonConnectRequestState> state_;
+  string dapp_name_;
+  string topic_;
+  string trace_id_;
+
+  messageTonConnectRequest();
+
+  messageTonConnectRequest(int64 session_id_, object_ptr<TonConnectRequestState> &&state_, string const &dapp_name_, string const &topic_, string const &trace_id_);
+
+  static const std::int32_t ID = 405695624;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class messageGift final : public MessageContent {
   std::int32_t get_id() const final {
     return ID;
@@ -21238,15 +21382,16 @@ class messageProperties final : public Object {
   bool can_report_reactions_;
   bool can_report_supergroup_spam_;
   bool can_set_fact_check_;
+  array<int64> custom_emoji_ids_;
   bool has_protected_content_by_current_user_;
   bool has_protected_content_by_other_user_;
   bool need_show_statistics_;
 
   messageProperties();
 
-  messageProperties(bool can_add_offer_, bool can_add_tasks_, bool can_be_approved_, bool can_be_copied_, bool can_be_copied_to_secret_chat_, bool can_be_declined_, bool can_be_deleted_only_for_self_, bool can_be_deleted_for_all_users_, bool can_be_edited_, bool can_be_forwarded_, bool can_be_paid_, bool can_be_pinned_, bool can_be_replied_, bool can_be_replied_in_another_chat_, bool can_be_saved_, bool can_be_shared_in_story_, bool can_delete_reactions_, bool can_edit_media_, bool can_edit_scheduling_state_, bool can_edit_suggested_post_info_, bool can_get_author_, bool can_get_embedding_code_, bool can_get_link_, bool can_get_media_timestamp_links_, bool can_get_message_thread_, bool can_get_poll_vote_statistics_, bool can_get_read_date_, bool can_get_statistics_, bool can_get_video_advertisements_, bool can_get_viewers_, bool can_mark_tasks_as_done_, bool can_recognize_speech_, bool can_report_chat_, bool can_report_reactions_, bool can_report_supergroup_spam_, bool can_set_fact_check_, bool has_protected_content_by_current_user_, bool has_protected_content_by_other_user_, bool need_show_statistics_);
+  messageProperties(bool can_add_offer_, bool can_add_tasks_, bool can_be_approved_, bool can_be_copied_, bool can_be_copied_to_secret_chat_, bool can_be_declined_, bool can_be_deleted_only_for_self_, bool can_be_deleted_for_all_users_, bool can_be_edited_, bool can_be_forwarded_, bool can_be_paid_, bool can_be_pinned_, bool can_be_replied_, bool can_be_replied_in_another_chat_, bool can_be_saved_, bool can_be_shared_in_story_, bool can_delete_reactions_, bool can_edit_media_, bool can_edit_scheduling_state_, bool can_edit_suggested_post_info_, bool can_get_author_, bool can_get_embedding_code_, bool can_get_link_, bool can_get_media_timestamp_links_, bool can_get_message_thread_, bool can_get_poll_vote_statistics_, bool can_get_read_date_, bool can_get_statistics_, bool can_get_video_advertisements_, bool can_get_viewers_, bool can_mark_tasks_as_done_, bool can_recognize_speech_, bool can_report_chat_, bool can_report_reactions_, bool can_report_supergroup_spam_, bool can_set_fact_check_, array<int64> &&custom_emoji_ids_, bool has_protected_content_by_current_user_, bool has_protected_content_by_other_user_, bool need_show_statistics_);
 
-  static const std::int32_t ID = -688751636;
+  static const std::int32_t ID = 595813664;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -22532,6 +22677,153 @@ class ok final : public Object {
   ok();
 
   static const std::int32_t ID = -722616727;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentMethod;
+
+class onRampPaymentAvailability final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  bool is_allowed_;
+  bool is_purchase_allowed_;
+  array<object_ptr<onRampPaymentMethod>> methods_;
+  string country_code_;
+  string state_;
+
+  onRampPaymentAvailability();
+
+  onRampPaymentAvailability(bool is_allowed_, bool is_purchase_allowed_, array<object_ptr<onRampPaymentMethod>> &&methods_, string const &country_code_, string const &state_);
+
+  static const std::int32_t ID = 1511244690;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentLimits final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string payment_method_;
+  string base_currency_min_amount_;
+  string base_currency_max_amount_;
+  string cryptocurrency_min_amount_;
+  string cryptocurrency_max_amount_;
+
+  onRampPaymentLimits();
+
+  onRampPaymentLimits(string const &payment_method_, string const &base_currency_min_amount_, string const &base_currency_max_amount_, string const &cryptocurrency_min_amount_, string const &cryptocurrency_max_amount_);
+
+  static const std::int32_t ID = -1052282492;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentMethod final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string name_;
+  bool is_available_;
+
+  onRampPaymentMethod();
+
+  onRampPaymentMethod(string const &name_, bool is_available_);
+
+  static const std::int32_t ID = 929694083;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentQuote final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string payment_method_;
+  int32 expiration_date_;
+  string base_currency_amount_;
+  string cryptocurrency_amount_;
+  string cryptocurrency_price_;
+  string fee_amount_;
+  string extra_fee_amount_;
+  string network_fee_amount_;
+  string total_amount_;
+
+  onRampPaymentQuote();
+
+  onRampPaymentQuote(string const &payment_method_, int32 expiration_date_, string const &base_currency_amount_, string const &cryptocurrency_amount_, string const &cryptocurrency_price_, string const &fee_amount_, string const &extra_fee_amount_, string const &network_fee_amount_, string const &total_amount_);
+
+  static const std::int32_t ID = 583798655;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentSession final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string session_id_;
+  int32 expiration_date_;
+  string url_;
+
+  onRampPaymentSession();
+
+  onRampPaymentSession(string const &session_id_, int32 expiration_date_, string const &url_);
+
+  static const std::int32_t ID = 1419623629;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampProvider final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string id_;
+  string name_;
+  array<string> cryptocurrencies_;
+  bool supports_base_currencies_;
+  bool supports_limits_;
+  bool supports_quote_;
+
+  onRampProvider();
+
+  onRampProvider(string const &id_, string const &name_, array<string> &&cryptocurrencies_, bool supports_base_currencies_, bool supports_limits_, bool supports_quote_);
+
+  static const std::int32_t ID = -425745766;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampProvider;
+
+class onRampProviders final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<object_ptr<onRampProvider>> providers_;
+
+  onRampProviders();
+
+  explicit onRampProviders(array<object_ptr<onRampProvider>> &&providers_);
+
+  static const std::int32_t ID = -258041669;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -27325,6 +27617,42 @@ class pushMessageContentGiveaway final : public PushMessageContent {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class pushMessageContentTonWalletTransfer final : public PushMessageContent {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 sender_user_id_;
+  string amount_;
+  string comment_;
+
+  pushMessageContentTonWalletTransfer();
+
+  pushMessageContentTonWalletTransfer(int53 sender_user_id_, string const &amount_, string const &comment_);
+
+  static const std::int32_t ID = -1170923657;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class pushMessageContentTonConnectRequest final : public PushMessageContent {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string dapp_name_;
+
+  pushMessageContentTonConnectRequest();
+
+  explicit pushMessageContentTonConnectRequest(string const &dapp_name_);
+
+  static const std::int32_t ID = 1277626552;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class pushMessageContentGift final : public PushMessageContent {
   std::int32_t get_id() const final {
     return ID;
@@ -29202,6 +29530,24 @@ class richTextBankCardNumber final : public RichText {
   richTextBankCardNumber(object_ptr<RichText> &&text_, string const &bank_card_number_);
 
   static const std::int32_t ID = 1587991130;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class richTextTonAddress final : public RichText {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<RichText> text_;
+  string address_;
+
+  richTextTonAddress();
+
+  richTextTonAddress(object_ptr<RichText> &&text_, string const &address_);
+
+  static const std::int32_t ID = -1434939320;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -33828,6 +34174,20 @@ class suggestedActionViewChecksHint final : public SuggestedAction {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class suggestedActionViewFirstTonWalletTransferHint final : public SuggestedAction {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  suggestedActionViewFirstTonWalletTransferHint();
+
+  static const std::int32_t ID = 734140787;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class suggestedActionConvertToBroadcastGroup final : public SuggestedAction {
   std::int32_t get_id() const final {
     return ID;
@@ -35147,6 +35507,20 @@ class textEntityTypeBankCardNumber final : public TextEntityType {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class textEntityTypeTonAddress final : public TextEntityType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  textEntityTypeTonAddress();
+
+  static const std::int32_t ID = 516305059;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class textEntityTypeBold final : public TextEntityType {
   std::int32_t get_id() const final {
     return ID;
@@ -35480,13 +35854,14 @@ class themeSettings final : public Object {
   object_ptr<background> background_;
   object_ptr<BackgroundFill> outgoing_message_fill_;
   bool animate_outgoing_message_fill_;
+  bool has_outgoing_message_accent_color_;
   int32 outgoing_message_accent_color_;
 
   themeSettings();
 
-  themeSettings(object_ptr<BuiltInTheme> &&base_theme_, int32 accent_color_, object_ptr<background> &&background_, object_ptr<BackgroundFill> &&outgoing_message_fill_, bool animate_outgoing_message_fill_, int32 outgoing_message_accent_color_);
+  themeSettings(object_ptr<BuiltInTheme> &&base_theme_, int32 accent_color_, object_ptr<background> &&background_, object_ptr<BackgroundFill> &&outgoing_message_fill_, bool animate_outgoing_message_fill_, bool has_outgoing_message_accent_color_, int32 outgoing_message_accent_color_);
 
-  static const std::int32_t ID = 1935106938;
+  static const std::int32_t ID = -68123817;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -35651,6 +36026,497 @@ class timeZones final : public Object {
   explicit timeZones(array<object_ptr<timeZone>> &&time_zones_);
 
   static const std::int32_t ID = -334655570;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonCenterApiRequestType: public Object {
+ public:
+};
+
+class tonCenterApiRequestTypeGet final : public TonCenterApiRequestType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string query_;
+
+  tonCenterApiRequestTypeGet();
+
+  explicit tonCenterApiRequestTypeGet(string const &query_);
+
+  static const std::int32_t ID = -1645018545;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonCenterApiRequestTypePost final : public TonCenterApiRequestType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string payload_;
+
+  tonCenterApiRequestTypePost();
+
+  explicit tonCenterApiRequestTypePost(string const &payload_);
+
+  static const std::int32_t ID = 114401332;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonCenterStreamingApiUrl final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string url_;
+  int32 expires_in_;
+
+  tonCenterStreamingApiUrl();
+
+  tonCenterStreamingApiUrl(string const &url_, int32 expires_in_);
+
+  static const std::int32_t ID = -1824200355;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectChallenge final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  bytes challenge_;
+  int64 event_id_;
+
+  tonConnectChallenge();
+
+  tonConnectChallenge(bytes const &challenge_, int64 event_id_);
+
+  static const std::int32_t ID = -1178935783;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonConnectConnectItem: public Object {
+ public:
+};
+
+class tonConnectConnectItemAddress final : public TonConnectConnectItem {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string network_;
+
+  tonConnectConnectItemAddress();
+
+  explicit tonConnectConnectItemAddress(string const &network_);
+
+  static const std::int32_t ID = -931047459;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectConnectItemProof final : public TonConnectConnectItem {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string payload_;
+
+  tonConnectConnectItemProof();
+
+  explicit tonConnectConnectItemProof(string const &payload_);
+
+  static const std::int32_t ID = -612391170;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonConnectConnectItem;
+
+class tonConnectConnectRequest final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string manifest_url_;
+  array<object_ptr<TonConnectConnectItem>> items_;
+
+  tonConnectConnectRequest();
+
+  tonConnectConnectRequest(string const &manifest_url_, array<object_ptr<TonConnectConnectItem>> &&items_);
+
+  static const std::int32_t ID = -1770854951;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class document;
+
+class TonConnectManifest: public Object {
+ public:
+};
+
+class tonConnectManifestPending final : public TonConnectManifest {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectManifestPending();
+
+  static const std::int32_t ID = -471565541;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectManifestInfo final : public TonConnectManifest {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string url_;
+  string name_;
+  object_ptr<document> icon_;
+
+  tonConnectManifestInfo();
+
+  tonConnectManifestInfo(string const &url_, string const &name_, object_ptr<document> &&icon_);
+
+  static const std::int32_t ID = -324655228;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectManifestFailed final : public TonConnectManifest {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectManifestFailed();
+
+  static const std::int32_t ID = 1698835386;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectManifestInvalid final : public TonConnectManifest {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectManifestInvalid();
+
+  static const std::int32_t ID = -2095569200;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequest final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  int53 message_id_;
+  bytes body_;
+  int32 expiration_date_;
+  string topic_;
+  string trace_id_;
+
+  tonConnectRequest();
+
+  tonConnectRequest(int64 session_id_, int53 message_id_, bytes const &body_, int32 expiration_date_, string const &topic_, string const &trace_id_);
+
+  static const std::int32_t ID = 212229183;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonConnectRequestState: public Object {
+ public:
+};
+
+class tonConnectRequestStatePending final : public TonConnectRequestState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int32 expiration_date_;
+
+  tonConnectRequestStatePending();
+
+  explicit tonConnectRequestStatePending(int32 expiration_date_);
+
+  static const std::int32_t ID = -536401449;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequestStateAccepted final : public TonConnectRequestState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectRequestStateAccepted();
+
+  static const std::int32_t ID = 373585842;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequestStateRejected final : public TonConnectRequestState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectRequestStateRejected();
+
+  static const std::int32_t ID = -2016437734;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequest;
+
+class tonConnectSession;
+
+class tonConnectRequests final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonConnectSession> session_;
+  array<object_ptr<tonConnectRequest>> requests_;
+
+  tonConnectRequests();
+
+  tonConnectRequests(object_ptr<tonConnectSession> &&session_, array<object_ptr<tonConnectRequest>> &&requests_);
+
+  static const std::int32_t ID = 1348359820;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonConnectManifest;
+
+class TonConnectSessionState;
+
+class tonConnectSession final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 id_;
+  string dapp_client_id_;
+  string wallet_client_id_;
+  int32 creation_date_;
+  object_ptr<TonConnectManifest> manifest_;
+  bytes nonce_;
+  object_ptr<TonConnectSessionState> state_;
+
+  tonConnectSession();
+
+  tonConnectSession(int64 id_, string const &dapp_client_id_, string const &wallet_client_id_, int32 creation_date_, object_ptr<TonConnectManifest> &&manifest_, bytes const &nonce_, object_ptr<TonConnectSessionState> &&state_);
+
+  static const std::int32_t ID = 1444165653;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessionEventId final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 event_id_;
+
+  tonConnectSessionEventId();
+
+  explicit tonConnectSessionEventId(int64 event_id_);
+
+  static const std::int32_t ID = -1316732711;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonConnectSessionState: public Object {
+ public:
+};
+
+class tonConnectSessionStatePending final : public TonConnectSessionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectSessionStatePending();
+
+  static const std::int32_t ID = -1839661231;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessionStateReady final : public TonConnectSessionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectSessionStateReady();
+
+  static const std::int32_t ID = -2044966330;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessionStateClosing final : public TonConnectSessionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectSessionStateClosing();
+
+  static const std::int32_t ID = 1997033710;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessionStateClosed final : public TonConnectSessionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonConnectSessionStateClosed();
+
+  static const std::int32_t ID = -1053881899;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSession;
+
+class tonConnectSessions final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<object_ptr<tonConnectSession>> sessions_;
+
+  tonConnectSessions();
+
+  explicit tonConnectSessions(array<object_ptr<tonConnectSession>> &&sessions_);
+
+  static const std::int32_t ID = 842362001;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class JsonValue;
+
+class document;
+
+class photoSize;
+
+class sticker;
+
+class tonNftAttribute;
+
+class tonNft final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string collection_address_;
+  string address_;
+  string owner_address_;
+  string index_;
+  string name_;
+  string description_;
+  object_ptr<photoSize> image_;
+  object_ptr<photoSize> thumbnail_;
+  object_ptr<document> content_;
+  object_ptr<sticker> sticker_;
+  array<object_ptr<tonNftAttribute>> attributes_;
+  object_ptr<JsonValue> extra_;
+
+  tonNft();
+
+  tonNft(string const &collection_address_, string const &address_, string const &owner_address_, string const &index_, string const &name_, string const &description_, object_ptr<photoSize> &&image_, object_ptr<photoSize> &&thumbnail_, object_ptr<document> &&content_, object_ptr<sticker> &&sticker_, array<object_ptr<tonNftAttribute>> &&attributes_, object_ptr<JsonValue> &&extra_);
+
+  static const std::int32_t ID = -1595898089;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonNftAttribute final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string trait_type_;
+  string value_;
+
+  tonNftAttribute();
+
+  tonNftAttribute(string const &trait_type_, string const &value_);
+
+  static const std::int32_t ID = 413249030;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonNft;
+
+class tonNfts final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<object_ptr<tonNft>> nfts_;
+  string next_offset_;
+
+  tonNfts();
+
+  tonNfts(array<object_ptr<tonNft>> &&nfts_, string const &next_offset_);
+
+  static const std::int32_t ID = -361315291;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -35855,6 +36721,306 @@ class tonTransactions final : public Object {
   tonTransactions(int53 gram_amount_, array<object_ptr<tonTransaction>> &&transactions_, string const &next_offset_);
 
   static const std::int32_t ID = -1391918595;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletGaslessTransfersInfo final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int32 left_count_;
+  int32 reset_date_;
+  string relayer_address_;
+
+  tonWalletGaslessTransfersInfo();
+
+  tonWalletGaslessTransfersInfo(int32 left_count_, int32 reset_date_, string const &relayer_address_);
+
+  static const std::int32_t ID = 902660845;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletOwnershipProof final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  bytes public_key_;
+  int32 timestamp_;
+  bytes signature_;
+
+  tonWalletOwnershipProof();
+
+  tonWalletOwnershipProof(bytes const &public_key_, int32 timestamp_, bytes const &signature_);
+
+  static const std::int32_t ID = -1221462559;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletOwnershipProofChallenge final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string payload_;
+  string domain_;
+
+  tonWalletOwnershipProofChallenge();
+
+  tonWalletOwnershipProofChallenge(string const &payload_, string const &domain_);
+
+  static const std::int32_t ID = -794074177;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletState final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string address_;
+  bytes public_key_;
+  int53 gram_amount_;
+  bool is_being_created_;
+  bool is_backup_enabled_;
+  bool can_enable_backup_;
+  bool can_export_phrase_;
+
+  tonWalletState();
+
+  tonWalletState(string const &address_, bytes const &public_key_, int53 gram_amount_, bool is_being_created_, bool is_backup_enabled_, bool can_enable_backup_, bool can_export_phrase_);
+
+  static const std::int32_t ID = -655546174;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonWalletTransactionState;
+
+class TonWalletTransactionType;
+
+class tonWalletTransaction final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string id_;
+  string peer_address_;
+  int53 peer_user_id_;
+  string peer_domain_;
+  int32 date_;
+  int53 fee_amount_;
+  object_ptr<TonWalletTransactionState> state_;
+  object_ptr<TonWalletTransactionType> type_;
+
+  tonWalletTransaction();
+
+  tonWalletTransaction(string const &id_, string const &peer_address_, int53 peer_user_id_, string const &peer_domain_, int32 date_, int53 fee_amount_, object_ptr<TonWalletTransactionState> &&state_, object_ptr<TonWalletTransactionType> &&type_);
+
+  static const std::int32_t ID = -2081280655;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonWalletTransactionState: public Object {
+ public:
+};
+
+class tonWalletTransactionStateSucceeded final : public TonWalletTransactionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string tx_hash_;
+
+  tonWalletTransactionStateSucceeded();
+
+  explicit tonWalletTransactionStateSucceeded(string const &tx_hash_);
+
+  static const std::int32_t ID = 1719049818;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransactionStateFailed final : public TonWalletTransactionState {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonWalletTransactionStateFailed();
+
+  static const std::int32_t ID = 827481942;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonNft;
+
+class TonWalletTransactionType: public Object {
+ public:
+};
+
+class tonWalletTransactionTypeOnRampDeposit final : public TonWalletTransactionType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 amount_;
+  string provider_name_;
+
+  tonWalletTransactionTypeOnRampDeposit();
+
+  tonWalletTransactionTypeOnRampDeposit(int53 amount_, string const &provider_name_);
+
+  static const std::int32_t ID = -1570430820;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransactionTypeTransfer final : public TonWalletTransactionType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 amount_;
+  bool is_gasless_;
+  string comment_;
+  bool is_comment_encrypted_;
+
+  tonWalletTransactionTypeTransfer();
+
+  tonWalletTransactionTypeTransfer(int53 amount_, bool is_gasless_, string const &comment_, bool is_comment_encrypted_);
+
+  static const std::int32_t ID = -2077618700;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransactionTypeNftTransfer final : public TonWalletTransactionType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonNft> nft_;
+  bool is_outgoing_;
+  string comment_;
+  bool is_comment_encrypted_;
+
+  tonWalletTransactionTypeNftTransfer();
+
+  tonWalletTransactionTypeNftTransfer(object_ptr<tonNft> &&nft_, bool is_outgoing_, string const &comment_, bool is_comment_encrypted_);
+
+  static const std::int32_t ID = 547073159;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransactionTypeKeyChange final : public TonWalletTransactionType {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  tonWalletTransactionTypeKeyChange();
+
+  static const std::int32_t ID = 1748368342;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransaction;
+
+class tonWalletTransactions final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 gram_amount_;
+  array<object_ptr<tonWalletTransaction>> transactions_;
+  string next_offset_;
+
+  tonWalletTransactions();
+
+  tonWalletTransactions(int53 gram_amount_, array<object_ptr<tonWalletTransaction>> &&transactions_, string const &next_offset_);
+
+  static const std::int32_t ID = -1372826145;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TonWalletTransferReceiver: public Object {
+ public:
+};
+
+class tonWalletTransferReceiverUser final : public TonWalletTransferReceiver {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string username_;
+
+  tonWalletTransferReceiverUser();
+
+  explicit tonWalletTransferReceiverUser(string const &username_);
+
+  static const std::int32_t ID = -1279755598;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransferReceiverAddress final : public TonWalletTransferReceiver {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string address_;
+
+  tonWalletTransferReceiverAddress();
+
+  explicit tonWalletTransferReceiverAddress(string const &address_);
+
+  static const std::int32_t ID = 8405880;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransaction;
+
+class tonWalletTransferResult final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  bool is_gasless_;
+  bytes msg_hash_;
+  object_ptr<tonWalletTransaction> transaction_;
+
+  tonWalletTransferResult();
+
+  tonWalletTransferResult(bool is_gasless_, bytes const &msg_hash_, object_ptr<tonWalletTransaction> &&transaction_);
+
+  static const std::int32_t ID = 1353122790;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -36290,6 +37456,12 @@ class supergroupFullInfo;
 class termsOfService;
 
 class textCompositionStyle;
+
+class tonConnectSession;
+
+class tonWalletGaslessTransfersInfo;
+
+class tonWalletState;
 
 class trendingStickerSets;
 
@@ -38532,6 +39704,23 @@ class updateStoryStealthMode final : public Update {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class updateAllowedBotUsernamePremiumSuffixes final : public Update {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<string> suffixes_;
+
+  updateAllowedBotUsernamePremiumSuffixes();
+
+  explicit updateAllowedBotUsernamePremiumSuffixes(array<string> &&suffixes_);
+
+  static const std::int32_t ID = -95421585;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class updateTrustedMiniAppBots final : public Update {
   std::int32_t get_id() const final {
     return ID;
@@ -39054,6 +40243,74 @@ class updateOwnedGramCount final : public Update {
   explicit updateOwnedGramCount(int53 gram_amount_);
 
   static const std::int32_t ID = -2126618955;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class updateTonWalletState final : public Update {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonWalletState> state_;
+
+  updateTonWalletState();
+
+  explicit updateTonWalletState(object_ptr<tonWalletState> &&state_);
+
+  static const std::int32_t ID = 1146625413;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class updateTonWalletGaslessTransfersInfo final : public Update {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonWalletGaslessTransfersInfo> info_;
+
+  updateTonWalletGaslessTransfersInfo();
+
+  explicit updateTonWalletGaslessTransfersInfo(object_ptr<tonWalletGaslessTransfersInfo> &&info_);
+
+  static const std::int32_t ID = 1340758750;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class updateTonWalletTonConnectSession final : public Update {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonConnectSession> session_;
+
+  updateTonWalletTonConnectSession();
+
+  explicit updateTonWalletTonConnectSession(object_ptr<tonConnectSession> &&session_);
+
+  static const std::int32_t ID = -1709603581;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class updateTonWalletTonConnectSessionDisconnectRequired final : public Update {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<int64> session_ids_;
+
+  updateTonWalletTonConnectSessionDisconnectRequired();
+
+  explicit updateTonWalletTonConnectSessionDisconnectRequired(array<int64> &&session_ids_);
+
+  static const std::int32_t ID = 919346049;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -41067,6 +42324,44 @@ class userSupportInfo final : public Object {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class userTonWalletAddress final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 user_id_;
+  string wallet_address_;
+  bytes public_key_;
+
+  userTonWalletAddress();
+
+  userTonWalletAddress(int53 user_id_, string const &wallet_address_, bytes const &public_key_);
+
+  static const std::int32_t ID = -666000734;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class userTonWalletAddress;
+
+class userTonWalletAddresses final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<object_ptr<userTonWalletAddress>> addresses_;
+
+  userTonWalletAddresses();
+
+  explicit userTonWalletAddresses(array<object_ptr<userTonWalletAddress>> &&addresses_);
+
+  static const std::int32_t ID = -814605800;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class UserType: public Object {
  public:
 };
@@ -41154,12 +42449,13 @@ class usernames final : public Object {
   array<string> disabled_usernames_;
   string editable_username_;
   array<string> collectible_usernames_;
+  string secondary_username_;
 
   usernames();
 
-  usernames(array<string> &&active_usernames_, array<string> &&disabled_usernames_, string const &editable_username_, array<string> &&collectible_usernames_);
+  usernames(array<string> &&active_usernames_, array<string> &&disabled_usernames_, string const &editable_username_, array<string> &&collectible_usernames_, string const &secondary_username_);
 
-  static const std::int32_t ID = 1263390614;
+  static const std::int32_t ID = 768022622;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -41462,6 +42758,24 @@ class voiceNote final : public Object {
   voiceNote(int32 duration_, bytes const &waveform_, string const &mime_type_, object_ptr<SpeechRecognitionResult> &&speech_recognition_result_, object_ptr<file> &&voice_);
 
   static const std::int32_t ID = -1175302923;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class walletBotBalance final : public Object {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  bool has_balance_;
+  string url_;
+
+  walletBotBalance();
+
+  walletBotBalance(bool has_balance_, string const &url_);
+
+  static const std::int32_t ID = -855214867;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -41826,6 +43140,28 @@ class addBotMediaPreview final : public Function {
   static const std::int32_t ID = 1347126571;
 
   using ReturnType = object_ptr<botMediaPreview>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class addBotSecondaryUsername final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 bot_user_id_;
+  string username_;
+
+  addBotSecondaryUsername();
+
+  addBotSecondaryUsername(int53 bot_user_id_, string const &username_);
+
+  static const std::int32_t ID = 352599609;
+
+  using ReturnType = object_ptr<ok>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -42832,6 +44168,30 @@ class answerShippingQuery final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class ok;
+
+class answerTonConnectRequest final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  int53 message_id_;
+  string trace_id_;
+  bytes body_;
+
+  answerTonConnectRequest();
+
+  answerTonConnectRequest(int64 session_id_, int53 message_id_, string const &trace_id_, bytes const &body_);
+
+  static const std::int32_t ID = 931013809;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class InputInlineQueryResult;
 
 class inlineMessageId;
@@ -43504,12 +44864,13 @@ class checkBotUsername final : public Function {
 
  public:
   string username_;
+  bool is_secondary_;
 
   checkBotUsername();
 
-  explicit checkBotUsername(string const &username_);
+  checkBotUsername(string const &username_, bool is_secondary_);
 
-  static const std::int32_t ID = -1358454679;
+  static const std::int32_t ID = 508444428;
 
   using ReturnType = object_ptr<CheckChatUsernameResult>;
 
@@ -43795,6 +45156,24 @@ class checkStickerSetName final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class walletBotBalance;
+
+class checkWalletBotBalance final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  checkWalletBotBalance();
+
+  static const std::int32_t ID = 1585020937;
+
+  using ReturnType = object_ptr<walletBotBalance>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class ok;
 
 class checkWebAppFileDownload final : public Function {
@@ -43812,6 +45191,30 @@ class checkWebAppFileDownload final : public Function {
   checkWebAppFileDownload(int53 bot_user_id_, string const &file_name_, string const &url_);
 
   static const std::int32_t ID = -389397278;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class claimTonConnectRequest final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  int53 message_id_;
+  string dapp_request_id_;
+  bool is_rejected_;
+
+  claimTonConnectRequest();
+
+  claimTonConnectRequest(int64 session_id_, int53 message_id_, string const &dapp_request_id_, bool is_rejected_);
+
+  static const std::int32_t ID = -1261244142;
 
   using ReturnType = object_ptr<ok>;
 
@@ -44818,6 +46221,37 @@ class createNewSupergroupChat final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class onRampPaymentSession;
+
+class createOnRampPaymentSession final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string provider_id_;
+  string cryptocurrency_;
+  string address_;
+  string payment_method_name_;
+  string base_currency_;
+  string cryptocurrency_amount_;
+  string base_currency_amount_;
+  string memo_;
+  string theme_;
+  string success_return_url_;
+  string fail_return_url_;
+
+  createOnRampPaymentSession();
+
+  createOnRampPaymentSession(string const &provider_id_, string const &cryptocurrency_, string const &address_, string const &payment_method_name_, string const &base_currency_, string const &cryptocurrency_amount_, string const &base_currency_amount_, string const &memo_, string const &theme_, string const &success_return_url_, string const &fail_return_url_);
+
+  static const std::int32_t ID = -259267122;
+
+  using ReturnType = object_ptr<onRampPaymentSession>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class chat;
 
 class createPrivateChat final : public Function {
@@ -44971,6 +46405,49 @@ class createTextCompositionStyle final : public Function {
   static const std::int32_t ID = -1549417869;
 
   using ReturnType = object_ptr<textCompositionStyle>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSession;
+
+class createTonConnectSession final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string dapp_client_id_;
+  string manifest_url_;
+
+  createTonConnectSession();
+
+  createTonConnectSession(string const &dapp_client_id_, string const &manifest_url_);
+
+  static const std::int32_t ID = 1463778794;
+
+  using ReturnType = object_ptr<tonConnectSession>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class userTonWalletAddress;
+
+class createUserTonWallet final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 user_id_;
+
+  createUserTonWallet();
+
+  explicit createUserTonWallet(int53 user_id_);
+
+  static const std::int32_t ID = 1295458892;
+
+  using ReturnType = object_ptr<userTonWalletAddress>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -45220,6 +46697,27 @@ class deleteBotMediaPreviews final : public Function {
   deleteBotMediaPreviews(int53 bot_user_id_, string const &language_code_, array<int32> &&file_ids_);
 
   static const std::int32_t ID = -1397512722;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class deleteBotSecondaryUsername final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 bot_user_id_;
+
+  deleteBotSecondaryUsername();
+
+  explicit deleteBotSecondaryUsername(int53 bot_user_id_);
+
+  static const std::int32_t ID = 1892068368;
 
   using ReturnType = object_ptr<ok>;
 
@@ -45532,6 +47030,27 @@ class deleteCommands final : public Function {
   deleteCommands(object_ptr<BotCommandScope> &&scope_, string const &language_code_);
 
   static const std::int32_t ID = 1002732586;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class deleteCommunity final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 community_id_;
+
+  deleteCommunity();
+
+  explicit deleteCommunity(int53 community_id_);
+
+  static const std::int32_t ID = 1848566901;
 
   using ReturnType = object_ptr<ok>;
 
@@ -46134,6 +47653,27 @@ class deleteTextCompositionStyle final : public Function {
 
 class ok;
 
+class deleteTonWallet final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string password_;
+
+  deleteTonWallet();
+
+  explicit deleteTonWallet(string const &password_);
+
+  static const std::int32_t ID = 1886897005;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
 class destroy final : public Function {
   std::int32_t get_id() const final {
     return ID;
@@ -46183,6 +47723,50 @@ class disableProxy final : public Function {
   disableProxy();
 
   static const std::int32_t ID = -2100095102;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class disableTonWalletBackup final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string password_;
+
+  disableTonWalletBackup();
+
+  explicit disableTonWalletBackup(string const &password_);
+
+  static const std::int32_t ID = 1331171002;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class tonWalletOwnershipProof;
+
+class disableTonWalletBackupWithProof final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<tonWalletOwnershipProof> proof_;
+
+  disableTonWalletBackupWithProof();
+
+  explicit disableTonWalletBackupWithProof(object_ptr<tonWalletOwnershipProof> &&proof_);
+
+  static const std::int32_t ID = -1938588651;
 
   using ReturnType = object_ptr<ok>;
 
@@ -46259,6 +47843,28 @@ class disconnectAllWebsites final : public Function {
 
 class ok;
 
+class disconnectTonConnectSession final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  bytes body_;
+
+  disconnectTonConnectSession();
+
+  disconnectTonConnectSession(int64 session_id_, bytes const &body_);
+
+  static const std::int32_t ID = -230966976;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
 class disconnectWebsite final : public Function {
   std::int32_t get_id() const final {
     return ID;
@@ -46272,6 +47878,27 @@ class disconnectWebsite final : public Function {
   explicit disconnectWebsite(int64 website_id_);
 
   static const std::int32_t ID = -778767395;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class dismissWebToken final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string token_;
+
+  dismissWebToken();
+
+  explicit dismissWebToken(string const &token_);
+
+  static const std::int32_t ID = -1397082340;
 
   using ReturnType = object_ptr<ok>;
 
@@ -46577,34 +48204,6 @@ class editBusinessStory final : public Function {
   static const std::int32_t ID = 472538940;
 
   using ReturnType = object_ptr<story>;
-
-  void store(TlStorerToString &s, const char *field_name) const final;
-};
-
-class InputMessageContent;
-
-class ReplyMarkup;
-
-class ok;
-
-class editCallbackQueryMessage final : public Function {
-  std::int32_t get_id() const final {
-    return ID;
-  }
-
- public:
-  int64 callback_query_id_;
-  bool protect_content_;
-  object_ptr<ReplyMarkup> reply_markup_;
-  object_ptr<InputMessageContent> input_message_content_;
-
-  editCallbackQueryMessage();
-
-  editCallbackQueryMessage(int64 callback_query_id_, bool protect_content_, object_ptr<ReplyMarkup> &&reply_markup_, object_ptr<InputMessageContent> &&input_message_content_);
-
-  static const std::int32_t ID = 403509242;
-
-  using ReturnType = object_ptr<ok>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -47358,6 +48957,30 @@ class enableProxy final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class ok;
+
+class tonWalletOwnershipProof;
+
+class enableTonWalletBackup final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string secret_phrase_;
+  object_ptr<tonWalletOwnershipProof> proof_;
+
+  enableTonWalletBackup();
+
+  enableTonWalletBackup(string const &secret_phrase_, object_ptr<tonWalletOwnershipProof> &&proof_);
+
+  static const std::int32_t ID = 754479745;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class GroupCallDataChannel;
 
 class data;
@@ -47580,6 +49203,27 @@ class getActiveSessions final : public Function {
   static const std::int32_t ID = 1119710526;
 
   using ReturnType = object_ptr<sessions>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class userTonWalletAddress;
+
+class getAddressTonWallet final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string address_;
+
+  getAddressTonWallet();
+
+  explicit getAddressTonWallet(string const &address_);
+
+  static const std::int32_t ID = 1227177723;
+
+  using ReturnType = object_ptr<userTonWalletAddress>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -49497,6 +51141,27 @@ class getCommands final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class communityFullInfo;
+
+class getCommunityFullInfo final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 community_id_;
+
+  getCommunityFullInfo();
+
+  explicit getCommunityFullInfo(int53 community_id_);
+
+  static const std::int32_t ID = -2128198899;
+
+  using ReturnType = object_ptr<communityFullInfo>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class AffiliateType;
 
 class connectedAffiliateProgram;
@@ -49679,6 +51344,24 @@ class getCreatedPublicChats final : public Function {
   static const std::int32_t ID = 710354415;
 
   using ReturnType = object_ptr<chats>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class currencyExchangeRates;
+
+class getCurrencyExchangeRates final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  getCurrencyExchangeRates();
+
+  static const std::int32_t ID = 1880730661;
+
+  using ReturnType = object_ptr<currencyExchangeRates>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -52013,6 +53696,122 @@ class getOauthLinkInfo final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class onRampPaymentAvailability;
+
+class getOnRampPaymentAvailability final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string provider_id_;
+  string cryptocurrency_;
+  string base_currency_;
+
+  getOnRampPaymentAvailability();
+
+  getOnRampPaymentAvailability(string const &provider_id_, string const &cryptocurrency_, string const &base_currency_);
+
+  static const std::int32_t ID = -298703297;
+
+  using ReturnType = object_ptr<onRampPaymentAvailability>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentLimits;
+
+class getOnRampPaymentLimits final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string provider_id_;
+  string cryptocurrency_;
+  string base_currency_;
+  string payment_method_name_;
+
+  getOnRampPaymentLimits();
+
+  getOnRampPaymentLimits(string const &provider_id_, string const &cryptocurrency_, string const &base_currency_, string const &payment_method_name_);
+
+  static const std::int32_t ID = 1655117622;
+
+  using ReturnType = object_ptr<onRampPaymentLimits>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampPaymentQuote;
+
+class getOnRampPaymentQuote final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string provider_id_;
+  string cryptocurrency_;
+  string base_currency_;
+  string cryptocurrency_amount_;
+  string base_currency_amount_;
+  string payment_method_name_;
+
+  getOnRampPaymentQuote();
+
+  getOnRampPaymentQuote(string const &provider_id_, string const &cryptocurrency_, string const &base_currency_, string const &cryptocurrency_amount_, string const &base_currency_amount_, string const &payment_method_name_);
+
+  static const std::int32_t ID = -701180612;
+
+  using ReturnType = object_ptr<onRampPaymentQuote>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class currencies;
+
+class getOnRampProviderBaseCurrencies final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string provider_id_;
+  string cryptocurrency_;
+
+  getOnRampProviderBaseCurrencies();
+
+  getOnRampProviderBaseCurrencies(string const &provider_id_, string const &cryptocurrency_);
+
+  static const std::int32_t ID = 1538920144;
+
+  using ReturnType = object_ptr<currencies>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class onRampProviders;
+
+class getOnRampProviders final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string cryptocurrency_;
+
+  getOnRampProviders();
+
+  explicit getOnRampProviders(string const &cryptocurrency_);
+
+  static const std::int32_t ID = -1322197529;
+
+  using ReturnType = object_ptr<onRampProviders>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class OptionValue;
 
 class getOption final : public Function {
@@ -54057,6 +55856,105 @@ class getTimeZones final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class tonCenterStreamingApiUrl;
+
+class getTonCenterStreamingApiUrl final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  getTonCenterStreamingApiUrl();
+
+  static const std::int32_t ID = 1072334480;
+
+  using ReturnType = object_ptr<tonCenterStreamingApiUrl>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequests;
+
+class getTonConnectDAppPendingRequests final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string dapp_client_id_;
+
+  getTonConnectDAppPendingRequests();
+
+  explicit getTonConnectDAppPendingRequests(string const &dapp_client_id_);
+
+  static const std::int32_t ID = -1172395254;
+
+  using ReturnType = object_ptr<tonConnectRequests>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessionEventId;
+
+class getTonConnectSessionNextEventId final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+
+  getTonConnectSessionNextEventId();
+
+  explicit getTonConnectSessionNextEventId(int64 session_id_);
+
+  static const std::int32_t ID = 1178689222;
+
+  using ReturnType = object_ptr<tonConnectSessionEventId>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectRequests;
+
+class getTonConnectSessionPendingRequests final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+
+  getTonConnectSessionPendingRequests();
+
+  explicit getTonConnectSessionPendingRequests(int64 session_id_);
+
+  static const std::int32_t ID = 1611488247;
+
+  using ReturnType = object_ptr<tonConnectRequests>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectSessions;
+
+class getTonConnectSessions final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  getTonConnectSessions();
+
+  static const std::int32_t ID = 1869959974;
+
+  using ReturnType = object_ptr<tonConnectSessions>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class TransactionDirection;
 
 class tonTransactions;
@@ -54078,6 +55976,134 @@ class getTonTransactions final : public Function {
   static const std::int32_t ID = -1935011115;
 
   using ReturnType = object_ptr<tonTransactions>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonNfts;
+
+class getTonWalletNfts final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string offset_;
+  int32 limit_;
+
+  getTonWalletNfts();
+
+  getTonWalletNfts(string const &offset_, int32 limit_);
+
+  static const std::int32_t ID = -1499593741;
+
+  using ReturnType = object_ptr<tonNfts>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletOwnershipProofChallenge;
+
+class getTonWalletOwnershipProofChallenge final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  getTonWalletOwnershipProofChallenge();
+
+  static const std::int32_t ID = -334491918;
+
+  using ReturnType = object_ptr<tonWalletOwnershipProofChallenge>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class text;
+
+class getTonWalletSecretPhrase final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string password_;
+
+  getTonWalletSecretPhrase();
+
+  explicit getTonWalletSecretPhrase(string const &password_);
+
+  static const std::int32_t ID = 1644390868;
+
+  using ReturnType = object_ptr<text>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransaction;
+
+class getTonWalletTransaction final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string transaction_id_;
+
+  getTonWalletTransaction();
+
+  explicit getTonWalletTransaction(string const &transaction_id_);
+
+  static const std::int32_t ID = 254723496;
+
+  using ReturnType = object_ptr<tonWalletTransaction>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransaction;
+
+class getTonWalletTransactionByMsgHash final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string msg_hash_;
+
+  getTonWalletTransactionByMsgHash();
+
+  explicit getTonWalletTransactionByMsgHash(string const &msg_hash_);
+
+  static const std::int32_t ID = 777069339;
+
+  using ReturnType = object_ptr<tonWalletTransaction>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class TransactionDirection;
+
+class tonWalletTransactions;
+
+class getTonWalletTransactions final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  object_ptr<TransactionDirection> direction_;
+  string offset_;
+  int32 limit_;
+
+  getTonWalletTransactions();
+
+  getTonWalletTransactions(object_ptr<TransactionDirection> &&direction_, string const &offset_, int32 limit_);
+
+  static const std::int32_t ID = 1119847015;
+
+  using ReturnType = object_ptr<tonWalletTransactions>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -54422,6 +56448,27 @@ class getUserSupportInfo final : public Function {
   static const std::int32_t ID = 1957008133;
 
   using ReturnType = object_ptr<userSupportInfo>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class userTonWalletAddresses;
+
+class getUserTonWalletAddresses final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  array<int53> user_ids_;
+
+  getUserTonWalletAddresses();
+
+  explicit getUserTonWalletAddresses(array<int53> &&user_ids_);
+
+  static const std::int32_t ID = 1030468042;
+
+  using ReturnType = object_ptr<userTonWalletAddresses>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -55109,27 +57156,6 @@ class loadChats final : public Function {
 
 class ok;
 
-class loadCommunityFullInfo final : public Function {
-  std::int32_t get_id() const final {
-    return ID;
-  }
-
- public:
-  int53 community_id_;
-
-  loadCommunityFullInfo();
-
-  explicit loadCommunityFullInfo(int53 community_id_);
-
-  static const std::int32_t ID = -913011971;
-
-  using ReturnType = object_ptr<ok>;
-
-  void store(TlStorerToString &s, const char *field_name) const final;
-};
-
-class ok;
-
 class loadDirectMessagesChatTopics final : public Function {
   std::int32_t get_id() const final {
     return ID;
@@ -55226,6 +57252,42 @@ class loadSavedMessagesTopics final : public Function {
   explicit loadSavedMessagesTopics(int32 limit_);
 
   static const std::int32_t ID = 289855160;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class loadTonWalletGaslessTransfersInfo final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  loadTonWalletGaslessTransfersInfo();
+
+  static const std::int32_t ID = 2023155190;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class loadTonWalletState final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+
+  loadTonWalletState();
+
+  static const std::int32_t ID = 354270648;
 
   using ReturnType = object_ptr<ok>;
 
@@ -57166,6 +59228,31 @@ class replaceStickerInSet final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class ok;
+
+class tonWalletOwnershipProof;
+
+class replaceTonWallet final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string password_;
+  bytes anchor_public_key_;
+  object_ptr<tonWalletOwnershipProof> proof_;
+
+  replaceTonWallet();
+
+  replaceTonWallet(string const &password_, bytes const &anchor_public_key_, object_ptr<tonWalletOwnershipProof> &&proof_);
+
+  static const std::int32_t ID = -1127922374;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class rtmpUrl;
 
 class replaceVideoChatRtmpUrl final : public Function {
@@ -57183,6 +59270,35 @@ class replaceVideoChatRtmpUrl final : public Function {
   static const std::int32_t ID = 558862304;
 
   using ReturnType = object_ptr<rtmpUrl>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class InputMessageContent;
+
+class ReplyMarkup;
+
+class ok;
+
+class replyToCallbackQueryWithEphemeralMessage final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 callback_query_id_;
+  bool replace_callback_query_message_;
+  bool protect_content_;
+  object_ptr<ReplyMarkup> reply_markup_;
+  object_ptr<InputMessageContent> input_message_content_;
+
+  replyToCallbackQueryWithEphemeralMessage();
+
+  replyToCallbackQueryWithEphemeralMessage(int64 callback_query_id_, bool replace_callback_query_message_, bool protect_content_, object_ptr<ReplyMarkup> &&reply_markup_, object_ptr<InputMessageContent> &&input_message_content_);
+
+  static const std::int32_t ID = -77034825;
+
+  using ReturnType = object_ptr<ok>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };
@@ -59499,6 +61615,83 @@ class sendTextMessageDraft final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class TonCenterApiRequestType;
+
+class text;
+
+class sendTonCenterApiRequest final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  string endpoint_;
+  object_ptr<TonCenterApiRequestType> type_;
+
+  sendTonCenterApiRequest();
+
+  sendTonCenterApiRequest(string const &endpoint_, object_ptr<TonCenterApiRequestType> &&type_);
+
+  static const std::int32_t ID = -812754760;
+
+  using ReturnType = object_ptr<text>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class ok;
+
+class sendTonConnectSessionConnectResult final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  bytes challenge_answer_;
+  bool is_error_;
+  bytes body_;
+  string trace_id_;
+
+  sendTonConnectSessionConnectResult();
+
+  sendTonConnectSessionConnectResult(int64 session_id_, bytes const &challenge_answer_, bool is_error_, bytes const &body_, string const &trace_id_);
+
+  static const std::int32_t ID = -1435055549;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonWalletTransferResult;
+
+class sendTonWalletTransfer final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 user_id_;
+  string address_;
+  int53 amount_;
+  string comment_;
+  bool is_comment_encrypted_;
+  int32 sending_id_;
+  bytes regular_transfer_data_;
+  bytes gasless_transfer_data_;
+
+  sendTonWalletTransfer();
+
+  sendTonWalletTransfer(int53 user_id_, string const &address_, int53 amount_, string const &comment_, bool is_comment_encrypted_, int32 sending_id_, bytes const &regular_transfer_data_, bytes const &gasless_transfer_data_);
+
+  static const std::int32_t ID = 173682008;
+
+  using ReturnType = object_ptr<tonWalletTransferResult>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class customRequestResult;
 
 class sendWebAppCustomRequest final : public Function {
@@ -60878,6 +63071,54 @@ class setCommunityName final : public Function {
   void store(TlStorerToString &s, const char *field_name) const final;
 };
 
+class communityPermissions;
+
+class ok;
+
+class setCommunityPermissions final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 community_id_;
+  object_ptr<communityPermissions> permissions_;
+
+  setCommunityPermissions();
+
+  setCommunityPermissions(int53 community_id_, object_ptr<communityPermissions> &&permissions_);
+
+  static const std::int32_t ID = 1089063260;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class InputChatPhoto;
+
+class ok;
+
+class setCommunityPhoto final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int53 community_id_;
+  object_ptr<InputChatPhoto> photo_;
+
+  setCommunityPhoto();
+
+  setCommunityPhoto(int53 community_id_, object_ptr<InputChatPhoto> &&photo_);
+
+  static const std::int32_t ID = -2055048100;
+
+  using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
 class ok;
 
 class setCustomEmojiStickerSetThumbnail final : public Function {
@@ -61659,6 +63900,8 @@ class setMessageSenderBlockList final : public Function {
 
 class MessageSender;
 
+class formattedText;
+
 class ok;
 
 class setMessageSenderBotVerification final : public Function {
@@ -61669,13 +63912,13 @@ class setMessageSenderBotVerification final : public Function {
  public:
   int53 bot_user_id_;
   object_ptr<MessageSender> verified_id_;
-  string custom_description_;
+  object_ptr<formattedText> custom_description_;
 
   setMessageSenderBotVerification();
 
-  setMessageSenderBotVerification(int53 bot_user_id_, object_ptr<MessageSender> &&verified_id_, string const &custom_description_);
+  setMessageSenderBotVerification(int53 bot_user_id_, object_ptr<MessageSender> &&verified_id_, object_ptr<formattedText> &&custom_description_);
 
-  static const std::int32_t ID = -1262364086;
+  static const std::int32_t ID = 2101755632;
 
   using ReturnType = object_ptr<ok>;
 
@@ -62578,6 +64821,28 @@ class setTdlibParameters final : public Function {
   static const std::int32_t ID = -775883218;
 
   using ReturnType = object_ptr<ok>;
+
+  void store(TlStorerToString &s, const char *field_name) const final;
+};
+
+class tonConnectChallenge;
+
+class setTonConnectSessionWalletClientId final : public Function {
+  std::int32_t get_id() const final {
+    return ID;
+  }
+
+ public:
+  int64 session_id_;
+  string wallet_client_id_;
+
+  setTonConnectSessionWalletClientId();
+
+  setTonConnectSessionWalletClientId(int64 session_id_, string const &wallet_client_id_);
+
+  static const std::int32_t ID = -1686326443;
+
+  using ReturnType = object_ptr<tonConnectChallenge>;
 
   void store(TlStorerToString &s, const char *field_name) const final;
 };

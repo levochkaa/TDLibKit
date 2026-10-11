@@ -1,15 +1,15 @@
 {
   "format_version": 2,
-  "tdlib_commit": "d1085f9cebc5a62379991ae1652673954f229c1f",
-  "td_api_tl_sha256": "326b65b41442901ad6bf0ca2f7c356ae54365d6c343956a62e06a8b3cb305e87",
+  "tdlib_commit": "c15d3f5a5de6e3ba5839822c451152e5e18bb700",
+  "td_api_tl_sha256": "cea6311c8a4ba0c73460b4f632b1e2b771499b32cf531f7297ee315a5a83eae5",
   "counts": {
-    "declarations": 3205,
-    "objects": 2183,
-    "functions": 1022,
-    "unions": 211,
-    "result_types": 743,
-    "fields": 6997,
-    "optional_object_fields": 592,
+    "declarations": 3316,
+    "objects": 2251,
+    "functions": 1065,
+    "unions": 219,
+    "result_types": 782,
+    "fields": 7250,
+    "optional_object_fields": 601,
     "max_vector_depth": 2
   },
   "unions": [
@@ -1455,6 +1455,24 @@
       ]
     },
     {
+      "name": "Currencies",
+      "members": [
+        "currencies"
+      ]
+    },
+    {
+      "name": "CurrencyExchangeRate",
+      "members": [
+        "currencyExchangeRate"
+      ]
+    },
+    {
+      "name": "CurrencyExchangeRates",
+      "members": [
+        "currencyExchangeRates"
+      ]
+    },
+    {
       "name": "CurrentWeather",
       "members": [
         "currentWeather"
@@ -2745,6 +2763,8 @@
         "internalLinkTypeStoryAlbum",
         "internalLinkTypeTextCompositionStyle",
         "internalLinkTypeTheme",
+        "internalLinkTypeTonConnect",
+        "internalLinkTypeTonWalletTransfer",
         "internalLinkTypeUnknownDeepLink",
         "internalLinkTypeUpgradedGift",
         "internalLinkTypeUserPhoneNumber",
@@ -3106,6 +3126,8 @@
         "messageGiftedStars",
         "messageGiftedGrams",
         "messageGiveawayPrizeStars",
+        "messageTonWalletTransfer",
+        "messageTonConnectRequest",
         "messageGift",
         "messageUpgradedGift",
         "messageRefundedUpgradedGift",
@@ -3449,6 +3471,48 @@
       "name": "Ok",
       "members": [
         "ok"
+      ]
+    },
+    {
+      "name": "OnRampPaymentAvailability",
+      "members": [
+        "onRampPaymentAvailability"
+      ]
+    },
+    {
+      "name": "OnRampPaymentLimits",
+      "members": [
+        "onRampPaymentLimits"
+      ]
+    },
+    {
+      "name": "OnRampPaymentMethod",
+      "members": [
+        "onRampPaymentMethod"
+      ]
+    },
+    {
+      "name": "OnRampPaymentQuote",
+      "members": [
+        "onRampPaymentQuote"
+      ]
+    },
+    {
+      "name": "OnRampPaymentSession",
+      "members": [
+        "onRampPaymentSession"
+      ]
+    },
+    {
+      "name": "OnRampProvider",
+      "members": [
+        "onRampProvider"
+      ]
+    },
+    {
+      "name": "OnRampProviders",
+      "members": [
+        "onRampProviders"
       ]
     },
     {
@@ -4108,6 +4172,8 @@
         "pushMessageContentPoll",
         "pushMessageContentPremiumGiftCode",
         "pushMessageContentGiveaway",
+        "pushMessageContentTonWalletTransfer",
+        "pushMessageContentTonConnectRequest",
         "pushMessageContentGift",
         "pushMessageContentUpgradedGift",
         "pushMessageContentScreenshotTaken",
@@ -4354,6 +4420,7 @@
         "richTextHashtag",
         "richTextCashtag",
         "richTextBankCardNumber",
+        "richTextTonAddress",
         "richTextBotCommand",
         "richTextFixed",
         "richTextMentionName",
@@ -5023,6 +5090,7 @@
         "suggestedActionCheckPassword",
         "suggestedActionCheckPhoneNumber",
         "suggestedActionViewChecksHint",
+        "suggestedActionViewFirstTonWalletTransferHint",
         "suggestedActionConvertToBroadcastGroup",
         "suggestedActionSetPassword",
         "suggestedActionUpgradePremium",
@@ -5233,6 +5301,7 @@
         "textEntityTypeEmailAddress",
         "textEntityTypePhoneNumber",
         "textEntityTypeBankCardNumber",
+        "textEntityTypeTonAddress",
         "textEntityTypeBold",
         "textEntityTypeItalic",
         "textEntityTypeUnderline",
@@ -5306,6 +5375,112 @@
       ]
     },
     {
+      "name": "TonCenterApiRequestType",
+      "members": [
+        "tonCenterApiRequestTypeGet",
+        "tonCenterApiRequestTypePost"
+      ]
+    },
+    {
+      "name": "TonCenterStreamingApiUrl",
+      "members": [
+        "tonCenterStreamingApiUrl"
+      ]
+    },
+    {
+      "name": "TonConnectChallenge",
+      "members": [
+        "tonConnectChallenge"
+      ]
+    },
+    {
+      "name": "TonConnectConnectItem",
+      "members": [
+        "tonConnectConnectItemAddress",
+        "tonConnectConnectItemProof"
+      ]
+    },
+    {
+      "name": "TonConnectConnectRequest",
+      "members": [
+        "tonConnectConnectRequest"
+      ]
+    },
+    {
+      "name": "TonConnectManifest",
+      "members": [
+        "tonConnectManifestPending",
+        "tonConnectManifestInfo",
+        "tonConnectManifestFailed",
+        "tonConnectManifestInvalid"
+      ]
+    },
+    {
+      "name": "TonConnectRequest",
+      "members": [
+        "tonConnectRequest"
+      ]
+    },
+    {
+      "name": "TonConnectRequestState",
+      "members": [
+        "tonConnectRequestStatePending",
+        "tonConnectRequestStateAccepted",
+        "tonConnectRequestStateRejected"
+      ]
+    },
+    {
+      "name": "TonConnectRequests",
+      "members": [
+        "tonConnectRequests"
+      ]
+    },
+    {
+      "name": "TonConnectSession",
+      "members": [
+        "tonConnectSession"
+      ]
+    },
+    {
+      "name": "TonConnectSessionEventId",
+      "members": [
+        "tonConnectSessionEventId"
+      ]
+    },
+    {
+      "name": "TonConnectSessionState",
+      "members": [
+        "tonConnectSessionStatePending",
+        "tonConnectSessionStateReady",
+        "tonConnectSessionStateClosing",
+        "tonConnectSessionStateClosed"
+      ]
+    },
+    {
+      "name": "TonConnectSessions",
+      "members": [
+        "tonConnectSessions"
+      ]
+    },
+    {
+      "name": "TonNft",
+      "members": [
+        "tonNft"
+      ]
+    },
+    {
+      "name": "TonNftAttribute",
+      "members": [
+        "tonNftAttribute"
+      ]
+    },
+    {
+      "name": "TonNfts",
+      "members": [
+        "tonNfts"
+      ]
+    },
+    {
       "name": "TonTransaction",
       "members": [
         "tonTransaction"
@@ -5329,6 +5504,71 @@
       "name": "TonTransactions",
       "members": [
         "tonTransactions"
+      ]
+    },
+    {
+      "name": "TonWalletGaslessTransfersInfo",
+      "members": [
+        "tonWalletGaslessTransfersInfo"
+      ]
+    },
+    {
+      "name": "TonWalletOwnershipProof",
+      "members": [
+        "tonWalletOwnershipProof"
+      ]
+    },
+    {
+      "name": "TonWalletOwnershipProofChallenge",
+      "members": [
+        "tonWalletOwnershipProofChallenge"
+      ]
+    },
+    {
+      "name": "TonWalletState",
+      "members": [
+        "tonWalletState"
+      ]
+    },
+    {
+      "name": "TonWalletTransaction",
+      "members": [
+        "tonWalletTransaction"
+      ]
+    },
+    {
+      "name": "TonWalletTransactionState",
+      "members": [
+        "tonWalletTransactionStateSucceeded",
+        "tonWalletTransactionStateFailed"
+      ]
+    },
+    {
+      "name": "TonWalletTransactionType",
+      "members": [
+        "tonWalletTransactionTypeOnRampDeposit",
+        "tonWalletTransactionTypeTransfer",
+        "tonWalletTransactionTypeNftTransfer",
+        "tonWalletTransactionTypeKeyChange"
+      ]
+    },
+    {
+      "name": "TonWalletTransactions",
+      "members": [
+        "tonWalletTransactions"
+      ]
+    },
+    {
+      "name": "TonWalletTransferReceiver",
+      "members": [
+        "tonWalletTransferReceiverUser",
+        "tonWalletTransferReceiverAddress"
+      ]
+    },
+    {
+      "name": "TonWalletTransferResult",
+      "members": [
+        "tonWalletTransferResult"
       ]
     },
     {
@@ -5494,6 +5734,7 @@
         "updateChatActiveStories",
         "updateStoryListChatCount",
         "updateStoryStealthMode",
+        "updateAllowedBotUsernamePremiumSuffixes",
         "updateTrustedMiniAppBots",
         "updateOption",
         "updateStickerSet",
@@ -5524,6 +5765,10 @@
         "updateActiveLiveLocationMessages",
         "updateOwnedStarCount",
         "updateOwnedGramCount",
+        "updateTonWalletState",
+        "updateTonWalletGaslessTransfersInfo",
+        "updateTonWalletTonConnectSession",
+        "updateTonWalletTonConnectSessionDisconnectRequired",
         "updateChatRevenueAmount",
         "updateStarRevenueStatus",
         "updateGramRevenueStatus",
@@ -5761,6 +6006,18 @@
       ]
     },
     {
+      "name": "UserTonWalletAddress",
+      "members": [
+        "userTonWalletAddress"
+      ]
+    },
+    {
+      "name": "UserTonWalletAddresses",
+      "members": [
+        "userTonWalletAddresses"
+      ]
+    },
+    {
       "name": "UserType",
       "members": [
         "userTypeRegular",
@@ -5846,6 +6103,12 @@
       "name": "VoiceNote",
       "members": [
         "voiceNote"
+      ]
+    },
+    {
+      "name": "WalletBotBalance",
+      "members": [
+        "walletBotBalance"
       ]
     },
     {
@@ -8848,10 +9111,18 @@
             "name": "file"
           },
           "is_optional": true
+        },
+        {
+          "name": "is_regular_emoji",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": 1378918079
+      "type_id": 664777067
     },
     {
       "name": "contact",
@@ -16858,6 +17129,1503 @@
       "type_id": -1391918595
     },
     {
+      "name": "tonCenterApiRequestTypeGet",
+      "result": "TonCenterApiRequestType",
+      "fields": [
+        {
+          "name": "query",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1645018545
+    },
+    {
+      "name": "tonCenterApiRequestTypePost",
+      "result": "TonCenterApiRequestType",
+      "fields": [
+        {
+          "name": "payload",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 114401332
+    },
+    {
+      "name": "tonWalletTransferReceiverUser",
+      "result": "TonWalletTransferReceiver",
+      "fields": [
+        {
+          "name": "username",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1279755598
+    },
+    {
+      "name": "tonWalletTransferReceiverAddress",
+      "result": "TonWalletTransferReceiver",
+      "fields": [
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 8405880
+    },
+    {
+      "name": "tonCenterStreamingApiUrl",
+      "result": "TonCenterStreamingApiUrl",
+      "fields": [
+        {
+          "name": "url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expires_in",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1824200355
+    },
+    {
+      "name": "walletBotBalance",
+      "result": "WalletBotBalance",
+      "fields": [
+        {
+          "name": "has_balance",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -855214867
+    },
+    {
+      "name": "userTonWalletAddress",
+      "result": "UserTonWalletAddress",
+      "fields": [
+        {
+          "name": "user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_key",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -666000734
+    },
+    {
+      "name": "userTonWalletAddresses",
+      "result": "UserTonWalletAddresses",
+      "fields": [
+        {
+          "name": "addresses",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "userTonWalletAddress"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -814605800
+    },
+    {
+      "name": "tonWalletOwnershipProofChallenge",
+      "result": "TonWalletOwnershipProofChallenge",
+      "fields": [
+        {
+          "name": "payload",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "domain",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -794074177
+    },
+    {
+      "name": "tonWalletOwnershipProof",
+      "result": "TonWalletOwnershipProof",
+      "fields": [
+        {
+          "name": "public_key",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "timestamp",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "signature",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1221462559
+    },
+    {
+      "name": "tonWalletGaslessTransfersInfo",
+      "result": "TonWalletGaslessTransfersInfo",
+      "fields": [
+        {
+          "name": "left_count",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "reset_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "relayer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 902660845
+    },
+    {
+      "name": "currencyExchangeRate",
+      "result": "CurrencyExchangeRate",
+      "fields": [
+        {
+          "name": "currency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "rate",
+          "type": {
+            "kind": "primitive",
+            "name": "double"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1584927178
+    },
+    {
+      "name": "currencyExchangeRates",
+      "result": "CurrencyExchangeRates",
+      "fields": [
+        {
+          "name": "rates",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "currencyExchangeRate"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -443719949
+    },
+    {
+      "name": "onRampProvider",
+      "result": "OnRampProvider",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrencies",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "supports_base_currencies",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "supports_limits",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "supports_quote",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -425745766
+    },
+    {
+      "name": "onRampProviders",
+      "result": "OnRampProviders",
+      "fields": [
+        {
+          "name": "providers",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "onRampProvider"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -258041669
+    },
+    {
+      "name": "currencies",
+      "result": "Currencies",
+      "fields": [
+        {
+          "name": "currencies",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1505110915
+    },
+    {
+      "name": "onRampPaymentMethod",
+      "result": "OnRampPaymentMethod",
+      "fields": [
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_available",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 929694083
+    },
+    {
+      "name": "onRampPaymentAvailability",
+      "result": "OnRampPaymentAvailability",
+      "fields": [
+        {
+          "name": "is_allowed",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_purchase_allowed",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "methods",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "onRampPaymentMethod"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "country_code",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1511244690
+    },
+    {
+      "name": "onRampPaymentLimits",
+      "result": "OnRampPaymentLimits",
+      "fields": [
+        {
+          "name": "payment_method",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency_min_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency_max_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_min_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_max_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1052282492
+    },
+    {
+      "name": "onRampPaymentQuote",
+      "result": "OnRampPaymentQuote",
+      "fields": [
+        {
+          "name": "payment_method",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_price",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "extra_fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "network_fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "total_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 583798655
+    },
+    {
+      "name": "onRampPaymentSession",
+      "result": "OnRampPaymentSession",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1419623629
+    },
+    {
+      "name": "tonWalletState",
+      "result": "TonWalletState",
+      "fields": [
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_key",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_being_created",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_backup_enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "can_enable_backup",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "can_export_phrase",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -655546174
+    },
+    {
+      "name": "tonNftAttribute",
+      "result": "TonNftAttribute",
+      "fields": [
+        {
+          "name": "trait_type",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 413249030
+    },
+    {
+      "name": "tonNft",
+      "result": "TonNft",
+      "fields": [
+        {
+          "name": "collection_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "owner_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "index",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "description",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "image",
+          "type": {
+            "kind": "object",
+            "name": "photoSize"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "thumbnail",
+          "type": {
+            "kind": "object",
+            "name": "photoSize"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "object",
+            "name": "document"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "sticker",
+          "type": {
+            "kind": "object",
+            "name": "sticker"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "attributes",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonNftAttribute"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "extra",
+          "type": {
+            "kind": "object",
+            "name": "JsonValue"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": -1595898089
+    },
+    {
+      "name": "tonNfts",
+      "result": "TonNfts",
+      "fields": [
+        {
+          "name": "nfts",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonNft"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "next_offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -361315291
+    },
+    {
+      "name": "tonWalletTransactionStateSucceeded",
+      "result": "TonWalletTransactionState",
+      "fields": [
+        {
+          "name": "tx_hash",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1719049818
+    },
+    {
+      "name": "tonWalletTransactionStateFailed",
+      "result": "TonWalletTransactionState",
+      "fields": [],
+      "is_function": false,
+      "type_id": 827481942
+    },
+    {
+      "name": "tonWalletTransactionTypeOnRampDeposit",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "provider_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1570430820
+    },
+    {
+      "name": "tonWalletTransactionTypeTransfer",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_gasless",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "comment",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_comment_encrypted",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -2077618700
+    },
+    {
+      "name": "tonWalletTransactionTypeNftTransfer",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_outgoing",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "comment",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_comment_encrypted",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 547073159
+    },
+    {
+      "name": "tonWalletTransactionTypeKeyChange",
+      "result": "TonWalletTransactionType",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1748368342
+    },
+    {
+      "name": "tonWalletTransaction",
+      "result": "TonWalletTransaction",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "peer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "peer_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "peer_domain",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "object",
+            "name": "TonWalletTransactionState"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "type",
+          "type": {
+            "kind": "object",
+            "name": "TonWalletTransactionType"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -2081280655
+    },
+    {
+      "name": "tonWalletTransactions",
+      "result": "TonWalletTransactions",
+      "fields": [
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "transactions",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonWalletTransaction"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "next_offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1372826145
+    },
+    {
+      "name": "tonConnectRequestStatePending",
+      "result": "TonConnectRequestState",
+      "fields": [
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -536401449
+    },
+    {
+      "name": "tonConnectRequestStateAccepted",
+      "result": "TonConnectRequestState",
+      "fields": [],
+      "is_function": false,
+      "type_id": 373585842
+    },
+    {
+      "name": "tonConnectRequestStateRejected",
+      "result": "TonConnectRequestState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -2016437734
+    },
+    {
+      "name": "tonConnectManifestPending",
+      "result": "TonConnectManifest",
+      "fields": [],
+      "is_function": false,
+      "type_id": -471565541
+    },
+    {
+      "name": "tonConnectManifestInfo",
+      "result": "TonConnectManifest",
+      "fields": [
+        {
+          "name": "url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "icon",
+          "type": {
+            "kind": "object",
+            "name": "document"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -324655228
+    },
+    {
+      "name": "tonConnectManifestFailed",
+      "result": "TonConnectManifest",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1698835386
+    },
+    {
+      "name": "tonConnectManifestInvalid",
+      "result": "TonConnectManifest",
+      "fields": [],
+      "is_function": false,
+      "type_id": -2095569200
+    },
+    {
+      "name": "tonConnectSessionStatePending",
+      "result": "TonConnectSessionState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -1839661231
+    },
+    {
+      "name": "tonConnectSessionStateReady",
+      "result": "TonConnectSessionState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -2044966330
+    },
+    {
+      "name": "tonConnectSessionStateClosing",
+      "result": "TonConnectSessionState",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1997033710
+    },
+    {
+      "name": "tonConnectSessionStateClosed",
+      "result": "TonConnectSessionState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -1053881899
+    },
+    {
+      "name": "tonConnectConnectItemAddress",
+      "result": "TonConnectConnectItem",
+      "fields": [
+        {
+          "name": "network",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -931047459
+    },
+    {
+      "name": "tonConnectConnectItemProof",
+      "result": "TonConnectConnectItem",
+      "fields": [
+        {
+          "name": "payload",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -612391170
+    },
+    {
+      "name": "tonConnectConnectRequest",
+      "result": "TonConnectConnectRequest",
+      "fields": [
+        {
+          "name": "manifest_url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "TonConnectConnectItem"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1770854951
+    },
+    {
+      "name": "tonConnectSession",
+      "result": "TonConnectSession",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "dapp_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "creation_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "manifest",
+          "type": {
+            "kind": "object",
+            "name": "TonConnectManifest"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "nonce",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "object",
+            "name": "TonConnectSessionState"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1444165653
+    },
+    {
+      "name": "tonConnectSessions",
+      "result": "TonConnectSessions",
+      "fields": [
+        {
+          "name": "sessions",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonConnectSession"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 842362001
+    },
+    {
+      "name": "tonConnectRequest",
+      "result": "TonConnectRequest",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "topic",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "trace_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 212229183
+    },
+    {
+      "name": "tonConnectRequests",
+      "result": "TonConnectRequests",
+      "fields": [
+        {
+          "name": "session",
+          "type": {
+            "kind": "object",
+            "name": "tonConnectSession"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "requests",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonConnectRequest"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1348359820
+    },
+    {
+      "name": "tonConnectChallenge",
+      "result": "TonConnectChallenge",
+      "fields": [
+        {
+          "name": "challenge",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "event_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1178935783
+    },
+    {
+      "name": "tonConnectSessionEventId",
+      "result": "TonConnectSessionEventId",
+      "fields": [
+        {
+          "name": "event_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1316732711
+    },
+    {
+      "name": "tonWalletTransferResult",
+      "result": "TonWalletTransferResult",
+      "fields": [
+        {
+          "name": "is_gasless",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "msg_hash",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "transaction",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletTransaction"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": 1353122790
+    },
+    {
       "name": "activeStoryStateLive",
       "result": "ActiveStoryState",
       "fields": [
@@ -17805,10 +19573,18 @@
             }
           },
           "is_optional": false
+        },
+        {
+          "name": "secondary_username",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": 1263390614
+      "type_id": 768022622
     },
     {
       "name": "user",
@@ -26522,6 +28298,14 @@
           "is_optional": false
         },
         {
+          "name": "has_outgoing_message_accent_color",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "outgoing_message_accent_color",
           "type": {
             "kind": "primitive",
@@ -26531,7 +28315,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 1935106938
+      "type_id": -68123817
     },
     {
       "name": "inlineButton",
@@ -26836,6 +28620,30 @@
       ],
       "is_function": false,
       "type_id": 1587991130
+    },
+    {
+      "name": "richTextTonAddress",
+      "result": "RichText",
+      "fields": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "object",
+            "name": "RichText"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1434939320
     },
     {
       "name": "richTextBotCommand",
@@ -34940,6 +36748,110 @@
       "type_id": -1441833501
     },
     {
+      "name": "messageTonWalletTransfer",
+      "result": "MessageContent",
+      "fields": [
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "transaction_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "peer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "comment",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_comment_encrypted",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1872034960
+    },
+    {
+      "name": "messageTonConnectRequest",
+      "result": "MessageContent",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "object",
+            "name": "TonConnectRequestState"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "dapp_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "topic",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "trace_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 405695624
+    },
+    {
       "name": "messageGift",
       "result": "MessageContent",
       "fields": [
@@ -35934,6 +37846,13 @@
       "fields": [],
       "is_function": false,
       "type_id": 105986320
+    },
+    {
+      "name": "textEntityTypeTonAddress",
+      "result": "TextEntityType",
+      "fields": [],
+      "is_function": false,
+      "type_id": 516305059
     },
     {
       "name": "textEntityTypeBold",
@@ -38787,6 +40706,17 @@
           "is_optional": false
         },
         {
+          "name": "custom_emoji_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int64"
+            }
+          },
+          "is_optional": false
+        },
+        {
           "name": "has_protected_content_by_current_user",
           "type": {
             "kind": "primitive",
@@ -38812,7 +40742,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -688751636
+      "type_id": 595813664
     },
     {
       "name": "pollOptionProperties",
@@ -50697,6 +52627,54 @@
       "type_id": -700547186
     },
     {
+      "name": "pushMessageContentTonWalletTransfer",
+      "result": "PushMessageContent",
+      "fields": [
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "comment",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1170923657
+    },
+    {
+      "name": "pushMessageContentTonConnectRequest",
+      "result": "PushMessageContent",
+      "fields": [
+        {
+          "name": "dapp_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1277626552
+    },
+    {
       "name": "pushMessageContentGift",
       "result": "PushMessageContent",
       "fields": [
@@ -54075,6 +56053,86 @@
       "type_id": -200935417
     },
     {
+      "name": "internalLinkTypeTonConnect",
+      "result": "InternalLinkType",
+      "fields": [
+        {
+          "name": "version",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "dapp_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "connect_request",
+          "type": {
+            "kind": "object",
+            "name": "tonConnectConnectRequest"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "return_strategy",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "rpc_request",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "trace_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -637887696
+    },
+    {
+      "name": "internalLinkTypeTonWalletTransfer",
+      "result": "InternalLinkType",
+      "fields": [
+        {
+          "name": "receiver",
+          "type": {
+            "kind": "object",
+            "name": "TonWalletTransferReceiver"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1697768710
+    },
+    {
       "name": "internalLinkTypeUnknownDeepLink",
       "result": "InternalLinkType",
       "fields": [
@@ -55530,6 +57588,13 @@
       "fields": [],
       "is_function": false,
       "type_id": 891303239
+    },
+    {
+      "name": "suggestedActionViewFirstTonWalletTransferHint",
+      "result": "SuggestedAction",
+      "fields": [],
+      "is_function": false,
+      "type_id": 734140787
     },
     {
       "name": "suggestedActionConvertToBroadcastGroup",
@@ -60580,6 +62645,25 @@
       "type_id": 1878506778
     },
     {
+      "name": "updateAllowedBotUsernamePremiumSuffixes",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "suffixes",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -95421585
+    },
+    {
       "name": "updateTrustedMiniAppBots",
       "result": "Update",
       "fields": [
@@ -61237,6 +63321,73 @@
       ],
       "is_function": false,
       "type_id": -2126618955
+    },
+    {
+      "name": "updateTonWalletState",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "state",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletState"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1146625413
+    },
+    {
+      "name": "updateTonWalletGaslessTransfersInfo",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "info",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletGaslessTransfersInfo"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1340758750
+    },
+    {
+      "name": "updateTonWalletTonConnectSession",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "session",
+          "type": {
+            "kind": "object",
+            "name": "tonConnectSession"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1709603581
+    },
+    {
+      "name": "updateTonWalletTonConnectSessionDisconnectRequired",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "session_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int64"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 919346049
     },
     {
       "name": "updateChatRevenueAmount",
@@ -65163,8 +67314,8 @@
       "type_id": -194818924
     },
     {
-      "name": "loadCommunityFullInfo",
-      "result": "Ok",
+      "name": "getCommunityFullInfo",
+      "result": "CommunityFullInfo",
       "fields": [
         {
           "name": "community_id",
@@ -65176,7 +67327,7 @@
         }
       ],
       "is_function": true,
-      "type_id": -913011971
+      "type_id": -2128198899
     },
     {
       "name": "createCommunity",
@@ -65233,6 +67384,70 @@
       ],
       "is_function": true,
       "type_id": 448771436
+    },
+    {
+      "name": "setCommunityPhoto",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "photo",
+          "type": {
+            "kind": "object",
+            "name": "InputChatPhoto"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": true,
+      "type_id": -2055048100
+    },
+    {
+      "name": "setCommunityPermissions",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "permissions",
+          "type": {
+            "kind": "object",
+            "name": "communityPermissions"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1089063260
+    },
+    {
+      "name": "deleteCommunity",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1848566901
     },
     {
       "name": "getGroupsInCommon",
@@ -68351,7 +70566,7 @@
       "type_id": 741705337
     },
     {
-      "name": "editCallbackQueryMessage",
+      "name": "replyToCallbackQueryWithEphemeralMessage",
       "result": "Ok",
       "fields": [
         {
@@ -68359,6 +70574,14 @@
           "type": {
             "kind": "primitive",
             "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "replace_callback_query_message",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
           },
           "is_optional": false
         },
@@ -68388,7 +70611,7 @@
         }
       ],
       "is_function": true,
-      "type_id": 403509242
+      "type_id": -77034825
     },
     {
       "name": "editMessageSchedulingState",
@@ -81901,10 +84124,18 @@
             "name": "string"
           },
           "is_optional": false
+        },
+        {
+          "name": "is_secondary",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
         }
       ],
       "is_function": true,
-      "type_id": -1358454679
+      "type_id": 508444428
     },
     {
       "name": "createBot",
@@ -82089,6 +84320,46 @@
       ],
       "is_function": true,
       "type_id": -1115272346
+    },
+    {
+      "name": "addBotSecondaryUsername",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "bot_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "username",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 352599609
+    },
+    {
+      "name": "deleteBotSecondaryUsername",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "bot_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1892068368
     },
     {
       "name": "toggleBotUsernameIsActive",
@@ -82284,14 +84555,14 @@
         {
           "name": "custom_description",
           "type": {
-            "kind": "primitive",
-            "name": "string"
+            "kind": "object",
+            "name": "formattedText"
           },
           "is_optional": false
         }
       ],
       "is_function": true,
-      "type_id": -1262364086
+      "type_id": 2101755632
     },
     {
       "name": "removeMessageSenderBotVerification",
@@ -85411,6 +87682,922 @@
       "type_id": -1935011115
     },
     {
+      "name": "getTonWalletTransactions",
+      "result": "TonWalletTransactions",
+      "fields": [
+        {
+          "name": "direction",
+          "type": {
+            "kind": "object",
+            "name": "TransactionDirection"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "limit",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1119847015
+    },
+    {
+      "name": "getTonWalletTransaction",
+      "result": "TonWalletTransaction",
+      "fields": [
+        {
+          "name": "transaction_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 254723496
+    },
+    {
+      "name": "getTonWalletTransactionByMsgHash",
+      "result": "TonWalletTransaction",
+      "fields": [
+        {
+          "name": "msg_hash",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 777069339
+    },
+    {
+      "name": "loadTonWalletState",
+      "result": "Ok",
+      "fields": [],
+      "is_function": true,
+      "type_id": 354270648
+    },
+    {
+      "name": "loadTonWalletGaslessTransfersInfo",
+      "result": "Ok",
+      "fields": [],
+      "is_function": true,
+      "type_id": 2023155190
+    },
+    {
+      "name": "checkWalletBotBalance",
+      "result": "WalletBotBalance",
+      "fields": [],
+      "is_function": true,
+      "type_id": 1585020937
+    },
+    {
+      "name": "getUserTonWalletAddresses",
+      "result": "UserTonWalletAddresses",
+      "fields": [
+        {
+          "name": "user_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int53"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1030468042
+    },
+    {
+      "name": "createUserTonWallet",
+      "result": "UserTonWalletAddress",
+      "fields": [
+        {
+          "name": "user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1295458892
+    },
+    {
+      "name": "getAddressTonWallet",
+      "result": "UserTonWalletAddress",
+      "fields": [
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1227177723
+    },
+    {
+      "name": "getTonWalletSecretPhrase",
+      "result": "Text",
+      "fields": [
+        {
+          "name": "password",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1644390868
+    },
+    {
+      "name": "getTonWalletOwnershipProofChallenge",
+      "result": "TonWalletOwnershipProofChallenge",
+      "fields": [],
+      "is_function": true,
+      "type_id": -334491918
+    },
+    {
+      "name": "enableTonWalletBackup",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "secret_phrase",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "proof",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletOwnershipProof"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 754479745
+    },
+    {
+      "name": "disableTonWalletBackup",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "password",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1331171002
+    },
+    {
+      "name": "disableTonWalletBackupWithProof",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "proof",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletOwnershipProof"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1938588651
+    },
+    {
+      "name": "sendTonWalletTransfer",
+      "result": "TonWalletTransferResult",
+      "fields": [
+        {
+          "name": "user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "comment",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_comment_encrypted",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sending_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "regular_transfer_data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gasless_transfer_data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 173682008
+    },
+    {
+      "name": "deleteTonWallet",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "password",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1886897005
+    },
+    {
+      "name": "replaceTonWallet",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "password",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "anchor_public_key",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "proof",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletOwnershipProof"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1127922374
+    },
+    {
+      "name": "getCurrencyExchangeRates",
+      "result": "CurrencyExchangeRates",
+      "fields": [],
+      "is_function": true,
+      "type_id": 1880730661
+    },
+    {
+      "name": "getTonWalletNfts",
+      "result": "TonNfts",
+      "fields": [
+        {
+          "name": "offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "limit",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1499593741
+    },
+    {
+      "name": "getTonConnectSessions",
+      "result": "TonConnectSessions",
+      "fields": [],
+      "is_function": true,
+      "type_id": 1869959974
+    },
+    {
+      "name": "createTonConnectSession",
+      "result": "TonConnectSession",
+      "fields": [
+        {
+          "name": "dapp_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "manifest_url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1463778794
+    },
+    {
+      "name": "setTonConnectSessionWalletClientId",
+      "result": "TonConnectChallenge",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1686326443
+    },
+    {
+      "name": "sendTonConnectSessionConnectResult",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "challenge_answer",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_error",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "trace_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1435055549
+    },
+    {
+      "name": "getTonConnectSessionPendingRequests",
+      "result": "TonConnectRequests",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1611488247
+    },
+    {
+      "name": "getTonConnectDAppPendingRequests",
+      "result": "TonConnectRequests",
+      "fields": [
+        {
+          "name": "dapp_client_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1172395254
+    },
+    {
+      "name": "claimTonConnectRequest",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "dapp_request_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_rejected",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1261244142
+    },
+    {
+      "name": "answerTonConnectRequest",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "trace_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 931013809
+    },
+    {
+      "name": "getTonConnectSessionNextEventId",
+      "result": "TonConnectSessionEventId",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1178689222
+    },
+    {
+      "name": "disconnectTonConnectSession",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "session_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -230966976
+    },
+    {
+      "name": "getOnRampProviders",
+      "result": "OnRampProviders",
+      "fields": [
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1322197529
+    },
+    {
+      "name": "getOnRampProviderBaseCurrencies",
+      "result": "Currencies",
+      "fields": [
+        {
+          "name": "provider_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1538920144
+    },
+    {
+      "name": "getOnRampPaymentAvailability",
+      "result": "OnRampPaymentAvailability",
+      "fields": [
+        {
+          "name": "provider_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -298703297
+    },
+    {
+      "name": "getOnRampPaymentLimits",
+      "result": "OnRampPaymentLimits",
+      "fields": [
+        {
+          "name": "provider_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "payment_method_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1655117622
+    },
+    {
+      "name": "getOnRampPaymentQuote",
+      "result": "OnRampPaymentQuote",
+      "fields": [
+        {
+          "name": "provider_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "payment_method_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -701180612
+    },
+    {
+      "name": "createOnRampPaymentSession",
+      "result": "OnRampPaymentSession",
+      "fields": [
+        {
+          "name": "provider_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "payment_method_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cryptocurrency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "base_currency_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "memo",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "success_return_url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fail_return_url",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -259267122
+    },
+    {
+      "name": "sendTonCenterApiRequest",
+      "result": "Text",
+      "fields": [
+        {
+          "name": "endpoint",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "type",
+          "type": {
+            "kind": "object",
+            "name": "TonCenterApiRequestType"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -812754760
+    },
+    {
+      "name": "getTonCenterStreamingApiUrl",
+      "result": "TonCenterStreamingApiUrl",
+      "fields": [],
+      "is_function": true,
+      "type_id": 1072334480
+    },
+    {
       "name": "getStarRevenueStatistics",
       "result": "StarRevenueStatistics",
       "fields": [
@@ -87673,6 +90860,22 @@
       ],
       "is_function": true,
       "type_id": 680673150
+    },
+    {
+      "name": "dismissWebToken",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "token",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1397082340
     },
     {
       "name": "getApplicationConfig",

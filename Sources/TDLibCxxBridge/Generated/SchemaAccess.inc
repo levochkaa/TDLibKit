@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: d1085f9cebc5a62379991ae1652673954f229c1f
+// TDLib commit: c15d3f5a5de6e3ba5839822c451152e5e18bb700
 
 bool generated_bool_field(const api::Object *object, std::int32_t index) noexcept {
   if (object == nullptr) return false;
@@ -171,6 +171,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       switch (index) {
         case 5: return value->has_stickers_;
         case 6: return value->supports_streaming_;
+        default: return false;
+      }
+    }
+    case api::animatedEmoji::ID: {
+      const auto *value = checked<api::animatedEmoji>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 5: return value->is_regular_emoji_;
         default: return false;
       }
     }
@@ -610,6 +618,78 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 2: return value->is_refund_;
+        default: return false;
+      }
+    }
+    case api::walletBotBalance::ID: {
+      const auto *value = checked<api::walletBotBalance>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->has_balance_;
+        default: return false;
+      }
+    }
+    case api::onRampProvider::ID: {
+      const auto *value = checked<api::onRampProvider>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 3: return value->supports_base_currencies_;
+        case 4: return value->supports_limits_;
+        case 5: return value->supports_quote_;
+        default: return false;
+      }
+    }
+    case api::onRampPaymentMethod::ID: {
+      const auto *value = checked<api::onRampPaymentMethod>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_available_;
+        default: return false;
+      }
+    }
+    case api::onRampPaymentAvailability::ID: {
+      const auto *value = checked<api::onRampPaymentAvailability>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->is_allowed_;
+        case 1: return value->is_purchase_allowed_;
+        default: return false;
+      }
+    }
+    case api::tonWalletState::ID: {
+      const auto *value = checked<api::tonWalletState>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 3: return value->is_being_created_;
+        case 4: return value->is_backup_enabled_;
+        case 5: return value->can_enable_backup_;
+        case 6: return value->can_export_phrase_;
+        default: return false;
+      }
+    }
+    case api::tonWalletTransactionTypeTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTransfer>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_gasless_;
+        case 3: return value->is_comment_encrypted_;
+        default: return false;
+      }
+    }
+    case api::tonWalletTransactionTypeNftTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeNftTransfer>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_outgoing_;
+        case 3: return value->is_comment_encrypted_;
+        default: return false;
+      }
+    }
+    case api::tonWalletTransferResult::ID: {
+      const auto *value = checked<api::tonWalletTransferResult>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->is_gasless_;
         default: return false;
       }
     }
@@ -1341,6 +1421,7 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 4: return value->animate_outgoing_message_fill_;
+        case 5: return value->has_outgoing_message_accent_color_;
         default: return false;
       }
     }
@@ -1778,6 +1859,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         default: return false;
       }
     }
+    case api::messageTonWalletTransfer::ID: {
+      const auto *value = checked<api::messageTonWalletTransfer>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 5: return value->is_comment_encrypted_;
+        default: return false;
+      }
+    }
     case api::messageGift::ID: {
       const auto *value = checked<api::messageGift>(object);
       if (value == nullptr) return false;
@@ -2048,9 +2137,9 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         case 33: return value->can_report_reactions_;
         case 34: return value->can_report_supergroup_spam_;
         case 35: return value->can_set_fact_check_;
-        case 36: return value->has_protected_content_by_current_user_;
-        case 37: return value->has_protected_content_by_other_user_;
-        case 38: return value->need_show_statistics_;
+        case 37: return value->has_protected_content_by_current_user_;
+        case 38: return value->has_protected_content_by_other_user_;
+        case 39: return value->need_show_statistics_;
         default: return false;
       }
     }
@@ -4391,6 +4480,79 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::tonCenterStreamingApiUrl::ID: {
+      const auto *value = checked<api::tonCenterStreamingApiUrl>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->expires_in_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletOwnershipProof::ID: {
+      const auto *value = checked<api::tonWalletOwnershipProof>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->timestamp_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletGaslessTransfersInfo::ID: {
+      const auto *value = checked<api::tonWalletGaslessTransfersInfo>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->left_count_;
+        case 1: return value->reset_date_;
+        default: return 0;
+      }
+    }
+    case api::onRampPaymentQuote::ID: {
+      const auto *value = checked<api::onRampPaymentQuote>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->expiration_date_;
+        default: return 0;
+      }
+    }
+    case api::onRampPaymentSession::ID: {
+      const auto *value = checked<api::onRampPaymentSession>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->expiration_date_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransaction::ID: {
+      const auto *value = checked<api::tonWalletTransaction>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 4: return value->date_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectRequestStatePending::ID: {
+      const auto *value = checked<api::tonConnectRequestStatePending>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->expiration_date_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectSession::ID: {
+      const auto *value = checked<api::tonConnectSession>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->creation_date_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->expiration_date_;
+        default: return 0;
+      }
+    }
     case api::activeStoryStateLive::ID: {
       const auto *value = checked<api::activeStoryStateLive>(object);
       if (value == nullptr) return 0;
@@ -5214,7 +5376,7 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 1: return value->accent_color_;
-        case 5: return value->outgoing_message_accent_color_;
+        case 6: return value->outgoing_message_accent_color_;
         default: return 0;
       }
     }
@@ -6975,6 +7137,14 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::internalLinkTypeTonConnect::ID: {
+      const auto *value = checked<api::internalLinkTypeTonConnect>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->version_;
+        default: return 0;
+      }
+    }
     case api::messageLinkInfo::ID: {
       const auto *value = checked<api::messageLinkInfo>(object);
       if (value == nullptr) return 0;
@@ -8427,6 +8597,88 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::userTonWalletAddress::ID: {
+      const auto *value = checked<api::userTonWalletAddress>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->user_id_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletState::ID: {
+      const auto *value = checked<api::tonWalletState>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->gram_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeOnRampDeposit::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeOnRampDeposit>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTransfer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransaction::ID: {
+      const auto *value = checked<api::tonWalletTransaction>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->peer_user_id_;
+        case 5: return value->fee_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactions::ID: {
+      const auto *value = checked<api::tonWalletTransactions>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->gram_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectSession::ID: {
+      const auto *value = checked<api::tonConnectSession>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->id_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->session_id_;
+        case 1: return value->message_id_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectChallenge::ID: {
+      const auto *value = checked<api::tonConnectChallenge>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->event_id_;
+        default: return 0;
+      }
+    }
+    case api::tonConnectSessionEventId::ID: {
+      const auto *value = checked<api::tonConnectSessionEventId>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->event_id_;
+        default: return 0;
+      }
+    }
     case api::giveawayParticipantStatusAdministrator::ID: {
       const auto *value = checked<api::giveawayParticipantStatusAdministrator>(object);
       if (value == nullptr) return 0;
@@ -9594,6 +9846,23 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageTonWalletTransfer::ID: {
+      const auto *value = checked<api::messageTonWalletTransfer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->sender_user_id_;
+        case 3: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::messageTonConnectRequest::ID: {
+      const auto *value = checked<api::messageTonConnectRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->session_id_;
+        default: return 0;
+      }
+    }
     case api::messageGift::ID: {
       const auto *value = checked<api::messageGift>(object);
       if (value == nullptr) return 0;
@@ -10256,6 +10525,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::pushMessageContentTonWalletTransfer::ID: {
+      const auto *value = checked<api::pushMessageContentTonWalletTransfer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->sender_user_id_;
+        default: return 0;
+      }
+    }
     case api::pushMessageContentGift::ID: {
       const auto *value = checked<api::pushMessageContentGift>(object);
       if (value == nullptr) return 0;
@@ -10358,6 +10635,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->star_count_;
+        default: return 0;
+      }
+    }
+    case api::internalLinkTypeTonWalletTransfer::ID: {
+      const auto *value = checked<api::internalLinkTypeTonWalletTransfer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->gram_amount_;
         default: return 0;
       }
     }
@@ -11486,6 +11771,14 @@ double generated_double_field(const api::Object *object, std::int32_t index) noe
         default: return 0.0;
       }
     }
+    case api::currencyExchangeRate::ID: {
+      const auto *value = checked<api::currencyExchangeRate>(object);
+      if (value == nullptr) return 0.0;
+      switch (index) {
+        case 1: return value->rate_;
+        default: return 0.0;
+      }
+    }
     case api::supergroupFullInfo::ID: {
       const auto *value = checked<api::supergroupFullInfo>(object);
       if (value == nullptr) return 0.0;
@@ -12510,6 +12803,317 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::tonCenterApiRequestTypeGet::ID: {
+      const auto *value = checked<api::tonCenterApiRequestTypeGet>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->query_;
+        default: return nullptr;
+      }
+    }
+    case api::tonCenterApiRequestTypePost::ID: {
+      const auto *value = checked<api::tonCenterApiRequestTypePost>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->payload_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransferReceiverUser::ID: {
+      const auto *value = checked<api::tonWalletTransferReceiverUser>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->username_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransferReceiverAddress::ID: {
+      const auto *value = checked<api::tonWalletTransferReceiverAddress>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->address_;
+        default: return nullptr;
+      }
+    }
+    case api::tonCenterStreamingApiUrl::ID: {
+      const auto *value = checked<api::tonCenterStreamingApiUrl>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->url_;
+        default: return nullptr;
+      }
+    }
+    case api::walletBotBalance::ID: {
+      const auto *value = checked<api::walletBotBalance>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->url_;
+        default: return nullptr;
+      }
+    }
+    case api::userTonWalletAddress::ID: {
+      const auto *value = checked<api::userTonWalletAddress>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->wallet_address_;
+        case 2: return &value->public_key_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletOwnershipProofChallenge::ID: {
+      const auto *value = checked<api::tonWalletOwnershipProofChallenge>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->payload_;
+        case 1: return &value->domain_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletOwnershipProof::ID: {
+      const auto *value = checked<api::tonWalletOwnershipProof>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->public_key_;
+        case 2: return &value->signature_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletGaslessTransfersInfo::ID: {
+      const auto *value = checked<api::tonWalletGaslessTransfersInfo>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->relayer_address_;
+        default: return nullptr;
+      }
+    }
+    case api::currencyExchangeRate::ID: {
+      const auto *value = checked<api::currencyExchangeRate>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->currency_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampProvider::ID: {
+      const auto *value = checked<api::onRampProvider>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->id_;
+        case 1: return &value->name_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentMethod::ID: {
+      const auto *value = checked<api::onRampPaymentMethod>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->name_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentAvailability::ID: {
+      const auto *value = checked<api::onRampPaymentAvailability>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 3: return &value->country_code_;
+        case 4: return &value->state_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentLimits::ID: {
+      const auto *value = checked<api::onRampPaymentLimits>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->payment_method_;
+        case 1: return &value->base_currency_min_amount_;
+        case 2: return &value->base_currency_max_amount_;
+        case 3: return &value->cryptocurrency_min_amount_;
+        case 4: return &value->cryptocurrency_max_amount_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentQuote::ID: {
+      const auto *value = checked<api::onRampPaymentQuote>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->payment_method_;
+        case 2: return &value->base_currency_amount_;
+        case 3: return &value->cryptocurrency_amount_;
+        case 4: return &value->cryptocurrency_price_;
+        case 5: return &value->fee_amount_;
+        case 6: return &value->extra_fee_amount_;
+        case 7: return &value->network_fee_amount_;
+        case 8: return &value->total_amount_;
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentSession::ID: {
+      const auto *value = checked<api::onRampPaymentSession>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->session_id_;
+        case 2: return &value->url_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletState::ID: {
+      const auto *value = checked<api::tonWalletState>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->address_;
+        case 1: return &value->public_key_;
+        default: return nullptr;
+      }
+    }
+    case api::tonNftAttribute::ID: {
+      const auto *value = checked<api::tonNftAttribute>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->trait_type_;
+        case 1: return &value->value_;
+        default: return nullptr;
+      }
+    }
+    case api::tonNft::ID: {
+      const auto *value = checked<api::tonNft>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->collection_address_;
+        case 1: return &value->address_;
+        case 2: return &value->owner_address_;
+        case 3: return &value->index_;
+        case 4: return &value->name_;
+        case 5: return &value->description_;
+        default: return nullptr;
+      }
+    }
+    case api::tonNfts::ID: {
+      const auto *value = checked<api::tonNfts>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->next_offset_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionStateSucceeded::ID: {
+      const auto *value = checked<api::tonWalletTransactionStateSucceeded>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->tx_hash_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeOnRampDeposit::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeOnRampDeposit>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->provider_name_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->comment_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeNftTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeNftTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->comment_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransaction::ID: {
+      const auto *value = checked<api::tonWalletTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->id_;
+        case 1: return &value->peer_address_;
+        case 3: return &value->peer_domain_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactions::ID: {
+      const auto *value = checked<api::tonWalletTransactions>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->next_offset_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectManifestInfo::ID: {
+      const auto *value = checked<api::tonConnectManifestInfo>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->url_;
+        case 1: return &value->name_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectConnectItemAddress::ID: {
+      const auto *value = checked<api::tonConnectConnectItemAddress>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->network_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectConnectItemProof::ID: {
+      const auto *value = checked<api::tonConnectConnectItemProof>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->payload_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->manifest_url_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectSession::ID: {
+      const auto *value = checked<api::tonConnectSession>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->dapp_client_id_;
+        case 2: return &value->wallet_client_id_;
+        case 5: return &value->nonce_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->body_;
+        case 4: return &value->topic_;
+        case 5: return &value->trace_id_;
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectChallenge::ID: {
+      const auto *value = checked<api::tonConnectChallenge>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->challenge_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransferResult::ID: {
+      const auto *value = checked<api::tonWalletTransferResult>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->msg_hash_;
+        default: return nullptr;
+      }
+    }
     case api::giveawayParticipantStatusDisallowedCountry::ID: {
       const auto *value = checked<api::giveawayParticipantStatusDisallowedCountry>(object);
       if (value == nullptr) return nullptr;
@@ -12564,6 +13168,7 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 2: return &value->editable_username_;
+        case 4: return &value->secondary_username_;
         default: return nullptr;
       }
     }
@@ -13188,6 +13793,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 1: return &value->bank_card_number_;
+        default: return nullptr;
+      }
+    }
+    case api::richTextTonAddress::ID: {
+      const auto *value = checked<api::richTextTonAddress>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->address_;
         default: return nullptr;
       }
     }
@@ -14029,6 +14642,26 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 1: return &value->transaction_id_;
+        default: return nullptr;
+      }
+    }
+    case api::messageTonWalletTransfer::ID: {
+      const auto *value = checked<api::messageTonWalletTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->transaction_id_;
+        case 2: return &value->peer_address_;
+        case 4: return &value->comment_;
+        default: return nullptr;
+      }
+    }
+    case api::messageTonConnectRequest::ID: {
+      const auto *value = checked<api::messageTonConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->dapp_name_;
+        case 3: return &value->topic_;
+        case 4: return &value->trace_id_;
         default: return nullptr;
       }
     }
@@ -15380,6 +16013,23 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::pushMessageContentTonWalletTransfer::ID: {
+      const auto *value = checked<api::pushMessageContentTonWalletTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->amount_;
+        case 2: return &value->comment_;
+        default: return nullptr;
+      }
+    }
+    case api::pushMessageContentTonConnectRequest::ID: {
+      const auto *value = checked<api::pushMessageContentTonConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->dapp_name_;
+        default: return nullptr;
+      }
+    }
     case api::pushMessageContentSticker::ID: {
       const auto *value = checked<api::pushMessageContentSticker>(object);
       if (value == nullptr) return nullptr;
@@ -16011,6 +16661,17 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 0: return &value->theme_name_;
+        default: return nullptr;
+      }
+    }
+    case api::internalLinkTypeTonConnect::ID: {
+      const auto *value = checked<api::internalLinkTypeTonConnect>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->dapp_client_id_;
+        case 3: return &value->return_strategy_;
+        case 4: return &value->rpc_request_;
+        case 5: return &value->trace_id_;
         default: return nullptr;
       }
     }
@@ -17740,6 +18401,68 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::tonNft::ID: {
+      const auto *value = checked<api::tonNft>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 6: return value->image_.get();
+        case 7: return value->thumbnail_.get();
+        case 8: return value->content_.get();
+        case 9: return value->sticker_.get();
+        case 11: return value->extra_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeNftTransfer::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeNftTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransaction::ID: {
+      const auto *value = checked<api::tonWalletTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 6: return value->state_.get();
+        case 7: return value->type_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectManifestInfo::ID: {
+      const auto *value = checked<api::tonConnectManifestInfo>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->icon_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectSession::ID: {
+      const auto *value = checked<api::tonConnectSession>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 4: return value->manifest_.get();
+        case 6: return value->state_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectRequests::ID: {
+      const auto *value = checked<api::tonConnectRequests>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->session_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransferResult::ID: {
+      const auto *value = checked<api::tonWalletTransferResult>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->transaction_.get();
+        default: return nullptr;
+      }
+    }
     case api::giveawayInfoOngoing::ID: {
       const auto *value = checked<api::giveawayInfoOngoing>(object);
       if (value == nullptr) return nullptr;
@@ -18610,6 +19333,14 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
     }
     case api::richTextBankCardNumber::ID: {
       const auto *value = checked<api::richTextBankCardNumber>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->text_.get();
+        default: return nullptr;
+      }
+    }
+    case api::richTextTonAddress::ID: {
+      const auto *value = checked<api::richTextTonAddress>(object);
       if (value == nullptr) return nullptr;
       switch (index) {
         case 0: return value->text_.get();
@@ -19998,6 +20729,14 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 5: return value->sticker_.get();
+        default: return nullptr;
+      }
+    }
+    case api::messageTonConnectRequest::ID: {
+      const auto *value = checked<api::messageTonConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return value->state_.get();
         default: return nullptr;
       }
     }
@@ -22043,6 +22782,22 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::internalLinkTypeTonConnect::ID: {
+      const auto *value = checked<api::internalLinkTypeTonConnect>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->connect_request_.get();
+        default: return nullptr;
+      }
+    }
+    case api::internalLinkTypeTonWalletTransfer::ID: {
+      const auto *value = checked<api::internalLinkTypeTonWalletTransfer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->receiver_.get();
+        default: return nullptr;
+      }
+    }
     case api::internalLinkTypeWebApp::ID: {
       const auto *value = checked<api::internalLinkTypeWebApp>(object);
       if (value == nullptr) return nullptr;
@@ -23039,6 +23794,30 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::updateTonWalletState::ID: {
+      const auto *value = checked<api::updateTonWalletState>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->state_.get();
+        default: return nullptr;
+      }
+    }
+    case api::updateTonWalletGaslessTransfersInfo::ID: {
+      const auto *value = checked<api::updateTonWalletGaslessTransfersInfo>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->info_.get();
+        default: return nullptr;
+      }
+    }
+    case api::updateTonWalletTonConnectSession::ID: {
+      const auto *value = checked<api::updateTonWalletTonConnectSession>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->session_.get();
+        default: return nullptr;
+      }
+    }
     case api::updateChatRevenueAmount::ID: {
       const auto *value = checked<api::updateChatRevenueAmount>(object);
       if (value == nullptr) return nullptr;
@@ -23700,6 +24479,102 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 1: return value->transactions_.size();
+        default: return 0;
+      }
+    }
+    case api::userTonWalletAddresses::ID: {
+      const auto *value = checked<api::userTonWalletAddresses>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->addresses_.size();
+        default: return 0;
+      }
+    }
+    case api::currencyExchangeRates::ID: {
+      const auto *value = checked<api::currencyExchangeRates>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->rates_.size();
+        default: return 0;
+      }
+    }
+    case api::onRampProvider::ID: {
+      const auto *value = checked<api::onRampProvider>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->cryptocurrencies_.size();
+        default: return 0;
+      }
+    }
+    case api::onRampProviders::ID: {
+      const auto *value = checked<api::onRampProviders>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->providers_.size();
+        default: return 0;
+      }
+    }
+    case api::currencies::ID: {
+      const auto *value = checked<api::currencies>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->currencies_.size();
+        default: return 0;
+      }
+    }
+    case api::onRampPaymentAvailability::ID: {
+      const auto *value = checked<api::onRampPaymentAvailability>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->methods_.size();
+        default: return 0;
+      }
+    }
+    case api::tonNft::ID: {
+      const auto *value = checked<api::tonNft>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 10: return value->attributes_.size();
+        default: return 0;
+      }
+    }
+    case api::tonNfts::ID: {
+      const auto *value = checked<api::tonNfts>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->nfts_.size();
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactions::ID: {
+      const auto *value = checked<api::tonWalletTransactions>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->transactions_.size();
+        default: return 0;
+      }
+    }
+    case api::tonConnectConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectConnectRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->items_.size();
+        default: return 0;
+      }
+    }
+    case api::tonConnectSessions::ID: {
+      const auto *value = checked<api::tonConnectSessions>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->sessions_.size();
+        default: return 0;
+      }
+    }
+    case api::tonConnectRequests::ID: {
+      const auto *value = checked<api::tonConnectRequests>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->requests_.size();
         default: return 0;
       }
     }
@@ -24669,6 +25544,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageProperties::ID: {
+      const auto *value = checked<api::messageProperties>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 36: return value->custom_emoji_ids_.size();
+        default: return 0;
+      }
+    }
     case api::emojiKeywords::ID: {
       const auto *value = checked<api::emojiKeywords>(object);
       if (value == nullptr) return 0;
@@ -25454,6 +26337,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::updateAllowedBotUsernamePremiumSuffixes::ID: {
+      const auto *value = checked<api::updateAllowedBotUsernamePremiumSuffixes>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->suffixes_.size();
+        default: return 0;
+      }
+    }
     case api::updateTrustedMiniAppBots::ID: {
       const auto *value = checked<api::updateTrustedMiniAppBots>(object);
       if (value == nullptr) return 0;
@@ -25566,6 +26457,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->messages_.size();
+        default: return 0;
+      }
+    }
+    case api::updateTonWalletTonConnectSessionDisconnectRequired::ID: {
+      const auto *value = checked<api::updateTonWalletTonConnectSessionDisconnectRequired>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->session_ids_.size();
         default: return 0;
       }
     }
@@ -26279,6 +27178,16 @@ std::int64_t generated_vector_int64_at(const api::Object *object, std::int32_t i
         default: return 0;
       }
     }
+    case api::messageProperties::ID: {
+      const auto *value = checked<api::messageProperties>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 36:
+          if (element >= value->custom_emoji_ids_.size()) return 0;
+          return value->custom_emoji_ids_[element];
+        default: return 0;
+      }
+    }
     case api::storyInteractionInfo::ID: {
       const auto *value = checked<api::storyInteractionInfo>(object);
       if (value == nullptr) return 0;
@@ -26452,6 +27361,16 @@ std::int64_t generated_vector_int64_at(const api::Object *object, std::int32_t i
         default: return 0;
       }
     }
+    case api::updateTonWalletTonConnectSessionDisconnectRequired::ID: {
+      const auto *value = checked<api::updateTonWalletTonConnectSessionDisconnectRequired>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0:
+          if (element >= value->session_ids_.size()) return 0;
+          return value->session_ids_[element];
+        default: return 0;
+      }
+    }
     case api::updateBusinessMessagesDeleted::ID: {
       const auto *value = checked<api::updateBusinessMessagesDeleted>(object);
       if (value == nullptr) return 0;
@@ -26476,6 +27395,26 @@ const std::string * generated_vector_buffer_at(const api::Object *object, std::i
         case 11:
           if (element >= value->country_codes_.size()) return nullptr;
           return &value->country_codes_[element];
+        default: return nullptr;
+      }
+    }
+    case api::onRampProvider::ID: {
+      const auto *value = checked<api::onRampProvider>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2:
+          if (element >= value->cryptocurrencies_.size()) return nullptr;
+          return &value->cryptocurrencies_[element];
+        default: return nullptr;
+      }
+    }
+    case api::currencies::ID: {
+      const auto *value = checked<api::currencies>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->currencies_.size()) return nullptr;
+          return &value->currencies_[element];
         default: return nullptr;
       }
     }
@@ -26655,6 +27594,16 @@ const std::string * generated_vector_buffer_at(const api::Object *object, std::i
         case 2:
           if (element >= value->emojis_.size()) return nullptr;
           return &value->emojis_[element];
+        default: return nullptr;
+      }
+    }
+    case api::updateAllowedBotUsernamePremiumSuffixes::ID: {
+      const auto *value = checked<api::updateAllowedBotUsernamePremiumSuffixes>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->suffixes_.size()) return nullptr;
+          return &value->suffixes_[element];
         default: return nullptr;
       }
     }
@@ -27218,6 +28167,106 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         case 1:
           if (element >= value->transactions_.size()) return nullptr;
           return value->transactions_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::userTonWalletAddresses::ID: {
+      const auto *value = checked<api::userTonWalletAddresses>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->addresses_.size()) return nullptr;
+          return value->addresses_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::currencyExchangeRates::ID: {
+      const auto *value = checked<api::currencyExchangeRates>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->rates_.size()) return nullptr;
+          return value->rates_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::onRampProviders::ID: {
+      const auto *value = checked<api::onRampProviders>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->providers_.size()) return nullptr;
+          return value->providers_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::onRampPaymentAvailability::ID: {
+      const auto *value = checked<api::onRampPaymentAvailability>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2:
+          if (element >= value->methods_.size()) return nullptr;
+          return value->methods_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonNft::ID: {
+      const auto *value = checked<api::tonNft>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 10:
+          if (element >= value->attributes_.size()) return nullptr;
+          return value->attributes_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonNfts::ID: {
+      const auto *value = checked<api::tonNfts>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->nfts_.size()) return nullptr;
+          return value->nfts_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactions::ID: {
+      const auto *value = checked<api::tonWalletTransactions>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->transactions_.size()) return nullptr;
+          return value->transactions_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectConnectRequest::ID: {
+      const auto *value = checked<api::tonConnectConnectRequest>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->items_.size()) return nullptr;
+          return value->items_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectSessions::ID: {
+      const auto *value = checked<api::tonConnectSessions>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->sessions_.size()) return nullptr;
+          return value->sessions_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::tonConnectRequests::ID: {
+      const auto *value = checked<api::tonConnectRequests>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->requests_.size()) return nullptr;
+          return value->requests_[element].get();
         default: return nullptr;
       }
     }

@@ -14,6 +14,14 @@ is excluded.
 | TDLibKit 2 native / full schema / Release `-Oz` | 22,340,824 | 0 | 22,340,824 | -27,996,303 (-55.62%) |
 | TDLibKit 2 native / reusable model ownership / Release `-Oz` | 22,603,200 | 0 | 22,603,200 | -27,733,927 (-55.10%) |
 | TDLibKit 2.0.0 / semver-compatible source bridge / Release `-Oz` | 23,083,584 | 0 | 23,083,584 | -27,253,543 (-54.14%) |
+| TDLibKit 2.0.0-tdlib-1.8.68-c15d3f5a / Release `-Oz` | 23,637,432 | 0 | 23,637,432 | -26,699,695 (-53.04%) |
+
+The TDLib 1.8.68 (`c15d3f5a`) update was measured on 2026-10-12 with Xcode
+26.6.0 using the same size host. TDLib adds 113 schema declarations and removes 2.
+The archive is 553,848 bytes (2.40%) above the 1.8.67 build and below the
+existing size limit. Validation for this build includes all 14 native tests on
+macOS and the iOS 26.5 Simulator, SDK-only watchOS and tvOS simulator builds, the
+native transport gate, and the arm64 iOS Release archive.
 
 The 2.0.0 package removes SwiftPM `unsafeFlags` so external applications can
 select it by semantic version. TDLib's binary keeps its original build flags;
