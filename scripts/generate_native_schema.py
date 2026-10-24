@@ -122,17 +122,25 @@ def parse_declarations(tl: str, ids: dict[str, int]) -> list[Declaration]:
     declarations: list[Declaration] = []
     is_function = False
     field_docs: dict[str, str] = {}
+    last_doc_tag: str | None = None
 
     for line_number, raw_line in enumerate(tl.splitlines(), start=1):
         line = raw_line.strip()
         if line == "---functions---":
             is_function = True
             field_docs.clear()
+            last_doc_tag = None
             continue
         if line.startswith("//@"):
             for doc_match in DOC_TAG_RE.finditer(line[2:]):
                 tag, description = doc_match.groups()
                 field_docs[tag] = description
+                last_doc_tag = tag
+            continue
+        if line.startswith("//-"):
+            # A continuation line extends the description of the tag before it, such as a field's "may be null".
+            if last_doc_tag is not None:
+                field_docs[last_doc_tag] = f"{field_docs[last_doc_tag]} {line[3:].strip()}"
             continue
         if not line or line.startswith("//"):
             continue
@@ -146,6 +154,7 @@ def parse_declarations(tl: str, ids: dict[str, int]) -> list[Declaration]:
         name, raw_fields, result = match.groups()
         if name in BUILTIN_DECLARATIONS:
             field_docs.clear()
+            last_doc_tag = None
             continue
         if name not in ids:
             raise ValueError(f"Missing official generated type ID for {name} at line {line_number}")
@@ -181,6 +190,7 @@ def parse_declarations(tl: str, ids: dict[str, int]) -> list[Declaration]:
             )
         )
         field_docs.clear()
+        last_doc_tag = None
 
     return declarations
 

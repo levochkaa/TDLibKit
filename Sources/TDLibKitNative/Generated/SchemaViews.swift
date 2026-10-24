@@ -25303,11 +25303,11 @@ public struct TDNativeMessageForwardInfo: TDNativeObjectView, TDNativeObjectBack
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(origin: TDNativeMessageOrigin, date: Int, source: TDNativeForwardSource, publicServiceAnnouncementType: String) {
+    public init(origin: TDNativeMessageOrigin, date: Int, source: TDNativeForwardSource?, publicServiceAnnouncementType: String) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_object(origin.native.value)
         arguments.append_int32(nativeInt32(date))
-        arguments.append_object(source.native.value)
+        arguments.append_object(source?.native.value ?? tdlibkit.NativeObject())
         arguments.append_buffer(nativeBuffer(publicServiceAnnouncementType))
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
@@ -25318,7 +25318,7 @@ public struct TDNativeMessageForwardInfo: TDNativeObjectView, TDNativeObjectBack
         self = value
     }
 
-    public static func make(origin: TDNativeMessageOrigin, date: Int, source: TDNativeForwardSource, publicServiceAnnouncementType: String) -> Self? {
+    public static func make(origin: TDNativeMessageOrigin, date: Int, source: TDNativeForwardSource?, publicServiceAnnouncementType: String) -> Self? {
         Self(origin: origin, date: date, source: source, publicServiceAnnouncementType: publicServiceAnnouncementType)
     }
 
@@ -25332,12 +25332,9 @@ public struct TDNativeMessageForwardInfo: TDNativeObjectView, TDNativeObjectBack
 
     public var date: Int { Int(native.value.int32_field(1)) }
 
-    public var source: TDNativeForwardSource {
+    public var source: TDNativeForwardSource? {
         let object = NativeOwnedObject(value: native.value.object_field(2))
-        guard let value = TDNativeForwardSource(native: object) else {
-            preconditionFailure("Required field source is null")
-        }
-        return value
+        return TDNativeForwardSource(native: object)
     }
 
     public var publicServiceAnnouncementType: String { swiftString(native.value.buffer_field(3)) }
@@ -63692,12 +63689,12 @@ public struct TDNativeImportedContact: TDNativeObjectView, TDNativeObjectBacked,
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(phoneNumber: String, firstName: String, lastName: String, note: TDNativeFormattedText) {
+    public init(phoneNumber: String, firstName: String, lastName: String, note: TDNativeFormattedText?) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_buffer(nativeBuffer(phoneNumber))
         arguments.append_buffer(nativeBuffer(firstName))
         arguments.append_buffer(nativeBuffer(lastName))
-        arguments.append_object(note.native.value)
+        arguments.append_object(note?.native.value ?? tdlibkit.NativeObject())
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -63707,7 +63704,7 @@ public struct TDNativeImportedContact: TDNativeObjectView, TDNativeObjectBacked,
         self = value
     }
 
-    public static func make(phoneNumber: String, firstName: String, lastName: String, note: TDNativeFormattedText) -> Self? {
+    public static func make(phoneNumber: String, firstName: String, lastName: String, note: TDNativeFormattedText?) -> Self? {
         Self(phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, note: note)
     }
 
@@ -63717,12 +63714,9 @@ public struct TDNativeImportedContact: TDNativeObjectView, TDNativeObjectBacked,
 
     public var lastName: String { swiftString(native.value.buffer_field(2)) }
 
-    public var note: TDNativeFormattedText {
+    public var note: TDNativeFormattedText? {
         let object = NativeOwnedObject(value: native.value.object_field(3))
-        guard let value = TDNativeFormattedText(native: object) else {
-            preconditionFailure("Required field note is null")
-        }
-        return value
+        return TDNativeFormattedText(native: object)
     }
 }
 

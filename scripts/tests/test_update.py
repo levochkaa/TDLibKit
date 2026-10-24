@@ -153,6 +153,18 @@ class SchemaFailureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "FutureType"):
             schema.build_document(b"fixture", declarations)
 
+    def test_continued_field_description_still_marks_the_field_optional(self):
+        tl = (
+            "//@description A forward @origin Origin\n"
+            "//@source Information about the source message;\n"
+            "//-may be null for other forwards\n"
+            "//@date Date\n"
+            "info origin:Origin source:forwardSource date:int32 = Info;\n"
+        )
+        fields = {field.name: field for field in schema.parse_declarations(tl, {"info": 1})[0].fields}
+        self.assertTrue(fields["source"].is_optional)
+        self.assertFalse(fields["origin"].is_optional)
+
     def test_unsupported_vector_does_not_partially_overwrite_generated_files(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -52,7 +52,7 @@ Each tag has its own GitHub Release with the matching `TdStatic.xcframework.zip`
 Pin the exact tag:
 
 ```swift
-.package(url: "https://github.com/levochkaa/TDLibKit.git", exact: "2.0.0-tdlib-1.8.68-c15d3f5a")
+.package(url: "https://github.com/levochkaa/TDLibKit.git", exact: "2.0.1-tdlib-1.8.69-ea3f69ce")
 ```
 
 SemVer treats these tags as pre-releases and orders two commits of the same

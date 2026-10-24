@@ -21079,7 +21079,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::messageForwardInfo::ID: {
       if (arguments.values_.size() != 4) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::messageOriginUser::ID, api::messageOriginHiddenUser::ID, api::messageOriginChat::ID, api::messageOriginChannel::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::forwardSource::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::forwardSource::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::messageForwardInfo>();
       result->origin_ = NativeArgumentAccess::object_at<api::MessageOrigin>(arguments, 0, valid);
@@ -28941,7 +28941,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::importedContact::ID: {
       if (arguments.values_.size() != 4) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::formattedText::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::formattedText::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::importedContact>();
       result->phone_number_ = NativeArgumentAccess::buffer_at(arguments, 0);

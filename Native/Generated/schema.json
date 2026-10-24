@@ -9,7 +9,7 @@
     "unions": 224,
     "result_types": 797,
     "fields": 7339,
-    "optional_object_fields": 613,
+    "optional_object_fields": 615,
     "max_vector_depth": 2
   },
   "unions": [
@@ -23135,7 +23135,7 @@
             "kind": "object",
             "name": "forwardSource"
           },
-          "is_optional": false
+          "is_optional": true
         },
         {
           "name": "public_service_announcement_type",
@@ -46789,7 +46789,7 @@
             "kind": "object",
             "name": "formattedText"
           },
-          "is_optional": false
+          "is_optional": true
         }
       ],
       "is_function": false,
