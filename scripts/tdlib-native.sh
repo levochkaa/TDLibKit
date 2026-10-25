@@ -263,7 +263,11 @@ build_tdstatic() {
   fi
 
   local platform_args=()
-  local cmake_fresh=()
+  # A cached configuration keeps the SDK and compiler of the Xcode that first configured it, so a build after an
+  # Xcode update would compile against stale headers: the iOS 26.5 simulator SDK made x86_64 code call macOS's
+  # $INODE64 variants, which the 27.1 SDK no longer exports. Configure afresh every time; unchanged build files
+  # keep their timestamps, so objects are rebuilt only when the toolchain or flags change.
+  local cmake_fresh=(--fresh)
   if [[ "$platform" == "macos" ]]; then
     platform_args+=(
       "-DCMAKE_OSX_ARCHITECTURES=$arch"
@@ -298,7 +302,6 @@ build_tdstatic() {
         "-DCMAKE_CXX_FLAGS=-target $target_triple"
         "-DCMAKE_EXE_LINKER_FLAGS=-target $target_triple"
       )
-      cmake_fresh=(--fresh)
     fi
   fi
 
@@ -332,12 +335,14 @@ build_tdstatic() {
 
   libtool -static -D -o "$output" "${archives[@]}"
   ranlib "$output"
-  verify_thin_archive "$output"
+  verify_thin_archive "$output" "$platform"
   echo "$output"
 }
 
 verify_thin_archive() {
   local archive="$1"
+  # The platform or xcframework library identifier the archive is for.
+  local platform="$2"
   local banned_members='^(td_api_json_[0-9]+\.cpp\.o|ClientJson\.cpp\.o|td_json_client\.cpp\.o|td_log\.cpp\.o)$'
   local banned_symbols='(_td_send$|_td_receive$|_td_execute$|td_json_client|ClientJson)'
 
@@ -346,6 +351,11 @@ verify_thin_archive() {
   fi
   if nm -gU "$archive" 2>/dev/null | grep -E "$banned_symbols"; then
     fail "JSON transport symbol found in $archive"
+  fi
+  # Only x86_64 macOS has the $INODE64 file system variants; an iOS-family slice that calls them was compiled
+  # against another SDK's headers and doesn't link with the current one.
+  if [[ "$platform" != macos* ]] && nm -u "$archive" 2>/dev/null | grep -F '$INODE64'; then
+    fail "macOS-only \$INODE64 symbols in $archive; it was built against a stale SDK"
   fi
 }
 
@@ -383,7 +393,7 @@ verify_artifact() {
       else
         lipo "$library" -thin "$arch" -output "$thin"
       fi
-      verify_thin_archive "$thin"
+      verify_thin_archive "$thin" "$(basename "$(dirname "$library")")"
     done
   done < <(find "$artifact" -type f -name '*.a' | sort)
   [[ "$library_count" -gt 0 ]] || fail "Artifact contains no static libraries: $artifact"
