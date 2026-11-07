@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: ea3f69ce11aef458bfbb09869b809ede4447486f
+// TDLib commit: 4c6377aa7386c39217878a9a56d581922ad37ca4
 
 bool generated_bool_field(const api::Object *object, std::int32_t index) noexcept {
   if (object == nullptr) return false;

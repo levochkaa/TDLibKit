@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: ea3f69ce11aef458bfbb09869b809ede4447486f
+// TDLib commit: 4c6377aa7386c39217878a9a56d581922ad37ca4
 
 api::object_ptr<api::Object> generated_clone_schema_object(
     const api::Object *object, bool &valid) noexcept {
