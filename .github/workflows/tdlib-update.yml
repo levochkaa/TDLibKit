@@ -72,7 +72,7 @@ jobs:
       - id: pins
         run: |
           echo "xcode=$(xcodebuild -version | head -1 | tr ' ' '-')" >> "$GITHUB_OUTPUT"
-          python3 -c 'import json; v = json.load(open("versions.json")); print(f"openssl={v[\"openssl_version\"]}-{v[\"python_apple_support_commit\"][:12]}")' >> "$GITHUB_OUTPUT"
+          jq -r '"openssl=\(.openssl_version)-\(.python_apple_support_commit[:12])"' versions.json >> "$GITHUB_OUTPUT"
       - name: Restore OpenSSL build
         uses: actions/cache@v6
         with:
