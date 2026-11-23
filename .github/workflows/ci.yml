@@ -31,7 +31,7 @@ jobs:
         with:
           submodules: true
       - name: Install generation tools
-        run: brew install cmake gperf
+        run: brew install cmake gperf ripgrep
       - name: Test updater and unsupported schema diagnostics
         run: python3 -m unittest discover -s scripts/tests -v
       - name: Generate official TDLib headers
