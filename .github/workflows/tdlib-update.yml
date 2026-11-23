@@ -1,0 +1,99 @@
+name: TDLib update
+
+# Builds, publishes and commits a new TDLib master commit, like a local
+# ./scripts/update.py + ./scripts/release.py run. A failed run is picked up by
+# scripts/ci-watch.py on the maintainer's Mac and handed to a T3 thread.
+
+on:
+  schedule:
+    - cron: "17 */12 * * *"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "tdlib/td branch, tag or full SHA"
+        default: master
+
+concurrency:
+  group: tdlib-update
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      commit: ${{ steps.check.outputs.commit }}
+      available: ${{ steps.check.outputs.available }}
+      patch: ${{ steps.check.outputs.patch }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        env:
+          REF: ${{ inputs.ref || 'master' }}
+        run: |
+          status=0
+          ./scripts/update.py --check --ref "$REF" > check.log || status=$?
+          cat check.log
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then exit "$status"; fi
+          commit="$(sed -n 's/^Upstream: *//p' check.log)"
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+          echo "available=$([ "$status" -eq 2 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          # The OpenSSL cache is valid only for the Python-Apple-support patch of this TDLib commit.
+          patch="$(curl -fsSL "https://raw.githubusercontent.com/tdlib/td/$commit/example/ios/Python-Apple-support.patch" | shasum -a 256 | cut -c1-16)"
+          echo "patch=$patch" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: check
+    if: needs.check.outputs.available == 'true'
+    runs-on: macos-26
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    env:
+      COMMIT: ${{ needs.check.outputs.commit }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Install build tools
+        run: brew install cmake gperf xcodegen ripgrep
+      - id: pins
+        run: |
+          echo "xcode=$(xcodebuild -version | head -1 | tr ' ' '-')" >> "$GITHUB_OUTPUT"
+          python3 -c 'import json; v = json.load(open("versions.json")); print(f"openssl={v[\"openssl_version\"]}-{v[\"python_apple_support_commit\"][:12]}")' >> "$GITHUB_OUTPUT"
+      - name: Restore OpenSSL build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .build/tdlib-native/Python-Apple-support
+            .build/tdlib-native/openssl-pinned
+            .build/tdlib-native/openssl-pinned-x86_64
+          key: openssl-${{ steps.pins.outputs.xcode }}-${{ steps.pins.outputs.openssl }}-${{ needs.check.outputs.patch }}
+      - name: Build and validate
+        run: ./scripts/update.py --ref "$COMMIT" --jobs 3
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add -A versions.json Package.swift Native Sources Documentation Vendor/td
+          version="$(python3 -c 'import json; print(json.load(open("versions.json"))["tdlib_version"])')"
+          git commit -m "feature(tdlib): update to tdlib $version-${COMMIT:0:8}"
+      - name: Publish release
+        run: ./scripts/release.py ".build/tdlib-update/$COMMIT/release.json"
+      - name: Push
+        run: git push origin HEAD:main
+      - name: Upload logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tdlib-update-${{ needs.check.outputs.commit }}
+          path: |
+            .build/tdlib-update/${{ needs.check.outputs.commit }}/*.json
+            .build/tdlib-update/${{ needs.check.outputs.commit }}/*.md
+          if-no-files-found: ignore

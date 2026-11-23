@@ -14,8 +14,6 @@ on:
       - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
-  schedule:
-    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -26,22 +24,7 @@ permissions:
   contents: read
 
 jobs:
-  upstream:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check for a new upstream revision
-        run: |
-          status=0
-          ./scripts/update.py --check || status=$?
-          if [ "$status" -eq 2 ]; then
-            echo "::notice::New TDLib available. Run ./scripts/update.py on macOS."
-          elif [ "$status" -ne 0 ]; then
-            exit "$status"
-          fi
-
   native:
-    if: github.event_name != 'schedule'
     runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
