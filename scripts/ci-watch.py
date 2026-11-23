@@ -37,7 +37,8 @@ Fix it so the next scheduled run publishes the update:
 2. Classify: infra (runner, network, Xcode image, cache) or code (upstream TDLib build
    or schema change, our scripts, tests, size limit). README.md «Updating TDLib» explains
    update.py and release.py.
-3. Infra: say what failed and rerun with `gh run rerun {run_id} --repo {repo} --failed`.
+3. Infra: say what failed. On attempt 1 rerun with `gh run rerun {run_id} --repo {repo} --failed`;
+   on a later attempt do not rerun again, report to Lev instead.
 4. Code: reproduce locally with `./scripts/update.py --ref <tdlib sha from the log>`, fix,
    commit on main. Do not push and do not publish a release; report and wait for Lev.
 5. If a tag or release was already published by the failed run, never move or replace it.
