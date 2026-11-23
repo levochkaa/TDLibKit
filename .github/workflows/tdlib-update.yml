@@ -5,6 +5,12 @@ name: TDLib update
 # scripts/ci-watch.py on the maintainer's Mac and handed to a T3 thread.
 
 on:
+  # A change to the updater restarts the update with it.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/tdlib-update.yml"
+      - "scripts/**"
   schedule:
     - cron: "17 */12 * * *"
   workflow_dispatch:
@@ -15,7 +21,7 @@ on:
 
 concurrency:
   group: tdlib-update
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -28,7 +34,7 @@ jobs:
       available: ${{ steps.check.outputs.available }}
       patch: ${{ steps.check.outputs.patch }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: check
         env:
           REF: ${{ inputs.ref || 'master' }}
@@ -55,7 +61,7 @@ jobs:
       COMMIT: ${{ needs.check.outputs.commit }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
       - uses: maxim-lobanov/setup-xcode@v1
@@ -68,7 +74,7 @@ jobs:
           echo "xcode=$(xcodebuild -version | head -1 | tr ' ' '-')" >> "$GITHUB_OUTPUT"
           python3 -c 'import json; v = json.load(open("versions.json")); print(f"openssl={v[\"openssl_version\"]}-{v[\"python_apple_support_commit\"][:12]}")' >> "$GITHUB_OUTPUT"
       - name: Restore OpenSSL build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             .build/tdlib-native/Python-Apple-support
@@ -90,7 +96,7 @@ jobs:
         run: git push origin HEAD:main
       - name: Upload logs
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: tdlib-update-${{ needs.check.outputs.commit }}
           path: |

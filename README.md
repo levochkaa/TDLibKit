@@ -164,8 +164,9 @@ the binary URL/checksum are refreshed by the updater.
 
 CI verifies the published native package on source changes.
 
-`.github/workflows/tdlib-update.yml` runs this update on GitHub every 12 hours
-(or by hand with an optional `ref`): when `tdlib/td` master moved, it runs
+`.github/workflows/tdlib-update.yml` runs this update on GitHub every 12 hours,
+by hand with an optional `ref`, and on pushes that change it or `scripts/`; a
+new run cancels the one in progress. When `tdlib/td` master moved, it runs
 `update.py`, commits the result, runs `release.py` and pushes `main`. On the
 maintainer's Mac, `./scripts/ci-watch.py install` adds a LaunchAgent that polls
 failed runs of that workflow every 10 minutes and hands each one to a T3 thread
