@@ -1,8 +1,8 @@
 {
     "package": "2.0.2",
-    "tdlib_version": "1.8.69",
-    "tdlib_commit": "4c6377aa7386c39217878a9a56d581922ad37ca4",
-    "tdlib_artifact_commit": "4c6377aa7386c39217878a9a56d581922ad37ca4",
+    "tdlib_version": "1.8.71",
+    "tdlib_commit": "1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d",
+    "tdlib_artifact_commit": "1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d",
     "openssl_version": "3.1.5",
     "python_apple_support_commit": "6f43aba0ddd5a9f52f39775d0141bd4363614020"
 }

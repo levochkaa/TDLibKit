@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: 4c6377aa7386c39217878a9a56d581922ad37ca4
+// TDLib commit: 1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d
 
 api::object_ptr<api::Object> generated_clone_schema_object(
     const api::Object *object, bool &valid) noexcept {
@@ -141,6 +141,19 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->entities_ = clone_schema_value(value->entities_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::textRange::ID: {
+      const auto *value = static_cast<const api::textRange *>(object);
+      auto result = api::make_object<api::textRange>();
+      result->offset_ = value->offset_;
+      result->length_ = value->length_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::textRanges::ID: {
+      const auto *value = static_cast<const api::textRanges *>(object);
+      auto result = api::make_object<api::textRanges>();
+      result->ranges_ = clone_schema_value(value->ranges_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::formattedText::ID: {
       const auto *value = static_cast<const api::formattedText *>(object);
       auto result = api::make_object<api::formattedText>();
@@ -232,6 +245,15 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->prompt_ = value->prompt_;
       result->creator_user_id_ = value->creator_user_id_;
       result->english_example_ = clone_schema_value(value->english_example_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::textCompositionParameters::ID: {
+      const auto *value = static_cast<const api::textCompositionParameters *>(object);
+      auto result = api::make_object<api::textCompositionParameters>();
+      result->translate_to_language_code_ = value->translate_to_language_code_;
+      result->style_name_ = value->style_name_;
+      result->add_emojis_ = value->add_emojis_;
+      result->fix_text_ = value->fix_text_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::termsOfService::ID: {
@@ -1000,6 +1022,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->can_read_all_group_messages_ = value->can_read_all_group_messages_;
       result->has_main_web_app_ = value->has_main_web_app_;
       result->has_topics_ = value->has_topics_;
+      result->has_topic_sidebar_ = value->has_topic_sidebar_;
       result->allows_users_to_create_topics_ = value->allows_users_to_create_topics_;
       result->can_manage_bots_ = value->can_manage_bots_;
       result->is_inline_ = value->is_inline_;
@@ -1043,6 +1066,108 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       auto result = api::make_object<api::botAccessSettings>();
       result->is_restricted_ = value->is_restricted_;
       result->added_user_ids_ = value->added_user_ids_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeDefault::ID: {
+      auto result = api::make_object<api::botCallbackQueryModeDefault>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeAuto::ID: {
+      auto result = api::make_object<api::botCallbackQueryModeAuto>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeInline::ID: {
+      auto result = api::make_object<api::botCallbackQueryModeInline>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingIsInline::ID: {
+      const auto *value = static_cast<const api::botSettingIsInline *>(object);
+      auto result = api::make_object<api::botSettingIsInline>();
+      result->is_inline_ = value->is_inline_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingInlineQueryPlaceholder::ID: {
+      const auto *value = static_cast<const api::botSettingInlineQueryPlaceholder *>(object);
+      auto result = api::make_object<api::botSettingInlineQueryPlaceholder>();
+      result->placeholder_ = value->placeholder_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingNeedLocation::ID: {
+      const auto *value = static_cast<const api::botSettingNeedLocation *>(object);
+      auto result = api::make_object<api::botSettingNeedLocation>();
+      result->need_location_ = value->need_location_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingInlineFeedback::ID: {
+      const auto *value = static_cast<const api::botSettingInlineFeedback *>(object);
+      auto result = api::make_object<api::botSettingInlineFeedback>();
+      result->share_denominator_ = value->share_denominator_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanJoinGroups::ID: {
+      const auto *value = static_cast<const api::botSettingCanJoinGroups *>(object);
+      auto result = api::make_object<api::botSettingCanJoinGroups>();
+      result->can_join_groups_ = value->can_join_groups_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanReadAllGroupMessages::ID: {
+      const auto *value = static_cast<const api::botSettingCanReadAllGroupMessages *>(object);
+      auto result = api::make_object<api::botSettingCanReadAllGroupMessages>();
+      result->can_read_all_group_messages_ = value->can_read_all_group_messages_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanConnectToBusiness::ID: {
+      const auto *value = static_cast<const api::botSettingCanConnectToBusiness *>(object);
+      auto result = api::make_object<api::botSettingCanConnectToBusiness>();
+      result->can_connect_to_business_ = value->can_connect_to_business_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanManageBots::ID: {
+      const auto *value = static_cast<const api::botSettingCanManageBots *>(object);
+      auto result = api::make_object<api::botSettingCanManageBots>();
+      result->can_manage_bots_ = value->can_manage_bots_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingSupportsGuestQueries::ID: {
+      const auto *value = static_cast<const api::botSettingSupportsGuestQueries *>(object);
+      auto result = api::make_object<api::botSettingSupportsGuestQueries>();
+      result->supports_guest_queries_ = value->supports_guest_queries_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingIsGuard::ID: {
+      const auto *value = static_cast<const api::botSettingIsGuard *>(object);
+      auto result = api::make_object<api::botSettingIsGuard>();
+      result->is_guard_ = value->is_guard_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingHasTopics::ID: {
+      const auto *value = static_cast<const api::botSettingHasTopics *>(object);
+      auto result = api::make_object<api::botSettingHasTopics>();
+      result->has_topics_ = value->has_topics_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingAllowsUsersToCreateTopics::ID: {
+      const auto *value = static_cast<const api::botSettingAllowsUsersToCreateTopics *>(object);
+      auto result = api::make_object<api::botSettingAllowsUsersToCreateTopics>();
+      result->allows_users_to_create_topics_ = value->allows_users_to_create_topics_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingHasTopicSidebar::ID: {
+      const auto *value = static_cast<const api::botSettingHasTopicSidebar *>(object);
+      auto result = api::make_object<api::botSettingHasTopicSidebar>();
+      result->has_topic_sidebar_ = value->has_topic_sidebar_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanCommunicateWithBots::ID: {
+      const auto *value = static_cast<const api::botSettingCanCommunicateWithBots *>(object);
+      auto result = api::make_object<api::botSettingCanCommunicateWithBots>();
+      result->can_communicate_with_bots_ = value->can_communicate_with_bots_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCallbackQueryMode::ID: {
+      const auto *value = static_cast<const api::botSettingCallbackQueryMode *>(object);
+      auto result = api::make_object<api::botSettingCallbackQueryMode>();
+      result->mode_ = clone_schema_value(value->mode_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::botVerificationParameters::ID: {
@@ -1472,6 +1597,41 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       auto result = api::make_object<api::giftPurchaseOfferStateRejected>();
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::giftOnChainPurchaseOfferStatePending::ID: {
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStatePending>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateSettled::ID: {
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateSettled>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateAccepted::ID: {
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateAccepted>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateCanceling::ID: {
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateCanceling>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateDeclined::ID: {
+      const auto *value = static_cast<const api::giftOnChainPurchaseOfferStateDeclined *>(object);
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateDeclined>();
+      result->refund_amount_ = value->refund_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateCanceled::ID: {
+      const auto *value = static_cast<const api::giftOnChainPurchaseOfferStateCanceled *>(object);
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateCanceled>();
+      result->refund_amount_ = value->refund_amount_;
+      result->fine_amount_ = value->fine_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateExpired::ID: {
+      const auto *value = static_cast<const api::giftOnChainPurchaseOfferStateExpired *>(object);
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateExpired>();
+      result->refund_amount_ = value->refund_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::suggestedPostPriceStar::ID: {
       const auto *value = static_cast<const api::suggestedPostPriceStar *>(object);
       auto result = api::make_object<api::suggestedPostPriceStar>();
@@ -1822,7 +1982,10 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       auto result = api::make_object<api::giftResaleParameters>();
       result->star_count_ = value->star_count_;
       result->gram_cent_count_ = value->gram_cent_count_;
+      result->gram_amount_ = value->gram_amount_;
       result->gram_only_ = value->gram_only_;
+      result->is_fixed_on_chain_ = value->is_fixed_on_chain_;
+      result->can_be_managed_ = value->can_be_managed_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::giftCollection::ID: {
@@ -1882,6 +2045,18 @@ api::object_ptr<api::Object> generated_clone_schema_object(
     }
     case api::upgradedGiftOriginCraft::ID: {
       auto result = api::make_object<api::upgradedGiftOriginCraft>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::upgradedGiftOriginOnChainResale::ID: {
+      const auto *value = static_cast<const api::upgradedGiftOriginOnChainResale *>(object);
+      auto result = api::make_object<api::upgradedGiftOriginOnChainResale>();
+      result->gram_amount_ = value->gram_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::upgradedGiftOriginOnChainOffer::ID: {
+      const auto *value = static_cast<const api::upgradedGiftOriginOnChainOffer *>(object);
+      auto result = api::make_object<api::upgradedGiftOriginOnChainOffer>();
+      result->gram_amount_ = value->gram_amount_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::upgradedGiftAttributeRarityPerMille::ID: {
@@ -2011,8 +2186,11 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->backdrop_ = clone_schema_value(value->backdrop_, valid);
       result->original_details_ = clone_schema_value(value->original_details_, valid);
       result->colors_ = clone_schema_value(value->colors_, valid);
+      result->uses_on_chain_resale_ = value->uses_on_chain_resale_;
       result->resale_parameters_ = clone_schema_value(value->resale_parameters_, valid);
+      result->fee_basis_points_ = value->fee_basis_points_;
       result->can_send_purchase_offer_ = value->can_send_purchase_offer_;
+      result->min_on_chain_purchase_offer_gram_amount_ = value->min_on_chain_purchase_offer_gram_amount_;
       result->craft_probability_per_mille_ = value->craft_probability_per_mille_;
       result->value_currency_ = value->value_currency_;
       result->value_amount_ = value->value_amount_;
@@ -2031,7 +2209,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->last_sale_date_ = value->last_sale_date_;
       result->last_sale_price_ = value->last_sale_price_;
       result->is_last_sale_on_fragment_ = value->is_last_sale_on_fragment_;
-      result->minimum_price_ = value->minimum_price_;
+      result->min_price_ = value->min_price_;
       result->average_sale_price_ = value->average_sale_price_;
       result->telegram_listed_gift_count_ = value->telegram_listed_gift_count_;
       result->fragment_listed_gift_count_ = value->fragment_listed_gift_count_;
@@ -2046,6 +2224,53 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->gram_amount_ = value->gram_amount_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::tonSmartContractInitialState::ID: {
+      const auto *value = static_cast<const api::tonSmartContractInitialState *>(object);
+      auto result = api::make_object<api::tonSmartContractInitialState>();
+      result->code_ = value->code_;
+      result->data_ = value->data_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletMessage::ID: {
+      const auto *value = static_cast<const api::tonWalletMessage *>(object);
+      auto result = api::make_object<api::tonWalletMessage>();
+      result->destination_address_ = value->destination_address_;
+      result->gram_amount_ = value->gram_amount_;
+      result->send_mode_ = value->send_mode_;
+      result->body_ = value->body_;
+      result->initial_state_ = clone_schema_value(value->initial_state_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      const auto *value = static_cast<const api::giftOnChainPurchaseOfferTransaction *>(object);
+      auto result = api::make_object<api::giftOnChainPurchaseOfferTransaction>();
+      result->offer_address_ = value->offer_address_;
+      result->expiration_date_ = value->expiration_date_;
+      result->message_ = clone_schema_value(value->message_, valid);
+      result->gasless_message_ = clone_schema_value(value->gasless_message_, valid);
+      result->rent_budget_amount_ = value->rent_budget_amount_;
+      result->execution_allowance_amount_ = value->execution_allowance_amount_;
+      result->forward_amount_ = value->forward_amount_;
+      result->fine_amount_ = value->fine_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainSaleTransactionFragment::ID: {
+      const auto *value = static_cast<const api::giftOnChainSaleTransactionFragment *>(object);
+      auto result = api::make_object<api::giftOnChainSaleTransactionFragment>();
+      result->nft_address_ = value->nft_address_;
+      result->payload_ = value->payload_;
+      result->gram_amount_ = value->gram_amount_;
+      result->is_gasless_transfer_available_ = value->is_gasless_transfer_available_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainSaleTransactionFixedPrice::ID: {
+      const auto *value = static_cast<const api::giftOnChainSaleTransactionFixedPrice *>(object);
+      auto result = api::make_object<api::giftOnChainSaleTransactionFixedPrice>();
+      result->sale_address_ = value->sale_address_;
+      result->messages_ = clone_schema_value(value->messages_, valid);
+      result->gasless_messages_ = clone_schema_value(value->gasless_messages_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::upgradeGiftResult::ID: {
       const auto *value = static_cast<const api::upgradeGiftResult *>(object);
       auto result = api::make_object<api::upgradeGiftResult>();
@@ -2057,7 +2282,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->drop_original_details_star_count_ = value->drop_original_details_star_count_;
       result->next_transfer_date_ = value->next_transfer_date_;
       result->next_resale_date_ = value->next_resale_date_;
-      result->export_date_ = value->export_date_;
+      result->mint_date_ = value->mint_date_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::craftGiftResultSuccess::ID: {
@@ -2220,7 +2445,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->drop_original_details_star_count_ = value->drop_original_details_star_count_;
       result->next_transfer_date_ = value->next_transfer_date_;
       result->next_resale_date_ = value->next_resale_date_;
-      result->export_date_ = value->export_date_;
+      result->mint_date_ = value->mint_date_;
       result->prepaid_upgrade_hash_ = value->prepaid_upgrade_hash_;
       result->craft_date_ = value->craft_date_;
       return api::object_ptr<api::Object>(std::move(result));
@@ -3033,6 +3258,90 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->is_saved_ = value->is_saved_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::tonWalletTransactionTypeTelegramGiftPurchase::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftPurchase *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftPurchase>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->amount_ = value->amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftSale::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftSale *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftSale>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->amount_ = value->amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftListing::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftListing *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftListing>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->old_price_ = value->old_price_;
+      result->price_ = value->price_;
+      result->amount_ = value->amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftDelisting::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftDelisting *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftDelisting>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->amount_ = value->amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftOfferCreation *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferCreation>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->offer_address_ = value->offer_address_;
+      result->counterparty_address_ = value->counterparty_address_;
+      result->price_ = value->price_;
+      result->amount_ = value->amount_;
+      result->service_fee_amount_ = value->service_fee_amount_;
+      result->expiration_date_ = value->expiration_date_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftOfferAcceptance *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->is_buyer_ = value->is_buyer_;
+      result->offer_address_ = value->offer_address_;
+      result->counterparty_address_ = value->counterparty_address_;
+      result->price_ = value->price_;
+      result->service_fee_amount_ = value->service_fee_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftOfferCancellation *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferCancellation>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->offer_address_ = value->offer_address_;
+      result->counterparty_address_ = value->counterparty_address_;
+      result->price_ = value->price_;
+      result->refund_amount_ = value->refund_amount_;
+      result->fine_amount_ = value->fine_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftOfferDecline *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferDecline>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->offer_address_ = value->offer_address_;
+      result->counterparty_address_ = value->counterparty_address_;
+      result->price_ = value->price_;
+      result->refund_amount_ = value->refund_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID: {
+      const auto *value = static_cast<const api::tonWalletTransactionTypeTelegramGiftOfferExpiration *>(object);
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferExpiration>();
+      result->nft_ = clone_schema_value(value->nft_, valid);
+      result->offer_address_ = value->offer_address_;
+      result->counterparty_address_ = value->counterparty_address_;
+      result->price_ = value->price_;
+      result->refund_amount_ = value->refund_amount_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::tonWalletTransactionTypeKeyChange::ID: {
       auto result = api::make_object<api::tonWalletTransactionTypeKeyChange>();
       return api::object_ptr<api::Object>(std::move(result));
@@ -3046,6 +3355,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->peer_domain_ = value->peer_domain_;
       result->date_ = value->date_;
       result->fee_amount_ = value->fee_amount_;
+      result->is_suspected_spam_ = value->is_suspected_spam_;
       result->state_ = clone_schema_value(value->state_, valid);
       result->type_ = clone_schema_value(value->type_, valid);
       return api::object_ptr<api::Object>(std::move(result));
@@ -3304,6 +3614,75 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->min_channel_chat_boost_level_ = value->min_channel_chat_boost_level_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::notificationSettingsScopePrivateChats::ID: {
+      auto result = api::make_object<api::notificationSettingsScopePrivateChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::notificationSettingsScopeGroupChats::ID: {
+      auto result = api::make_object<api::notificationSettingsScopeGroupChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::notificationSettingsScopeChannelChats::ID: {
+      auto result = api::make_object<api::notificationSettingsScopeChannelChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::chatNotificationSettings::ID: {
+      const auto *value = static_cast<const api::chatNotificationSettings *>(object);
+      auto result = api::make_object<api::chatNotificationSettings>();
+      result->use_default_mute_for_ = value->use_default_mute_for_;
+      result->mute_for_ = value->mute_for_;
+      result->use_default_sound_ = value->use_default_sound_;
+      result->sound_id_ = value->sound_id_;
+      result->use_default_show_preview_ = value->use_default_show_preview_;
+      result->show_preview_ = value->show_preview_;
+      result->use_default_mute_stories_ = value->use_default_mute_stories_;
+      result->mute_stories_ = value->mute_stories_;
+      result->use_default_story_sound_ = value->use_default_story_sound_;
+      result->story_sound_id_ = value->story_sound_id_;
+      result->use_default_show_story_poster_ = value->use_default_show_story_poster_;
+      result->show_story_poster_ = value->show_story_poster_;
+      result->use_default_disable_pinned_message_notifications_ = value->use_default_disable_pinned_message_notifications_;
+      result->disable_pinned_message_notifications_ = value->disable_pinned_message_notifications_;
+      result->use_default_disable_mention_notifications_ = value->use_default_disable_mention_notifications_;
+      result->disable_mention_notifications_ = value->disable_mention_notifications_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::scopeNotificationSettings::ID: {
+      const auto *value = static_cast<const api::scopeNotificationSettings *>(object);
+      auto result = api::make_object<api::scopeNotificationSettings>();
+      result->mute_for_ = value->mute_for_;
+      result->sound_id_ = value->sound_id_;
+      result->show_preview_ = value->show_preview_;
+      result->use_default_mute_stories_ = value->use_default_mute_stories_;
+      result->mute_stories_ = value->mute_stories_;
+      result->story_sound_id_ = value->story_sound_id_;
+      result->show_story_poster_ = value->show_story_poster_;
+      result->disable_pinned_message_notifications_ = value->disable_pinned_message_notifications_;
+      result->disable_mention_notifications_ = value->disable_mention_notifications_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceNone::ID: {
+      auto result = api::make_object<api::reactionNotificationSourceNone>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceContacts::ID: {
+      auto result = api::make_object<api::reactionNotificationSourceContacts>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceAll::ID: {
+      auto result = api::make_object<api::reactionNotificationSourceAll>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSettings::ID: {
+      const auto *value = static_cast<const api::reactionNotificationSettings *>(object);
+      auto result = api::make_object<api::reactionNotificationSettings>();
+      result->message_reaction_source_ = clone_schema_value(value->message_reaction_source_, valid);
+      result->story_reaction_source_ = clone_schema_value(value->story_reaction_source_, valid);
+      result->poll_vote_source_ = clone_schema_value(value->poll_vote_source_, valid);
+      result->sound_id_ = value->sound_id_;
+      result->show_preview_ = value->show_preview_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::communityId::ID: {
       const auto *value = static_cast<const api::communityId *>(object);
       auto result = api::make_object<api::communityId>();
@@ -3359,6 +3738,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->date_ = value->date_;
       result->status_ = clone_schema_value(value->status_, valid);
       result->permissions_ = clone_schema_value(value->permissions_, valid);
+      result->are_chats_collapsed_ = value->are_chats_collapsed_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::communityChat::ID: {
@@ -3377,6 +3757,37 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->administrator_count_ = value->administrator_count_;
       result->banned_count_ = value->banned_count_;
       result->add_chat_request_count_ = value->add_chat_request_count_;
+      result->notification_settings_ = clone_schema_value(value->notification_settings_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communities::ID: {
+      const auto *value = static_cast<const api::communities *>(object);
+      auto result = api::make_object<api::communities>();
+      result->community_ids_ = value->community_ids_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityAddChatRequest::ID: {
+      const auto *value = static_cast<const api::communityAddChatRequest *>(object);
+      auto result = api::make_object<api::communityAddChatRequest>();
+      result->chat_id_ = value->chat_id_;
+      result->is_hidden_ = value->is_hidden_;
+      result->sender_user_id_ = value->sender_user_id_;
+      result->date_ = value->date_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityAddChatRequests::ID: {
+      const auto *value = static_cast<const api::communityAddChatRequests *>(object);
+      auto result = api::make_object<api::communityAddChatRequests>();
+      result->total_count_ = value->total_count_;
+      result->requests_ = clone_schema_value(value->requests_, valid);
+      result->next_offset_ = value->next_offset_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityMemberChats::ID: {
+      const auto *value = static_cast<const api::communityMemberChats *>(object);
+      auto result = api::make_object<api::communityMemberChats>();
+      result->owned_chat_ids_ = value->owned_chat_ids_;
+      result->joined_chat_ids_ = value->joined_chat_ids_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::userRating::ID: {
@@ -3895,6 +4306,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->verification_status_ = clone_schema_value(value->verification_status_, valid);
       result->has_direct_messages_group_ = value->has_direct_messages_group_;
       result->has_forum_tabs_ = value->has_forum_tabs_;
+      result->has_forum_sidebar_ = value->has_forum_sidebar_;
       result->restriction_info_ = clone_schema_value(value->restriction_info_, valid);
       result->paid_message_star_count_ = value->paid_message_star_count_;
       result->active_story_state_ = clone_schema_value(value->active_story_state_, valid);
@@ -4470,6 +4882,12 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->days_ = clone_schema_value(value->days_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::chatMessageCounts::ID: {
+      const auto *value = static_cast<const api::chatMessageCounts *>(object);
+      auto result = api::make_object<api::chatMessageCounts>();
+      result->counts_ = value->counts_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::businessMessage::ID: {
       const auto *value = static_cast<const api::businessMessage *>(object);
       auto result = api::make_object<api::businessMessage>();
@@ -4647,75 +5065,6 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->total_counts_ = clone_schema_value(value->total_counts_, valid);
       result->files_ = clone_schema_value(value->files_, valid);
       result->next_offset_ = value->next_offset_;
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopePrivateChats::ID: {
-      auto result = api::make_object<api::notificationSettingsScopePrivateChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopeGroupChats::ID: {
-      auto result = api::make_object<api::notificationSettingsScopeGroupChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopeChannelChats::ID: {
-      auto result = api::make_object<api::notificationSettingsScopeChannelChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::chatNotificationSettings::ID: {
-      const auto *value = static_cast<const api::chatNotificationSettings *>(object);
-      auto result = api::make_object<api::chatNotificationSettings>();
-      result->use_default_mute_for_ = value->use_default_mute_for_;
-      result->mute_for_ = value->mute_for_;
-      result->use_default_sound_ = value->use_default_sound_;
-      result->sound_id_ = value->sound_id_;
-      result->use_default_show_preview_ = value->use_default_show_preview_;
-      result->show_preview_ = value->show_preview_;
-      result->use_default_mute_stories_ = value->use_default_mute_stories_;
-      result->mute_stories_ = value->mute_stories_;
-      result->use_default_story_sound_ = value->use_default_story_sound_;
-      result->story_sound_id_ = value->story_sound_id_;
-      result->use_default_show_story_poster_ = value->use_default_show_story_poster_;
-      result->show_story_poster_ = value->show_story_poster_;
-      result->use_default_disable_pinned_message_notifications_ = value->use_default_disable_pinned_message_notifications_;
-      result->disable_pinned_message_notifications_ = value->disable_pinned_message_notifications_;
-      result->use_default_disable_mention_notifications_ = value->use_default_disable_mention_notifications_;
-      result->disable_mention_notifications_ = value->disable_mention_notifications_;
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::scopeNotificationSettings::ID: {
-      const auto *value = static_cast<const api::scopeNotificationSettings *>(object);
-      auto result = api::make_object<api::scopeNotificationSettings>();
-      result->mute_for_ = value->mute_for_;
-      result->sound_id_ = value->sound_id_;
-      result->show_preview_ = value->show_preview_;
-      result->use_default_mute_stories_ = value->use_default_mute_stories_;
-      result->mute_stories_ = value->mute_stories_;
-      result->story_sound_id_ = value->story_sound_id_;
-      result->show_story_poster_ = value->show_story_poster_;
-      result->disable_pinned_message_notifications_ = value->disable_pinned_message_notifications_;
-      result->disable_mention_notifications_ = value->disable_mention_notifications_;
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceNone::ID: {
-      auto result = api::make_object<api::reactionNotificationSourceNone>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceContacts::ID: {
-      auto result = api::make_object<api::reactionNotificationSourceContacts>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceAll::ID: {
-      auto result = api::make_object<api::reactionNotificationSourceAll>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSettings::ID: {
-      const auto *value = static_cast<const api::reactionNotificationSettings *>(object);
-      auto result = api::make_object<api::reactionNotificationSettings>();
-      result->message_reaction_source_ = clone_schema_value(value->message_reaction_source_, valid);
-      result->story_reaction_source_ = clone_schema_value(value->story_reaction_source_, valid);
-      result->poll_vote_source_ = clone_schema_value(value->poll_vote_source_, valid);
-      result->sound_id_ = value->sound_id_;
-      result->show_preview_ = value->show_preview_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::draftMessageContentText::ID: {
@@ -5008,6 +5357,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->pending_join_requests_ = clone_schema_value(value->pending_join_requests_, valid);
       result->reply_markup_message_id_ = value->reply_markup_message_id_;
       result->draft_message_ = clone_schema_value(value->draft_message_, valid);
+      result->text_composition_parameters_ = clone_schema_value(value->text_composition_parameters_, valid);
       result->client_data_ = value->client_data_;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -5088,6 +5438,14 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->title_ = value->title_;
       result->is_channel_ = value->is_channel_;
       result->request_date_ = value->request_date_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::chatActionBarBotInvite::ID: {
+      const auto *value = static_cast<const api::chatActionBarBotInvite *>(object);
+      auto result = api::make_object<api::chatActionBarBotInvite>();
+      result->can_unarchive_ = value->can_unarchive_;
+      result->inviter_user_id_ = value->inviter_user_id_;
+      result->owner_user_id_ = value->owner_user_id_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::buttonStyleDefault::ID: {
@@ -5940,7 +6298,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
     case api::pageBlockExpandableBlockQuote::ID: {
       const auto *value = static_cast<const api::pageBlockExpandableBlockQuote *>(object);
       auto result = api::make_object<api::pageBlockExpandableBlockQuote>();
-      result->text_ = clone_schema_value(value->text_, valid);
+      result->blocks_ = clone_schema_value(value->blocks_, valid);
       result->credit_ = clone_schema_value(value->credit_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -6158,6 +6516,10 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       auto result = api::make_object<api::linkPreviewTypeBackground>();
       result->document_ = clone_schema_value(value->document_, valid);
       result->background_type_ = clone_schema_value(value->background_type_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::linkPreviewTypeBotInvite::ID: {
+      auto result = api::make_object<api::linkPreviewTypeBotInvite>();
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::linkPreviewTypeChannelBoost::ID: {
@@ -7414,6 +7776,22 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->via_mention_ = value->via_mention_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::messageWidget::ID: {
+      const auto *value = static_cast<const api::messageWidget *>(object);
+      auto result = api::make_object<api::messageWidget>();
+      result->width_ = value->width_;
+      result->height_ = value->height_;
+      result->html_ = value->html_;
+      result->public_data_ = value->public_data_;
+      result->chat_data_ = value->chat_data_;
+      result->widget_id_ = value->widget_id_;
+      result->caption_ = clone_schema_value(value->caption_, valid);
+      result->show_caption_above_media_ = value->show_caption_above_media_;
+      result->is_copy_ = value->is_copy_;
+      result->can_send_queries_ = value->can_send_queries_;
+      result->can_send_background_queries_ = value->can_send_background_queries_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::messageChecklist::ID: {
       const auto *value = static_cast<const api::messageChecklist *>(object);
       auto result = api::make_object<api::messageChecklist>();
@@ -7698,6 +8076,12 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->manager_bot_user_id_ = value->manager_bot_user_id_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::messageBotInvite::ID: {
+      const auto *value = static_cast<const api::messageBotInvite *>(object);
+      auto result = api::make_object<api::messageBotInvite>();
+      result->inviter_user_id_ = value->inviter_user_id_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::messagePaymentSuccessful::ID: {
       const auto *value = static_cast<const api::messagePaymentSuccessful *>(object);
       auto result = api::make_object<api::messagePaymentSuccessful>();
@@ -7853,6 +8237,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->amount_ = value->amount_;
       result->comment_ = value->comment_;
       result->is_comment_encrypted_ = value->is_comment_encrypted_;
+      result->on_ramp_provider_name_ = value->on_ramp_provider_name_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::messageTonConnectRequest::ID: {
@@ -7907,7 +8292,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->drop_original_details_star_count_ = value->drop_original_details_star_count_;
       result->next_transfer_date_ = value->next_transfer_date_;
       result->next_resale_date_ = value->next_resale_date_;
-      result->export_date_ = value->export_date_;
+      result->mint_date_ = value->mint_date_;
       result->craft_date_ = value->craft_date_;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -7936,6 +8321,19 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->price_ = clone_schema_value(value->price_, valid);
       result->offer_message_id_ = value->offer_message_id_;
       result->was_expired_ = value->was_expired_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = static_cast<const api::messageUpgradedGiftOnChainPurchaseOffer *>(object);
+      auto result = api::make_object<api::messageUpgradedGiftOnChainPurchaseOffer>();
+      result->gift_ = clone_schema_value(value->gift_, valid);
+      result->is_buyer_ = value->is_buyer_;
+      result->state_ = clone_schema_value(value->state_, valid);
+      result->offer_address_ = value->offer_address_;
+      result->gram_amount_ = value->gram_amount_;
+      result->fee_basis_points_ = value->fee_basis_points_;
+      result->expiration_date_ = value->expiration_date_;
+      result->offer_message_id_ = value->offer_message_id_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::messagePaidMessagesRefunded::ID: {
@@ -8507,7 +8905,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
     case api::inputPageBlockExpandableBlockQuote::ID: {
       const auto *value = static_cast<const api::inputPageBlockExpandableBlockQuote *>(object);
       auto result = api::make_object<api::inputPageBlockExpandableBlockQuote>();
-      result->text_ = clone_schema_value(value->text_, valid);
+      result->blocks_ = clone_schema_value(value->blocks_, valid);
       result->credit_ = clone_schema_value(value->credit_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -8797,6 +9195,29 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       const auto *value = static_cast<const api::inputMessageChecklist *>(object);
       auto result = api::make_object<api::inputMessageChecklist>();
       result->checklist_ = clone_schema_value(value->checklist_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::inputMessageWidget::ID: {
+      const auto *value = static_cast<const api::inputMessageWidget *>(object);
+      auto result = api::make_object<api::inputMessageWidget>();
+      result->width_ = value->width_;
+      result->height_ = value->height_;
+      result->html_ = value->html_;
+      result->public_data_ = value->public_data_;
+      result->chat_data_ = value->chat_data_;
+      result->caption_ = clone_schema_value(value->caption_, valid);
+      result->show_caption_above_media_ = value->show_caption_above_media_;
+      result->allow_queries_ = value->allow_queries_;
+      result->is_shared_ = value->is_shared_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::inputMessageSharedWidget::ID: {
+      const auto *value = static_cast<const api::inputMessageSharedWidget *>(object);
+      auto result = api::make_object<api::inputMessageSharedWidget>();
+      result->widget_id_ = value->widget_id_;
+      result->chat_data_ = value->chat_data_;
+      result->caption_ = clone_schema_value(value->caption_, valid);
+      result->show_caption_above_media_ = value->show_caption_above_media_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::inputMessageForwarded::ID: {
@@ -9263,13 +9684,6 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->address_ = clone_schema_value(value->address_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
-    case api::inputStoryAreaTypeFoundVenue::ID: {
-      const auto *value = static_cast<const api::inputStoryAreaTypeFoundVenue *>(object);
-      auto result = api::make_object<api::inputStoryAreaTypeFoundVenue>();
-      result->query_id_ = value->query_id_;
-      result->result_id_ = value->result_id_;
-      return api::object_ptr<api::Object>(std::move(result));
-    }
     case api::inputStoryAreaTypePreviousVenue::ID: {
       const auto *value = static_cast<const api::inputStoryAreaTypePreviousVenue *>(object);
       auto result = api::make_object<api::inputStoryAreaTypePreviousVenue>();
@@ -9463,6 +9877,7 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->content_ = clone_schema_value(value->content_, valid);
       result->areas_ = clone_schema_value(value->areas_, valid);
       result->caption_ = clone_schema_value(value->caption_, valid);
+      result->music_ = clone_schema_value(value->music_, valid);
       result->album_ids_ = value->album_ids_;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -10283,6 +10698,28 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->error_ = clone_schema_value(value->error_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::speechRecognitionLanguages::ID: {
+      const auto *value = static_cast<const api::speechRecognitionLanguages *>(object);
+      auto result = api::make_object<api::speechRecognitionLanguages>();
+      result->language_codes_ = value->language_codes_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::speechRecognitionModel::ID: {
+      const auto *value = static_cast<const api::speechRecognitionModel *>(object);
+      auto result = api::make_object<api::speechRecognitionModel>();
+      result->document_ = clone_schema_value(value->document_, valid);
+      result->language_codes_ = value->language_codes_;
+      result->version_ = value->version_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::speechRecognitionModels::ID: {
+      const auto *value = static_cast<const api::speechRecognitionModels *>(object);
+      auto result = api::make_object<api::speechRecognitionModels>();
+      result->models_ = clone_schema_value(value->models_, valid);
+      result->language_detection_model_ = clone_schema_value(value->language_detection_model_, valid);
+      result->voice_activity_detection_model_ = clone_schema_value(value->voice_activity_detection_model_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::businessConnection::ID: {
       const auto *value = static_cast<const api::businessConnection *>(object);
       auto result = api::make_object<api::businessConnection>();
@@ -10717,6 +11154,48 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->text_ = value->text_;
       result->show_alert_ = value->show_alert_;
       result->url_ = value->url_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryWallet::ID: {
+      const auto *value = static_cast<const api::widgetQueryWallet *>(object);
+      auto result = api::make_object<api::widgetQueryWallet>();
+      result->address_ = value->address_;
+      result->gram_amount_ = value->gram_amount_;
+      result->public_key_ = value->public_key_;
+      result->state_init_ = value->state_init_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeData::ID: {
+      const auto *value = static_cast<const api::widgetQueryTypeData *>(object);
+      auto result = api::make_object<api::widgetQueryTypeData>();
+      result->with_wallet_ = value->with_wallet_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeSignData::ID: {
+      const auto *value = static_cast<const api::widgetQueryTypeSignData *>(object);
+      auto result = api::make_object<api::widgetQueryTypeSignData>();
+      result->wallet_ = clone_schema_value(value->wallet_, valid);
+      result->sign_data_ = value->sign_data_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeSentTransaction::ID: {
+      const auto *value = static_cast<const api::widgetQueryTypeSentTransaction *>(object);
+      auto result = api::make_object<api::widgetQueryTypeSentTransaction>();
+      result->wallet_ = clone_schema_value(value->wallet_, valid);
+      result->msg_hash_ = value->msg_hash_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryAnswer::ID: {
+      const auto *value = static_cast<const api::widgetQueryAnswer *>(object);
+      auto result = api::make_object<api::widgetQueryAnswer>();
+      result->data_ = value->data_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetPublicData::ID: {
+      const auto *value = static_cast<const api::widgetPublicData *>(object);
+      auto result = api::make_object<api::widgetPublicData>();
+      result->data_ = value->data_;
+      result->poll_period_ = value->poll_period_;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::customRequestResult::ID: {
@@ -13032,6 +13511,12 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->administrator_rights_ = clone_schema_value(value->administrator_rights_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::internalLinkTypeBotInvite::ID: {
+      const auto *value = static_cast<const api::internalLinkTypeBotInvite *>(object);
+      auto result = api::make_object<api::internalLinkTypeBotInvite>();
+      result->bot_username_ = value->bot_username_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::internalLinkTypeBotStart::ID: {
       const auto *value = static_cast<const api::internalLinkTypeBotStart *>(object);
       auto result = api::make_object<api::internalLinkTypeBotStart>();
@@ -14637,6 +15122,13 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->positions_ = clone_schema_value(value->positions_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::updateChatTextCompositionParameters::ID: {
+      const auto *value = static_cast<const api::updateChatTextCompositionParameters *>(object);
+      auto result = api::make_object<api::updateChatTextCompositionParameters>();
+      result->chat_id_ = value->chat_id_;
+      result->text_composition_parameters_ = clone_schema_value(value->text_composition_parameters_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::updateChatEmojiStatus::ID: {
       const auto *value = static_cast<const api::updateChatEmojiStatus *>(object);
       auto result = api::make_object<api::updateChatEmojiStatus>();
@@ -15548,6 +16040,13 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->next_reset_date_ = value->next_reset_date_;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::updateSpeechRecognitionInFile::ID: {
+      const auto *value = static_cast<const api::updateSpeechRecognitionInFile *>(object);
+      auto result = api::make_object<api::updateSpeechRecognitionInFile>();
+      result->recognition_id_ = value->recognition_id_;
+      result->partial_text_ = value->partial_text_;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::updateGroupCallMessageLevels::ID: {
       const auto *value = static_cast<const api::updateGroupCallMessageLevels *>(object);
       auto result = api::make_object<api::updateGroupCallMessageLevels>();
@@ -15700,6 +16199,46 @@ api::object_ptr<api::Object> generated_clone_schema_object(
       result->message_ = clone_schema_value(value->message_, valid);
       result->chat_instance_ = value->chat_instance_;
       result->payload_ = clone_schema_value(value->payload_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateNewWidgetQuery::ID: {
+      const auto *value = static_cast<const api::updateNewWidgetQuery *>(object);
+      auto result = api::make_object<api::updateNewWidgetQuery>();
+      result->id_ = value->id_;
+      result->sender_user_id_ = value->sender_user_id_;
+      result->chat_id_ = value->chat_id_;
+      result->message_id_ = value->message_id_;
+      result->chat_instance_ = value->chat_instance_;
+      result->chat_type_ = value->chat_type_;
+      result->query_type_ = clone_schema_value(value->query_type_, valid);
+      result->data_ = value->data_;
+      result->widget_id_ = value->widget_id_;
+      result->wallet_card_ = clone_schema_value(value->wallet_card_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateNewInlineWidgetQuery::ID: {
+      const auto *value = static_cast<const api::updateNewInlineWidgetQuery *>(object);
+      auto result = api::make_object<api::updateNewInlineWidgetQuery>();
+      result->id_ = value->id_;
+      result->sender_user_id_ = value->sender_user_id_;
+      result->inline_message_id_ = value->inline_message_id_;
+      result->chat_instance_ = value->chat_instance_;
+      result->chat_type_ = value->chat_type_;
+      result->query_type_ = clone_schema_value(value->query_type_, valid);
+      result->data_ = value->data_;
+      result->widget_id_ = value->widget_id_;
+      result->wallet_card_ = clone_schema_value(value->wallet_card_, valid);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateNewWidgetCopyQuery::ID: {
+      const auto *value = static_cast<const api::updateNewWidgetCopyQuery *>(object);
+      auto result = api::make_object<api::updateNewWidgetCopyQuery>();
+      result->id_ = value->id_;
+      result->sender_user_id_ = value->sender_user_id_;
+      result->query_type_ = clone_schema_value(value->query_type_, valid);
+      result->data_ = value->data_;
+      result->widget_id_ = value->widget_id_;
+      result->wallet_card_ = clone_schema_value(value->wallet_card_, valid);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::updateNewShippingQuery::ID: {
@@ -16068,6 +16607,22 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::textRange::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::textRange>();
+      result->offset_ = NativeArgumentAccess::int32_at(arguments, 0);
+      result->length_ = NativeArgumentAccess::int32_at(arguments, 1);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::textRanges::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::textRange::ID})) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::textRanges>();
+      result->ranges_ = NativeArgumentAccess::object_vector_at<api::textRange>(arguments, 0, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::formattedText::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::textEntity::ID})) return nullptr;
@@ -16091,7 +16646,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::inputRichMessageMedia::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputRichMessageMedia>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -16197,6 +16752,15 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->creator_user_id_ = NativeArgumentAccess::int64_at(arguments, 7);
       result->english_example_ = NativeArgumentAccess::object_at<api::textCompositionStyleExample>(arguments, 8, valid);
       if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::textCompositionParameters::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      auto result = api::make_object<api::textCompositionParameters>();
+      result->translate_to_language_code_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->style_name_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->add_emojis_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->fix_text_ = NativeArgumentAccess::bool_at(arguments, 3);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::termsOfService::ID: {
@@ -17172,23 +17736,24 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::userTypeBot::ID: {
-      if (arguments.values_.size() != 15) return nullptr;
+      if (arguments.values_.size() != 16) return nullptr;
       auto result = api::make_object<api::userTypeBot>();
       result->can_be_edited_ = NativeArgumentAccess::bool_at(arguments, 0);
       result->can_join_groups_ = NativeArgumentAccess::bool_at(arguments, 1);
       result->can_read_all_group_messages_ = NativeArgumentAccess::bool_at(arguments, 2);
       result->has_main_web_app_ = NativeArgumentAccess::bool_at(arguments, 3);
       result->has_topics_ = NativeArgumentAccess::bool_at(arguments, 4);
-      result->allows_users_to_create_topics_ = NativeArgumentAccess::bool_at(arguments, 5);
-      result->can_manage_bots_ = NativeArgumentAccess::bool_at(arguments, 6);
-      result->is_inline_ = NativeArgumentAccess::bool_at(arguments, 7);
-      result->inline_query_placeholder_ = NativeArgumentAccess::buffer_at(arguments, 8);
-      result->supports_guest_queries_ = NativeArgumentAccess::bool_at(arguments, 9);
-      result->is_guard_ = NativeArgumentAccess::bool_at(arguments, 10);
-      result->need_location_ = NativeArgumentAccess::bool_at(arguments, 11);
-      result->can_connect_to_business_ = NativeArgumentAccess::bool_at(arguments, 12);
-      result->can_be_added_to_attachment_menu_ = NativeArgumentAccess::bool_at(arguments, 13);
-      result->active_user_count_ = NativeArgumentAccess::int32_at(arguments, 14);
+      result->has_topic_sidebar_ = NativeArgumentAccess::bool_at(arguments, 5);
+      result->allows_users_to_create_topics_ = NativeArgumentAccess::bool_at(arguments, 6);
+      result->can_manage_bots_ = NativeArgumentAccess::bool_at(arguments, 7);
+      result->is_inline_ = NativeArgumentAccess::bool_at(arguments, 8);
+      result->inline_query_placeholder_ = NativeArgumentAccess::buffer_at(arguments, 9);
+      result->supports_guest_queries_ = NativeArgumentAccess::bool_at(arguments, 10);
+      result->is_guard_ = NativeArgumentAccess::bool_at(arguments, 11);
+      result->need_location_ = NativeArgumentAccess::bool_at(arguments, 12);
+      result->can_connect_to_business_ = NativeArgumentAccess::bool_at(arguments, 13);
+      result->can_be_added_to_attachment_menu_ = NativeArgumentAccess::bool_at(arguments, 14);
+      result->active_user_count_ = NativeArgumentAccess::int32_at(arguments, 15);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::userTypeUnknown::ID: {
@@ -17226,6 +17791,114 @@ api::object_ptr<api::Object> generated_make_schema_object(
       auto result = api::make_object<api::botAccessSettings>();
       result->is_restricted_ = NativeArgumentAccess::bool_at(arguments, 0);
       result->added_user_ids_ = NativeArgumentAccess::int64_vector_at(arguments, 1);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeDefault::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::botCallbackQueryModeDefault>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeAuto::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::botCallbackQueryModeAuto>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botCallbackQueryModeInline::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::botCallbackQueryModeInline>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingIsInline::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingIsInline>();
+      result->is_inline_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingInlineQueryPlaceholder::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingInlineQueryPlaceholder>();
+      result->placeholder_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingNeedLocation::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingNeedLocation>();
+      result->need_location_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingInlineFeedback::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingInlineFeedback>();
+      result->share_denominator_ = NativeArgumentAccess::int32_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanJoinGroups::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingCanJoinGroups>();
+      result->can_join_groups_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanReadAllGroupMessages::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingCanReadAllGroupMessages>();
+      result->can_read_all_group_messages_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanConnectToBusiness::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingCanConnectToBusiness>();
+      result->can_connect_to_business_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanManageBots::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingCanManageBots>();
+      result->can_manage_bots_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingSupportsGuestQueries::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingSupportsGuestQueries>();
+      result->supports_guest_queries_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingIsGuard::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingIsGuard>();
+      result->is_guard_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingHasTopics::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingHasTopics>();
+      result->has_topics_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingAllowsUsersToCreateTopics::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingAllowsUsersToCreateTopics>();
+      result->allows_users_to_create_topics_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingHasTopicSidebar::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingHasTopicSidebar>();
+      result->has_topic_sidebar_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCanCommunicateWithBots::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::botSettingCanCommunicateWithBots>();
+      result->can_communicate_with_bots_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::botSettingCallbackQueryMode::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::botCallbackQueryModeDefault::ID, api::botCallbackQueryModeAuto::ID, api::botCallbackQueryModeInline::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::botSettingCallbackQueryMode>();
+      result->mode_ = NativeArgumentAccess::object_at<api::BotCallbackQueryMode>(arguments, 0, valid);
+      if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::botVerificationParameters::ID: {
@@ -17761,6 +18434,45 @@ api::object_ptr<api::Object> generated_make_schema_object(
       auto result = api::make_object<api::giftPurchaseOfferStateRejected>();
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::giftOnChainPurchaseOfferStatePending::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStatePending>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateSettled::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateSettled>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateAccepted::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateAccepted>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateCanceling::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateCanceling>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateDeclined::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateDeclined>();
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateCanceled::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateCanceled>();
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->fine_amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferStateExpired::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferStateExpired>();
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::suggestedPostPriceStar::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       auto result = api::make_object<api::suggestedPostPriceStar>();
@@ -18007,7 +18719,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::premiumPaymentOption::ID: {
       if (arguments.values_.size() != 6) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::premiumPaymentOption>();
       result->currency_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -18187,11 +18899,14 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::giftResaleParameters::ID: {
-      if (arguments.values_.size() != 3) return nullptr;
+      if (arguments.values_.size() != 6) return nullptr;
       auto result = api::make_object<api::giftResaleParameters>();
       result->star_count_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->gram_cent_count_ = NativeArgumentAccess::int64_at(arguments, 1);
-      result->gram_only_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->gram_only_ = NativeArgumentAccess::bool_at(arguments, 3);
+      result->is_fixed_on_chain_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->can_be_managed_ = NativeArgumentAccess::bool_at(arguments, 5);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::giftCollection::ID: {
@@ -18271,6 +18986,18 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::upgradedGiftOriginCraft::ID: {
       if (arguments.values_.size() != 0) return nullptr;
       auto result = api::make_object<api::upgradedGiftOriginCraft>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::upgradedGiftOriginOnChainResale::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::upgradedGiftOriginOnChainResale>();
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::upgradedGiftOriginOnChainOffer::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::upgradedGiftOriginOnChainOffer>();
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 0);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::upgradedGiftAttributeRarityPerMille::ID: {
@@ -18402,7 +19129,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::upgradedGift::ID: {
-      if (arguments.values_.size() != 30) return nullptr;
+      if (arguments.values_.size() != 33) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 13, {api::messageSenderUser::ID, api::messageSenderChat::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 14, {api::messageSenderUser::ID, api::messageSenderChat::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 19, {api::upgradedGiftModel::ID}, false)) return nullptr;
@@ -18410,7 +19137,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 21, {api::upgradedGiftBackdrop::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 22, {api::upgradedGiftOriginalDetails::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 23, {api::upgradedGiftColors::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 24, {api::giftResaleParameters::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 25, {api::giftResaleParameters::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::upgradedGift>();
       result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -18437,12 +19164,15 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->backdrop_ = NativeArgumentAccess::object_at<api::upgradedGiftBackdrop>(arguments, 21, valid);
       result->original_details_ = NativeArgumentAccess::object_at<api::upgradedGiftOriginalDetails>(arguments, 22, valid);
       result->colors_ = NativeArgumentAccess::object_at<api::upgradedGiftColors>(arguments, 23, valid);
-      result->resale_parameters_ = NativeArgumentAccess::object_at<api::giftResaleParameters>(arguments, 24, valid);
-      result->can_send_purchase_offer_ = NativeArgumentAccess::bool_at(arguments, 25);
-      result->craft_probability_per_mille_ = NativeArgumentAccess::int32_at(arguments, 26);
-      result->value_currency_ = NativeArgumentAccess::buffer_at(arguments, 27);
-      result->value_amount_ = NativeArgumentAccess::int64_at(arguments, 28);
-      result->value_usd_amount_ = NativeArgumentAccess::int64_at(arguments, 29);
+      result->uses_on_chain_resale_ = NativeArgumentAccess::bool_at(arguments, 24);
+      result->resale_parameters_ = NativeArgumentAccess::object_at<api::giftResaleParameters>(arguments, 25, valid);
+      result->fee_basis_points_ = NativeArgumentAccess::int32_at(arguments, 26);
+      result->can_send_purchase_offer_ = NativeArgumentAccess::bool_at(arguments, 27);
+      result->min_on_chain_purchase_offer_gram_amount_ = NativeArgumentAccess::int64_at(arguments, 28);
+      result->craft_probability_per_mille_ = NativeArgumentAccess::int32_at(arguments, 29);
+      result->value_currency_ = NativeArgumentAccess::buffer_at(arguments, 30);
+      result->value_amount_ = NativeArgumentAccess::int64_at(arguments, 31);
+      result->value_usd_amount_ = NativeArgumentAccess::int64_at(arguments, 32);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -18458,7 +19188,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->last_sale_date_ = NativeArgumentAccess::int32_at(arguments, 6);
       result->last_sale_price_ = NativeArgumentAccess::int64_at(arguments, 7);
       result->is_last_sale_on_fragment_ = NativeArgumentAccess::bool_at(arguments, 8);
-      result->minimum_price_ = NativeArgumentAccess::int64_at(arguments, 9);
+      result->min_price_ = NativeArgumentAccess::int64_at(arguments, 9);
       result->average_sale_price_ = NativeArgumentAccess::int64_at(arguments, 10);
       result->telegram_listed_gift_count_ = NativeArgumentAccess::int32_at(arguments, 11);
       result->fragment_listed_gift_count_ = NativeArgumentAccess::int32_at(arguments, 12);
@@ -18471,6 +19201,64 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->nft_address_ = NativeArgumentAccess::buffer_at(arguments, 0);
       result->payload_ = NativeArgumentAccess::buffer_at(arguments, 1);
       result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 2);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonSmartContractInitialState::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::tonSmartContractInitialState>();
+      result->code_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletMessage::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::tonSmartContractInitialState::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletMessage>();
+      result->destination_address_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->send_mode_ = NativeArgumentAccess::int32_at(arguments, 2);
+      result->body_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->initial_state_ = NativeArgumentAccess::object_at<api::tonSmartContractInitialState>(arguments, 4, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      if (arguments.values_.size() != 8) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::tonWalletMessage::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::tonWalletMessage::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::giftOnChainPurchaseOfferTransaction>();
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->expiration_date_ = NativeArgumentAccess::int32_at(arguments, 1);
+      result->message_ = NativeArgumentAccess::object_at<api::tonWalletMessage>(arguments, 2, valid);
+      result->gasless_message_ = NativeArgumentAccess::object_at<api::tonWalletMessage>(arguments, 3, valid);
+      result->rent_budget_amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->execution_allowance_amount_ = NativeArgumentAccess::int64_at(arguments, 5);
+      result->forward_amount_ = NativeArgumentAccess::int64_at(arguments, 6);
+      result->fine_amount_ = NativeArgumentAccess::int64_at(arguments, 7);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainSaleTransactionFragment::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      auto result = api::make_object<api::giftOnChainSaleTransactionFragment>();
+      result->nft_address_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->payload_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->is_gasless_transfer_available_ = NativeArgumentAccess::bool_at(arguments, 3);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::giftOnChainSaleTransactionFixedPrice::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::tonWalletMessage::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 2, {api::tonWalletMessage::ID})) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::giftOnChainSaleTransactionFixedPrice>();
+      result->sale_address_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->messages_ = NativeArgumentAccess::object_vector_at<api::tonWalletMessage>(arguments, 1, valid);
+      result->gasless_messages_ = NativeArgumentAccess::object_vector_at<api::tonWalletMessage>(arguments, 2, valid);
+      if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::upgradeGiftResult::ID: {
@@ -18486,7 +19274,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->drop_original_details_star_count_ = NativeArgumentAccess::int64_at(arguments, 5);
       result->next_transfer_date_ = NativeArgumentAccess::int32_at(arguments, 6);
       result->next_resale_date_ = NativeArgumentAccess::int32_at(arguments, 7);
-      result->export_date_ = NativeArgumentAccess::int32_at(arguments, 8);
+      result->mint_date_ = NativeArgumentAccess::int32_at(arguments, 8);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -18695,7 +19483,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->drop_original_details_star_count_ = NativeArgumentAccess::int64_at(arguments, 18);
       result->next_transfer_date_ = NativeArgumentAccess::int32_at(arguments, 19);
       result->next_resale_date_ = NativeArgumentAccess::int32_at(arguments, 20);
-      result->export_date_ = NativeArgumentAccess::int32_at(arguments, 21);
+      result->mint_date_ = NativeArgumentAccess::int32_at(arguments, 21);
       result->prepaid_upgrade_hash_ = NativeArgumentAccess::buffer_at(arguments, 22);
       result->craft_date_ = NativeArgumentAccess::int32_at(arguments, 23);
       if (!valid) return nullptr;
@@ -19713,15 +20501,126 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::tonWalletTransactionTypeTelegramGiftPurchase::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftPurchase>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftSale::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftSale>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftListing::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftListing>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->old_price_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->amount_ = NativeArgumentAccess::int64_at(arguments, 3);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftDelisting::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftDelisting>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      if (arguments.values_.size() != 7) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferCreation>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->counterparty_address_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->service_fee_amount_ = NativeArgumentAccess::int64_at(arguments, 5);
+      result->expiration_date_ = NativeArgumentAccess::int32_at(arguments, 6);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      if (arguments.values_.size() != 6) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->is_buyer_ = NativeArgumentAccess::bool_at(arguments, 1);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->counterparty_address_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->service_fee_amount_ = NativeArgumentAccess::int64_at(arguments, 5);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID: {
+      if (arguments.values_.size() != 6) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferCancellation>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->counterparty_address_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->fine_amount_ = NativeArgumentAccess::int64_at(arguments, 5);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferDecline>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->counterparty_address_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::tonNft::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::tonWalletTransactionTypeTelegramGiftOfferExpiration>();
+      result->nft_ = NativeArgumentAccess::object_at<api::tonNft>(arguments, 0, valid);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->counterparty_address_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->price_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->refund_amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::tonWalletTransactionTypeKeyChange::ID: {
       if (arguments.values_.size() != 0) return nullptr;
       auto result = api::make_object<api::tonWalletTransactionTypeKeyChange>();
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::tonWalletTransaction::ID: {
-      if (arguments.values_.size() != 8) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::tonWalletTransactionStateSucceeded::ID, api::tonWalletTransactionStateFailed::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::tonWalletTransactionTypeOnRampDeposit::ID, api::tonWalletTransactionTypeTransfer::ID, api::tonWalletTransactionTypeNftTransfer::ID, api::tonWalletTransactionTypeTelegramGiftTransfer::ID, api::tonWalletTransactionTypeKeyChange::ID}, false)) return nullptr;
+      if (arguments.values_.size() != 9) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::tonWalletTransactionStateSucceeded::ID, api::tonWalletTransactionStateFailed::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::tonWalletTransactionTypeOnRampDeposit::ID, api::tonWalletTransactionTypeTransfer::ID, api::tonWalletTransactionTypeNftTransfer::ID, api::tonWalletTransactionTypeTelegramGiftTransfer::ID, api::tonWalletTransactionTypeTelegramGiftPurchase::ID, api::tonWalletTransactionTypeTelegramGiftSale::ID, api::tonWalletTransactionTypeTelegramGiftListing::ID, api::tonWalletTransactionTypeTelegramGiftDelisting::ID, api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID, api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID, api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID, api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID, api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID, api::tonWalletTransactionTypeKeyChange::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::tonWalletTransaction>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -19730,8 +20629,9 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->peer_domain_ = NativeArgumentAccess::buffer_at(arguments, 3);
       result->date_ = NativeArgumentAccess::int32_at(arguments, 4);
       result->fee_amount_ = NativeArgumentAccess::int64_at(arguments, 5);
-      result->state_ = NativeArgumentAccess::object_at<api::TonWalletTransactionState>(arguments, 6, valid);
-      result->type_ = NativeArgumentAccess::object_at<api::TonWalletTransactionType>(arguments, 7, valid);
+      result->is_suspected_spam_ = NativeArgumentAccess::bool_at(arguments, 6);
+      result->state_ = NativeArgumentAccess::object_at<api::TonWalletTransactionState>(arguments, 7, valid);
+      result->type_ = NativeArgumentAccess::object_at<api::TonWalletTransactionType>(arguments, 8, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -20035,6 +20935,86 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::notificationSettingsScopePrivateChats::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::notificationSettingsScopePrivateChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::notificationSettingsScopeGroupChats::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::notificationSettingsScopeGroupChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::notificationSettingsScopeChannelChats::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::notificationSettingsScopeChannelChats>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::chatNotificationSettings::ID: {
+      if (arguments.values_.size() != 16) return nullptr;
+      auto result = api::make_object<api::chatNotificationSettings>();
+      result->use_default_mute_for_ = NativeArgumentAccess::bool_at(arguments, 0);
+      result->mute_for_ = NativeArgumentAccess::int32_at(arguments, 1);
+      result->use_default_sound_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->use_default_show_preview_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 5);
+      result->use_default_mute_stories_ = NativeArgumentAccess::bool_at(arguments, 6);
+      result->mute_stories_ = NativeArgumentAccess::bool_at(arguments, 7);
+      result->use_default_story_sound_ = NativeArgumentAccess::bool_at(arguments, 8);
+      result->story_sound_id_ = NativeArgumentAccess::int64_at(arguments, 9);
+      result->use_default_show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 10);
+      result->show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 11);
+      result->use_default_disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 12);
+      result->disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 13);
+      result->use_default_disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 14);
+      result->disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 15);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::scopeNotificationSettings::ID: {
+      if (arguments.values_.size() != 9) return nullptr;
+      auto result = api::make_object<api::scopeNotificationSettings>();
+      result->mute_for_ = NativeArgumentAccess::int32_at(arguments, 0);
+      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->use_default_mute_stories_ = NativeArgumentAccess::bool_at(arguments, 3);
+      result->mute_stories_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->story_sound_id_ = NativeArgumentAccess::int64_at(arguments, 5);
+      result->show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 6);
+      result->disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 7);
+      result->disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 8);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceNone::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::reactionNotificationSourceNone>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceContacts::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::reactionNotificationSourceContacts>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSourceAll::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::reactionNotificationSourceAll>();
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::reactionNotificationSettings::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::reactionNotificationSettings>();
+      result->message_reaction_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 0, valid);
+      result->story_reaction_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 1, valid);
+      result->poll_vote_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 2, valid);
+      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 4);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::communityId::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       auto result = api::make_object<api::communityId>();
@@ -20088,7 +21068,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::community::ID: {
-      if (arguments.values_.size() != 7) return nullptr;
+      if (arguments.values_.size() != 8) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::chatPhotoInfo::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::communityMemberStatusCreator::ID, api::communityMemberStatusAdministrator::ID, api::communityMemberStatusMember::ID, api::communityMemberStatusLeft::ID, api::communityMemberStatusBanned::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 6, {api::communityPermissions::ID}, false)) return nullptr;
@@ -20101,6 +21081,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->date_ = NativeArgumentAccess::int32_at(arguments, 4);
       result->status_ = NativeArgumentAccess::object_at<api::CommunityMemberStatus>(arguments, 5, valid);
       result->permissions_ = NativeArgumentAccess::object_at<api::communityPermissions>(arguments, 6, valid);
+      result->are_chats_collapsed_ = NativeArgumentAccess::bool_at(arguments, 7);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -20113,9 +21094,10 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::communityFullInfo::ID: {
-      if (arguments.values_.size() != 5) return nullptr;
+      if (arguments.values_.size() != 6) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::chatPhoto::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::communityChat::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::chatNotificationSettings::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::communityFullInfo>();
       result->photo_ = NativeArgumentAccess::object_at<api::chatPhoto>(arguments, 0, valid);
@@ -20123,7 +21105,41 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->administrator_count_ = NativeArgumentAccess::int32_at(arguments, 2);
       result->banned_count_ = NativeArgumentAccess::int32_at(arguments, 3);
       result->add_chat_request_count_ = NativeArgumentAccess::int32_at(arguments, 4);
+      result->notification_settings_ = NativeArgumentAccess::object_at<api::chatNotificationSettings>(arguments, 5, valid);
       if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communities::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::communities>();
+      result->community_ids_ = NativeArgumentAccess::int64_vector_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityAddChatRequest::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      auto result = api::make_object<api::communityAddChatRequest>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->is_hidden_ = NativeArgumentAccess::bool_at(arguments, 1);
+      result->sender_user_id_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->date_ = NativeArgumentAccess::int32_at(arguments, 3);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityAddChatRequests::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::communityAddChatRequest::ID})) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::communityAddChatRequests>();
+      result->total_count_ = NativeArgumentAccess::int32_at(arguments, 0);
+      result->requests_ = NativeArgumentAccess::object_vector_at<api::communityAddChatRequest>(arguments, 1, valid);
+      result->next_offset_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::communityMemberChats::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::communityMemberChats>();
+      result->owned_chat_ids_ = NativeArgumentAccess::int64_vector_at(arguments, 0);
+      result->joined_chat_ids_ = NativeArgumentAccess::int64_vector_at(arguments, 1);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::userRating::ID: {
@@ -20251,10 +21267,10 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 9, {api::chatAdministratorRights::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 10, {api::affiliateProgramInfo::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 15, {api::botVerificationParameters::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 19, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 20, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 21, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 22, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 19, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 20, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 21, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 22, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::botInfo>();
       result->short_description_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -20744,12 +21760,12 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::supergroup::ID: {
-      if (arguments.values_.size() != 25) return nullptr;
+      if (arguments.values_.size() != 26) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::usernames::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::chatMemberStatusCreator::ID, api::chatMemberStatusAdministrator::ID, api::chatMemberStatusMember::ID, api::chatMemberStatusRestricted::ID, api::chatMemberStatusLeft::ID, api::chatMemberStatusBanned::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 19, {api::verificationStatus::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 22, {api::restrictionInfo::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 24, {api::activeStoryStateLive::ID, api::activeStoryStateUnread::ID, api::activeStoryStateRead::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 23, {api::restrictionInfo::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 25, {api::activeStoryStateLive::ID, api::activeStoryStateUnread::ID, api::activeStoryStateRead::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::supergroup>();
       result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -20774,9 +21790,10 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->verification_status_ = NativeArgumentAccess::object_at<api::verificationStatus>(arguments, 19, valid);
       result->has_direct_messages_group_ = NativeArgumentAccess::bool_at(arguments, 20);
       result->has_forum_tabs_ = NativeArgumentAccess::bool_at(arguments, 21);
-      result->restriction_info_ = NativeArgumentAccess::object_at<api::restrictionInfo>(arguments, 22, valid);
-      result->paid_message_star_count_ = NativeArgumentAccess::int64_at(arguments, 23);
-      result->active_story_state_ = NativeArgumentAccess::object_at<api::ActiveStoryState>(arguments, 24, valid);
+      result->has_forum_sidebar_ = NativeArgumentAccess::bool_at(arguments, 22);
+      result->restriction_info_ = NativeArgumentAccess::object_at<api::restrictionInfo>(arguments, 23, valid);
+      result->paid_message_star_count_ = NativeArgumentAccess::int64_at(arguments, 24);
+      result->active_story_state_ = NativeArgumentAccess::object_at<api::ActiveStoryState>(arguments, 25, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -21270,7 +22287,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (arguments.values_.size() != 8) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::textQuote::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::messageOriginUser::ID, api::messageOriginHiddenUser::ID, api::messageOriginChat::ID, api::messageOriginChannel::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::messageReplyToMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -21341,7 +22358,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::ephemeralMessageContent::ID: {
       if (arguments.values_.size() != 4) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::ephemeralMessageContent>();
@@ -21369,7 +22386,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 26, {api::messageSelfDestructTypeTimer::ID, api::messageSelfDestructTypeImmediately::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 30, {api::messageSenderUser::ID, api::messageSenderChat::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 38, {api::restrictionInfo::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 40, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 40, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 41, {api::ephemeralMessageContent::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 42, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
       bool valid = true;
@@ -21505,6 +22522,12 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::chatMessageCounts::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::chatMessageCounts>();
+      result->counts_ = NativeArgumentAccess::int32_vector_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::businessMessage::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::message::ID}, false)) return nullptr;
@@ -21593,7 +22616,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::sponsoredMessage::ID: {
       if (arguments.values_.size() != 10) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 4, {api::advertisementSponsor::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sponsoredMessage>();
@@ -21732,86 +22755,6 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->total_counts_ = NativeArgumentAccess::object_at<api::downloadedFileCounts>(arguments, 0, valid);
       result->files_ = NativeArgumentAccess::object_vector_at<api::fileDownload>(arguments, 1, valid);
       result->next_offset_ = NativeArgumentAccess::buffer_at(arguments, 2);
-      if (!valid) return nullptr;
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopePrivateChats::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::notificationSettingsScopePrivateChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopeGroupChats::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::notificationSettingsScopeGroupChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::notificationSettingsScopeChannelChats::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::notificationSettingsScopeChannelChats>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::chatNotificationSettings::ID: {
-      if (arguments.values_.size() != 16) return nullptr;
-      auto result = api::make_object<api::chatNotificationSettings>();
-      result->use_default_mute_for_ = NativeArgumentAccess::bool_at(arguments, 0);
-      result->mute_for_ = NativeArgumentAccess::int32_at(arguments, 1);
-      result->use_default_sound_ = NativeArgumentAccess::bool_at(arguments, 2);
-      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 3);
-      result->use_default_show_preview_ = NativeArgumentAccess::bool_at(arguments, 4);
-      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 5);
-      result->use_default_mute_stories_ = NativeArgumentAccess::bool_at(arguments, 6);
-      result->mute_stories_ = NativeArgumentAccess::bool_at(arguments, 7);
-      result->use_default_story_sound_ = NativeArgumentAccess::bool_at(arguments, 8);
-      result->story_sound_id_ = NativeArgumentAccess::int64_at(arguments, 9);
-      result->use_default_show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 10);
-      result->show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 11);
-      result->use_default_disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 12);
-      result->disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 13);
-      result->use_default_disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 14);
-      result->disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 15);
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::scopeNotificationSettings::ID: {
-      if (arguments.values_.size() != 9) return nullptr;
-      auto result = api::make_object<api::scopeNotificationSettings>();
-      result->mute_for_ = NativeArgumentAccess::int32_at(arguments, 0);
-      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 1);
-      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 2);
-      result->use_default_mute_stories_ = NativeArgumentAccess::bool_at(arguments, 3);
-      result->mute_stories_ = NativeArgumentAccess::bool_at(arguments, 4);
-      result->story_sound_id_ = NativeArgumentAccess::int64_at(arguments, 5);
-      result->show_story_poster_ = NativeArgumentAccess::bool_at(arguments, 6);
-      result->disable_pinned_message_notifications_ = NativeArgumentAccess::bool_at(arguments, 7);
-      result->disable_mention_notifications_ = NativeArgumentAccess::bool_at(arguments, 8);
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceNone::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::reactionNotificationSourceNone>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceContacts::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::reactionNotificationSourceContacts>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSourceAll::ID: {
-      if (arguments.values_.size() != 0) return nullptr;
-      auto result = api::make_object<api::reactionNotificationSourceAll>();
-      return api::object_ptr<api::Object>(std::move(result));
-    }
-    case api::reactionNotificationSettings::ID: {
-      if (arguments.values_.size() != 5) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::reactionNotificationSourceNone::ID, api::reactionNotificationSourceContacts::ID, api::reactionNotificationSourceAll::ID}, false)) return nullptr;
-      bool valid = true;
-      auto result = api::make_object<api::reactionNotificationSettings>();
-      result->message_reaction_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 0, valid);
-      result->story_reaction_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 1, valid);
-      result->poll_vote_source_ = NativeArgumentAccess::object_at<api::ReactionNotificationSource>(arguments, 2, valid);
-      result->sound_id_ = NativeArgumentAccess::int64_at(arguments, 3);
-      result->show_preview_ = NativeArgumentAccess::bool_at(arguments, 4);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -22126,7 +23069,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::chat::ID: {
-      if (arguments.values_.size() != 44) return nullptr;
+      if (arguments.values_.size() != 45) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::chatTypePrivate::ID, api::chatTypeBasicGroup::ID, api::chatTypeSupergroup::ID, api::chatTypeSecret::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::chatPhotoInfo::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 6, {api::upgradedGiftColors::ID}, true)) return nullptr;
@@ -22141,11 +23084,12 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 34, {api::emojiStatus::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 35, {api::chatBackground::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 36, {api::chatThemeEmoji::ID, api::chatThemeGift::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 37, {api::chatActionBarReportSpam::ID, api::chatActionBarInviteMembers::ID, api::chatActionBarReportAddBlock::ID, api::chatActionBarAddContact::ID, api::chatActionBarSharePhoneNumber::ID, api::chatActionBarJoinRequest::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 37, {api::chatActionBarReportSpam::ID, api::chatActionBarInviteMembers::ID, api::chatActionBarReportAddBlock::ID, api::chatActionBarAddContact::ID, api::chatActionBarSharePhoneNumber::ID, api::chatActionBarJoinRequest::ID, api::chatActionBarBotInvite::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 38, {api::businessBotManageBar::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 39, {api::videoChat::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 40, {api::chatJoinRequestsInfo::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 42, {api::draftMessage::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 43, {api::textCompositionParameters::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::chat>();
       result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -22191,7 +23135,8 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->pending_join_requests_ = NativeArgumentAccess::object_at<api::chatJoinRequestsInfo>(arguments, 40, valid);
       result->reply_markup_message_id_ = NativeArgumentAccess::int64_at(arguments, 41);
       result->draft_message_ = NativeArgumentAccess::object_at<api::draftMessage>(arguments, 42, valid);
-      result->client_data_ = NativeArgumentAccess::buffer_at(arguments, 43);
+      result->text_composition_parameters_ = NativeArgumentAccess::object_at<api::textCompositionParameters>(arguments, 43, valid);
+      result->client_data_ = NativeArgumentAccess::buffer_at(arguments, 44);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -22286,6 +23231,14 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->title_ = NativeArgumentAccess::buffer_at(arguments, 0);
       result->is_channel_ = NativeArgumentAccess::bool_at(arguments, 1);
       result->request_date_ = NativeArgumentAccess::int32_at(arguments, 2);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::chatActionBarBotInvite::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::chatActionBarBotInvite>();
+      result->can_unarchive_ = NativeArgumentAccess::bool_at(arguments, 0);
+      result->inviter_user_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->owner_user_id_ = NativeArgumentAccess::int64_at(arguments, 2);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::buttonStyleDefault::ID: {
@@ -23383,11 +24336,11 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::pageBlockExpandableBlockQuote::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::richTextPlain::ID, api::richTextBold::ID, api::richTextItalic::ID, api::richTextUnderline::ID, api::richTextStrikethrough::ID, api::richTextSpoiler::ID, api::richTextSubscript::ID, api::richTextSuperscript::ID, api::richTextMarked::ID, api::richTextDateTime::ID, api::richTextMention::ID, api::richTextHashtag::ID, api::richTextCashtag::ID, api::richTextBankCardNumber::ID, api::richTextTonAddress::ID, api::richTextBotCommand::ID, api::richTextFixed::ID, api::richTextMentionName::ID, api::richTextUrl::ID, api::richTextEmailAddress::ID, api::richTextPhoneNumber::ID, api::richTextCustomEmoji::ID, api::richTextIcon::ID, api::richTextMathematicalExpression::ID, api::richTextButton::ID, api::richTextDiff::ID, api::richTextReference::ID, api::richTextReferenceLink::ID, api::richTextAnchor::ID, api::richTextAnchorLink::ID, api::richTexts::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::pageBlockTitle::ID, api::pageBlockSubtitle::ID, api::pageBlockAuthorDate::ID, api::pageBlockHeader::ID, api::pageBlockSubheader::ID, api::pageBlockSectionHeading::ID, api::pageBlockKicker::ID, api::pageBlockParagraph::ID, api::pageBlockPreformatted::ID, api::pageBlockFooter::ID, api::pageBlockThinking::ID, api::pageBlockDivider::ID, api::pageBlockMathematicalExpression::ID, api::pageBlockAnchor::ID, api::pageBlockList::ID, api::pageBlockBlockQuote::ID, api::pageBlockExpandableBlockQuote::ID, api::pageBlockPullQuote::ID, api::pageBlockAnimation::ID, api::pageBlockAudio::ID, api::pageBlockDocument::ID, api::pageBlockPhoto::ID, api::pageBlockVideo::ID, api::pageBlockVoiceNote::ID, api::pageBlockCover::ID, api::pageBlockEmbedded::ID, api::pageBlockEmbeddedPost::ID, api::pageBlockCollage::ID, api::pageBlockSlideshow::ID, api::pageBlockChatLink::ID, api::pageBlockTable::ID, api::pageBlockDetails::ID, api::pageBlockRelatedArticles::ID, api::pageBlockMap::ID, api::pageBlockButtonRow::ID, api::pageBlockUnsupported::ID})) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::richTextPlain::ID, api::richTextBold::ID, api::richTextItalic::ID, api::richTextUnderline::ID, api::richTextStrikethrough::ID, api::richTextSpoiler::ID, api::richTextSubscript::ID, api::richTextSuperscript::ID, api::richTextMarked::ID, api::richTextDateTime::ID, api::richTextMention::ID, api::richTextHashtag::ID, api::richTextCashtag::ID, api::richTextBankCardNumber::ID, api::richTextTonAddress::ID, api::richTextBotCommand::ID, api::richTextFixed::ID, api::richTextMentionName::ID, api::richTextUrl::ID, api::richTextEmailAddress::ID, api::richTextPhoneNumber::ID, api::richTextCustomEmoji::ID, api::richTextIcon::ID, api::richTextMathematicalExpression::ID, api::richTextButton::ID, api::richTextDiff::ID, api::richTextReference::ID, api::richTextReferenceLink::ID, api::richTextAnchor::ID, api::richTextAnchorLink::ID, api::richTexts::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::pageBlockExpandableBlockQuote>();
-      result->text_ = NativeArgumentAccess::object_at<api::RichText>(arguments, 0, valid);
+      result->blocks_ = NativeArgumentAccess::object_vector_at<api::PageBlock>(arguments, 0, valid);
       result->credit_ = NativeArgumentAccess::object_at<api::RichText>(arguments, 1, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
@@ -23622,7 +24575,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::webPageInstantView::ID: {
       if (arguments.values_.size() != 6) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::pageBlockTitle::ID, api::pageBlockSubtitle::ID, api::pageBlockAuthorDate::ID, api::pageBlockHeader::ID, api::pageBlockSubheader::ID, api::pageBlockSectionHeading::ID, api::pageBlockKicker::ID, api::pageBlockParagraph::ID, api::pageBlockPreformatted::ID, api::pageBlockFooter::ID, api::pageBlockThinking::ID, api::pageBlockDivider::ID, api::pageBlockMathematicalExpression::ID, api::pageBlockAnchor::ID, api::pageBlockList::ID, api::pageBlockBlockQuote::ID, api::pageBlockExpandableBlockQuote::ID, api::pageBlockPullQuote::ID, api::pageBlockAnimation::ID, api::pageBlockAudio::ID, api::pageBlockDocument::ID, api::pageBlockPhoto::ID, api::pageBlockVideo::ID, api::pageBlockVoiceNote::ID, api::pageBlockCover::ID, api::pageBlockEmbedded::ID, api::pageBlockEmbeddedPost::ID, api::pageBlockCollage::ID, api::pageBlockSlideshow::ID, api::pageBlockChatLink::ID, api::pageBlockTable::ID, api::pageBlockDetails::ID, api::pageBlockRelatedArticles::ID, api::pageBlockMap::ID, api::pageBlockButtonRow::ID, api::pageBlockUnsupported::ID})) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::webPageInstantView>();
       result->blocks_ = NativeArgumentAccess::object_vector_at<api::PageBlock>(arguments, 0, valid);
@@ -23707,6 +24660,11 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->document_ = NativeArgumentAccess::object_at<api::document>(arguments, 0, valid);
       result->background_type_ = NativeArgumentAccess::object_at<api::BackgroundType>(arguments, 1, valid);
       if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::linkPreviewTypeBotInvite::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::linkPreviewTypeBotInvite>();
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::linkPreviewTypeChannelBoost::ID: {
@@ -24015,7 +24973,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::linkPreview::ID: {
       if (arguments.values_.size() != 13) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 4, {api::formattedText::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::linkPreviewTypeAlbum::ID, api::linkPreviewTypeAnimation::ID, api::linkPreviewTypeApp::ID, api::linkPreviewTypeArticle::ID, api::linkPreviewTypeAudio::ID, api::linkPreviewTypeBackground::ID, api::linkPreviewTypeChannelBoost::ID, api::linkPreviewTypeChat::ID, api::linkPreviewTypeDirectMessagesChat::ID, api::linkPreviewTypeDocument::ID, api::linkPreviewTypeEmbeddedAnimationPlayer::ID, api::linkPreviewTypeEmbeddedAudioPlayer::ID, api::linkPreviewTypeEmbeddedVideoPlayer::ID, api::linkPreviewTypeExternalAudio::ID, api::linkPreviewTypeExternalVideo::ID, api::linkPreviewTypeGiftAuction::ID, api::linkPreviewTypeGiftCollection::ID, api::linkPreviewTypeGroupCall::ID, api::linkPreviewTypeInvoice::ID, api::linkPreviewTypeLiveStory::ID, api::linkPreviewTypeMessage::ID, api::linkPreviewTypePhoto::ID, api::linkPreviewTypePremiumGiftCode::ID, api::linkPreviewTypeRequestManagedBot::ID, api::linkPreviewTypeShareableChatFolder::ID, api::linkPreviewTypeSticker::ID, api::linkPreviewTypeStickerSet::ID, api::linkPreviewTypeStory::ID, api::linkPreviewTypeStoryAlbum::ID, api::linkPreviewTypeSupergroupBoost::ID, api::linkPreviewTypeTextCompositionStyle::ID, api::linkPreviewTypeTheme::ID, api::linkPreviewTypeUnsupported::ID, api::linkPreviewTypeUpgradedGift::ID, api::linkPreviewTypeUser::ID, api::linkPreviewTypeVideo::ID, api::linkPreviewTypeVideoChat::ID, api::linkPreviewTypeVideoNote::ID, api::linkPreviewTypeVoiceNote::ID, api::linkPreviewTypeWebApp::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::linkPreviewTypeAlbum::ID, api::linkPreviewTypeAnimation::ID, api::linkPreviewTypeApp::ID, api::linkPreviewTypeArticle::ID, api::linkPreviewTypeAudio::ID, api::linkPreviewTypeBackground::ID, api::linkPreviewTypeBotInvite::ID, api::linkPreviewTypeChannelBoost::ID, api::linkPreviewTypeChat::ID, api::linkPreviewTypeDirectMessagesChat::ID, api::linkPreviewTypeDocument::ID, api::linkPreviewTypeEmbeddedAnimationPlayer::ID, api::linkPreviewTypeEmbeddedAudioPlayer::ID, api::linkPreviewTypeEmbeddedVideoPlayer::ID, api::linkPreviewTypeExternalAudio::ID, api::linkPreviewTypeExternalVideo::ID, api::linkPreviewTypeGiftAuction::ID, api::linkPreviewTypeGiftCollection::ID, api::linkPreviewTypeGroupCall::ID, api::linkPreviewTypeInvoice::ID, api::linkPreviewTypeLiveStory::ID, api::linkPreviewTypeMessage::ID, api::linkPreviewTypePhoto::ID, api::linkPreviewTypePremiumGiftCode::ID, api::linkPreviewTypeRequestManagedBot::ID, api::linkPreviewTypeShareableChatFolder::ID, api::linkPreviewTypeSticker::ID, api::linkPreviewTypeStickerSet::ID, api::linkPreviewTypeStory::ID, api::linkPreviewTypeStoryAlbum::ID, api::linkPreviewTypeSupergroupBoost::ID, api::linkPreviewTypeTextCompositionStyle::ID, api::linkPreviewTypeTheme::ID, api::linkPreviewTypeUnsupported::ID, api::linkPreviewTypeUpgradedGift::ID, api::linkPreviewTypeUser::ID, api::linkPreviewTypeVideo::ID, api::linkPreviewTypeVideoChat::ID, api::linkPreviewTypeVideoNote::ID, api::linkPreviewTypeVoiceNote::ID, api::linkPreviewTypeWebApp::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::linkPreview>();
       result->url_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -25363,6 +26321,25 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->via_mention_ = NativeArgumentAccess::bool_at(arguments, 2);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::messageWidget::ID: {
+      if (arguments.values_.size() != 11) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::formattedText::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::messageWidget>();
+      result->width_ = NativeArgumentAccess::int32_at(arguments, 0);
+      result->height_ = NativeArgumentAccess::int32_at(arguments, 1);
+      result->html_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->public_data_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->chat_data_ = NativeArgumentAccess::buffer_at(arguments, 4);
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 5);
+      result->caption_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 6, valid);
+      result->show_caption_above_media_ = NativeArgumentAccess::bool_at(arguments, 7);
+      result->is_copy_ = NativeArgumentAccess::bool_at(arguments, 8);
+      result->can_send_queries_ = NativeArgumentAccess::bool_at(arguments, 9);
+      result->can_send_background_queries_ = NativeArgumentAccess::bool_at(arguments, 10);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::messageChecklist::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::checklist::ID}, false)) return nullptr;
@@ -25690,6 +26667,12 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->manager_bot_user_id_ = NativeArgumentAccess::int64_at(arguments, 1);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::messageBotInvite::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::messageBotInvite>();
+      result->inviter_user_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::messagePaymentSuccessful::ID: {
       if (arguments.values_.size() != 8) return nullptr;
       auto result = api::make_object<api::messagePaymentSuccessful>();
@@ -25869,7 +26852,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::messageTonWalletTransfer::ID: {
-      if (arguments.values_.size() != 6) return nullptr;
+      if (arguments.values_.size() != 7) return nullptr;
       auto result = api::make_object<api::messageTonWalletTransfer>();
       result->sender_user_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->transaction_id_ = NativeArgumentAccess::buffer_at(arguments, 1);
@@ -25877,6 +26860,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->amount_ = NativeArgumentAccess::int64_at(arguments, 3);
       result->comment_ = NativeArgumentAccess::buffer_at(arguments, 4);
       result->is_comment_encrypted_ = NativeArgumentAccess::bool_at(arguments, 5);
+      result->on_ramp_provider_name_ = NativeArgumentAccess::buffer_at(arguments, 6);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::messageTonConnectRequest::ID: {
@@ -25928,7 +26912,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::upgradedGift::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::upgradedGiftOriginUpgrade::ID, api::upgradedGiftOriginTransfer::ID, api::upgradedGiftOriginResale::ID, api::upgradedGiftOriginBlockchain::ID, api::upgradedGiftOriginPrepaidUpgrade::ID, api::upgradedGiftOriginOffer::ID, api::upgradedGiftOriginCraft::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::upgradedGiftOriginUpgrade::ID, api::upgradedGiftOriginTransfer::ID, api::upgradedGiftOriginResale::ID, api::upgradedGiftOriginBlockchain::ID, api::upgradedGiftOriginPrepaidUpgrade::ID, api::upgradedGiftOriginOffer::ID, api::upgradedGiftOriginCraft::ID, api::upgradedGiftOriginOnChainResale::ID, api::upgradedGiftOriginOnChainOffer::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::formattedText::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::messageUpgradedGift>();
@@ -25946,7 +26930,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->drop_original_details_star_count_ = NativeArgumentAccess::int64_at(arguments, 11);
       result->next_transfer_date_ = NativeArgumentAccess::int32_at(arguments, 12);
       result->next_resale_date_ = NativeArgumentAccess::int32_at(arguments, 13);
-      result->export_date_ = NativeArgumentAccess::int32_at(arguments, 14);
+      result->mint_date_ = NativeArgumentAccess::int32_at(arguments, 14);
       result->craft_date_ = NativeArgumentAccess::int32_at(arguments, 15);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
@@ -25956,7 +26940,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::gift::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::upgradedGiftOriginUpgrade::ID, api::upgradedGiftOriginTransfer::ID, api::upgradedGiftOriginResale::ID, api::upgradedGiftOriginBlockchain::ID, api::upgradedGiftOriginPrepaidUpgrade::ID, api::upgradedGiftOriginOffer::ID, api::upgradedGiftOriginCraft::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::upgradedGiftOriginUpgrade::ID, api::upgradedGiftOriginTransfer::ID, api::upgradedGiftOriginResale::ID, api::upgradedGiftOriginBlockchain::ID, api::upgradedGiftOriginPrepaidUpgrade::ID, api::upgradedGiftOriginOffer::ID, api::upgradedGiftOriginCraft::ID, api::upgradedGiftOriginOnChainResale::ID, api::upgradedGiftOriginOnChainOffer::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::messageRefundedUpgradedGift>();
       result->gift_ = NativeArgumentAccess::object_at<api::gift>(arguments, 0, valid);
@@ -25990,6 +26974,23 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->price_ = NativeArgumentAccess::object_at<api::GiftResalePrice>(arguments, 1, valid);
       result->offer_message_id_ = NativeArgumentAccess::int64_at(arguments, 2);
       result->was_expired_ = NativeArgumentAccess::bool_at(arguments, 3);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      if (arguments.values_.size() != 8) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::upgradedGift::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::giftOnChainPurchaseOfferStatePending::ID, api::giftOnChainPurchaseOfferStateSettled::ID, api::giftOnChainPurchaseOfferStateAccepted::ID, api::giftOnChainPurchaseOfferStateCanceling::ID, api::giftOnChainPurchaseOfferStateDeclined::ID, api::giftOnChainPurchaseOfferStateCanceled::ID, api::giftOnChainPurchaseOfferStateExpired::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::messageUpgradedGiftOnChainPurchaseOffer>();
+      result->gift_ = NativeArgumentAccess::object_at<api::upgradedGift>(arguments, 0, valid);
+      result->is_buyer_ = NativeArgumentAccess::bool_at(arguments, 1);
+      result->state_ = NativeArgumentAccess::object_at<api::GiftOnChainPurchaseOfferState>(arguments, 2, valid);
+      result->offer_address_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->fee_basis_points_ = NativeArgumentAccess::int32_at(arguments, 5);
+      result->expiration_date_ = NativeArgumentAccess::int32_at(arguments, 6);
+      result->offer_message_id_ = NativeArgumentAccess::int64_at(arguments, 7);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -26733,11 +27734,11 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::inputPageBlockExpandableBlockQuote::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::richTextPlain::ID, api::richTextBold::ID, api::richTextItalic::ID, api::richTextUnderline::ID, api::richTextStrikethrough::ID, api::richTextSpoiler::ID, api::richTextSubscript::ID, api::richTextSuperscript::ID, api::richTextMarked::ID, api::richTextDateTime::ID, api::richTextMention::ID, api::richTextHashtag::ID, api::richTextCashtag::ID, api::richTextBankCardNumber::ID, api::richTextTonAddress::ID, api::richTextBotCommand::ID, api::richTextFixed::ID, api::richTextMentionName::ID, api::richTextUrl::ID, api::richTextEmailAddress::ID, api::richTextPhoneNumber::ID, api::richTextCustomEmoji::ID, api::richTextIcon::ID, api::richTextMathematicalExpression::ID, api::richTextButton::ID, api::richTextDiff::ID, api::richTextReference::ID, api::richTextReferenceLink::ID, api::richTextAnchor::ID, api::richTextAnchorLink::ID, api::richTexts::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::inputPageBlockSectionHeading::ID, api::inputPageBlockParagraph::ID, api::inputPageBlockPreformatted::ID, api::inputPageBlockFooter::ID, api::inputPageBlockThinking::ID, api::inputPageBlockDivider::ID, api::inputPageBlockMathematicalExpression::ID, api::inputPageBlockAnchor::ID, api::inputPageBlockList::ID, api::inputPageBlockBlockQuote::ID, api::inputPageBlockExpandableBlockQuote::ID, api::inputPageBlockPullQuote::ID, api::inputPageBlockAnimation::ID, api::inputPageBlockAudio::ID, api::inputPageBlockDocument::ID, api::inputPageBlockPhoto::ID, api::inputPageBlockVideo::ID, api::inputPageBlockVoiceNote::ID, api::inputPageBlockCollage::ID, api::inputPageBlockSlideshow::ID, api::inputPageBlockTable::ID, api::inputPageBlockDetails::ID, api::inputPageBlockMap::ID, api::inputPageBlockButtonRow::ID})) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::richTextPlain::ID, api::richTextBold::ID, api::richTextItalic::ID, api::richTextUnderline::ID, api::richTextStrikethrough::ID, api::richTextSpoiler::ID, api::richTextSubscript::ID, api::richTextSuperscript::ID, api::richTextMarked::ID, api::richTextDateTime::ID, api::richTextMention::ID, api::richTextHashtag::ID, api::richTextCashtag::ID, api::richTextBankCardNumber::ID, api::richTextTonAddress::ID, api::richTextBotCommand::ID, api::richTextFixed::ID, api::richTextMentionName::ID, api::richTextUrl::ID, api::richTextEmailAddress::ID, api::richTextPhoneNumber::ID, api::richTextCustomEmoji::ID, api::richTextIcon::ID, api::richTextMathematicalExpression::ID, api::richTextButton::ID, api::richTextDiff::ID, api::richTextReference::ID, api::richTextReferenceLink::ID, api::richTextAnchor::ID, api::richTextAnchorLink::ID, api::richTexts::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputPageBlockExpandableBlockQuote>();
-      result->text_ = NativeArgumentAccess::object_at<api::RichText>(arguments, 0, valid);
+      result->blocks_ = NativeArgumentAccess::object_vector_at<api::InputPageBlock>(arguments, 0, valid);
       result->credit_ = NativeArgumentAccess::object_at<api::RichText>(arguments, 1, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
@@ -27151,6 +28152,35 @@ api::object_ptr<api::Object> generated_make_schema_object(
       bool valid = true;
       auto result = api::make_object<api::inputMessageChecklist>();
       result->checklist_ = NativeArgumentAccess::object_at<api::inputChecklist>(arguments, 0, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::inputMessageWidget::ID: {
+      if (arguments.values_.size() != 9) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::formattedText::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::inputMessageWidget>();
+      result->width_ = NativeArgumentAccess::int32_at(arguments, 0);
+      result->height_ = NativeArgumentAccess::int32_at(arguments, 1);
+      result->html_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->public_data_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->chat_data_ = NativeArgumentAccess::buffer_at(arguments, 4);
+      result->caption_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 5, valid);
+      result->show_caption_above_media_ = NativeArgumentAccess::bool_at(arguments, 6);
+      result->allow_queries_ = NativeArgumentAccess::bool_at(arguments, 7);
+      result->is_shared_ = NativeArgumentAccess::bool_at(arguments, 8);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::inputMessageSharedWidget::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::formattedText::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::inputMessageSharedWidget>();
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->chat_data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->caption_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 2, valid);
+      result->show_caption_above_media_ = NativeArgumentAccess::bool_at(arguments, 3);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -27710,13 +28740,6 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
-    case api::inputStoryAreaTypeFoundVenue::ID: {
-      if (arguments.values_.size() != 2) return nullptr;
-      auto result = api::make_object<api::inputStoryAreaTypeFoundVenue>();
-      result->query_id_ = NativeArgumentAccess::int64_at(arguments, 0);
-      result->result_id_ = NativeArgumentAccess::buffer_at(arguments, 1);
-      return api::object_ptr<api::Object>(std::move(result));
-    }
     case api::inputStoryAreaTypePreviousVenue::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       auto result = api::make_object<api::inputStoryAreaTypePreviousVenue>();
@@ -27765,7 +28788,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputStoryArea::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 0, {api::areaPosition::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputStoryAreaTypeLocation::ID, api::inputStoryAreaTypeFoundVenue::ID, api::inputStoryAreaTypePreviousVenue::ID, api::inputStoryAreaTypeSuggestedReaction::ID, api::inputStoryAreaTypeMessage::ID, api::inputStoryAreaTypeLink::ID, api::inputStoryAreaTypeWeather::ID, api::inputStoryAreaTypeUpgradedGift::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputStoryAreaTypeLocation::ID, api::inputStoryAreaTypePreviousVenue::ID, api::inputStoryAreaTypeSuggestedReaction::ID, api::inputStoryAreaTypeMessage::ID, api::inputStoryAreaTypeLink::ID, api::inputStoryAreaTypeWeather::ID, api::inputStoryAreaTypeUpgradedGift::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputStoryArea>();
       result->position_ = NativeArgumentAccess::object_at<api::areaPosition>(arguments, 0, valid);
@@ -27920,7 +28943,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::story::ID: {
-      if (arguments.values_.size() != 27) return nullptr;
+      if (arguments.values_.size() != 28) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageSenderUser::ID, api::messageSenderChat::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 19, {api::storyRepostInfo::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 20, {api::storyInteractionInfo::ID}, true)) return nullptr;
@@ -27929,6 +28952,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!NativeArgumentAccess::object_matches(arguments, 23, {api::storyContentPhoto::ID, api::storyContentVideo::ID, api::storyContentLive::ID, api::storyContentUnsupported::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 24, {api::storyArea::ID})) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 25, {api::formattedText::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 26, {api::audio::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::story>();
       result->id_ = NativeArgumentAccess::int32_at(arguments, 0);
@@ -27957,7 +28981,8 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->content_ = NativeArgumentAccess::object_at<api::StoryContent>(arguments, 23, valid);
       result->areas_ = NativeArgumentAccess::object_vector_at<api::storyArea>(arguments, 24, valid);
       result->caption_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 25, valid);
-      result->album_ids_ = NativeArgumentAccess::int32_vector_at(arguments, 26);
+      result->music_ = NativeArgumentAccess::object_at<api::audio>(arguments, 26, valid);
+      result->album_ids_ = NativeArgumentAccess::int32_vector_at(arguments, 27);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -28093,7 +29118,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::quickReplyMessage::ID: {
       if (arguments.values_.size() != 8) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSendingStatePending::ID, api::messageSendingStateFailed::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 7, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::quickReplyMessage>();
@@ -28131,7 +29156,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::welcomeMessage::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::welcomeMessage>();
       result->id_ = NativeArgumentAccess::int32_at(arguments, 0);
@@ -28979,6 +30004,36 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::speechRecognitionLanguages::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::speechRecognitionLanguages>();
+      result->language_codes_ = NativeArgumentAccess::buffer_vector_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::speechRecognitionModel::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::document::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::speechRecognitionModel>();
+      result->document_ = NativeArgumentAccess::object_at<api::document>(arguments, 0, valid);
+      result->language_codes_ = NativeArgumentAccess::buffer_vector_at(arguments, 1);
+      result->version_ = NativeArgumentAccess::int32_at(arguments, 2);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::speechRecognitionModels::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::speechRecognitionModel::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::document::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::document::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::speechRecognitionModels>();
+      result->models_ = NativeArgumentAccess::object_vector_at<api::speechRecognitionModel>(arguments, 0, valid);
+      result->language_detection_model_ = NativeArgumentAccess::object_at<api::document>(arguments, 1, valid);
+      result->voice_activity_detection_model_ = NativeArgumentAccess::object_at<api::document>(arguments, 2, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::businessConnection::ID: {
       if (arguments.values_.size() != 6) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 4, {api::businessBotRights::ID}, true)) return nullptr;
@@ -29105,7 +30160,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::targetChatInternalLink::ID: {
       if (arguments.values_.size() != 1) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::targetChatInternalLink>();
       result->link_ = NativeArgumentAccess::object_at<api::InternalLinkType>(arguments, 0, valid);
@@ -29115,7 +30170,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultAnimation::ID: {
       if (arguments.values_.size() != 11) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 9, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultAnimation>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29135,7 +30190,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultArticle::ID: {
       if (arguments.values_.size() != 9) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 7, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultArticle>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29153,7 +30208,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultAudio::ID: {
       if (arguments.values_.size() != 7) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultAudio>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29170,7 +30225,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (arguments.values_.size() != 7) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::contact::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultContact>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29186,7 +30241,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultDocument::ID: {
       if (arguments.values_.size() != 10) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 8, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 9, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 9, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultDocument>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29217,7 +30272,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (arguments.values_.size() != 9) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::location::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 7, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultLocation>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29235,7 +30290,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultPhoto::ID: {
       if (arguments.values_.size() != 9) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 7, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultPhoto>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29253,7 +30308,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultSticker::ID: {
       if (arguments.values_.size() != 7) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultSticker>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29270,7 +30325,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (arguments.values_.size() != 7) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::venue::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultVenue>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29286,7 +30341,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultVideo::ID: {
       if (arguments.values_.size() != 11) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 9, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultVideo>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29306,7 +30361,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     case api::inputInlineQueryResultVoiceNote::ID: {
       if (arguments.values_.size() != 6) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 4, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::inputInlineQueryResultVoiceNote>();
       result->id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -29541,6 +30596,54 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->text_ = NativeArgumentAccess::buffer_at(arguments, 0);
       result->show_alert_ = NativeArgumentAccess::bool_at(arguments, 1);
       result->url_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryWallet::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      auto result = api::make_object<api::widgetQueryWallet>();
+      result->address_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->public_key_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->state_init_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeData::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::widgetQueryTypeData>();
+      result->with_wallet_ = NativeArgumentAccess::bool_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeSignData::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::widgetQueryWallet::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::widgetQueryTypeSignData>();
+      result->wallet_ = NativeArgumentAccess::object_at<api::widgetQueryWallet>(arguments, 0, valid);
+      result->sign_data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryTypeSentTransaction::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::widgetQueryWallet::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::widgetQueryTypeSentTransaction>();
+      result->wallet_ = NativeArgumentAccess::object_at<api::widgetQueryWallet>(arguments, 0, valid);
+      result->msg_hash_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetQueryAnswer::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::widgetQueryAnswer>();
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::widgetPublicData::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::widgetPublicData>();
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->poll_period_ = NativeArgumentAccess::int32_at(arguments, 1);
       return api::object_ptr<api::Object>(std::move(result));
     }
     case api::customRequestResult::ID: {
@@ -30489,7 +31592,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (arguments.values_.size() != 3) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::premiumFeatureIncreasedLimits::ID, api::premiumFeatureIncreasedUploadFileSize::ID, api::premiumFeatureImprovedDownloadSpeed::ID, api::premiumFeatureVoiceRecognition::ID, api::premiumFeatureDisabledAds::ID, api::premiumFeatureUniqueReactions::ID, api::premiumFeatureUniqueStickers::ID, api::premiumFeatureCustomEmoji::ID, api::premiumFeatureAdvancedChatManagement::ID, api::premiumFeatureProfileBadge::ID, api::premiumFeatureEmojiStatus::ID, api::premiumFeatureAnimatedProfilePhoto::ID, api::premiumFeatureForumTopicIcon::ID, api::premiumFeatureAppIcons::ID, api::premiumFeatureRealTimeChatTranslation::ID, api::premiumFeatureUpgradedStories::ID, api::premiumFeatureChatBoost::ID, api::premiumFeatureAccentColor::ID, api::premiumFeatureBackgroundForBoth::ID, api::premiumFeatureSavedMessagesTags::ID, api::premiumFeatureMessagePrivacy::ID, api::premiumFeatureLastSeenTimes::ID, api::premiumFeatureBusiness::ID, api::premiumFeatureMessageEffects::ID, api::premiumFeatureChecklists::ID, api::premiumFeaturePaidMessages::ID, api::premiumFeatureProtectPrivateChatContent::ID, api::premiumFeatureTextComposition::ID, api::premiumFeatureRichMessages::ID})) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::premiumLimit::ID})) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::premiumFeatures>();
       result->features_ = NativeArgumentAccess::object_vector_at<api::PremiumFeature>(arguments, 0, valid);
@@ -32320,6 +33423,12 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::internalLinkTypeBotInvite::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::internalLinkTypeBotInvite>();
+      result->bot_username_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::internalLinkTypeBotStart::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       auto result = api::make_object<api::internalLinkTypeBotStart>();
@@ -33996,7 +35105,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::updateMessageContent::ID: {
       if (arguments.values_.size() != 3) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::updateMessageContent>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -34228,7 +35337,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::updateChatActionBar::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::chatActionBarReportSpam::ID, api::chatActionBarInviteMembers::ID, api::chatActionBarReportAddBlock::ID, api::chatActionBarAddContact::ID, api::chatActionBarSharePhoneNumber::ID, api::chatActionBarJoinRequest::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::chatActionBarReportSpam::ID, api::chatActionBarInviteMembers::ID, api::chatActionBarReportAddBlock::ID, api::chatActionBarAddContact::ID, api::chatActionBarSharePhoneNumber::ID, api::chatActionBarJoinRequest::ID, api::chatActionBarBotInvite::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::updateChatActionBar>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -34265,6 +35374,16 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->draft_message_ = NativeArgumentAccess::object_at<api::draftMessage>(arguments, 1, valid);
       result->positions_ = NativeArgumentAccess::object_vector_at<api::chatPosition>(arguments, 2, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateChatTextCompositionParameters::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::textCompositionParameters::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::updateChatTextCompositionParameters>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->text_composition_parameters_ = NativeArgumentAccess::object_at<api::textCompositionParameters>(arguments, 1, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
@@ -34645,7 +35764,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::updatePendingMessage::ID: {
       if (arguments.values_.size() != 6) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::updatePendingMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -34762,7 +35881,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::updateServiceNotification::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageText::ID, api::messageRichMessage::ID, api::messageAnimation::ID, api::messageAudio::ID, api::messageDocument::ID, api::messagePaidMedia::ID, api::messagePhoto::ID, api::messageSticker::ID, api::messageVideo::ID, api::messageVideoNote::ID, api::messageVoiceNote::ID, api::messageExpiredPhoto::ID, api::messageExpiredVideo::ID, api::messageExpiredVideoNote::ID, api::messageExpiredVoiceNote::ID, api::messageLiveLocation::ID, api::messageLocation::ID, api::messageVenue::ID, api::messageContact::ID, api::messageAnimatedEmoji::ID, api::messageDice::ID, api::messageGame::ID, api::messagePoll::ID, api::messageStakeDice::ID, api::messageStory::ID, api::messageWidget::ID, api::messageChecklist::ID, api::messageInvoice::ID, api::messageCall::ID, api::messageGroupCall::ID, api::messageVideoChatScheduled::ID, api::messageVideoChatStarted::ID, api::messageVideoChatEnded::ID, api::messageInviteVideoChatParticipants::ID, api::messagePollOptionAdded::ID, api::messagePollOptionDeleted::ID, api::messageBasicGroupChatCreate::ID, api::messageSupergroupChatCreate::ID, api::messageChatChangeTitle::ID, api::messageChatChangePhoto::ID, api::messageChatDeletePhoto::ID, api::messageChatOwnerLeft::ID, api::messageChatOwnerChanged::ID, api::messageChatHasProtectedContentToggled::ID, api::messageChatHasProtectedContentDisableRequested::ID, api::messageChatAddMembers::ID, api::messageChatJoinByLink::ID, api::messageChatJoinByRequest::ID, api::messageChatJoinFromCommunity::ID, api::messageChatDeleteMember::ID, api::messageChatAddedToCommunity::ID, api::messageChatRemovedFromCommunity::ID, api::messageChatUpgradeTo::ID, api::messageChatUpgradeFrom::ID, api::messagePinMessage::ID, api::messageScreenshotTaken::ID, api::messageChatSetBackground::ID, api::messageChatSetTheme::ID, api::messageChatSetMessageAutoDeleteTime::ID, api::messageChatBoost::ID, api::messageForumTopicCreated::ID, api::messageForumTopicEdited::ID, api::messageForumTopicIsClosedToggled::ID, api::messageForumTopicIsHiddenToggled::ID, api::messageSuggestProfilePhoto::ID, api::messageSuggestBirthdate::ID, api::messageCustomServiceAction::ID, api::messageGameScore::ID, api::messageManagedBotCreated::ID, api::messageBotInvite::ID, api::messagePaymentSuccessful::ID, api::messagePaymentSuccessfulBot::ID, api::messagePaymentRefunded::ID, api::messageGiftedPremium::ID, api::messagePremiumGiftCode::ID, api::messageGiveawayCreated::ID, api::messageGiveaway::ID, api::messageGiveawayCompleted::ID, api::messageGiveawayWinners::ID, api::messageGiftedStars::ID, api::messageGiftedGrams::ID, api::messageGiveawayPrizeStars::ID, api::messageTonWalletTransfer::ID, api::messageTonConnectRequest::ID, api::messageGift::ID, api::messageUpgradedGift::ID, api::messageRefundedUpgradedGift::ID, api::messageUpgradedGiftPurchaseOffer::ID, api::messageUpgradedGiftPurchaseOfferRejected::ID, api::messageUpgradedGiftOnChainPurchaseOffer::ID, api::messagePaidMessagesRefunded::ID, api::messagePaidMessagePriceChanged::ID, api::messageDirectMessagePriceChanged::ID, api::messageUnpaidMessagesAllowedByLink::ID, api::messageChecklistTasksDone::ID, api::messageChecklistTasksAdded::ID, api::messageSuggestedPostApprovalFailed::ID, api::messageSuggestedPostApproved::ID, api::messageSuggestedPostDeclined::ID, api::messageSuggestedPostPaid::ID, api::messageSuggestedPostRefunded::ID, api::messageContactRegistered::ID, api::messageUsersShared::ID, api::messageChatShared::ID, api::messageBotWriteAccessAllowed::ID, api::messageWebAppDataSent::ID, api::messageWebAppDataReceived::ID, api::messagePassportDataSent::ID, api::messagePassportDataReceived::ID, api::messageProximityAlertTriggered::ID, api::messageUnsupported::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::updateServiceNotification>();
       result->type_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -35445,6 +36564,13 @@ api::object_ptr<api::Object> generated_make_schema_object(
       result->next_reset_date_ = NativeArgumentAccess::int32_at(arguments, 3);
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::updateSpeechRecognitionInFile::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::updateSpeechRecognitionInFile>();
+      result->recognition_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->partial_text_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::updateGroupCallMessageLevels::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::groupCallMessageLevel::ID})) return nullptr;
@@ -35652,6 +36778,58 @@ api::object_ptr<api::Object> generated_make_schema_object(
       if (!valid) return nullptr;
       return api::object_ptr<api::Object>(std::move(result));
     }
+    case api::updateNewWidgetQuery::ID: {
+      if (arguments.values_.size() != 10) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 6, {api::widgetQueryTypeData::ID, api::widgetQueryTypeSignData::ID, api::widgetQueryTypeSentTransaction::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 9, {api::tonWalletCard::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::updateNewWidgetQuery>();
+      result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->sender_user_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->chat_instance_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->chat_type_ = NativeArgumentAccess::buffer_at(arguments, 5);
+      result->query_type_ = NativeArgumentAccess::object_at<api::WidgetQueryType>(arguments, 6, valid);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 7);
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 8);
+      result->wallet_card_ = NativeArgumentAccess::object_at<api::tonWalletCard>(arguments, 9, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateNewInlineWidgetQuery::ID: {
+      if (arguments.values_.size() != 9) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::widgetQueryTypeData::ID, api::widgetQueryTypeSignData::ID, api::widgetQueryTypeSentTransaction::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::tonWalletCard::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::updateNewInlineWidgetQuery>();
+      result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->sender_user_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->inline_message_id_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->chat_instance_ = NativeArgumentAccess::int64_at(arguments, 3);
+      result->chat_type_ = NativeArgumentAccess::buffer_at(arguments, 4);
+      result->query_type_ = NativeArgumentAccess::object_at<api::WidgetQueryType>(arguments, 5, valid);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 6);
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 7);
+      result->wallet_card_ = NativeArgumentAccess::object_at<api::tonWalletCard>(arguments, 8, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
+    case api::updateNewWidgetCopyQuery::ID: {
+      if (arguments.values_.size() != 6) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::widgetQueryTypeData::ID, api::widgetQueryTypeSignData::ID, api::widgetQueryTypeSentTransaction::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::tonWalletCard::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::updateNewWidgetCopyQuery>();
+      result->id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->sender_user_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->query_type_ = NativeArgumentAccess::object_at<api::WidgetQueryType>(arguments, 2, valid);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 4);
+      result->wallet_card_ = NativeArgumentAccess::object_at<api::tonWalletCard>(arguments, 5, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Object>(std::move(result));
+    }
     case api::updateNewShippingQuery::ID: {
       if (arguments.values_.size() != 4) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::address::ID}, false)) return nullptr;
@@ -35810,7 +36988,7 @@ api::object_ptr<api::Object> generated_make_schema_object(
     }
     case api::updates::ID: {
       if (arguments.values_.size() != 1) return nullptr;
-      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::updateAuthorizationState::ID, api::updateNewMessage::ID, api::updateMessageSendAcknowledged::ID, api::updateMessageSendSucceeded::ID, api::updateMessageSendFailed::ID, api::updateMessageContent::ID, api::updateMessageEphemeralContent::ID, api::updateMessageEdited::ID, api::updateMessageIsPinned::ID, api::updateMessageInteractionInfo::ID, api::updateMessageContentOpened::ID, api::updateMessageMentionRead::ID, api::updateMessageUnreadReactions::ID, api::updateMessageContainsUnreadPollVotes::ID, api::updateMessageFactCheck::ID, api::updateMessageSuggestedPostInfo::ID, api::updateMessageLiveLocationViewed::ID, api::updateVideoPublished::ID, api::updateNewChat::ID, api::updateChatTitle::ID, api::updateChatPhoto::ID, api::updateChatAccentColors::ID, api::updateChatPermissions::ID, api::updateChatLastMessage::ID, api::updateChatPosition::ID, api::updateChatAddedToList::ID, api::updateChatRemovedFromList::ID, api::updateChatReadInbox::ID, api::updateChatReadOutbox::ID, api::updateChatActionBar::ID, api::updateChatBusinessBotManageBar::ID, api::updateChatAvailableReactions::ID, api::updateChatDraftMessage::ID, api::updateChatEmojiStatus::ID, api::updateChatMessageSender::ID, api::updateChatMessageAutoDeleteTime::ID, api::updateChatNotificationSettings::ID, api::updateChatPendingJoinRequests::ID, api::updateChatReplyMarkup::ID, api::updateChatBackground::ID, api::updateChatTheme::ID, api::updateChatUnreadMentionCount::ID, api::updateChatUnreadReactionCount::ID, api::updateChatUnreadPollVoteCount::ID, api::updateChatVideoChat::ID, api::updateChatDefaultDisableNotification::ID, api::updateChatHasProtectedContent::ID, api::updateChatIsTranslatable::ID, api::updateChatIsMarkedAsUnread::ID, api::updateChatViewAsTopics::ID, api::updateChatBlockList::ID, api::updateChatHasScheduledMessages::ID, api::updateChatHasWelcomeMessages::ID, api::updateChatFolders::ID, api::updateChatOnlineMemberCount::ID, api::updateSavedMessagesTopic::ID, api::updateSavedMessagesTopicCount::ID, api::updateDirectMessagesChatTopic::ID, api::updateTopicMessageCount::ID, api::updateQuickReplyShortcut::ID, api::updateQuickReplyShortcutDeleted::ID, api::updateQuickReplyShortcuts::ID, api::updateQuickReplyShortcutMessages::ID, api::updateChatWelcomeMessages::ID, api::updateForumTopicInfo::ID, api::updateForumTopic::ID, api::updateScopeNotificationSettings::ID, api::updateReactionNotificationSettings::ID, api::updateNotification::ID, api::updateNotificationGroup::ID, api::updateActiveNotifications::ID, api::updateHavePendingNotifications::ID, api::updateDeleteMessages::ID, api::updateChatAction::ID, api::updatePendingMessage::ID, api::updateStopMessageDraft::ID, api::updateCommunity::ID, api::updateUserStatus::ID, api::updateUser::ID, api::updateBasicGroup::ID, api::updateSupergroup::ID, api::updateSecretChat::ID, api::updateUserFullInfo::ID, api::updateBasicGroupFullInfo::ID, api::updateSupergroupFullInfo::ID, api::updateCommunityFullInfo::ID, api::updateServiceNotification::ID, api::updateNewOauthRequest::ID, api::updateFile::ID, api::updateFileGenerationStart::ID, api::updateFileGenerationStop::ID, api::updateFileDownloads::ID, api::updateFileAddedToDownloads::ID, api::updateFileDownload::ID, api::updateFileRemovedFromDownloads::ID, api::updateApplicationVerificationRequired::ID, api::updateApplicationRecaptchaVerificationRequired::ID, api::updateCall::ID, api::updateGroupCall::ID, api::updateGroupCallParticipant::ID, api::updateGroupCallParticipants::ID, api::updateGroupCallVerificationState::ID, api::updateNewGroupCallMessage::ID, api::updateNewGroupCallPaidReaction::ID, api::updateGroupCallMessageSendFailed::ID, api::updateGroupCallMessagesDeleted::ID, api::updateLiveStoryTopDonors::ID, api::updateNewCallSignalingData::ID, api::updateGiftAuctionState::ID, api::updateActiveGiftAuctions::ID, api::updateUserPrivacySettingRules::ID, api::updateUnreadMessageCount::ID, api::updateUnreadChatCount::ID, api::updateChatJoinResult::ID, api::updateStory::ID, api::updateStoryDeleted::ID, api::updateStoryPostSucceeded::ID, api::updateStoryPostFailed::ID, api::updateChatActiveStories::ID, api::updateStoryListChatCount::ID, api::updateStoryStealthMode::ID, api::updateAllowedBotUsernamePremiumSuffixes::ID, api::updateTrustedMiniAppBots::ID, api::updateOption::ID, api::updateStickerSet::ID, api::updateInstalledStickerSets::ID, api::updateTrendingStickerSets::ID, api::updateRecentStickers::ID, api::updateFavoriteStickers::ID, api::updateSavedAnimations::ID, api::updateSavedNotificationSounds::ID, api::updateDefaultBackground::ID, api::updateEmojiChatThemes::ID, api::updateAccentColors::ID, api::updateProfileAccentColors::ID, api::updateWebBrowserSettings::ID, api::updateLanguagePackStrings::ID, api::updateConnectionState::ID, api::updateWebProxyCarrierOpened::ID, api::updateWebProxyCarrierData::ID, api::updateWebProxyCarrierClosed::ID, api::updateFreezeState::ID, api::updateAgeVerificationParameters::ID, api::updateTermsOfService::ID, api::updateUnconfirmedSession::ID, api::updateAttachmentMenuBots::ID, api::updateWebAppMessageSent::ID, api::updateActiveEmojiReactions::ID, api::updateAvailableMessageEffects::ID, api::updateDefaultReactionType::ID, api::updateDefaultPaidReactionType::ID, api::updateSavedMessagesTags::ID, api::updateActiveLiveLocationMessages::ID, api::updateOwnedStarCount::ID, api::updateOwnedGramCount::ID, api::updateTonWalletState::ID, api::updateTonWalletGaslessTransfersInfo::ID, api::updateTonWalletTonConnectSession::ID, api::updateTonWalletTonConnectSessionDisconnectRequired::ID, api::updateChatRevenueAmount::ID, api::updateStarRevenueStatus::ID, api::updateGramRevenueStatus::ID, api::updateSpeechRecognitionTrial::ID, api::updateGroupCallMessageLevels::ID, api::updateDiceEmojis::ID, api::updateStakeDiceState::ID, api::updateAnimatedEmojiMessageClicked::ID, api::updateAnimationSearchParameters::ID, api::updateTextCompositionStyles::ID, api::updateSuggestedActions::ID, api::updateSpeedLimitNotification::ID, api::updateContactCloseBirthdays::ID, api::updateAutosaveSettings::ID, api::updateBusinessConnection::ID, api::updateNewBusinessMessage::ID, api::updateBusinessMessageEdited::ID, api::updateBusinessMessagesDeleted::ID, api::updateNewInlineQuery::ID, api::updateNewChosenInlineResult::ID, api::updateNewGuestQuery::ID, api::updateNewCallbackQuery::ID, api::updateNewInlineCallbackQuery::ID, api::updateNewBusinessCallbackQuery::ID, api::updateNewShippingQuery::ID, api::updateNewPreCheckoutQuery::ID, api::updateNewCustomEvent::ID, api::updateNewCustomQuery::ID, api::updateUserSubscription::ID, api::updatePoll::ID, api::updatePollAnswer::ID, api::updateManagedBot::ID, api::updateChatMember::ID, api::updateNewChatJoinRequest::ID, api::updateChatBoost::ID, api::updateMessageReaction::ID, api::updateMessageReactions::ID, api::updatePaidMediaPurchased::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 0, {api::updateAuthorizationState::ID, api::updateNewMessage::ID, api::updateMessageSendAcknowledged::ID, api::updateMessageSendSucceeded::ID, api::updateMessageSendFailed::ID, api::updateMessageContent::ID, api::updateMessageEphemeralContent::ID, api::updateMessageEdited::ID, api::updateMessageIsPinned::ID, api::updateMessageInteractionInfo::ID, api::updateMessageContentOpened::ID, api::updateMessageMentionRead::ID, api::updateMessageUnreadReactions::ID, api::updateMessageContainsUnreadPollVotes::ID, api::updateMessageFactCheck::ID, api::updateMessageSuggestedPostInfo::ID, api::updateMessageLiveLocationViewed::ID, api::updateVideoPublished::ID, api::updateNewChat::ID, api::updateChatTitle::ID, api::updateChatPhoto::ID, api::updateChatAccentColors::ID, api::updateChatPermissions::ID, api::updateChatLastMessage::ID, api::updateChatPosition::ID, api::updateChatAddedToList::ID, api::updateChatRemovedFromList::ID, api::updateChatReadInbox::ID, api::updateChatReadOutbox::ID, api::updateChatActionBar::ID, api::updateChatBusinessBotManageBar::ID, api::updateChatAvailableReactions::ID, api::updateChatDraftMessage::ID, api::updateChatTextCompositionParameters::ID, api::updateChatEmojiStatus::ID, api::updateChatMessageSender::ID, api::updateChatMessageAutoDeleteTime::ID, api::updateChatNotificationSettings::ID, api::updateChatPendingJoinRequests::ID, api::updateChatReplyMarkup::ID, api::updateChatBackground::ID, api::updateChatTheme::ID, api::updateChatUnreadMentionCount::ID, api::updateChatUnreadReactionCount::ID, api::updateChatUnreadPollVoteCount::ID, api::updateChatVideoChat::ID, api::updateChatDefaultDisableNotification::ID, api::updateChatHasProtectedContent::ID, api::updateChatIsTranslatable::ID, api::updateChatIsMarkedAsUnread::ID, api::updateChatViewAsTopics::ID, api::updateChatBlockList::ID, api::updateChatHasScheduledMessages::ID, api::updateChatHasWelcomeMessages::ID, api::updateChatFolders::ID, api::updateChatOnlineMemberCount::ID, api::updateSavedMessagesTopic::ID, api::updateSavedMessagesTopicCount::ID, api::updateDirectMessagesChatTopic::ID, api::updateTopicMessageCount::ID, api::updateQuickReplyShortcut::ID, api::updateQuickReplyShortcutDeleted::ID, api::updateQuickReplyShortcuts::ID, api::updateQuickReplyShortcutMessages::ID, api::updateChatWelcomeMessages::ID, api::updateForumTopicInfo::ID, api::updateForumTopic::ID, api::updateScopeNotificationSettings::ID, api::updateReactionNotificationSettings::ID, api::updateNotification::ID, api::updateNotificationGroup::ID, api::updateActiveNotifications::ID, api::updateHavePendingNotifications::ID, api::updateDeleteMessages::ID, api::updateChatAction::ID, api::updatePendingMessage::ID, api::updateStopMessageDraft::ID, api::updateCommunity::ID, api::updateUserStatus::ID, api::updateUser::ID, api::updateBasicGroup::ID, api::updateSupergroup::ID, api::updateSecretChat::ID, api::updateUserFullInfo::ID, api::updateBasicGroupFullInfo::ID, api::updateSupergroupFullInfo::ID, api::updateCommunityFullInfo::ID, api::updateServiceNotification::ID, api::updateNewOauthRequest::ID, api::updateFile::ID, api::updateFileGenerationStart::ID, api::updateFileGenerationStop::ID, api::updateFileDownloads::ID, api::updateFileAddedToDownloads::ID, api::updateFileDownload::ID, api::updateFileRemovedFromDownloads::ID, api::updateApplicationVerificationRequired::ID, api::updateApplicationRecaptchaVerificationRequired::ID, api::updateCall::ID, api::updateGroupCall::ID, api::updateGroupCallParticipant::ID, api::updateGroupCallParticipants::ID, api::updateGroupCallVerificationState::ID, api::updateNewGroupCallMessage::ID, api::updateNewGroupCallPaidReaction::ID, api::updateGroupCallMessageSendFailed::ID, api::updateGroupCallMessagesDeleted::ID, api::updateLiveStoryTopDonors::ID, api::updateNewCallSignalingData::ID, api::updateGiftAuctionState::ID, api::updateActiveGiftAuctions::ID, api::updateUserPrivacySettingRules::ID, api::updateUnreadMessageCount::ID, api::updateUnreadChatCount::ID, api::updateChatJoinResult::ID, api::updateStory::ID, api::updateStoryDeleted::ID, api::updateStoryPostSucceeded::ID, api::updateStoryPostFailed::ID, api::updateChatActiveStories::ID, api::updateStoryListChatCount::ID, api::updateStoryStealthMode::ID, api::updateAllowedBotUsernamePremiumSuffixes::ID, api::updateTrustedMiniAppBots::ID, api::updateOption::ID, api::updateStickerSet::ID, api::updateInstalledStickerSets::ID, api::updateTrendingStickerSets::ID, api::updateRecentStickers::ID, api::updateFavoriteStickers::ID, api::updateSavedAnimations::ID, api::updateSavedNotificationSounds::ID, api::updateDefaultBackground::ID, api::updateEmojiChatThemes::ID, api::updateAccentColors::ID, api::updateProfileAccentColors::ID, api::updateWebBrowserSettings::ID, api::updateLanguagePackStrings::ID, api::updateConnectionState::ID, api::updateWebProxyCarrierOpened::ID, api::updateWebProxyCarrierData::ID, api::updateWebProxyCarrierClosed::ID, api::updateFreezeState::ID, api::updateAgeVerificationParameters::ID, api::updateTermsOfService::ID, api::updateUnconfirmedSession::ID, api::updateAttachmentMenuBots::ID, api::updateWebAppMessageSent::ID, api::updateActiveEmojiReactions::ID, api::updateAvailableMessageEffects::ID, api::updateDefaultReactionType::ID, api::updateDefaultPaidReactionType::ID, api::updateSavedMessagesTags::ID, api::updateActiveLiveLocationMessages::ID, api::updateOwnedStarCount::ID, api::updateOwnedGramCount::ID, api::updateTonWalletState::ID, api::updateTonWalletGaslessTransfersInfo::ID, api::updateTonWalletTonConnectSession::ID, api::updateTonWalletTonConnectSessionDisconnectRequired::ID, api::updateChatRevenueAmount::ID, api::updateStarRevenueStatus::ID, api::updateGramRevenueStatus::ID, api::updateSpeechRecognitionTrial::ID, api::updateSpeechRecognitionInFile::ID, api::updateGroupCallMessageLevels::ID, api::updateDiceEmojis::ID, api::updateStakeDiceState::ID, api::updateAnimatedEmojiMessageClicked::ID, api::updateAnimationSearchParameters::ID, api::updateTextCompositionStyles::ID, api::updateSuggestedActions::ID, api::updateSpeedLimitNotification::ID, api::updateContactCloseBirthdays::ID, api::updateAutosaveSettings::ID, api::updateBusinessConnection::ID, api::updateNewBusinessMessage::ID, api::updateBusinessMessageEdited::ID, api::updateBusinessMessagesDeleted::ID, api::updateNewInlineQuery::ID, api::updateNewChosenInlineResult::ID, api::updateNewGuestQuery::ID, api::updateNewCallbackQuery::ID, api::updateNewInlineCallbackQuery::ID, api::updateNewBusinessCallbackQuery::ID, api::updateNewWidgetQuery::ID, api::updateNewInlineWidgetQuery::ID, api::updateNewWidgetCopyQuery::ID, api::updateNewShippingQuery::ID, api::updateNewPreCheckoutQuery::ID, api::updateNewCustomEvent::ID, api::updateNewCustomQuery::ID, api::updateUserSubscription::ID, api::updatePoll::ID, api::updatePollAnswer::ID, api::updateManagedBot::ID, api::updateChatMember::ID, api::updateNewChatJoinRequest::ID, api::updateChatBoost::ID, api::updateMessageReaction::ID, api::updateMessageReactions::ID, api::updatePaidMediaPurchased::ID})) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::updates>();
       result->updates_ = NativeArgumentAccess::object_vector_at<api::Update>(arguments, 0, valid);
@@ -36581,6 +37759,11 @@ api::object_ptr<api::Function> generated_make_schema_function(
       auto result = api::make_object<api::getSuitablePersonalChats>();
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::getSuitableCommunityChats::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::getSuitableCommunityChats>();
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::loadDirectMessagesChatTopics::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       auto result = api::make_object<api::loadDirectMessagesChatTopics>();
@@ -36722,6 +37905,11 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::getJoinedCommunities::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::getJoinedCommunities>();
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::createCommunity::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       auto result = api::make_object<api::createCommunity>();
@@ -36754,6 +37942,82 @@ api::object_ptr<api::Function> generated_make_schema_function(
       auto result = api::make_object<api::setCommunityPermissions>();
       result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->permissions_ = NativeArgumentAccess::object_at<api::communityPermissions>(arguments, 1, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::setCommunityNotificationSettings::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::chatNotificationSettings::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::setCommunityNotificationSettings>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->notification_settings_ = NativeArgumentAccess::object_at<api::chatNotificationSettings>(arguments, 1, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::addCommunityChat::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::addCommunityChat>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->is_hidden_ = NativeArgumentAccess::bool_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::removeCommunityChat::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::removeCommunityChat>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getCommunityAddChatRequests::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::getCommunityAddChatRequests>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->offset_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->limit_ = NativeArgumentAccess::int32_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::processCommunityAddChatRequest::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::processCommunityAddChatRequest>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->approve_ = NativeArgumentAccess::bool_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::processCommunityAddChatRequests::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::processCommunityAddChatRequests>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->approve_ = NativeArgumentAccess::bool_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::toggleCommunityAreChatsCollapsed::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::toggleCommunityAreChatsCollapsed>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->are_chats_collapsed_ = NativeArgumentAccess::bool_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::toggleCommunityMemberIsBanned::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::toggleCommunityMemberIsBanned>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->member_id_ = NativeArgumentAccess::object_at<api::MessageSender>(arguments, 1, valid);
+      result->is_banned_ = NativeArgumentAccess::bool_at(arguments, 2);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getCommunityMemberChats::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::getCommunityMemberChats>();
+      result->community_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->member_id_ = NativeArgumentAccess::object_at<api::MessageSender>(arguments, 1, valid);
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
@@ -37009,6 +38273,19 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->topic_id_ = NativeArgumentAccess::object_at<api::MessageTopic>(arguments, 1, valid);
       result->filter_ = NativeArgumentAccess::object_at<api::SearchMessagesFilter>(arguments, 2, valid);
+      result->return_local_ = NativeArgumentAccess::bool_at(arguments, 3);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getChatMessageCounts::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageTopicThread::ID, api::messageTopicForum::ID, api::messageTopicDirectMessages::ID, api::messageTopicSavedMessages::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 2, {api::searchMessagesFilterEmpty::ID, api::searchMessagesFilterAnimation::ID, api::searchMessagesFilterAudio::ID, api::searchMessagesFilterDocument::ID, api::searchMessagesFilterPhoto::ID, api::searchMessagesFilterPoll::ID, api::searchMessagesFilterVideo::ID, api::searchMessagesFilterVoiceNote::ID, api::searchMessagesFilterPhotoAndVideo::ID, api::searchMessagesFilterUrl::ID, api::searchMessagesFilterChatPhoto::ID, api::searchMessagesFilterVideoNote::ID, api::searchMessagesFilterVoiceAndVideoNote::ID, api::searchMessagesFilterMention::ID, api::searchMessagesFilterUnreadMention::ID, api::searchMessagesFilterUnreadReaction::ID, api::searchMessagesFilterUnreadPollVote::ID, api::searchMessagesFilterFailedToSend::ID, api::searchMessagesFilterPinned::ID})) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::getChatMessageCounts>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->topic_id_ = NativeArgumentAccess::object_at<api::MessageTopic>(arguments, 1, valid);
+      result->filters_ = NativeArgumentAccess::object_vector_at<api::SearchMessagesFilter>(arguments, 2, valid);
       result->return_local_ = NativeArgumentAccess::bool_at(arguments, 3);
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
@@ -37296,6 +38573,24 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::fixRecognizedTextWithAi::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::formattedText::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::fixRecognizedTextWithAi>();
+      result->text_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 0, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::fixRecognizedRichMessageWithAi::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::inputRichMessage::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::fixRecognizedRichMessageWithAi>();
+      result->message_ = NativeArgumentAccess::object_at<api::inputRichMessage>(arguments, 0, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::recognizeSpeech::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       auto result = api::make_object<api::recognizeSpeech>();
@@ -37309,6 +38604,28 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->message_id_ = NativeArgumentAccess::int64_at(arguments, 1);
       result->is_good_ = NativeArgumentAccess::bool_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::recognizeSpeechInFile::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::inputFileId::ID, api::inputFileRemote::ID, api::inputFileLocal::ID, api::inputFileGenerated::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::recognizeSpeechInFile>();
+      result->audio_file_ = NativeArgumentAccess::object_at<api::InputFile>(arguments, 0, valid);
+      result->recognition_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getSpeechRecognitionLanguages::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::getSpeechRecognitionLanguages>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getSpeechRecognitionModels::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::getSpeechRecognitionModels>();
+      result->version_ = NativeArgumentAccess::int32_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::getChatAvailableMessageSenders::ID: {
@@ -37333,7 +38650,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::messageSendOptions::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 4, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sendMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37350,7 +38667,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageTopicThread::ID, api::messageTopicForum::ID, api::messageTopicDirectMessages::ID, api::messageTopicSavedMessages::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::messageSendOptions::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_vector_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID})) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sendMessageAlbum>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37427,7 +38744,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageTopicThread::ID, api::messageTopicForum::ID, api::messageTopicDirectMessages::ID, api::messageTopicSavedMessages::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 5, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 9, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 10, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sendEphemeralMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37448,7 +38765,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (arguments.values_.size() != 5) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::addLocalMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37497,7 +38814,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::editMessageText::ID: {
       if (arguments.values_.size() != 4) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editMessageText>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37536,7 +38853,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::editMessageMedia::ID: {
       if (arguments.values_.size() != 4) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editMessageMedia>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37571,10 +38888,21 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::editMessageWidgetData::ID: {
+      if (arguments.values_.size() != 6) return nullptr;
+      auto result = api::make_object<api::editMessageWidgetData>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->edit_public_data_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->public_data_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      result->edit_chat_data_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->chat_data_ = NativeArgumentAccess::buffer_at(arguments, 5);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::editInlineMessageText::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editInlineMessageText>();
       result->inline_message_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37598,7 +38926,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::editInlineMessageMedia::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editInlineMessageMedia>();
       result->inline_message_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37630,10 +38958,28 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::editInlineMessageWidgetData::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      auto result = api::make_object<api::editInlineMessageWidgetData>();
+      result->inline_message_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->edit_public_data_ = NativeArgumentAccess::bool_at(arguments, 1);
+      result->public_data_ = NativeArgumentAccess::buffer_at(arguments, 2);
+      result->edit_chat_data_ = NativeArgumentAccess::bool_at(arguments, 3);
+      result->chat_data_ = NativeArgumentAccess::buffer_at(arguments, 4);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::editWidgetData::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::editWidgetData>();
+      result->widget_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->public_data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      result->cache_time_ = NativeArgumentAccess::int32_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::editEphemeralMessage::ID: {
       if (arguments.values_.size() != 5) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editEphemeralMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37662,7 +39008,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::replyToCallbackQueryWithEphemeralMessage::ID: {
       if (arguments.values_.size() != 5) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::replyToCallbackQueryWithEphemeralMessage>();
       result->callback_query_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -37706,7 +39052,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (arguments.values_.size() != 8) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 6, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sendBusinessMessage>();
       result->business_connection_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37723,7 +39069,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::sendBusinessMessageAlbum::ID: {
       if (arguments.values_.size() != 7) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageReplyToMessage::ID, api::inputMessageReplyToExternalMessage::ID, api::inputMessageReplyToStory::ID, api::inputMessageReplyToEphemeralMessage::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_vector_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 6, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID})) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::sendBusinessMessageAlbum>();
       result->business_connection_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37739,7 +39085,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::editBusinessMessageText::ID: {
       if (arguments.values_.size() != 5) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editBusinessMessageText>();
       result->business_connection_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37781,7 +39127,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::editBusinessMessageMedia::ID: {
       if (arguments.values_.size() != 5) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::replyMarkupRemoveKeyboard::ID, api::replyMarkupForceReply::ID, api::replyMarkupShowKeyboard::ID, api::replyMarkupInlineKeyboard::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editBusinessMessageMedia>();
       result->business_connection_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -37980,7 +39326,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::addQuickReplyShortcutMessage::ID: {
       if (arguments.values_.size() != 3) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::addQuickReplyShortcutMessage>();
       result->shortcut_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -38001,7 +39347,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::addQuickReplyShortcutMessageAlbum::ID: {
       if (arguments.values_.size() != 3) return nullptr;
-      if (!NativeArgumentAccess::object_vector_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID})) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::addQuickReplyShortcutMessageAlbum>();
       result->shortcut_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -38019,7 +39365,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::editQuickReplyMessage::ID: {
       if (arguments.values_.size() != 3) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editQuickReplyMessage>();
       result->shortcut_id_ = NativeArgumentAccess::int32_at(arguments, 0);
@@ -38036,7 +39382,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::addChatWelcomeMessage::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::addChatWelcomeMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -38046,7 +39392,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::editChatWelcomeMessage::ID: {
       if (arguments.values_.size() != 3) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::editChatWelcomeMessage>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
@@ -38120,14 +39466,23 @@ api::object_ptr<api::Function> generated_make_schema_function(
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::getForumTopics::ID: {
-      if (arguments.values_.size() != 6) return nullptr;
+      if (arguments.values_.size() != 9) return nullptr;
       auto result = api::make_object<api::getForumTopics>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->query_ = NativeArgumentAccess::buffer_at(arguments, 1);
-      result->offset_date_ = NativeArgumentAccess::int32_at(arguments, 2);
-      result->offset_message_id_ = NativeArgumentAccess::int64_at(arguments, 3);
-      result->offset_forum_topic_id_ = NativeArgumentAccess::int32_at(arguments, 4);
-      result->limit_ = NativeArgumentAccess::int32_at(arguments, 5);
+      result->icon_custom_emoji_id_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->exclude_open_ = NativeArgumentAccess::bool_at(arguments, 3);
+      result->exclude_closed_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->offset_date_ = NativeArgumentAccess::int32_at(arguments, 5);
+      result->offset_message_id_ = NativeArgumentAccess::int64_at(arguments, 6);
+      result->offset_forum_topic_id_ = NativeArgumentAccess::int32_at(arguments, 7);
+      result->limit_ = NativeArgumentAccess::int32_at(arguments, 8);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getForumTopicPopularIcons::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::getForumTopicPopularIcons>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::setForumTopicNotificationSettings::ID: {
@@ -38412,6 +39767,12 @@ api::object_ptr<api::Function> generated_make_schema_function(
     case api::getTextEntities::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       auto result = api::make_object<api::getTextEntities>();
+      result->text_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getTextEmojiRanges::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::getTextEmojiRanges>();
       result->text_ = NativeArgumentAccess::buffer_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
@@ -38858,6 +40219,32 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->cache_time_ = NativeArgumentAccess::int32_at(arguments, 4);
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::answerWidgetQuery::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::answerWidgetQuery>();
+      result->widget_query_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getWidgetQueryAnswer::ID: {
+      if (arguments.values_.size() != 4) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::widgetQueryTypeData::ID, api::widgetQueryTypeSignData::ID, api::widgetQueryTypeSentTransaction::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::getWidgetQueryAnswer>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->query_type_ = NativeArgumentAccess::object_at<api::WidgetQueryType>(arguments, 2, valid);
+      result->data_ = NativeArgumentAccess::buffer_at(arguments, 3);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getWidgetPublicData::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::getWidgetPublicData>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::answerShippingQuery::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::shippingOption::ID})) return nullptr;
@@ -39029,7 +40416,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::getInternalLink::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 0, {api::internalLinkTypeAttachmentMenuBot::ID, api::internalLinkTypeAuthenticationCode::ID, api::internalLinkTypeBackground::ID, api::internalLinkTypeBotAddToChannel::ID, api::internalLinkTypeBotInvite::ID, api::internalLinkTypeBotStart::ID, api::internalLinkTypeBotStartInGroup::ID, api::internalLinkTypeBusinessChat::ID, api::internalLinkTypeCallsPage::ID, api::internalLinkTypeChatAffiliateProgram::ID, api::internalLinkTypeChatBoost::ID, api::internalLinkTypeChatFolderInvite::ID, api::internalLinkTypeChatInvite::ID, api::internalLinkTypeChatSelection::ID, api::internalLinkTypeContactsPage::ID, api::internalLinkTypeDirectMessagesChat::ID, api::internalLinkTypeGame::ID, api::internalLinkTypeGiftAuction::ID, api::internalLinkTypeGiftCollection::ID, api::internalLinkTypeGroupCall::ID, api::internalLinkTypeInstantView::ID, api::internalLinkTypeInvoice::ID, api::internalLinkTypeLanguagePack::ID, api::internalLinkTypeLiveStory::ID, api::internalLinkTypeMainWebApp::ID, api::internalLinkTypeMessage::ID, api::internalLinkTypeMessageDraft::ID, api::internalLinkTypeMyProfilePage::ID, api::internalLinkTypeNewChannelChat::ID, api::internalLinkTypeNewGroupChat::ID, api::internalLinkTypeNewPrivateChat::ID, api::internalLinkTypeNewStory::ID, api::internalLinkTypeOauth::ID, api::internalLinkTypePassportDataRequest::ID, api::internalLinkTypePhoneNumberConfirmation::ID, api::internalLinkTypePremiumFeaturesPage::ID, api::internalLinkTypePremiumGiftCode::ID, api::internalLinkTypePremiumGiftPurchase::ID, api::internalLinkTypeProxy::ID, api::internalLinkTypePublicChat::ID, api::internalLinkTypeQrCodeAuthentication::ID, api::internalLinkTypeRequestManagedBot::ID, api::internalLinkTypeRestorePurchases::ID, api::internalLinkTypeSavedMessages::ID, api::internalLinkTypeSearch::ID, api::internalLinkTypeSettings::ID, api::internalLinkTypeStarPurchase::ID, api::internalLinkTypeStickerSet::ID, api::internalLinkTypeStory::ID, api::internalLinkTypeStoryAlbum::ID, api::internalLinkTypeTextCompositionStyle::ID, api::internalLinkTypeTheme::ID, api::internalLinkTypeTonConnect::ID, api::internalLinkTypeTonWalletTransfer::ID, api::internalLinkTypeUnknownDeepLink::ID, api::internalLinkTypeUpgradedGift::ID, api::internalLinkTypeUserPhoneNumber::ID, api::internalLinkTypeUserToken::ID, api::internalLinkTypeVideoChat::ID, api::internalLinkTypeWebApp::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::getInternalLink>();
       result->type_ = NativeArgumentAccess::object_at<api::InternalLinkType>(arguments, 0, valid);
@@ -39451,6 +40838,16 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::setChatTextCompositionParameters::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::textCompositionParameters::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::setChatTextCompositionParameters>();
+      result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->text_composition_parameters_ = NativeArgumentAccess::object_at<api::textCompositionParameters>(arguments, 1, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::setChatNotificationSettings::ID: {
       if (arguments.values_.size() != 2) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::chatNotificationSettings::ID}, false)) return nullptr;
@@ -39828,24 +41225,26 @@ api::object_ptr<api::Function> generated_make_schema_function(
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::postStory::ID: {
-      if (arguments.values_.size() != 10) return nullptr;
+      if (arguments.values_.size() != 11) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputStoryContentPhoto::ID, api::inputStoryContentVideo::ID}, false)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputStoryAreas::ID}, true)) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 3, {api::formattedText::ID}, true)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::storyPrivacySettingsEveryone::ID, api::storyPrivacySettingsContacts::ID, api::storyPrivacySettingsCloseFriends::ID, api::storyPrivacySettingsSelectedUsers::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 7, {api::storyFullId::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 4, {api::inputAudio::ID}, true)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 5, {api::storyPrivacySettingsEveryone::ID, api::storyPrivacySettingsContacts::ID, api::storyPrivacySettingsCloseFriends::ID, api::storyPrivacySettingsSelectedUsers::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 8, {api::storyFullId::ID}, true)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::postStory>();
       result->chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->content_ = NativeArgumentAccess::object_at<api::InputStoryContent>(arguments, 1, valid);
       result->areas_ = NativeArgumentAccess::object_at<api::inputStoryAreas>(arguments, 2, valid);
       result->caption_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 3, valid);
-      result->privacy_settings_ = NativeArgumentAccess::object_at<api::StoryPrivacySettings>(arguments, 4, valid);
-      result->album_ids_ = NativeArgumentAccess::int32_vector_at(arguments, 5);
-      result->active_period_ = NativeArgumentAccess::int32_at(arguments, 6);
-      result->from_story_full_id_ = NativeArgumentAccess::object_at<api::storyFullId>(arguments, 7, valid);
-      result->is_posted_to_chat_page_ = NativeArgumentAccess::bool_at(arguments, 8);
-      result->protect_content_ = NativeArgumentAccess::bool_at(arguments, 9);
+      result->music_ = NativeArgumentAccess::object_at<api::inputAudio>(arguments, 4, valid);
+      result->privacy_settings_ = NativeArgumentAccess::object_at<api::StoryPrivacySettings>(arguments, 5, valid);
+      result->album_ids_ = NativeArgumentAccess::int32_vector_at(arguments, 6);
+      result->active_period_ = NativeArgumentAccess::int32_at(arguments, 7);
+      result->from_story_full_id_ = NativeArgumentAccess::object_at<api::storyFullId>(arguments, 8, valid);
+      result->is_posted_to_chat_page_ = NativeArgumentAccess::bool_at(arguments, 9);
+      result->protect_content_ = NativeArgumentAccess::bool_at(arguments, 10);
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
@@ -39884,6 +41283,17 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->story_poster_chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->story_id_ = NativeArgumentAccess::int32_at(arguments, 1);
       result->cover_frame_timestamp_ = NativeArgumentAccess::double_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::editStoryMusic::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 2, {api::inputAudio::ID}, true)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::editStoryMusic>();
+      result->story_poster_chat_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->story_id_ = NativeArgumentAccess::int32_at(arguments, 1);
+      result->music_ = NativeArgumentAccess::object_at<api::inputAudio>(arguments, 2, valid);
+      if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::setStoryPrivacySettings::ID: {
@@ -42095,6 +43505,23 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::inviteUsersToBot::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::inviteUsersToBot>();
+      result->bot_user_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->user_ids_ = NativeArgumentAccess::int64_vector_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::setBotSettings::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 1, {api::botSettingIsInline::ID, api::botSettingInlineQueryPlaceholder::ID, api::botSettingNeedLocation::ID, api::botSettingInlineFeedback::ID, api::botSettingCanJoinGroups::ID, api::botSettingCanReadAllGroupMessages::ID, api::botSettingCanConnectToBusiness::ID, api::botSettingCanManageBots::ID, api::botSettingSupportsGuestQueries::ID, api::botSettingIsGuard::ID, api::botSettingHasTopics::ID, api::botSettingAllowsUsersToCreateTopics::ID, api::botSettingHasTopicSidebar::ID, api::botSettingCanCommunicateWithBots::ID, api::botSettingCallbackQueryMode::ID})) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::setBotSettings>();
+      result->bot_user_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      result->settings_ = NativeArgumentAccess::object_vector_at<api::BotSetting>(arguments, 1, valid);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::setBotName::ID: {
       if (arguments.values_.size() != 3) return nullptr;
       auto result = api::make_object<api::setBotName>();
@@ -42377,11 +43804,12 @@ api::object_ptr<api::Function> generated_make_schema_function(
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::toggleSupergroupIsForum::ID: {
-      if (arguments.values_.size() != 3) return nullptr;
+      if (arguments.values_.size() != 4) return nullptr;
       auto result = api::make_object<api::toggleSupergroupIsForum>();
       result->supergroup_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->is_forum_ = NativeArgumentAccess::bool_at(arguments, 1);
       result->has_forum_tabs_ = NativeArgumentAccess::bool_at(arguments, 2);
+      result->has_forum_sidebar_ = NativeArgumentAccess::bool_at(arguments, 3);
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::toggleSupergroupIsBroadcastGroup::ID: {
@@ -42712,6 +44140,59 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->accept_ = NativeArgumentAccess::bool_at(arguments, 1);
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::sendGiftOnChainPurchaseOffer::ID: {
+      if (arguments.values_.size() != 3) return nullptr;
+      auto result = api::make_object<api::sendGiftOnChainPurchaseOffer>();
+      result->gift_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      result->duration_ = NativeArgumentAccess::int32_at(arguments, 2);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::cancelGiftOnChainPurchaseOffer::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::cancelGiftOnChainPurchaseOffer>();
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::acceptGiftOnChainPurchaseOffer::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::acceptGiftOnChainPurchaseOffer>();
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::declineGiftOnChainPurchaseOffer::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::declineGiftOnChainPurchaseOffer>();
+      result->message_id_ = NativeArgumentAccess::int64_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getGiftOnChainPurchaseTransaction::ID: {
+      if (arguments.values_.size() != 5) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 3, {api::formattedText::ID}, false)) return nullptr;
+      bool valid = true;
+      auto result = api::make_object<api::getGiftOnChainPurchaseTransaction>();
+      result->gift_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->owner_id_ = NativeArgumentAccess::object_at<api::MessageSender>(arguments, 1, valid);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 2);
+      result->text_ = NativeArgumentAccess::object_at<api::formattedText>(arguments, 3, valid);
+      result->is_private_ = NativeArgumentAccess::bool_at(arguments, 4);
+      if (!valid) return nullptr;
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getGiftOnChainListingTransaction::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::getGiftOnChainListingTransaction>();
+      result->gift_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->gram_amount_ = NativeArgumentAccess::int64_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::getGiftOnChainDelistingTransaction::ID: {
+      if (arguments.values_.size() != 1) return nullptr;
+      auto result = api::make_object<api::getGiftOnChainDelistingTransaction>();
+      result->gift_name_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::getReceivedGifts::ID: {
       if (arguments.values_.size() != 14) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::messageSenderUser::ID, api::messageSenderChat::ID}, false)) return nullptr;
@@ -42760,15 +44241,15 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->name_ = NativeArgumentAccess::buffer_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
-    case api::getUpgradedGiftWithdrawalUrl::ID: {
+    case api::getGiftMintingUrl::ID: {
       if (arguments.values_.size() != 1) return nullptr;
-      auto result = api::make_object<api::getUpgradedGiftWithdrawalUrl>();
+      auto result = api::make_object<api::getGiftMintingUrl>();
       result->received_gift_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
       return api::object_ptr<api::Function>(std::move(result));
     }
-    case api::withdrawUpgradedGift::ID: {
+    case api::mintGift::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      auto result = api::make_object<api::withdrawUpgradedGift>();
+      auto result = api::make_object<api::mintGift>();
       result->received_gift_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
       result->keep_on_profile_ = NativeArgumentAccess::bool_at(arguments, 1);
       return api::object_ptr<api::Function>(std::move(result));
@@ -42810,18 +44291,20 @@ api::object_ptr<api::Function> generated_make_schema_function(
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::searchGiftsForResale::ID: {
-      if (arguments.values_.size() != 7) return nullptr;
+      if (arguments.values_.size() != 9) return nullptr;
       if (!NativeArgumentAccess::object_matches(arguments, 1, {api::giftForResaleOrderPrice::ID, api::giftForResaleOrderPriceChangeDate::ID, api::giftForResaleOrderNumber::ID}, false)) return nullptr;
-      if (!NativeArgumentAccess::object_vector_matches(arguments, 4, {api::upgradedGiftAttributeIdModel::ID, api::upgradedGiftAttributeIdSymbol::ID, api::upgradedGiftAttributeIdBackdrop::ID})) return nullptr;
+      if (!NativeArgumentAccess::object_vector_matches(arguments, 6, {api::upgradedGiftAttributeIdModel::ID, api::upgradedGiftAttributeIdSymbol::ID, api::upgradedGiftAttributeIdBackdrop::ID})) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::searchGiftsForResale>();
       result->gift_id_ = NativeArgumentAccess::int64_at(arguments, 0);
       result->order_ = NativeArgumentAccess::object_at<api::GiftForResaleOrder>(arguments, 1, valid);
       result->for_crafting_ = NativeArgumentAccess::bool_at(arguments, 2);
       result->for_stars_ = NativeArgumentAccess::bool_at(arguments, 3);
-      result->attributes_ = NativeArgumentAccess::object_vector_at<api::UpgradedGiftAttributeId>(arguments, 4, valid);
-      result->offset_ = NativeArgumentAccess::buffer_at(arguments, 5);
-      result->limit_ = NativeArgumentAccess::int32_at(arguments, 6);
+      result->for_grams_ = NativeArgumentAccess::bool_at(arguments, 4);
+      result->for_fragment_ = NativeArgumentAccess::bool_at(arguments, 5);
+      result->attributes_ = NativeArgumentAccess::object_vector_at<api::UpgradedGiftAttributeId>(arguments, 6, valid);
+      result->offset_ = NativeArgumentAccess::buffer_at(arguments, 7);
+      result->limit_ = NativeArgumentAccess::int32_at(arguments, 8);
       if (!valid) return nullptr;
       return api::object_ptr<api::Function>(std::move(result));
     }
@@ -42911,7 +44394,7 @@ api::object_ptr<api::Function> generated_make_schema_function(
     }
     case api::createInvoiceLink::ID: {
       if (arguments.values_.size() != 2) return nullptr;
-      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
+      if (!NativeArgumentAccess::object_matches(arguments, 1, {api::inputMessageText::ID, api::inputMessageRichMessage::ID, api::inputMessageAnimation::ID, api::inputMessageAudio::ID, api::inputMessageDocument::ID, api::inputMessagePaidMedia::ID, api::inputMessagePhoto::ID, api::inputMessageSticker::ID, api::inputMessageVideo::ID, api::inputMessageVideoNote::ID, api::inputMessageVoiceNote::ID, api::inputMessageLiveLocation::ID, api::inputMessageLocation::ID, api::inputMessageVenue::ID, api::inputMessageContact::ID, api::inputMessageDice::ID, api::inputMessageGame::ID, api::inputMessageInvoice::ID, api::inputMessagePoll::ID, api::inputMessageStakeDice::ID, api::inputMessageStory::ID, api::inputMessageChecklist::ID, api::inputMessageWidget::ID, api::inputMessageSharedWidget::ID, api::inputMessageForwarded::ID}, false)) return nullptr;
       bool valid = true;
       auto result = api::make_object<api::createInvoiceLink>();
       result->business_connection_id_ = NativeArgumentAccess::buffer_at(arguments, 0);
@@ -43394,6 +44877,13 @@ api::object_ptr<api::Function> generated_make_schema_function(
       result->gasless_transfer_data_ = NativeArgumentAccess::buffer_at(arguments, 7);
       return api::object_ptr<api::Function>(std::move(result));
     }
+    case api::sendTonWalletTransaction::ID: {
+      if (arguments.values_.size() != 2) return nullptr;
+      auto result = api::make_object<api::sendTonWalletTransaction>();
+      result->regular_transaction_data_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      result->gasless_transaction_data_ = NativeArgumentAccess::buffer_at(arguments, 1);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
     case api::deleteTonWallet::ID: {
       if (arguments.values_.size() != 1) return nullptr;
       auto result = api::make_object<api::deleteTonWallet>();
@@ -43622,6 +45112,11 @@ api::object_ptr<api::Function> generated_make_schema_function(
       if (arguments.values_.size() != 1) return nullptr;
       auto result = api::make_object<api::getGramWithdrawalUrl>();
       result->password_ = NativeArgumentAccess::buffer_at(arguments, 0);
+      return api::object_ptr<api::Function>(std::move(result));
+    }
+    case api::withdrawGrams::ID: {
+      if (arguments.values_.size() != 0) return nullptr;
+      auto result = api::make_object<api::withdrawGrams>();
       return api::object_ptr<api::Function>(std::move(result));
     }
     case api::getChatStatistics::ID: {

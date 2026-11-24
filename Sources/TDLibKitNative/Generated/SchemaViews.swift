@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: 4c6377aa7386c39217878a9a56d581922ad37ca4
+// TDLib commit: 1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d
 
 import Foundation
 import TDLibCxxBridge
@@ -837,6 +837,91 @@ public struct TDNativeTextEntities: TDNativeObjectView, TDNativeObjectBacked, @u
     }
 }
 
+public struct TDNativeTextRange: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1166339562
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(offset: Int, length: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(offset))
+        arguments.append_int32(nativeInt32(length))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTextRange")
+        }
+        self = value
+    }
+
+    public static func make(offset: Int, length: Int) -> Self? {
+        Self(offset: offset, length: length)
+    }
+
+    public var offset: Int { Int(native.value.int32_field(0)) }
+
+    public var length: Int { Int(native.value.int32_field(1)) }
+}
+
+public struct TDNativeTextRanges: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 986061048
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(ranges: [TDNativeTextRange]) {
+        var arguments = tdlibkit.NativeArguments()
+        var nativeValues0 = tdlibkit.NativeObjectArray()
+        for value in ranges { nativeValues0.append(value.native.value) }
+        arguments.append_object_vector(nativeValues0)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTextRanges")
+        }
+        self = value
+    }
+
+    public static func make(ranges: [TDNativeTextRange]) -> Self? {
+        Self(ranges: ranges)
+    }
+
+    public var ranges: [TDNativeTextRange] {
+        let count = native.value.vector_count(0)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(0, element)
+            )
+            return TDNativeTextRange(native: object)
+        }
+    }
+}
+
 public struct TDNativeFormattedText: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = -252624564
     let native: NativeOwnedObject
@@ -1435,6 +1520,51 @@ public struct TDNativeTextCompositionStyle: TDNativeObjectView, TDNativeObjectBa
         let object = NativeOwnedObject(value: native.value.object_field(8))
         return TDNativeTextCompositionStyleExample(native: object)
     }
+}
+
+public struct TDNativeTextCompositionParameters: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1605903485
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(translateToLanguageCode: String, styleName: String, addEmojis: Bool, fixText: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(translateToLanguageCode))
+        arguments.append_buffer(nativeBuffer(styleName))
+        arguments.append_bool(addEmojis)
+        arguments.append_bool(fixText)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTextCompositionParameters")
+        }
+        self = value
+    }
+
+    public static func make(translateToLanguageCode: String, styleName: String, addEmojis: Bool, fixText: Bool) -> Self? {
+        Self(translateToLanguageCode: translateToLanguageCode, styleName: styleName, addEmojis: addEmojis, fixText: fixText)
+    }
+
+    public var translateToLanguageCode: String { swiftString(native.value.buffer_field(0)) }
+
+    public var styleName: String { swiftString(native.value.buffer_field(1)) }
+
+    public var addEmojis: Bool { native.value.bool_field(2) }
+
+    public var fixText: Bool { native.value.bool_field(3) }
 }
 
 public struct TDNativeTermsOfService: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -6236,7 +6366,7 @@ public struct TDNativeUserTypeDeleted: TDNativeObjectView, TDNativeObjectBacked,
 }
 
 public struct TDNativeUserTypeBot: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 565626918
+    public static let typeID: Int32 = 1974057584
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -6252,13 +6382,14 @@ public struct TDNativeUserTypeBot: TDNativeObjectView, TDNativeObjectBacked, @un
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(canBeEdited: Bool, canJoinGroups: Bool, canReadAllGroupMessages: Bool, hasMainWebApp: Bool, hasTopics: Bool, allowsUsersToCreateTopics: Bool, canManageBots: Bool, isInline: Bool, inlineQueryPlaceholder: String, supportsGuestQueries: Bool, isGuard: Bool, needLocation: Bool, canConnectToBusiness: Bool, canBeAddedToAttachmentMenu: Bool, activeUserCount: Int) {
+    public init(canBeEdited: Bool, canJoinGroups: Bool, canReadAllGroupMessages: Bool, hasMainWebApp: Bool, hasTopics: Bool, hasTopicSidebar: Bool, allowsUsersToCreateTopics: Bool, canManageBots: Bool, isInline: Bool, inlineQueryPlaceholder: String, supportsGuestQueries: Bool, isGuard: Bool, needLocation: Bool, canConnectToBusiness: Bool, canBeAddedToAttachmentMenu: Bool, activeUserCount: Int) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_bool(canBeEdited)
         arguments.append_bool(canJoinGroups)
         arguments.append_bool(canReadAllGroupMessages)
         arguments.append_bool(hasMainWebApp)
         arguments.append_bool(hasTopics)
+        arguments.append_bool(hasTopicSidebar)
         arguments.append_bool(allowsUsersToCreateTopics)
         arguments.append_bool(canManageBots)
         arguments.append_bool(isInline)
@@ -6278,8 +6409,8 @@ public struct TDNativeUserTypeBot: TDNativeObjectView, TDNativeObjectBacked, @un
         self = value
     }
 
-    public static func make(canBeEdited: Bool, canJoinGroups: Bool, canReadAllGroupMessages: Bool, hasMainWebApp: Bool, hasTopics: Bool, allowsUsersToCreateTopics: Bool, canManageBots: Bool, isInline: Bool, inlineQueryPlaceholder: String, supportsGuestQueries: Bool, isGuard: Bool, needLocation: Bool, canConnectToBusiness: Bool, canBeAddedToAttachmentMenu: Bool, activeUserCount: Int) -> Self? {
-        Self(canBeEdited: canBeEdited, canJoinGroups: canJoinGroups, canReadAllGroupMessages: canReadAllGroupMessages, hasMainWebApp: hasMainWebApp, hasTopics: hasTopics, allowsUsersToCreateTopics: allowsUsersToCreateTopics, canManageBots: canManageBots, isInline: isInline, inlineQueryPlaceholder: inlineQueryPlaceholder, supportsGuestQueries: supportsGuestQueries, isGuard: isGuard, needLocation: needLocation, canConnectToBusiness: canConnectToBusiness, canBeAddedToAttachmentMenu: canBeAddedToAttachmentMenu, activeUserCount: activeUserCount)
+    public static func make(canBeEdited: Bool, canJoinGroups: Bool, canReadAllGroupMessages: Bool, hasMainWebApp: Bool, hasTopics: Bool, hasTopicSidebar: Bool, allowsUsersToCreateTopics: Bool, canManageBots: Bool, isInline: Bool, inlineQueryPlaceholder: String, supportsGuestQueries: Bool, isGuard: Bool, needLocation: Bool, canConnectToBusiness: Bool, canBeAddedToAttachmentMenu: Bool, activeUserCount: Int) -> Self? {
+        Self(canBeEdited: canBeEdited, canJoinGroups: canJoinGroups, canReadAllGroupMessages: canReadAllGroupMessages, hasMainWebApp: hasMainWebApp, hasTopics: hasTopics, hasTopicSidebar: hasTopicSidebar, allowsUsersToCreateTopics: allowsUsersToCreateTopics, canManageBots: canManageBots, isInline: isInline, inlineQueryPlaceholder: inlineQueryPlaceholder, supportsGuestQueries: supportsGuestQueries, isGuard: isGuard, needLocation: needLocation, canConnectToBusiness: canConnectToBusiness, canBeAddedToAttachmentMenu: canBeAddedToAttachmentMenu, activeUserCount: activeUserCount)
     }
 
     public var canBeEdited: Bool { native.value.bool_field(0) }
@@ -6292,25 +6423,27 @@ public struct TDNativeUserTypeBot: TDNativeObjectView, TDNativeObjectBacked, @un
 
     public var hasTopics: Bool { native.value.bool_field(4) }
 
-    public var allowsUsersToCreateTopics: Bool { native.value.bool_field(5) }
+    public var hasTopicSidebar: Bool { native.value.bool_field(5) }
 
-    public var canManageBots: Bool { native.value.bool_field(6) }
+    public var allowsUsersToCreateTopics: Bool { native.value.bool_field(6) }
 
-    public var isInline: Bool { native.value.bool_field(7) }
+    public var canManageBots: Bool { native.value.bool_field(7) }
 
-    public var inlineQueryPlaceholder: String { swiftString(native.value.buffer_field(8)) }
+    public var isInline: Bool { native.value.bool_field(8) }
 
-    public var supportsGuestQueries: Bool { native.value.bool_field(9) }
+    public var inlineQueryPlaceholder: String { swiftString(native.value.buffer_field(9)) }
 
-    public var isGuard: Bool { native.value.bool_field(10) }
+    public var supportsGuestQueries: Bool { native.value.bool_field(10) }
 
-    public var needLocation: Bool { native.value.bool_field(11) }
+    public var isGuard: Bool { native.value.bool_field(11) }
 
-    public var canConnectToBusiness: Bool { native.value.bool_field(12) }
+    public var needLocation: Bool { native.value.bool_field(12) }
 
-    public var canBeAddedToAttachmentMenu: Bool { native.value.bool_field(13) }
+    public var canConnectToBusiness: Bool { native.value.bool_field(13) }
 
-    public var activeUserCount: Int { Int(native.value.int32_field(14)) }
+    public var canBeAddedToAttachmentMenu: Bool { native.value.bool_field(14) }
+
+    public var activeUserCount: Int { Int(native.value.int32_field(15)) }
 }
 
 public struct TDNativeUserTypeUnknown: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -6517,6 +6650,651 @@ public struct TDNativeBotAccessSettings: TDNativeObjectView, TDNativeObjectBacke
     public var addedUserIds: [Int64] {
         let count = native.value.vector_count(1)
         return (0..<count).map { element in native.value.vector_int64_at(1, element) }
+    }
+}
+
+public struct TDNativeBotCallbackQueryModeDefault: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1156817645
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotCallbackQueryModeDefault")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeBotCallbackQueryModeAuto: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -191620773
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotCallbackQueryModeAuto")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeBotCallbackQueryModeInline: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 84536991
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotCallbackQueryModeInline")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeBotSettingIsInline: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1685864156
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(isInline: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(isInline)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingIsInline")
+        }
+        self = value
+    }
+
+    public static func make(isInline: Bool) -> Self? {
+        Self(isInline: isInline)
+    }
+
+    public var isInline: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingInlineQueryPlaceholder: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -807064985
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(placeholder: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(placeholder))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingInlineQueryPlaceholder")
+        }
+        self = value
+    }
+
+    public static func make(placeholder: String) -> Self? {
+        Self(placeholder: placeholder)
+    }
+
+    public var placeholder: String { swiftString(native.value.buffer_field(0)) }
+}
+
+public struct TDNativeBotSettingNeedLocation: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -490009386
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(needLocation: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(needLocation)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingNeedLocation")
+        }
+        self = value
+    }
+
+    public static func make(needLocation: Bool) -> Self? {
+        Self(needLocation: needLocation)
+    }
+
+    public var needLocation: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingInlineFeedback: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 899867608
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(shareDenominator: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(shareDenominator))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingInlineFeedback")
+        }
+        self = value
+    }
+
+    public static func make(shareDenominator: Int) -> Self? {
+        Self(shareDenominator: shareDenominator)
+    }
+
+    public var shareDenominator: Int { Int(native.value.int32_field(0)) }
+}
+
+public struct TDNativeBotSettingCanJoinGroups: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -202738964
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canJoinGroups: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canJoinGroups)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCanJoinGroups")
+        }
+        self = value
+    }
+
+    public static func make(canJoinGroups: Bool) -> Self? {
+        Self(canJoinGroups: canJoinGroups)
+    }
+
+    public var canJoinGroups: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingCanReadAllGroupMessages: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1190983296
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canReadAllGroupMessages: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canReadAllGroupMessages)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCanReadAllGroupMessages")
+        }
+        self = value
+    }
+
+    public static func make(canReadAllGroupMessages: Bool) -> Self? {
+        Self(canReadAllGroupMessages: canReadAllGroupMessages)
+    }
+
+    public var canReadAllGroupMessages: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingCanConnectToBusiness: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1941034623
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canConnectToBusiness: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canConnectToBusiness)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCanConnectToBusiness")
+        }
+        self = value
+    }
+
+    public static func make(canConnectToBusiness: Bool) -> Self? {
+        Self(canConnectToBusiness: canConnectToBusiness)
+    }
+
+    public var canConnectToBusiness: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingCanManageBots: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1712304750
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canManageBots: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canManageBots)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCanManageBots")
+        }
+        self = value
+    }
+
+    public static func make(canManageBots: Bool) -> Self? {
+        Self(canManageBots: canManageBots)
+    }
+
+    public var canManageBots: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingSupportsGuestQueries: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1089348077
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(supportsGuestQueries: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(supportsGuestQueries)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingSupportsGuestQueries")
+        }
+        self = value
+    }
+
+    public static func make(supportsGuestQueries: Bool) -> Self? {
+        Self(supportsGuestQueries: supportsGuestQueries)
+    }
+
+    public var supportsGuestQueries: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingIsGuard: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1984882704
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(isGuard: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(isGuard)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingIsGuard")
+        }
+        self = value
+    }
+
+    public static func make(isGuard: Bool) -> Self? {
+        Self(isGuard: isGuard)
+    }
+
+    public var isGuard: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingHasTopics: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1513019491
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(hasTopics: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(hasTopics)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingHasTopics")
+        }
+        self = value
+    }
+
+    public static func make(hasTopics: Bool) -> Self? {
+        Self(hasTopics: hasTopics)
+    }
+
+    public var hasTopics: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingAllowsUsersToCreateTopics: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1469505158
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(allowsUsersToCreateTopics: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(allowsUsersToCreateTopics)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingAllowsUsersToCreateTopics")
+        }
+        self = value
+    }
+
+    public static func make(allowsUsersToCreateTopics: Bool) -> Self? {
+        Self(allowsUsersToCreateTopics: allowsUsersToCreateTopics)
+    }
+
+    public var allowsUsersToCreateTopics: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingHasTopicSidebar: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -764573435
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(hasTopicSidebar: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(hasTopicSidebar)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingHasTopicSidebar")
+        }
+        self = value
+    }
+
+    public static func make(hasTopicSidebar: Bool) -> Self? {
+        Self(hasTopicSidebar: hasTopicSidebar)
+    }
+
+    public var hasTopicSidebar: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingCanCommunicateWithBots: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1575894452
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canCommunicateWithBots: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canCommunicateWithBots)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCanCommunicateWithBots")
+        }
+        self = value
+    }
+
+    public static func make(canCommunicateWithBots: Bool) -> Self? {
+        Self(canCommunicateWithBots: canCommunicateWithBots)
+    }
+
+    public var canCommunicateWithBots: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeBotSettingCallbackQueryMode: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 973422615
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(mode: TDNativeBotCallbackQueryMode) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(mode.native.value)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeBotSettingCallbackQueryMode")
+        }
+        self = value
+    }
+
+    public static func make(mode: TDNativeBotCallbackQueryMode) -> Self? {
+        Self(mode: mode)
+    }
+
+    public var mode: TDNativeBotCallbackQueryMode {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeBotCallbackQueryMode(native: object) else {
+            preconditionFailure("Required field mode is null")
+        }
+        return value
     }
 }
 
@@ -8991,6 +9769,249 @@ public struct TDNativeGiftPurchaseOfferStateRejected: TDNativeObjectView, TDNati
     }
 }
 
+public struct TDNativeGiftOnChainPurchaseOfferStatePending: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 340661306
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStatePending")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateSettled: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -865518859
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateSettled")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateAccepted: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -2066909889
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateAccepted")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateCanceling: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1346504338
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateCanceling")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateDeclined: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -936291812
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(refundAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(refundAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateDeclined")
+        }
+        self = value
+    }
+
+    public static func make(refundAmount: Int64) -> Self? {
+        Self(refundAmount: refundAmount)
+    }
+
+    public var refundAmount: Int64 { native.value.int64_field(0) }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateCanceled: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1504306576
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(refundAmount: Int64, fineAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(refundAmount)
+        arguments.append_int64(fineAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateCanceled")
+        }
+        self = value
+    }
+
+    public static func make(refundAmount: Int64, fineAmount: Int64) -> Self? {
+        Self(refundAmount: refundAmount, fineAmount: fineAmount)
+    }
+
+    public var refundAmount: Int64 { native.value.int64_field(0) }
+
+    public var fineAmount: Int64 { native.value.int64_field(1) }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferStateExpired: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1312364028
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(refundAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(refundAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferStateExpired")
+        }
+        self = value
+    }
+
+    public static func make(refundAmount: Int64) -> Self? {
+        Self(refundAmount: refundAmount)
+    }
+
+    public var refundAmount: Int64 { native.value.int64_field(0) }
+}
+
 public struct TDNativeSuggestedPostPriceStar: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 216488903
     let native: NativeOwnedObject
@@ -11058,7 +12079,7 @@ public struct TDNativeGiftPurchaseLimits: TDNativeObjectView, TDNativeObjectBack
 }
 
 public struct TDNativeGiftResaleParameters: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1593292808
+    public static let typeID: Int32 = -915633831
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -11074,11 +12095,14 @@ public struct TDNativeGiftResaleParameters: TDNativeObjectView, TDNativeObjectBa
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(starCount: Int64, gramCentCount: Int64, gramOnly: Bool) {
+    public init(starCount: Int64, gramCentCount: Int64, gramAmount: Int64, gramOnly: Bool, isFixedOnChain: Bool, canBeManaged: Bool) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(starCount)
         arguments.append_int64(gramCentCount)
+        arguments.append_int64(gramAmount)
         arguments.append_bool(gramOnly)
+        arguments.append_bool(isFixedOnChain)
+        arguments.append_bool(canBeManaged)
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -11088,15 +12112,21 @@ public struct TDNativeGiftResaleParameters: TDNativeObjectView, TDNativeObjectBa
         self = value
     }
 
-    public static func make(starCount: Int64, gramCentCount: Int64, gramOnly: Bool) -> Self? {
-        Self(starCount: starCount, gramCentCount: gramCentCount, gramOnly: gramOnly)
+    public static func make(starCount: Int64, gramCentCount: Int64, gramAmount: Int64, gramOnly: Bool, isFixedOnChain: Bool, canBeManaged: Bool) -> Self? {
+        Self(starCount: starCount, gramCentCount: gramCentCount, gramAmount: gramAmount, gramOnly: gramOnly, isFixedOnChain: isFixedOnChain, canBeManaged: canBeManaged)
     }
 
     public var starCount: Int64 { native.value.int64_field(0) }
 
     public var gramCentCount: Int64 { native.value.int64_field(1) }
 
-    public var gramOnly: Bool { native.value.bool_field(2) }
+    public var gramAmount: Int64 { native.value.int64_field(2) }
+
+    public var gramOnly: Bool { native.value.bool_field(3) }
+
+    public var isFixedOnChain: Bool { native.value.bool_field(4) }
+
+    public var canBeManaged: Bool { native.value.bool_field(5) }
 }
 
 public struct TDNativeGiftCollection: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -11518,6 +12548,78 @@ public struct TDNativeUpgradedGiftOriginCraft: TDNativeObjectView, TDNativeObjec
     public static func make() -> Self? {
         Self()
     }
+}
+
+public struct TDNativeUpgradedGiftOriginOnChainResale: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1791951229
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(gramAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(gramAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpgradedGiftOriginOnChainResale")
+        }
+        self = value
+    }
+
+    public static func make(gramAmount: Int64) -> Self? {
+        Self(gramAmount: gramAmount)
+    }
+
+    public var gramAmount: Int64 { native.value.int64_field(0) }
+}
+
+public struct TDNativeUpgradedGiftOriginOnChainOffer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1462945660
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(gramAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(gramAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpgradedGiftOriginOnChainOffer")
+        }
+        self = value
+    }
+
+    public static func make(gramAmount: Int64) -> Self? {
+        Self(gramAmount: gramAmount)
+    }
+
+    public var gramAmount: Int64 { native.value.int64_field(0) }
 }
 
 public struct TDNativeUpgradedGiftAttributeRarityPerMille: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -12130,7 +13232,7 @@ public struct TDNativeGift: TDNativeObjectView, TDNativeObjectBacked, @unchecked
 }
 
 public struct TDNativeUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 477673897
+    public static let typeID: Int32 = -1539426161
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -12146,7 +13248,7 @@ public struct TDNativeUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @u
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: Int64, regularGiftId: Int64, publisherChatId: Int64, title: String, name: String, number: Int, totalUpgradedCount: Int, maxUpgradedCount: Int, isBurned: Bool, isCrafted: Bool, isPremium: Bool, isThemeAvailable: Bool, usedThemeChatId: Int64, hostId: TDNativeMessageSender?, ownerId: TDNativeMessageSender?, ownerAddress: String, ownerName: String, giftAddress: String, canBeTonWalletCardBackground: Bool, model: TDNativeUpgradedGiftModel, symbol: TDNativeUpgradedGiftSymbol, backdrop: TDNativeUpgradedGiftBackdrop, originalDetails: TDNativeUpgradedGiftOriginalDetails?, colors: TDNativeUpgradedGiftColors?, resaleParameters: TDNativeGiftResaleParameters?, canSendPurchaseOffer: Bool, craftProbabilityPerMille: Int, valueCurrency: String, valueAmount: Int64, valueUsdAmount: Int64) {
+    public init(id: Int64, regularGiftId: Int64, publisherChatId: Int64, title: String, name: String, number: Int, totalUpgradedCount: Int, maxUpgradedCount: Int, isBurned: Bool, isCrafted: Bool, isPremium: Bool, isThemeAvailable: Bool, usedThemeChatId: Int64, hostId: TDNativeMessageSender?, ownerId: TDNativeMessageSender?, ownerAddress: String, ownerName: String, giftAddress: String, canBeTonWalletCardBackground: Bool, model: TDNativeUpgradedGiftModel, symbol: TDNativeUpgradedGiftSymbol, backdrop: TDNativeUpgradedGiftBackdrop, originalDetails: TDNativeUpgradedGiftOriginalDetails?, colors: TDNativeUpgradedGiftColors?, usesOnChainResale: Bool, resaleParameters: TDNativeGiftResaleParameters?, feeBasisPoints: Int, canSendPurchaseOffer: Bool, minOnChainPurchaseOfferGramAmount: Int64, craftProbabilityPerMille: Int, valueCurrency: String, valueAmount: Int64, valueUsdAmount: Int64) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(id)
         arguments.append_int64(regularGiftId)
@@ -12172,8 +13274,11 @@ public struct TDNativeUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @u
         arguments.append_object(backdrop.native.value)
         arguments.append_object(originalDetails?.native.value ?? tdlibkit.NativeObject())
         arguments.append_object(colors?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_bool(usesOnChainResale)
         arguments.append_object(resaleParameters?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int32(nativeInt32(feeBasisPoints))
         arguments.append_bool(canSendPurchaseOffer)
+        arguments.append_int64(minOnChainPurchaseOfferGramAmount)
         arguments.append_int32(nativeInt32(craftProbabilityPerMille))
         arguments.append_buffer(nativeBuffer(valueCurrency))
         arguments.append_int64(valueAmount)
@@ -12187,8 +13292,8 @@ public struct TDNativeUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @u
         self = value
     }
 
-    public static func make(id: Int64, regularGiftId: Int64, publisherChatId: Int64, title: String, name: String, number: Int, totalUpgradedCount: Int, maxUpgradedCount: Int, isBurned: Bool, isCrafted: Bool, isPremium: Bool, isThemeAvailable: Bool, usedThemeChatId: Int64, hostId: TDNativeMessageSender?, ownerId: TDNativeMessageSender?, ownerAddress: String, ownerName: String, giftAddress: String, canBeTonWalletCardBackground: Bool, model: TDNativeUpgradedGiftModel, symbol: TDNativeUpgradedGiftSymbol, backdrop: TDNativeUpgradedGiftBackdrop, originalDetails: TDNativeUpgradedGiftOriginalDetails?, colors: TDNativeUpgradedGiftColors?, resaleParameters: TDNativeGiftResaleParameters?, canSendPurchaseOffer: Bool, craftProbabilityPerMille: Int, valueCurrency: String, valueAmount: Int64, valueUsdAmount: Int64) -> Self? {
-        Self(id: id, regularGiftId: regularGiftId, publisherChatId: publisherChatId, title: title, name: name, number: number, totalUpgradedCount: totalUpgradedCount, maxUpgradedCount: maxUpgradedCount, isBurned: isBurned, isCrafted: isCrafted, isPremium: isPremium, isThemeAvailable: isThemeAvailable, usedThemeChatId: usedThemeChatId, hostId: hostId, ownerId: ownerId, ownerAddress: ownerAddress, ownerName: ownerName, giftAddress: giftAddress, canBeTonWalletCardBackground: canBeTonWalletCardBackground, model: model, symbol: symbol, backdrop: backdrop, originalDetails: originalDetails, colors: colors, resaleParameters: resaleParameters, canSendPurchaseOffer: canSendPurchaseOffer, craftProbabilityPerMille: craftProbabilityPerMille, valueCurrency: valueCurrency, valueAmount: valueAmount, valueUsdAmount: valueUsdAmount)
+    public static func make(id: Int64, regularGiftId: Int64, publisherChatId: Int64, title: String, name: String, number: Int, totalUpgradedCount: Int, maxUpgradedCount: Int, isBurned: Bool, isCrafted: Bool, isPremium: Bool, isThemeAvailable: Bool, usedThemeChatId: Int64, hostId: TDNativeMessageSender?, ownerId: TDNativeMessageSender?, ownerAddress: String, ownerName: String, giftAddress: String, canBeTonWalletCardBackground: Bool, model: TDNativeUpgradedGiftModel, symbol: TDNativeUpgradedGiftSymbol, backdrop: TDNativeUpgradedGiftBackdrop, originalDetails: TDNativeUpgradedGiftOriginalDetails?, colors: TDNativeUpgradedGiftColors?, usesOnChainResale: Bool, resaleParameters: TDNativeGiftResaleParameters?, feeBasisPoints: Int, canSendPurchaseOffer: Bool, minOnChainPurchaseOfferGramAmount: Int64, craftProbabilityPerMille: Int, valueCurrency: String, valueAmount: Int64, valueUsdAmount: Int64) -> Self? {
+        Self(id: id, regularGiftId: regularGiftId, publisherChatId: publisherChatId, title: title, name: name, number: number, totalUpgradedCount: totalUpgradedCount, maxUpgradedCount: maxUpgradedCount, isBurned: isBurned, isCrafted: isCrafted, isPremium: isPremium, isThemeAvailable: isThemeAvailable, usedThemeChatId: usedThemeChatId, hostId: hostId, ownerId: ownerId, ownerAddress: ownerAddress, ownerName: ownerName, giftAddress: giftAddress, canBeTonWalletCardBackground: canBeTonWalletCardBackground, model: model, symbol: symbol, backdrop: backdrop, originalDetails: originalDetails, colors: colors, usesOnChainResale: usesOnChainResale, resaleParameters: resaleParameters, feeBasisPoints: feeBasisPoints, canSendPurchaseOffer: canSendPurchaseOffer, minOnChainPurchaseOfferGramAmount: minOnChainPurchaseOfferGramAmount, craftProbabilityPerMille: craftProbabilityPerMille, valueCurrency: valueCurrency, valueAmount: valueAmount, valueUsdAmount: valueUsdAmount)
     }
 
     public var id: Int64 { native.value.int64_field(0) }
@@ -12269,24 +13374,30 @@ public struct TDNativeUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @u
         return TDNativeUpgradedGiftColors(native: object)
     }
 
+    public var usesOnChainResale: Bool { native.value.bool_field(24) }
+
     public var resaleParameters: TDNativeGiftResaleParameters? {
-        let object = NativeOwnedObject(value: native.value.object_field(24))
+        let object = NativeOwnedObject(value: native.value.object_field(25))
         return TDNativeGiftResaleParameters(native: object)
     }
 
-    public var canSendPurchaseOffer: Bool { native.value.bool_field(25) }
+    public var feeBasisPoints: Int { Int(native.value.int32_field(26)) }
 
-    public var craftProbabilityPerMille: Int { Int(native.value.int32_field(26)) }
+    public var canSendPurchaseOffer: Bool { native.value.bool_field(27) }
 
-    public var valueCurrency: String { swiftString(native.value.buffer_field(27)) }
+    public var minOnChainPurchaseOfferGramAmount: Int64 { native.value.int64_field(28) }
 
-    public var valueAmount: Int64 { native.value.int64_field(28) }
+    public var craftProbabilityPerMille: Int { Int(native.value.int32_field(29)) }
 
-    public var valueUsdAmount: Int64 { native.value.int64_field(29) }
+    public var valueCurrency: String { swiftString(native.value.buffer_field(30)) }
+
+    public var valueAmount: Int64 { native.value.int64_field(31) }
+
+    public var valueUsdAmount: Int64 { native.value.int64_field(32) }
 }
 
 public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1729877677
+    public static let typeID: Int32 = -1360089164
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -12302,7 +13413,7 @@ public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectB
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(currency: String, value: Int64, isValueAverage: Bool, initialSaleDate: Int, initialSaleStarCount: Int64, initialSalePrice: Int64, lastSaleDate: Int, lastSalePrice: Int64, isLastSaleOnFragment: Bool, minimumPrice: Int64, averageSalePrice: Int64, telegramListedGiftCount: Int, fragmentListedGiftCount: Int, fragmentUrl: String) {
+    public init(currency: String, value: Int64, isValueAverage: Bool, initialSaleDate: Int, initialSaleStarCount: Int64, initialSalePrice: Int64, lastSaleDate: Int, lastSalePrice: Int64, isLastSaleOnFragment: Bool, minPrice: Int64, averageSalePrice: Int64, telegramListedGiftCount: Int, fragmentListedGiftCount: Int, fragmentUrl: String) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_buffer(nativeBuffer(currency))
         arguments.append_int64(value)
@@ -12313,7 +13424,7 @@ public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectB
         arguments.append_int32(nativeInt32(lastSaleDate))
         arguments.append_int64(lastSalePrice)
         arguments.append_bool(isLastSaleOnFragment)
-        arguments.append_int64(minimumPrice)
+        arguments.append_int64(minPrice)
         arguments.append_int64(averageSalePrice)
         arguments.append_int32(nativeInt32(telegramListedGiftCount))
         arguments.append_int32(nativeInt32(fragmentListedGiftCount))
@@ -12327,8 +13438,8 @@ public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectB
         self = value
     }
 
-    public static func make(currency: String, value: Int64, isValueAverage: Bool, initialSaleDate: Int, initialSaleStarCount: Int64, initialSalePrice: Int64, lastSaleDate: Int, lastSalePrice: Int64, isLastSaleOnFragment: Bool, minimumPrice: Int64, averageSalePrice: Int64, telegramListedGiftCount: Int, fragmentListedGiftCount: Int, fragmentUrl: String) -> Self? {
-        Self(currency: currency, value: value, isValueAverage: isValueAverage, initialSaleDate: initialSaleDate, initialSaleStarCount: initialSaleStarCount, initialSalePrice: initialSalePrice, lastSaleDate: lastSaleDate, lastSalePrice: lastSalePrice, isLastSaleOnFragment: isLastSaleOnFragment, minimumPrice: minimumPrice, averageSalePrice: averageSalePrice, telegramListedGiftCount: telegramListedGiftCount, fragmentListedGiftCount: fragmentListedGiftCount, fragmentUrl: fragmentUrl)
+    public static func make(currency: String, value: Int64, isValueAverage: Bool, initialSaleDate: Int, initialSaleStarCount: Int64, initialSalePrice: Int64, lastSaleDate: Int, lastSalePrice: Int64, isLastSaleOnFragment: Bool, minPrice: Int64, averageSalePrice: Int64, telegramListedGiftCount: Int, fragmentListedGiftCount: Int, fragmentUrl: String) -> Self? {
+        Self(currency: currency, value: value, isValueAverage: isValueAverage, initialSaleDate: initialSaleDate, initialSaleStarCount: initialSaleStarCount, initialSalePrice: initialSalePrice, lastSaleDate: lastSaleDate, lastSalePrice: lastSalePrice, isLastSaleOnFragment: isLastSaleOnFragment, minPrice: minPrice, averageSalePrice: averageSalePrice, telegramListedGiftCount: telegramListedGiftCount, fragmentListedGiftCount: fragmentListedGiftCount, fragmentUrl: fragmentUrl)
     }
 
     public var currency: String { swiftString(native.value.buffer_field(0)) }
@@ -12349,7 +13460,7 @@ public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectB
 
     public var isLastSaleOnFragment: Bool { native.value.bool_field(8) }
 
-    public var minimumPrice: Int64 { native.value.int64_field(9) }
+    public var minPrice: Int64 { native.value.int64_field(9) }
 
     public var averageSalePrice: Int64 { native.value.int64_field(10) }
 
@@ -12361,7 +13472,7 @@ public struct TDNativeUpgradedGiftValueInfo: TDNativeObjectView, TDNativeObjectB
 }
 
 public struct TDNativeUpgradedGiftDepositInfo: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1648818475
+    public static let typeID: Int32 = -1303529334
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -12402,8 +13513,8 @@ public struct TDNativeUpgradedGiftDepositInfo: TDNativeObjectView, TDNativeObjec
     public var gramAmount: Int64 { native.value.int64_field(2) }
 }
 
-public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 965145418
+public struct TDNativeTonSmartContractInitialState: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -33140544
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -12419,7 +13530,270 @@ public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacke
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(gift: TDNativeUpgradedGift, receivedGiftId: String, isSaved: Bool, canBeTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int) {
+    public init(code: Data, data: Data) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(code))
+        arguments.append_buffer(nativeBuffer(data))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonSmartContractInitialState")
+        }
+        self = value
+    }
+
+    public static func make(code: Data, data: Data) -> Self? {
+        Self(code: code, data: data)
+    }
+
+    public var code: Data { swiftData(native.value.buffer_field(0)) }
+
+    public var data: Data { swiftData(native.value.buffer_field(1)) }
+}
+
+public struct TDNativeTonWalletMessage: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 801658076
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(destinationAddress: String, gramAmount: Int64, sendMode: Int, body: Data, initialState: TDNativeTonSmartContractInitialState?) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(destinationAddress))
+        arguments.append_int64(gramAmount)
+        arguments.append_int32(nativeInt32(sendMode))
+        arguments.append_buffer(nativeBuffer(body))
+        arguments.append_object(initialState?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletMessage")
+        }
+        self = value
+    }
+
+    public static func make(destinationAddress: String, gramAmount: Int64, sendMode: Int, body: Data, initialState: TDNativeTonSmartContractInitialState?) -> Self? {
+        Self(destinationAddress: destinationAddress, gramAmount: gramAmount, sendMode: sendMode, body: body, initialState: initialState)
+    }
+
+    public var destinationAddress: String { swiftString(native.value.buffer_field(0)) }
+
+    public var gramAmount: Int64 { native.value.int64_field(1) }
+
+    public var sendMode: Int { Int(native.value.int32_field(2)) }
+
+    public var body: Data { swiftData(native.value.buffer_field(3)) }
+
+    public var initialState: TDNativeTonSmartContractInitialState? {
+        let object = NativeOwnedObject(value: native.value.object_field(4))
+        return TDNativeTonSmartContractInitialState(native: object)
+    }
+}
+
+public struct TDNativeGiftOnChainPurchaseOfferTransaction: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 704800218
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(offerAddress: String, expirationDate: Int, message: TDNativeTonWalletMessage, gaslessMessage: TDNativeTonWalletMessage?, rentBudgetAmount: Int64, executionAllowanceAmount: Int64, forwardAmount: Int64, fineAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_int32(nativeInt32(expirationDate))
+        arguments.append_object(message.native.value)
+        arguments.append_object(gaslessMessage?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int64(rentBudgetAmount)
+        arguments.append_int64(executionAllowanceAmount)
+        arguments.append_int64(forwardAmount)
+        arguments.append_int64(fineAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainPurchaseOfferTransaction")
+        }
+        self = value
+    }
+
+    public static func make(offerAddress: String, expirationDate: Int, message: TDNativeTonWalletMessage, gaslessMessage: TDNativeTonWalletMessage?, rentBudgetAmount: Int64, executionAllowanceAmount: Int64, forwardAmount: Int64, fineAmount: Int64) -> Self? {
+        Self(offerAddress: offerAddress, expirationDate: expirationDate, message: message, gaslessMessage: gaslessMessage, rentBudgetAmount: rentBudgetAmount, executionAllowanceAmount: executionAllowanceAmount, forwardAmount: forwardAmount, fineAmount: fineAmount)
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(0)) }
+
+    public var expirationDate: Int { Int(native.value.int32_field(1)) }
+
+    public var message: TDNativeTonWalletMessage {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        guard let value = TDNativeTonWalletMessage(native: object) else {
+            preconditionFailure("Required field message is null")
+        }
+        return value
+    }
+
+    public var gaslessMessage: TDNativeTonWalletMessage? {
+        let object = NativeOwnedObject(value: native.value.object_field(3))
+        return TDNativeTonWalletMessage(native: object)
+    }
+
+    public var rentBudgetAmount: Int64 { native.value.int64_field(4) }
+
+    public var executionAllowanceAmount: Int64 { native.value.int64_field(5) }
+
+    public var forwardAmount: Int64 { native.value.int64_field(6) }
+
+    public var fineAmount: Int64 { native.value.int64_field(7) }
+}
+
+public struct TDNativeGiftOnChainSaleTransactionFragment: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -203291568
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nftAddress: String, payload: Data, gramAmount: Int64, isGaslessTransferAvailable: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(nftAddress))
+        arguments.append_buffer(nativeBuffer(payload))
+        arguments.append_int64(gramAmount)
+        arguments.append_bool(isGaslessTransferAvailable)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainSaleTransactionFragment")
+        }
+        self = value
+    }
+
+    public static func make(nftAddress: String, payload: Data, gramAmount: Int64, isGaslessTransferAvailable: Bool) -> Self? {
+        Self(nftAddress: nftAddress, payload: payload, gramAmount: gramAmount, isGaslessTransferAvailable: isGaslessTransferAvailable)
+    }
+
+    public var nftAddress: String { swiftString(native.value.buffer_field(0)) }
+
+    public var payload: Data { swiftData(native.value.buffer_field(1)) }
+
+    public var gramAmount: Int64 { native.value.int64_field(2) }
+
+    public var isGaslessTransferAvailable: Bool { native.value.bool_field(3) }
+}
+
+public struct TDNativeGiftOnChainSaleTransactionFixedPrice: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 392872657
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(saleAddress: String, messages: [TDNativeTonWalletMessage], gaslessMessages: [TDNativeTonWalletMessage]) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(saleAddress))
+        var nativeValues1 = tdlibkit.NativeObjectArray()
+        for value in messages { nativeValues1.append(value.native.value) }
+        arguments.append_object_vector(nativeValues1)
+        var nativeValues2 = tdlibkit.NativeObjectArray()
+        for value in gaslessMessages { nativeValues2.append(value.native.value) }
+        arguments.append_object_vector(nativeValues2)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeGiftOnChainSaleTransactionFixedPrice")
+        }
+        self = value
+    }
+
+    public static func make(saleAddress: String, messages: [TDNativeTonWalletMessage], gaslessMessages: [TDNativeTonWalletMessage]) -> Self? {
+        Self(saleAddress: saleAddress, messages: messages, gaslessMessages: gaslessMessages)
+    }
+
+    public var saleAddress: String { swiftString(native.value.buffer_field(0)) }
+
+    public var messages: [TDNativeTonWalletMessage] {
+        let count = native.value.vector_count(1)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(1, element)
+            )
+            return TDNativeTonWalletMessage(native: object)
+        }
+    }
+
+    public var gaslessMessages: [TDNativeTonWalletMessage] {
+        let count = native.value.vector_count(2)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(2, element)
+            )
+            return TDNativeTonWalletMessage(native: object)
+        }
+    }
+}
+
+public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -173300699
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(gift: TDNativeUpgradedGift, receivedGiftId: String, isSaved: Bool, canBeTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_object(gift.native.value)
         arguments.append_buffer(nativeBuffer(receivedGiftId))
@@ -12429,7 +13803,7 @@ public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacke
         arguments.append_int64(dropOriginalDetailsStarCount)
         arguments.append_int32(nativeInt32(nextTransferDate))
         arguments.append_int32(nativeInt32(nextResaleDate))
-        arguments.append_int32(nativeInt32(exportDate))
+        arguments.append_int32(nativeInt32(mintDate))
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -12439,8 +13813,8 @@ public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacke
         self = value
     }
 
-    public static func make(gift: TDNativeUpgradedGift, receivedGiftId: String, isSaved: Bool, canBeTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int) -> Self? {
-        Self(gift: gift, receivedGiftId: receivedGiftId, isSaved: isSaved, canBeTransferred: canBeTransferred, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, exportDate: exportDate)
+    public static func make(gift: TDNativeUpgradedGift, receivedGiftId: String, isSaved: Bool, canBeTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int) -> Self? {
+        Self(gift: gift, receivedGiftId: receivedGiftId, isSaved: isSaved, canBeTransferred: canBeTransferred, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, mintDate: mintDate)
     }
 
     public var gift: TDNativeUpgradedGift {
@@ -12465,7 +13839,7 @@ public struct TDNativeUpgradeGiftResult: TDNativeObjectView, TDNativeObjectBacke
 
     public var nextResaleDate: Int { Int(native.value.int32_field(7)) }
 
-    public var exportDate: Int { Int(native.value.int32_field(8)) }
+    public var mintDate: Int { Int(native.value.int32_field(8)) }
 }
 
 public struct TDNativeCraftGiftResultSuccess: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -13392,7 +14766,7 @@ public struct TDNativeSentGiftUpgraded: TDNativeObjectView, TDNativeObjectBacked
 }
 
 public struct TDNativeReceivedGift: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1335050615
+    public static let typeID: Int32 = -1837475239
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -13408,7 +14782,7 @@ public struct TDNativeReceivedGift: TDNativeObjectView, TDNativeObjectBacked, @u
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(receivedGiftId: String, senderId: TDNativeMessageSender?, text: TDNativeFormattedText, uniqueGiftNumber: Int, isPrivate: Bool, isSaved: Bool, isPinned: Bool, canBeUpgraded: Bool, canBeTransferred: Bool, canBeDeleted: Bool, wasRefunded: Bool, date: Int, gift: TDNativeSentGift, collectionIds: [Int], sellStarCount: Int64, prepaidUpgradeStarCount: Int64, isUpgradeSeparate: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int, prepaidUpgradeHash: String, craftDate: Int) {
+    public init(receivedGiftId: String, senderId: TDNativeMessageSender?, text: TDNativeFormattedText, uniqueGiftNumber: Int, isPrivate: Bool, isSaved: Bool, isPinned: Bool, canBeUpgraded: Bool, canBeTransferred: Bool, canBeDeleted: Bool, wasRefunded: Bool, date: Int, gift: TDNativeSentGift, collectionIds: [Int], sellStarCount: Int64, prepaidUpgradeStarCount: Int64, isUpgradeSeparate: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int, prepaidUpgradeHash: String, craftDate: Int) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_buffer(nativeBuffer(receivedGiftId))
         arguments.append_object(senderId?.native.value ?? tdlibkit.NativeObject())
@@ -13434,7 +14808,7 @@ public struct TDNativeReceivedGift: TDNativeObjectView, TDNativeObjectBacked, @u
         arguments.append_int64(dropOriginalDetailsStarCount)
         arguments.append_int32(nativeInt32(nextTransferDate))
         arguments.append_int32(nativeInt32(nextResaleDate))
-        arguments.append_int32(nativeInt32(exportDate))
+        arguments.append_int32(nativeInt32(mintDate))
         arguments.append_buffer(nativeBuffer(prepaidUpgradeHash))
         arguments.append_int32(nativeInt32(craftDate))
         let object = NativeOwnedObject(
@@ -13446,8 +14820,8 @@ public struct TDNativeReceivedGift: TDNativeObjectView, TDNativeObjectBacked, @u
         self = value
     }
 
-    public static func make(receivedGiftId: String, senderId: TDNativeMessageSender?, text: TDNativeFormattedText, uniqueGiftNumber: Int, isPrivate: Bool, isSaved: Bool, isPinned: Bool, canBeUpgraded: Bool, canBeTransferred: Bool, canBeDeleted: Bool, wasRefunded: Bool, date: Int, gift: TDNativeSentGift, collectionIds: [Int], sellStarCount: Int64, prepaidUpgradeStarCount: Int64, isUpgradeSeparate: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int, prepaidUpgradeHash: String, craftDate: Int) -> Self? {
-        Self(receivedGiftId: receivedGiftId, senderId: senderId, text: text, uniqueGiftNumber: uniqueGiftNumber, isPrivate: isPrivate, isSaved: isSaved, isPinned: isPinned, canBeUpgraded: canBeUpgraded, canBeTransferred: canBeTransferred, canBeDeleted: canBeDeleted, wasRefunded: wasRefunded, date: date, gift: gift, collectionIds: collectionIds, sellStarCount: sellStarCount, prepaidUpgradeStarCount: prepaidUpgradeStarCount, isUpgradeSeparate: isUpgradeSeparate, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, exportDate: exportDate, prepaidUpgradeHash: prepaidUpgradeHash, craftDate: craftDate)
+    public static func make(receivedGiftId: String, senderId: TDNativeMessageSender?, text: TDNativeFormattedText, uniqueGiftNumber: Int, isPrivate: Bool, isSaved: Bool, isPinned: Bool, canBeUpgraded: Bool, canBeTransferred: Bool, canBeDeleted: Bool, wasRefunded: Bool, date: Int, gift: TDNativeSentGift, collectionIds: [Int], sellStarCount: Int64, prepaidUpgradeStarCount: Int64, isUpgradeSeparate: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int, prepaidUpgradeHash: String, craftDate: Int) -> Self? {
+        Self(receivedGiftId: receivedGiftId, senderId: senderId, text: text, uniqueGiftNumber: uniqueGiftNumber, isPrivate: isPrivate, isSaved: isSaved, isPinned: isPinned, canBeUpgraded: canBeUpgraded, canBeTransferred: canBeTransferred, canBeDeleted: canBeDeleted, wasRefunded: wasRefunded, date: date, gift: gift, collectionIds: collectionIds, sellStarCount: sellStarCount, prepaidUpgradeStarCount: prepaidUpgradeStarCount, isUpgradeSeparate: isUpgradeSeparate, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, mintDate: mintDate, prepaidUpgradeHash: prepaidUpgradeHash, craftDate: craftDate)
     }
 
     public var receivedGiftId: String { swiftString(native.value.buffer_field(0)) }
@@ -13510,7 +14884,7 @@ public struct TDNativeReceivedGift: TDNativeObjectView, TDNativeObjectBacked, @u
 
     public var nextResaleDate: Int { Int(native.value.int32_field(20)) }
 
-    public var exportDate: Int { Int(native.value.int32_field(21)) }
+    public var mintDate: Int { Int(native.value.int32_field(21)) }
 
     public var prepaidUpgradeHash: String { swiftString(native.value.buffer_field(22)) }
 
@@ -17850,7 +19224,7 @@ public struct TDNativeOnRampPaymentSession: TDNativeObjectView, TDNativeObjectBa
 }
 
 public struct TDNativeTonWalletState: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -655546174
+    public static let typeID: Int32 = -302902556
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -18140,7 +19514,7 @@ public struct TDNativeTonWalletCardSticker: TDNativeObjectView, TDNativeObjectBa
 }
 
 public struct TDNativeTonWalletCard: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 239770335
+    public static let typeID: Int32 = 1337170800
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -18350,7 +19724,7 @@ public struct TDNativeTonWalletTransactionStateFailed: TDNativeObjectView, TDNat
 }
 
 public struct TDNativeTonWalletTransactionTypeOnRampDeposit: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1570430820
+    public static let typeID: Int32 = -282211019
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -18389,7 +19763,7 @@ public struct TDNativeTonWalletTransactionTypeOnRampDeposit: TDNativeObjectView,
 }
 
 public struct TDNativeTonWalletTransactionTypeTransfer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -2077618700
+    public static let typeID: Int32 = -1040037236
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -18532,6 +19906,447 @@ public struct TDNativeTonWalletTransactionTypeTelegramGiftTransfer: TDNativeObje
     public var isSaved: Bool { native.value.bool_field(2) }
 }
 
+public struct TDNativeTonWalletTransactionTypeTelegramGiftPurchase: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -678538001
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, amount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int64(amount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftPurchase")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, amount: Int64) -> Self? {
+        Self(nft: nft, amount: amount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var amount: Int64 { native.value.int64_field(1) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftSale: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -372613743
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, amount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int64(amount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftSale")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, amount: Int64) -> Self? {
+        Self(nft: nft, amount: amount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var amount: Int64 { native.value.int64_field(1) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftListing: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -2088086645
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, oldPrice: Int64, price: Int64, amount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int64(oldPrice)
+        arguments.append_int64(price)
+        arguments.append_int64(amount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftListing")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, oldPrice: Int64, price: Int64, amount: Int64) -> Self? {
+        Self(nft: nft, oldPrice: oldPrice, price: price, amount: amount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var oldPrice: Int64 { native.value.int64_field(1) }
+
+    public var price: Int64 { native.value.int64_field(2) }
+
+    public var amount: Int64 { native.value.int64_field(3) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftDelisting: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 648045824
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, amount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_int64(amount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftDelisting")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, amount: Int64) -> Self? {
+        Self(nft: nft, amount: amount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var amount: Int64 { native.value.int64_field(1) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftOfferCreation: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -209857978
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, amount: Int64, serviceFeeAmount: Int64, expirationDate: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_buffer(nativeBuffer(counterpartyAddress))
+        arguments.append_int64(price)
+        arguments.append_int64(amount)
+        arguments.append_int64(serviceFeeAmount)
+        arguments.append_int32(nativeInt32(expirationDate))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftOfferCreation")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, amount: Int64, serviceFeeAmount: Int64, expirationDate: Int) -> Self? {
+        Self(nft: nft, offerAddress: offerAddress, counterpartyAddress: counterpartyAddress, price: price, amount: amount, serviceFeeAmount: serviceFeeAmount, expirationDate: expirationDate)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(1)) }
+
+    public var counterpartyAddress: String { swiftString(native.value.buffer_field(2)) }
+
+    public var price: Int64 { native.value.int64_field(3) }
+
+    public var amount: Int64 { native.value.int64_field(4) }
+
+    public var serviceFeeAmount: Int64 { native.value.int64_field(5) }
+
+    public var expirationDate: Int { Int(native.value.int32_field(6)) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftOfferAcceptance: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -953398531
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, isBuyer: Bool, offerAddress: String, counterpartyAddress: String, price: Int64, serviceFeeAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_bool(isBuyer)
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_buffer(nativeBuffer(counterpartyAddress))
+        arguments.append_int64(price)
+        arguments.append_int64(serviceFeeAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftOfferAcceptance")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, isBuyer: Bool, offerAddress: String, counterpartyAddress: String, price: Int64, serviceFeeAmount: Int64) -> Self? {
+        Self(nft: nft, isBuyer: isBuyer, offerAddress: offerAddress, counterpartyAddress: counterpartyAddress, price: price, serviceFeeAmount: serviceFeeAmount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var isBuyer: Bool { native.value.bool_field(1) }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(2)) }
+
+    public var counterpartyAddress: String { swiftString(native.value.buffer_field(3)) }
+
+    public var price: Int64 { native.value.int64_field(4) }
+
+    public var serviceFeeAmount: Int64 { native.value.int64_field(5) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftOfferCancellation: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1515167139
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64, fineAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_buffer(nativeBuffer(counterpartyAddress))
+        arguments.append_int64(price)
+        arguments.append_int64(refundAmount)
+        arguments.append_int64(fineAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftOfferCancellation")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64, fineAmount: Int64) -> Self? {
+        Self(nft: nft, offerAddress: offerAddress, counterpartyAddress: counterpartyAddress, price: price, refundAmount: refundAmount, fineAmount: fineAmount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(1)) }
+
+    public var counterpartyAddress: String { swiftString(native.value.buffer_field(2)) }
+
+    public var price: Int64 { native.value.int64_field(3) }
+
+    public var refundAmount: Int64 { native.value.int64_field(4) }
+
+    public var fineAmount: Int64 { native.value.int64_field(5) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftOfferDecline: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -460106
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_buffer(nativeBuffer(counterpartyAddress))
+        arguments.append_int64(price)
+        arguments.append_int64(refundAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftOfferDecline")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64) -> Self? {
+        Self(nft: nft, offerAddress: offerAddress, counterpartyAddress: counterpartyAddress, price: price, refundAmount: refundAmount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(1)) }
+
+    public var counterpartyAddress: String { swiftString(native.value.buffer_field(2)) }
+
+    public var price: Int64 { native.value.int64_field(3) }
+
+    public var refundAmount: Int64 { native.value.int64_field(4) }
+}
+
+public struct TDNativeTonWalletTransactionTypeTelegramGiftOfferExpiration: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -614834913
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(nft?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_buffer(nativeBuffer(counterpartyAddress))
+        arguments.append_int64(price)
+        arguments.append_int64(refundAmount)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeTonWalletTransactionTypeTelegramGiftOfferExpiration")
+        }
+        self = value
+    }
+
+    public static func make(nft: TDNativeTonNft?, offerAddress: String, counterpartyAddress: String, price: Int64, refundAmount: Int64) -> Self? {
+        Self(nft: nft, offerAddress: offerAddress, counterpartyAddress: counterpartyAddress, price: price, refundAmount: refundAmount)
+    }
+
+    public var nft: TDNativeTonNft? {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        return TDNativeTonNft(native: object)
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(1)) }
+
+    public var counterpartyAddress: String { swiftString(native.value.buffer_field(2)) }
+
+    public var price: Int64 { native.value.int64_field(3) }
+
+    public var refundAmount: Int64 { native.value.int64_field(4) }
+}
+
 public struct TDNativeTonWalletTransactionTypeKeyChange: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 1748368342
     let native: NativeOwnedObject
@@ -18566,7 +20381,7 @@ public struct TDNativeTonWalletTransactionTypeKeyChange: TDNativeObjectView, TDN
 }
 
 public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -2081280655
+    public static let typeID: Int32 = 197214810
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -18582,7 +20397,7 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: String, peerAddress: String, peerUserId: Int64, peerDomain: String, date: Int, feeAmount: Int64, state: TDNativeTonWalletTransactionState, type: TDNativeTonWalletTransactionType) {
+    public init(id: String, peerAddress: String, peerUserId: Int64, peerDomain: String, date: Int, feeAmount: Int64, isSuspectedSpam: Bool, state: TDNativeTonWalletTransactionState, type: TDNativeTonWalletTransactionType) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_buffer(nativeBuffer(id))
         arguments.append_buffer(nativeBuffer(peerAddress))
@@ -18590,6 +20405,7 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
         arguments.append_buffer(nativeBuffer(peerDomain))
         arguments.append_int32(nativeInt32(date))
         arguments.append_int64(feeAmount)
+        arguments.append_bool(isSuspectedSpam)
         arguments.append_object(state.native.value)
         arguments.append_object(type.native.value)
         let object = NativeOwnedObject(
@@ -18601,8 +20417,8 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
         self = value
     }
 
-    public static func make(id: String, peerAddress: String, peerUserId: Int64, peerDomain: String, date: Int, feeAmount: Int64, state: TDNativeTonWalletTransactionState, type: TDNativeTonWalletTransactionType) -> Self? {
-        Self(id: id, peerAddress: peerAddress, peerUserId: peerUserId, peerDomain: peerDomain, date: date, feeAmount: feeAmount, state: state, type: type)
+    public static func make(id: String, peerAddress: String, peerUserId: Int64, peerDomain: String, date: Int, feeAmount: Int64, isSuspectedSpam: Bool, state: TDNativeTonWalletTransactionState, type: TDNativeTonWalletTransactionType) -> Self? {
+        Self(id: id, peerAddress: peerAddress, peerUserId: peerUserId, peerDomain: peerDomain, date: date, feeAmount: feeAmount, isSuspectedSpam: isSuspectedSpam, state: state, type: type)
     }
 
     public var id: String { swiftString(native.value.buffer_field(0)) }
@@ -18617,8 +20433,10 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
 
     public var feeAmount: Int64 { native.value.int64_field(5) }
 
+    public var isSuspectedSpam: Bool { native.value.bool_field(6) }
+
     public var state: TDNativeTonWalletTransactionState {
-        let object = NativeOwnedObject(value: native.value.object_field(6))
+        let object = NativeOwnedObject(value: native.value.object_field(7))
         guard let value = TDNativeTonWalletTransactionState(native: object) else {
             preconditionFailure("Required field state is null")
         }
@@ -18626,7 +20444,7 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
     }
 
     public var type: TDNativeTonWalletTransactionType {
-        let object = NativeOwnedObject(value: native.value.object_field(7))
+        let object = NativeOwnedObject(value: native.value.object_field(8))
         guard let value = TDNativeTonWalletTransactionType(native: object) else {
             preconditionFailure("Required field type is null")
         }
@@ -18635,7 +20453,7 @@ public struct TDNativeTonWalletTransaction: TDNativeObjectView, TDNativeObjectBa
 }
 
 public struct TDNativeTonWalletTransactions: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1372826145
+    public static let typeID: Int32 = -402386265
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -20258,6 +22076,411 @@ public struct TDNativeProfileAccentColor: TDNativeObjectView, TDNativeObjectBack
     public var minChannelChatBoostLevel: Int { Int(native.value.int32_field(4)) }
 }
 
+public struct TDNativeNotificationSettingsScopePrivateChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 937446759
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopePrivateChats")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeNotificationSettingsScopeGroupChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1212142067
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopeGroupChats")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeNotificationSettingsScopeChannelChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 548013448
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopeChannelChats")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeChatNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1459533846
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(useDefaultMuteFor: Bool, muteFor: Int, useDefaultSound: Bool, soundId: Int64, useDefaultShowPreview: Bool, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, useDefaultStorySound: Bool, storySoundId: Int64, useDefaultShowStoryPoster: Bool, showStoryPoster: Bool, useDefaultDisablePinnedMessageNotifications: Bool, disablePinnedMessageNotifications: Bool, useDefaultDisableMentionNotifications: Bool, disableMentionNotifications: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(useDefaultMuteFor)
+        arguments.append_int32(nativeInt32(muteFor))
+        arguments.append_bool(useDefaultSound)
+        arguments.append_int64(soundId)
+        arguments.append_bool(useDefaultShowPreview)
+        arguments.append_bool(showPreview)
+        arguments.append_bool(useDefaultMuteStories)
+        arguments.append_bool(muteStories)
+        arguments.append_bool(useDefaultStorySound)
+        arguments.append_int64(storySoundId)
+        arguments.append_bool(useDefaultShowStoryPoster)
+        arguments.append_bool(showStoryPoster)
+        arguments.append_bool(useDefaultDisablePinnedMessageNotifications)
+        arguments.append_bool(disablePinnedMessageNotifications)
+        arguments.append_bool(useDefaultDisableMentionNotifications)
+        arguments.append_bool(disableMentionNotifications)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeChatNotificationSettings")
+        }
+        self = value
+    }
+
+    public static func make(useDefaultMuteFor: Bool, muteFor: Int, useDefaultSound: Bool, soundId: Int64, useDefaultShowPreview: Bool, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, useDefaultStorySound: Bool, storySoundId: Int64, useDefaultShowStoryPoster: Bool, showStoryPoster: Bool, useDefaultDisablePinnedMessageNotifications: Bool, disablePinnedMessageNotifications: Bool, useDefaultDisableMentionNotifications: Bool, disableMentionNotifications: Bool) -> Self? {
+        Self(useDefaultMuteFor: useDefaultMuteFor, muteFor: muteFor, useDefaultSound: useDefaultSound, soundId: soundId, useDefaultShowPreview: useDefaultShowPreview, showPreview: showPreview, useDefaultMuteStories: useDefaultMuteStories, muteStories: muteStories, useDefaultStorySound: useDefaultStorySound, storySoundId: storySoundId, useDefaultShowStoryPoster: useDefaultShowStoryPoster, showStoryPoster: showStoryPoster, useDefaultDisablePinnedMessageNotifications: useDefaultDisablePinnedMessageNotifications, disablePinnedMessageNotifications: disablePinnedMessageNotifications, useDefaultDisableMentionNotifications: useDefaultDisableMentionNotifications, disableMentionNotifications: disableMentionNotifications)
+    }
+
+    public var useDefaultMuteFor: Bool { native.value.bool_field(0) }
+
+    public var muteFor: Int { Int(native.value.int32_field(1)) }
+
+    public var useDefaultSound: Bool { native.value.bool_field(2) }
+
+    public var soundId: Int64 { native.value.int64_field(3) }
+
+    public var useDefaultShowPreview: Bool { native.value.bool_field(4) }
+
+    public var showPreview: Bool { native.value.bool_field(5) }
+
+    public var useDefaultMuteStories: Bool { native.value.bool_field(6) }
+
+    public var muteStories: Bool { native.value.bool_field(7) }
+
+    public var useDefaultStorySound: Bool { native.value.bool_field(8) }
+
+    public var storySoundId: Int64 { native.value.int64_field(9) }
+
+    public var useDefaultShowStoryPoster: Bool { native.value.bool_field(10) }
+
+    public var showStoryPoster: Bool { native.value.bool_field(11) }
+
+    public var useDefaultDisablePinnedMessageNotifications: Bool { native.value.bool_field(12) }
+
+    public var disablePinnedMessageNotifications: Bool { native.value.bool_field(13) }
+
+    public var useDefaultDisableMentionNotifications: Bool { native.value.bool_field(14) }
+
+    public var disableMentionNotifications: Bool { native.value.bool_field(15) }
+}
+
+public struct TDNativeScopeNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 88369150
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(muteFor: Int, soundId: Int64, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, storySoundId: Int64, showStoryPoster: Bool, disablePinnedMessageNotifications: Bool, disableMentionNotifications: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(muteFor))
+        arguments.append_int64(soundId)
+        arguments.append_bool(showPreview)
+        arguments.append_bool(useDefaultMuteStories)
+        arguments.append_bool(muteStories)
+        arguments.append_int64(storySoundId)
+        arguments.append_bool(showStoryPoster)
+        arguments.append_bool(disablePinnedMessageNotifications)
+        arguments.append_bool(disableMentionNotifications)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeScopeNotificationSettings")
+        }
+        self = value
+    }
+
+    public static func make(muteFor: Int, soundId: Int64, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, storySoundId: Int64, showStoryPoster: Bool, disablePinnedMessageNotifications: Bool, disableMentionNotifications: Bool) -> Self? {
+        Self(muteFor: muteFor, soundId: soundId, showPreview: showPreview, useDefaultMuteStories: useDefaultMuteStories, muteStories: muteStories, storySoundId: storySoundId, showStoryPoster: showStoryPoster, disablePinnedMessageNotifications: disablePinnedMessageNotifications, disableMentionNotifications: disableMentionNotifications)
+    }
+
+    public var muteFor: Int { Int(native.value.int32_field(0)) }
+
+    public var soundId: Int64 { native.value.int64_field(1) }
+
+    public var showPreview: Bool { native.value.bool_field(2) }
+
+    public var useDefaultMuteStories: Bool { native.value.bool_field(3) }
+
+    public var muteStories: Bool { native.value.bool_field(4) }
+
+    public var storySoundId: Int64 { native.value.int64_field(5) }
+
+    public var showStoryPoster: Bool { native.value.bool_field(6) }
+
+    public var disablePinnedMessageNotifications: Bool { native.value.bool_field(7) }
+
+    public var disableMentionNotifications: Bool { native.value.bool_field(8) }
+}
+
+public struct TDNativeReactionNotificationSourceNone: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 366374940
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceNone")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeReactionNotificationSourceContacts: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 555501621
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceContacts")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeReactionNotificationSourceAll: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1241689234
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceAll")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
+    }
+}
+
+public struct TDNativeReactionNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 2074932258
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(messageReactionSource: TDNativeReactionNotificationSource, storyReactionSource: TDNativeReactionNotificationSource, pollVoteSource: TDNativeReactionNotificationSource, soundId: Int64, showPreview: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(messageReactionSource.native.value)
+        arguments.append_object(storyReactionSource.native.value)
+        arguments.append_object(pollVoteSource.native.value)
+        arguments.append_int64(soundId)
+        arguments.append_bool(showPreview)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeReactionNotificationSettings")
+        }
+        self = value
+    }
+
+    public static func make(messageReactionSource: TDNativeReactionNotificationSource, storyReactionSource: TDNativeReactionNotificationSource, pollVoteSource: TDNativeReactionNotificationSource, soundId: Int64, showPreview: Bool) -> Self? {
+        Self(messageReactionSource: messageReactionSource, storyReactionSource: storyReactionSource, pollVoteSource: pollVoteSource, soundId: soundId, showPreview: showPreview)
+    }
+
+    public var messageReactionSource: TDNativeReactionNotificationSource {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeReactionNotificationSource(native: object) else {
+            preconditionFailure("Required field messageReactionSource is null")
+        }
+        return value
+    }
+
+    public var storyReactionSource: TDNativeReactionNotificationSource {
+        let object = NativeOwnedObject(value: native.value.object_field(1))
+        guard let value = TDNativeReactionNotificationSource(native: object) else {
+            preconditionFailure("Required field storyReactionSource is null")
+        }
+        return value
+    }
+
+    public var pollVoteSource: TDNativeReactionNotificationSource {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        guard let value = TDNativeReactionNotificationSource(native: object) else {
+            preconditionFailure("Required field pollVoteSource is null")
+        }
+        return value
+    }
+
+    public var soundId: Int64 { native.value.int64_field(3) }
+
+    public var showPreview: Bool { native.value.bool_field(4) }
+}
+
 public struct TDNativeCommunityId: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 1463434973
     let native: NativeOwnedObject
@@ -20556,7 +22779,7 @@ public struct TDNativeCommunityMemberStatusBanned: TDNativeObjectView, TDNativeO
 }
 
 public struct TDNativeCommunity: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1684827592
+    public static let typeID: Int32 = -1501636358
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -20572,7 +22795,7 @@ public struct TDNativeCommunity: TDNativeObjectView, TDNativeObjectBacked, @unch
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: Int64, haveAccess: Bool, name: String, photo: TDNativeChatPhotoInfo?, date: Int, status: TDNativeCommunityMemberStatus, permissions: TDNativeCommunityPermissions) {
+    public init(id: Int64, haveAccess: Bool, name: String, photo: TDNativeChatPhotoInfo?, date: Int, status: TDNativeCommunityMemberStatus, permissions: TDNativeCommunityPermissions, areChatsCollapsed: Bool) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(id)
         arguments.append_bool(haveAccess)
@@ -20581,6 +22804,7 @@ public struct TDNativeCommunity: TDNativeObjectView, TDNativeObjectBacked, @unch
         arguments.append_int32(nativeInt32(date))
         arguments.append_object(status.native.value)
         arguments.append_object(permissions.native.value)
+        arguments.append_bool(areChatsCollapsed)
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -20590,8 +22814,8 @@ public struct TDNativeCommunity: TDNativeObjectView, TDNativeObjectBacked, @unch
         self = value
     }
 
-    public static func make(id: Int64, haveAccess: Bool, name: String, photo: TDNativeChatPhotoInfo?, date: Int, status: TDNativeCommunityMemberStatus, permissions: TDNativeCommunityPermissions) -> Self? {
-        Self(id: id, haveAccess: haveAccess, name: name, photo: photo, date: date, status: status, permissions: permissions)
+    public static func make(id: Int64, haveAccess: Bool, name: String, photo: TDNativeChatPhotoInfo?, date: Int, status: TDNativeCommunityMemberStatus, permissions: TDNativeCommunityPermissions, areChatsCollapsed: Bool) -> Self? {
+        Self(id: id, haveAccess: haveAccess, name: name, photo: photo, date: date, status: status, permissions: permissions, areChatsCollapsed: areChatsCollapsed)
     }
 
     public var id: Int64 { native.value.int64_field(0) }
@@ -20622,6 +22846,8 @@ public struct TDNativeCommunity: TDNativeObjectView, TDNativeObjectBacked, @unch
         }
         return value
     }
+
+    public var areChatsCollapsed: Bool { native.value.bool_field(7) }
 }
 
 public struct TDNativeCommunityChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -20667,7 +22893,7 @@ public struct TDNativeCommunityChat: TDNativeObjectView, TDNativeObjectBacked, @
 }
 
 public struct TDNativeCommunityFullInfo: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -88511019
+    public static let typeID: Int32 = -917988141
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -20683,7 +22909,7 @@ public struct TDNativeCommunityFullInfo: TDNativeObjectView, TDNativeObjectBacke
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(photo: TDNativeChatPhoto, chats: [TDNativeCommunityChat], administratorCount: Int, bannedCount: Int, addChatRequestCount: Int) {
+    public init(photo: TDNativeChatPhoto, chats: [TDNativeCommunityChat], administratorCount: Int, bannedCount: Int, addChatRequestCount: Int, notificationSettings: TDNativeChatNotificationSettings) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_object(photo.native.value)
         var nativeValues1 = tdlibkit.NativeObjectArray()
@@ -20692,6 +22918,7 @@ public struct TDNativeCommunityFullInfo: TDNativeObjectView, TDNativeObjectBacke
         arguments.append_int32(nativeInt32(administratorCount))
         arguments.append_int32(nativeInt32(bannedCount))
         arguments.append_int32(nativeInt32(addChatRequestCount))
+        arguments.append_object(notificationSettings.native.value)
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -20701,8 +22928,8 @@ public struct TDNativeCommunityFullInfo: TDNativeObjectView, TDNativeObjectBacke
         self = value
     }
 
-    public static func make(photo: TDNativeChatPhoto, chats: [TDNativeCommunityChat], administratorCount: Int, bannedCount: Int, addChatRequestCount: Int) -> Self? {
-        Self(photo: photo, chats: chats, administratorCount: administratorCount, bannedCount: bannedCount, addChatRequestCount: addChatRequestCount)
+    public static func make(photo: TDNativeChatPhoto, chats: [TDNativeCommunityChat], administratorCount: Int, bannedCount: Int, addChatRequestCount: Int, notificationSettings: TDNativeChatNotificationSettings) -> Self? {
+        Self(photo: photo, chats: chats, administratorCount: administratorCount, bannedCount: bannedCount, addChatRequestCount: addChatRequestCount, notificationSettings: notificationSettings)
     }
 
     public var photo: TDNativeChatPhoto {
@@ -20728,6 +22955,201 @@ public struct TDNativeCommunityFullInfo: TDNativeObjectView, TDNativeObjectBacke
     public var bannedCount: Int { Int(native.value.int32_field(3)) }
 
     public var addChatRequestCount: Int { Int(native.value.int32_field(4)) }
+
+    public var notificationSettings: TDNativeChatNotificationSettings {
+        let object = NativeOwnedObject(value: native.value.object_field(5))
+        guard let value = TDNativeChatNotificationSettings(native: object) else {
+            preconditionFailure("Required field notificationSettings is null")
+        }
+        return value
+    }
+}
+
+public struct TDNativeCommunities: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -330512172
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(communityIds: [Int64]) {
+        var arguments = tdlibkit.NativeArguments()
+        communityIds.withUnsafeBufferPointer { buffer in
+            arguments.append_int64_vector(buffer.baseAddress, buffer.count)
+        }
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeCommunities")
+        }
+        self = value
+    }
+
+    public static func make(communityIds: [Int64]) -> Self? {
+        Self(communityIds: communityIds)
+    }
+
+    public var communityIds: [Int64] {
+        let count = native.value.vector_count(0)
+        return (0..<count).map { element in native.value.vector_int64_at(0, element) }
+    }
+}
+
+public struct TDNativeCommunityAddChatRequest: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 2125404501
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(chatId: Int64, isHidden: Bool, senderUserId: Int64, date: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(chatId)
+        arguments.append_bool(isHidden)
+        arguments.append_int64(senderUserId)
+        arguments.append_int32(nativeInt32(date))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeCommunityAddChatRequest")
+        }
+        self = value
+    }
+
+    public static func make(chatId: Int64, isHidden: Bool, senderUserId: Int64, date: Int) -> Self? {
+        Self(chatId: chatId, isHidden: isHidden, senderUserId: senderUserId, date: date)
+    }
+
+    public var chatId: Int64 { native.value.int64_field(0) }
+
+    public var isHidden: Bool { native.value.bool_field(1) }
+
+    public var senderUserId: Int64 { native.value.int64_field(2) }
+
+    public var date: Int { Int(native.value.int32_field(3)) }
+}
+
+public struct TDNativeCommunityAddChatRequests: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 2015337973
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(totalCount: Int, requests: [TDNativeCommunityAddChatRequest], nextOffset: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(totalCount))
+        var nativeValues1 = tdlibkit.NativeObjectArray()
+        for value in requests { nativeValues1.append(value.native.value) }
+        arguments.append_object_vector(nativeValues1)
+        arguments.append_buffer(nativeBuffer(nextOffset))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeCommunityAddChatRequests")
+        }
+        self = value
+    }
+
+    public static func make(totalCount: Int, requests: [TDNativeCommunityAddChatRequest], nextOffset: String) -> Self? {
+        Self(totalCount: totalCount, requests: requests, nextOffset: nextOffset)
+    }
+
+    public var totalCount: Int { Int(native.value.int32_field(0)) }
+
+    public var requests: [TDNativeCommunityAddChatRequest] {
+        let count = native.value.vector_count(1)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(1, element)
+            )
+            return TDNativeCommunityAddChatRequest(native: object)
+        }
+    }
+
+    public var nextOffset: String { swiftString(native.value.buffer_field(2)) }
+}
+
+public struct TDNativeCommunityMemberChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 2068259090
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(ownedChatIds: [Int64], joinedChatIds: [Int64]) {
+        var arguments = tdlibkit.NativeArguments()
+        ownedChatIds.withUnsafeBufferPointer { buffer in
+            arguments.append_int64_vector(buffer.baseAddress, buffer.count)
+        }
+        joinedChatIds.withUnsafeBufferPointer { buffer in
+            arguments.append_int64_vector(buffer.baseAddress, buffer.count)
+        }
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeCommunityMemberChats")
+        }
+        self = value
+    }
+
+    public static func make(ownedChatIds: [Int64], joinedChatIds: [Int64]) -> Self? {
+        Self(ownedChatIds: ownedChatIds, joinedChatIds: joinedChatIds)
+    }
+
+    public var ownedChatIds: [Int64] {
+        let count = native.value.vector_count(0)
+        return (0..<count).map { element in native.value.vector_int64_at(0, element) }
+    }
+
+    public var joinedChatIds: [Int64] {
+        let count = native.value.vector_count(1)
+        return (0..<count).map { element in native.value.vector_int64_at(1, element) }
+    }
 }
 
 public struct TDNativeUserRating: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -23694,7 +26116,7 @@ public struct TDNativeBasicGroupFullInfo: TDNativeObjectView, TDNativeObjectBack
 }
 
 public struct TDNativeSupergroup: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1134998957
+    public static let typeID: Int32 = -1673662503
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -23710,7 +26132,7 @@ public struct TDNativeSupergroup: TDNativeObjectView, TDNativeObjectBacked, @unc
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: Int64, usernames: TDNativeUsernames?, date: Int, status: TDNativeChatMemberStatus, memberCount: Int, boostLevel: Int, hasAutomaticTranslation: Bool, hasLinkedChat: Bool, hasLocation: Bool, signMessages: Bool, showMessageSender: Bool, joinToSendMessages: Bool, joinByRequest: Bool, isSlowModeEnabled: Bool, isChannel: Bool, isBroadcastGroup: Bool, isForum: Bool, isDirectMessagesGroup: Bool, isAdministeredDirectMessagesGroup: Bool, verificationStatus: TDNativeVerificationStatus?, hasDirectMessagesGroup: Bool, hasForumTabs: Bool, restrictionInfo: TDNativeRestrictionInfo?, paidMessageStarCount: Int64, activeStoryState: TDNativeActiveStoryState?) {
+    public init(id: Int64, usernames: TDNativeUsernames?, date: Int, status: TDNativeChatMemberStatus, memberCount: Int, boostLevel: Int, hasAutomaticTranslation: Bool, hasLinkedChat: Bool, hasLocation: Bool, signMessages: Bool, showMessageSender: Bool, joinToSendMessages: Bool, joinByRequest: Bool, isSlowModeEnabled: Bool, isChannel: Bool, isBroadcastGroup: Bool, isForum: Bool, isDirectMessagesGroup: Bool, isAdministeredDirectMessagesGroup: Bool, verificationStatus: TDNativeVerificationStatus?, hasDirectMessagesGroup: Bool, hasForumTabs: Bool, hasForumSidebar: Bool, restrictionInfo: TDNativeRestrictionInfo?, paidMessageStarCount: Int64, activeStoryState: TDNativeActiveStoryState?) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(id)
         arguments.append_object(usernames?.native.value ?? tdlibkit.NativeObject())
@@ -23734,6 +26156,7 @@ public struct TDNativeSupergroup: TDNativeObjectView, TDNativeObjectBacked, @unc
         arguments.append_object(verificationStatus?.native.value ?? tdlibkit.NativeObject())
         arguments.append_bool(hasDirectMessagesGroup)
         arguments.append_bool(hasForumTabs)
+        arguments.append_bool(hasForumSidebar)
         arguments.append_object(restrictionInfo?.native.value ?? tdlibkit.NativeObject())
         arguments.append_int64(paidMessageStarCount)
         arguments.append_object(activeStoryState?.native.value ?? tdlibkit.NativeObject())
@@ -23746,8 +26169,8 @@ public struct TDNativeSupergroup: TDNativeObjectView, TDNativeObjectBacked, @unc
         self = value
     }
 
-    public static func make(id: Int64, usernames: TDNativeUsernames?, date: Int, status: TDNativeChatMemberStatus, memberCount: Int, boostLevel: Int, hasAutomaticTranslation: Bool, hasLinkedChat: Bool, hasLocation: Bool, signMessages: Bool, showMessageSender: Bool, joinToSendMessages: Bool, joinByRequest: Bool, isSlowModeEnabled: Bool, isChannel: Bool, isBroadcastGroup: Bool, isForum: Bool, isDirectMessagesGroup: Bool, isAdministeredDirectMessagesGroup: Bool, verificationStatus: TDNativeVerificationStatus?, hasDirectMessagesGroup: Bool, hasForumTabs: Bool, restrictionInfo: TDNativeRestrictionInfo?, paidMessageStarCount: Int64, activeStoryState: TDNativeActiveStoryState?) -> Self? {
-        Self(id: id, usernames: usernames, date: date, status: status, memberCount: memberCount, boostLevel: boostLevel, hasAutomaticTranslation: hasAutomaticTranslation, hasLinkedChat: hasLinkedChat, hasLocation: hasLocation, signMessages: signMessages, showMessageSender: showMessageSender, joinToSendMessages: joinToSendMessages, joinByRequest: joinByRequest, isSlowModeEnabled: isSlowModeEnabled, isChannel: isChannel, isBroadcastGroup: isBroadcastGroup, isForum: isForum, isDirectMessagesGroup: isDirectMessagesGroup, isAdministeredDirectMessagesGroup: isAdministeredDirectMessagesGroup, verificationStatus: verificationStatus, hasDirectMessagesGroup: hasDirectMessagesGroup, hasForumTabs: hasForumTabs, restrictionInfo: restrictionInfo, paidMessageStarCount: paidMessageStarCount, activeStoryState: activeStoryState)
+    public static func make(id: Int64, usernames: TDNativeUsernames?, date: Int, status: TDNativeChatMemberStatus, memberCount: Int, boostLevel: Int, hasAutomaticTranslation: Bool, hasLinkedChat: Bool, hasLocation: Bool, signMessages: Bool, showMessageSender: Bool, joinToSendMessages: Bool, joinByRequest: Bool, isSlowModeEnabled: Bool, isChannel: Bool, isBroadcastGroup: Bool, isForum: Bool, isDirectMessagesGroup: Bool, isAdministeredDirectMessagesGroup: Bool, verificationStatus: TDNativeVerificationStatus?, hasDirectMessagesGroup: Bool, hasForumTabs: Bool, hasForumSidebar: Bool, restrictionInfo: TDNativeRestrictionInfo?, paidMessageStarCount: Int64, activeStoryState: TDNativeActiveStoryState?) -> Self? {
+        Self(id: id, usernames: usernames, date: date, status: status, memberCount: memberCount, boostLevel: boostLevel, hasAutomaticTranslation: hasAutomaticTranslation, hasLinkedChat: hasLinkedChat, hasLocation: hasLocation, signMessages: signMessages, showMessageSender: showMessageSender, joinToSendMessages: joinToSendMessages, joinByRequest: joinByRequest, isSlowModeEnabled: isSlowModeEnabled, isChannel: isChannel, isBroadcastGroup: isBroadcastGroup, isForum: isForum, isDirectMessagesGroup: isDirectMessagesGroup, isAdministeredDirectMessagesGroup: isAdministeredDirectMessagesGroup, verificationStatus: verificationStatus, hasDirectMessagesGroup: hasDirectMessagesGroup, hasForumTabs: hasForumTabs, hasForumSidebar: hasForumSidebar, restrictionInfo: restrictionInfo, paidMessageStarCount: paidMessageStarCount, activeStoryState: activeStoryState)
     }
 
     public var id: Int64 { native.value.int64_field(0) }
@@ -23806,15 +26229,17 @@ public struct TDNativeSupergroup: TDNativeObjectView, TDNativeObjectBacked, @unc
 
     public var hasForumTabs: Bool { native.value.bool_field(21) }
 
+    public var hasForumSidebar: Bool { native.value.bool_field(22) }
+
     public var restrictionInfo: TDNativeRestrictionInfo? {
-        let object = NativeOwnedObject(value: native.value.object_field(22))
+        let object = NativeOwnedObject(value: native.value.object_field(23))
         return TDNativeRestrictionInfo(native: object)
     }
 
-    public var paidMessageStarCount: Int64 { native.value.int64_field(23) }
+    public var paidMessageStarCount: Int64 { native.value.int64_field(24) }
 
     public var activeStoryState: TDNativeActiveStoryState? {
-        let object = NativeOwnedObject(value: native.value.object_field(24))
+        let object = NativeOwnedObject(value: native.value.object_field(25))
         return TDNativeActiveStoryState(native: object)
     }
 }
@@ -27192,6 +29617,48 @@ public struct TDNativeMessageCalendar: TDNativeObjectView, TDNativeObjectBacked,
     }
 }
 
+public struct TDNativeChatMessageCounts: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1440101430
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(counts: [Int]) {
+        var arguments = tdlibkit.NativeArguments()
+        let nativeValues0 = counts.map(nativeInt32)
+        nativeValues0.withUnsafeBufferPointer { buffer in
+            arguments.append_int32_vector(buffer.baseAddress, buffer.count)
+        }
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeChatMessageCounts")
+        }
+        self = value
+    }
+
+    public static func make(counts: [Int]) -> Self? {
+        Self(counts: counts)
+    }
+
+    public var counts: [Int] {
+        let count = native.value.vector_count(0)
+        return (0..<count).map { element in Int(native.value.vector_int32_at(0, element)) }
+    }
+}
+
 public struct TDNativeBusinessMessage: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = -94353850
     let native: NativeOwnedObject
@@ -28396,411 +30863,6 @@ public struct TDNativeFoundFileDownloads: TDNativeObjectView, TDNativeObjectBack
     }
 
     public var nextOffset: String { swiftString(native.value.buffer_field(2)) }
-}
-
-public struct TDNativeNotificationSettingsScopePrivateChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 937446759
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopePrivateChats")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeNotificationSettingsScopeGroupChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1212142067
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopeGroupChats")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeNotificationSettingsScopeChannelChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 548013448
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeNotificationSettingsScopeChannelChats")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeChatNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1459533846
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init(useDefaultMuteFor: Bool, muteFor: Int, useDefaultSound: Bool, soundId: Int64, useDefaultShowPreview: Bool, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, useDefaultStorySound: Bool, storySoundId: Int64, useDefaultShowStoryPoster: Bool, showStoryPoster: Bool, useDefaultDisablePinnedMessageNotifications: Bool, disablePinnedMessageNotifications: Bool, useDefaultDisableMentionNotifications: Bool, disableMentionNotifications: Bool) {
-        var arguments = tdlibkit.NativeArguments()
-        arguments.append_bool(useDefaultMuteFor)
-        arguments.append_int32(nativeInt32(muteFor))
-        arguments.append_bool(useDefaultSound)
-        arguments.append_int64(soundId)
-        arguments.append_bool(useDefaultShowPreview)
-        arguments.append_bool(showPreview)
-        arguments.append_bool(useDefaultMuteStories)
-        arguments.append_bool(muteStories)
-        arguments.append_bool(useDefaultStorySound)
-        arguments.append_int64(storySoundId)
-        arguments.append_bool(useDefaultShowStoryPoster)
-        arguments.append_bool(showStoryPoster)
-        arguments.append_bool(useDefaultDisablePinnedMessageNotifications)
-        arguments.append_bool(disablePinnedMessageNotifications)
-        arguments.append_bool(useDefaultDisableMentionNotifications)
-        arguments.append_bool(disableMentionNotifications)
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeChatNotificationSettings")
-        }
-        self = value
-    }
-
-    public static func make(useDefaultMuteFor: Bool, muteFor: Int, useDefaultSound: Bool, soundId: Int64, useDefaultShowPreview: Bool, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, useDefaultStorySound: Bool, storySoundId: Int64, useDefaultShowStoryPoster: Bool, showStoryPoster: Bool, useDefaultDisablePinnedMessageNotifications: Bool, disablePinnedMessageNotifications: Bool, useDefaultDisableMentionNotifications: Bool, disableMentionNotifications: Bool) -> Self? {
-        Self(useDefaultMuteFor: useDefaultMuteFor, muteFor: muteFor, useDefaultSound: useDefaultSound, soundId: soundId, useDefaultShowPreview: useDefaultShowPreview, showPreview: showPreview, useDefaultMuteStories: useDefaultMuteStories, muteStories: muteStories, useDefaultStorySound: useDefaultStorySound, storySoundId: storySoundId, useDefaultShowStoryPoster: useDefaultShowStoryPoster, showStoryPoster: showStoryPoster, useDefaultDisablePinnedMessageNotifications: useDefaultDisablePinnedMessageNotifications, disablePinnedMessageNotifications: disablePinnedMessageNotifications, useDefaultDisableMentionNotifications: useDefaultDisableMentionNotifications, disableMentionNotifications: disableMentionNotifications)
-    }
-
-    public var useDefaultMuteFor: Bool { native.value.bool_field(0) }
-
-    public var muteFor: Int { Int(native.value.int32_field(1)) }
-
-    public var useDefaultSound: Bool { native.value.bool_field(2) }
-
-    public var soundId: Int64 { native.value.int64_field(3) }
-
-    public var useDefaultShowPreview: Bool { native.value.bool_field(4) }
-
-    public var showPreview: Bool { native.value.bool_field(5) }
-
-    public var useDefaultMuteStories: Bool { native.value.bool_field(6) }
-
-    public var muteStories: Bool { native.value.bool_field(7) }
-
-    public var useDefaultStorySound: Bool { native.value.bool_field(8) }
-
-    public var storySoundId: Int64 { native.value.int64_field(9) }
-
-    public var useDefaultShowStoryPoster: Bool { native.value.bool_field(10) }
-
-    public var showStoryPoster: Bool { native.value.bool_field(11) }
-
-    public var useDefaultDisablePinnedMessageNotifications: Bool { native.value.bool_field(12) }
-
-    public var disablePinnedMessageNotifications: Bool { native.value.bool_field(13) }
-
-    public var useDefaultDisableMentionNotifications: Bool { native.value.bool_field(14) }
-
-    public var disableMentionNotifications: Bool { native.value.bool_field(15) }
-}
-
-public struct TDNativeScopeNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 88369150
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init(muteFor: Int, soundId: Int64, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, storySoundId: Int64, showStoryPoster: Bool, disablePinnedMessageNotifications: Bool, disableMentionNotifications: Bool) {
-        var arguments = tdlibkit.NativeArguments()
-        arguments.append_int32(nativeInt32(muteFor))
-        arguments.append_int64(soundId)
-        arguments.append_bool(showPreview)
-        arguments.append_bool(useDefaultMuteStories)
-        arguments.append_bool(muteStories)
-        arguments.append_int64(storySoundId)
-        arguments.append_bool(showStoryPoster)
-        arguments.append_bool(disablePinnedMessageNotifications)
-        arguments.append_bool(disableMentionNotifications)
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeScopeNotificationSettings")
-        }
-        self = value
-    }
-
-    public static func make(muteFor: Int, soundId: Int64, showPreview: Bool, useDefaultMuteStories: Bool, muteStories: Bool, storySoundId: Int64, showStoryPoster: Bool, disablePinnedMessageNotifications: Bool, disableMentionNotifications: Bool) -> Self? {
-        Self(muteFor: muteFor, soundId: soundId, showPreview: showPreview, useDefaultMuteStories: useDefaultMuteStories, muteStories: muteStories, storySoundId: storySoundId, showStoryPoster: showStoryPoster, disablePinnedMessageNotifications: disablePinnedMessageNotifications, disableMentionNotifications: disableMentionNotifications)
-    }
-
-    public var muteFor: Int { Int(native.value.int32_field(0)) }
-
-    public var soundId: Int64 { native.value.int64_field(1) }
-
-    public var showPreview: Bool { native.value.bool_field(2) }
-
-    public var useDefaultMuteStories: Bool { native.value.bool_field(3) }
-
-    public var muteStories: Bool { native.value.bool_field(4) }
-
-    public var storySoundId: Int64 { native.value.int64_field(5) }
-
-    public var showStoryPoster: Bool { native.value.bool_field(6) }
-
-    public var disablePinnedMessageNotifications: Bool { native.value.bool_field(7) }
-
-    public var disableMentionNotifications: Bool { native.value.bool_field(8) }
-}
-
-public struct TDNativeReactionNotificationSourceNone: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 366374940
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceNone")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeReactionNotificationSourceContacts: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 555501621
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceContacts")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeReactionNotificationSourceAll: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1241689234
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init() {
-        let arguments = tdlibkit.NativeArguments()
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeReactionNotificationSourceAll")
-        }
-        self = value
-    }
-
-    public static func make() -> Self? {
-        Self()
-    }
-}
-
-public struct TDNativeReactionNotificationSettings: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 2074932258
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init(messageReactionSource: TDNativeReactionNotificationSource, storyReactionSource: TDNativeReactionNotificationSource, pollVoteSource: TDNativeReactionNotificationSource, soundId: Int64, showPreview: Bool) {
-        var arguments = tdlibkit.NativeArguments()
-        arguments.append_object(messageReactionSource.native.value)
-        arguments.append_object(storyReactionSource.native.value)
-        arguments.append_object(pollVoteSource.native.value)
-        arguments.append_int64(soundId)
-        arguments.append_bool(showPreview)
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeReactionNotificationSettings")
-        }
-        self = value
-    }
-
-    public static func make(messageReactionSource: TDNativeReactionNotificationSource, storyReactionSource: TDNativeReactionNotificationSource, pollVoteSource: TDNativeReactionNotificationSource, soundId: Int64, showPreview: Bool) -> Self? {
-        Self(messageReactionSource: messageReactionSource, storyReactionSource: storyReactionSource, pollVoteSource: pollVoteSource, soundId: soundId, showPreview: showPreview)
-    }
-
-    public var messageReactionSource: TDNativeReactionNotificationSource {
-        let object = NativeOwnedObject(value: native.value.object_field(0))
-        guard let value = TDNativeReactionNotificationSource(native: object) else {
-            preconditionFailure("Required field messageReactionSource is null")
-        }
-        return value
-    }
-
-    public var storyReactionSource: TDNativeReactionNotificationSource {
-        let object = NativeOwnedObject(value: native.value.object_field(1))
-        guard let value = TDNativeReactionNotificationSource(native: object) else {
-            preconditionFailure("Required field storyReactionSource is null")
-        }
-        return value
-    }
-
-    public var pollVoteSource: TDNativeReactionNotificationSource {
-        let object = NativeOwnedObject(value: native.value.object_field(2))
-        guard let value = TDNativeReactionNotificationSource(native: object) else {
-            preconditionFailure("Required field pollVoteSource is null")
-        }
-        return value
-    }
-
-    public var soundId: Int64 { native.value.int64_field(3) }
-
-    public var showPreview: Bool { native.value.bool_field(4) }
 }
 
 public struct TDNativeDraftMessageContentText: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -30315,7 +32377,7 @@ public struct TDNativeVideoChat: TDNativeObjectView, TDNativeObjectBacked, @unch
 }
 
 public struct TDNativeChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 1014576710
+    public static let typeID: Int32 = 765433541
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -30331,7 +32393,7 @@ public struct TDNativeChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: Int64, type: TDNativeChatType, title: String, photo: TDNativeChatPhotoInfo?, accentColorId: Int, backgroundCustomEmojiId: Int64, upgradedGiftColors: TDNativeUpgradedGiftColors?, profileAccentColorId: Int, profileBackgroundCustomEmojiId: Int64, permissions: TDNativeChatPermissions, lastMessage: TDNativeMessage?, positions: [TDNativeChatPosition], chatLists: [TDNativeChatList], messageSenderId: TDNativeMessageSender?, blockList: TDNativeBlockList?, hasProtectedContent: Bool, isTranslatable: Bool, isMarkedAsUnread: Bool, viewAsTopics: Bool, hasScheduledMessages: Bool, hasWelcomeMessages: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, unreadReactionCount: Int, unreadPollVoteCount: Int, notificationSettings: TDNativeChatNotificationSettings, availableReactions: TDNativeChatAvailableReactions, messageAutoDeleteTime: Int, emojiStatus: TDNativeEmojiStatus?, background: TDNativeChatBackground?, theme: TDNativeChatTheme?, actionBar: TDNativeChatActionBar?, businessBotManageBar: TDNativeBusinessBotManageBar?, videoChat: TDNativeVideoChat, pendingJoinRequests: TDNativeChatJoinRequestsInfo?, replyMarkupMessageId: Int64, draftMessage: TDNativeDraftMessage?, clientData: String) {
+    public init(id: Int64, type: TDNativeChatType, title: String, photo: TDNativeChatPhotoInfo?, accentColorId: Int, backgroundCustomEmojiId: Int64, upgradedGiftColors: TDNativeUpgradedGiftColors?, profileAccentColorId: Int, profileBackgroundCustomEmojiId: Int64, permissions: TDNativeChatPermissions, lastMessage: TDNativeMessage?, positions: [TDNativeChatPosition], chatLists: [TDNativeChatList], messageSenderId: TDNativeMessageSender?, blockList: TDNativeBlockList?, hasProtectedContent: Bool, isTranslatable: Bool, isMarkedAsUnread: Bool, viewAsTopics: Bool, hasScheduledMessages: Bool, hasWelcomeMessages: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, unreadReactionCount: Int, unreadPollVoteCount: Int, notificationSettings: TDNativeChatNotificationSettings, availableReactions: TDNativeChatAvailableReactions, messageAutoDeleteTime: Int, emojiStatus: TDNativeEmojiStatus?, background: TDNativeChatBackground?, theme: TDNativeChatTheme?, actionBar: TDNativeChatActionBar?, businessBotManageBar: TDNativeBusinessBotManageBar?, videoChat: TDNativeVideoChat, pendingJoinRequests: TDNativeChatJoinRequestsInfo?, replyMarkupMessageId: Int64, draftMessage: TDNativeDraftMessage?, textCompositionParameters: TDNativeTextCompositionParameters?, clientData: String) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(id)
         arguments.append_object(type.native.value)
@@ -30380,6 +32442,7 @@ public struct TDNativeChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked
         arguments.append_object(pendingJoinRequests?.native.value ?? tdlibkit.NativeObject())
         arguments.append_int64(replyMarkupMessageId)
         arguments.append_object(draftMessage?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_object(textCompositionParameters?.native.value ?? tdlibkit.NativeObject())
         arguments.append_buffer(nativeBuffer(clientData))
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
@@ -30390,8 +32453,8 @@ public struct TDNativeChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked
         self = value
     }
 
-    public static func make(id: Int64, type: TDNativeChatType, title: String, photo: TDNativeChatPhotoInfo?, accentColorId: Int, backgroundCustomEmojiId: Int64, upgradedGiftColors: TDNativeUpgradedGiftColors?, profileAccentColorId: Int, profileBackgroundCustomEmojiId: Int64, permissions: TDNativeChatPermissions, lastMessage: TDNativeMessage?, positions: [TDNativeChatPosition], chatLists: [TDNativeChatList], messageSenderId: TDNativeMessageSender?, blockList: TDNativeBlockList?, hasProtectedContent: Bool, isTranslatable: Bool, isMarkedAsUnread: Bool, viewAsTopics: Bool, hasScheduledMessages: Bool, hasWelcomeMessages: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, unreadReactionCount: Int, unreadPollVoteCount: Int, notificationSettings: TDNativeChatNotificationSettings, availableReactions: TDNativeChatAvailableReactions, messageAutoDeleteTime: Int, emojiStatus: TDNativeEmojiStatus?, background: TDNativeChatBackground?, theme: TDNativeChatTheme?, actionBar: TDNativeChatActionBar?, businessBotManageBar: TDNativeBusinessBotManageBar?, videoChat: TDNativeVideoChat, pendingJoinRequests: TDNativeChatJoinRequestsInfo?, replyMarkupMessageId: Int64, draftMessage: TDNativeDraftMessage?, clientData: String) -> Self? {
-        Self(id: id, type: type, title: title, photo: photo, accentColorId: accentColorId, backgroundCustomEmojiId: backgroundCustomEmojiId, upgradedGiftColors: upgradedGiftColors, profileAccentColorId: profileAccentColorId, profileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId, permissions: permissions, lastMessage: lastMessage, positions: positions, chatLists: chatLists, messageSenderId: messageSenderId, blockList: blockList, hasProtectedContent: hasProtectedContent, isTranslatable: isTranslatable, isMarkedAsUnread: isMarkedAsUnread, viewAsTopics: viewAsTopics, hasScheduledMessages: hasScheduledMessages, hasWelcomeMessages: hasWelcomeMessages, canBeDeletedOnlyForSelf: canBeDeletedOnlyForSelf, canBeDeletedForAllUsers: canBeDeletedForAllUsers, canBeReported: canBeReported, defaultDisableNotification: defaultDisableNotification, unreadCount: unreadCount, lastReadInboxMessageId: lastReadInboxMessageId, lastReadOutboxMessageId: lastReadOutboxMessageId, unreadMentionCount: unreadMentionCount, unreadReactionCount: unreadReactionCount, unreadPollVoteCount: unreadPollVoteCount, notificationSettings: notificationSettings, availableReactions: availableReactions, messageAutoDeleteTime: messageAutoDeleteTime, emojiStatus: emojiStatus, background: background, theme: theme, actionBar: actionBar, businessBotManageBar: businessBotManageBar, videoChat: videoChat, pendingJoinRequests: pendingJoinRequests, replyMarkupMessageId: replyMarkupMessageId, draftMessage: draftMessage, clientData: clientData)
+    public static func make(id: Int64, type: TDNativeChatType, title: String, photo: TDNativeChatPhotoInfo?, accentColorId: Int, backgroundCustomEmojiId: Int64, upgradedGiftColors: TDNativeUpgradedGiftColors?, profileAccentColorId: Int, profileBackgroundCustomEmojiId: Int64, permissions: TDNativeChatPermissions, lastMessage: TDNativeMessage?, positions: [TDNativeChatPosition], chatLists: [TDNativeChatList], messageSenderId: TDNativeMessageSender?, blockList: TDNativeBlockList?, hasProtectedContent: Bool, isTranslatable: Bool, isMarkedAsUnread: Bool, viewAsTopics: Bool, hasScheduledMessages: Bool, hasWelcomeMessages: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, unreadReactionCount: Int, unreadPollVoteCount: Int, notificationSettings: TDNativeChatNotificationSettings, availableReactions: TDNativeChatAvailableReactions, messageAutoDeleteTime: Int, emojiStatus: TDNativeEmojiStatus?, background: TDNativeChatBackground?, theme: TDNativeChatTheme?, actionBar: TDNativeChatActionBar?, businessBotManageBar: TDNativeBusinessBotManageBar?, videoChat: TDNativeVideoChat, pendingJoinRequests: TDNativeChatJoinRequestsInfo?, replyMarkupMessageId: Int64, draftMessage: TDNativeDraftMessage?, textCompositionParameters: TDNativeTextCompositionParameters?, clientData: String) -> Self? {
+        Self(id: id, type: type, title: title, photo: photo, accentColorId: accentColorId, backgroundCustomEmojiId: backgroundCustomEmojiId, upgradedGiftColors: upgradedGiftColors, profileAccentColorId: profileAccentColorId, profileBackgroundCustomEmojiId: profileBackgroundCustomEmojiId, permissions: permissions, lastMessage: lastMessage, positions: positions, chatLists: chatLists, messageSenderId: messageSenderId, blockList: blockList, hasProtectedContent: hasProtectedContent, isTranslatable: isTranslatable, isMarkedAsUnread: isMarkedAsUnread, viewAsTopics: viewAsTopics, hasScheduledMessages: hasScheduledMessages, hasWelcomeMessages: hasWelcomeMessages, canBeDeletedOnlyForSelf: canBeDeletedOnlyForSelf, canBeDeletedForAllUsers: canBeDeletedForAllUsers, canBeReported: canBeReported, defaultDisableNotification: defaultDisableNotification, unreadCount: unreadCount, lastReadInboxMessageId: lastReadInboxMessageId, lastReadOutboxMessageId: lastReadOutboxMessageId, unreadMentionCount: unreadMentionCount, unreadReactionCount: unreadReactionCount, unreadPollVoteCount: unreadPollVoteCount, notificationSettings: notificationSettings, availableReactions: availableReactions, messageAutoDeleteTime: messageAutoDeleteTime, emojiStatus: emojiStatus, background: background, theme: theme, actionBar: actionBar, businessBotManageBar: businessBotManageBar, videoChat: videoChat, pendingJoinRequests: pendingJoinRequests, replyMarkupMessageId: replyMarkupMessageId, draftMessage: draftMessage, textCompositionParameters: textCompositionParameters, clientData: clientData)
     }
 
     public var id: Int64 { native.value.int64_field(0) }
@@ -30562,7 +32625,12 @@ public struct TDNativeChat: TDNativeObjectView, TDNativeObjectBacked, @unchecked
         return TDNativeDraftMessage(native: object)
     }
 
-    public var clientData: String { swiftString(native.value.buffer_field(43)) }
+    public var textCompositionParameters: TDNativeTextCompositionParameters? {
+        let object = NativeOwnedObject(value: native.value.object_field(43))
+        return TDNativeTextCompositionParameters(native: object)
+    }
+
+    public var clientData: String { swiftString(native.value.buffer_field(44)) }
 }
 
 public struct TDNativeChats: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -31073,6 +33141,48 @@ public struct TDNativeChatActionBarJoinRequest: TDNativeObjectView, TDNativeObje
     public var isChannel: Bool { native.value.bool_field(1) }
 
     public var requestDate: Int { Int(native.value.int32_field(2)) }
+}
+
+public struct TDNativeChatActionBarBotInvite: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1533759998
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(canUnarchive: Bool, inviterUserId: Int64, ownerUserId: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(canUnarchive)
+        arguments.append_int64(inviterUserId)
+        arguments.append_int64(ownerUserId)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeChatActionBarBotInvite")
+        }
+        self = value
+    }
+
+    public static func make(canUnarchive: Bool, inviterUserId: Int64, ownerUserId: Int64) -> Self? {
+        Self(canUnarchive: canUnarchive, inviterUserId: inviterUserId, ownerUserId: ownerUserId)
+    }
+
+    public var canUnarchive: Bool { native.value.bool_field(0) }
+
+    public var inviterUserId: Int64 { native.value.int64_field(1) }
+
+    public var ownerUserId: Int64 { native.value.int64_field(2) }
 }
 
 public struct TDNativeButtonStyleDefault: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -36396,7 +38506,7 @@ public struct TDNativePageBlockBlockQuote: TDNativeObjectView, TDNativeObjectBac
 }
 
 public struct TDNativePageBlockExpandableBlockQuote: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -936479389
+    public static let typeID: Int32 = 172643964
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -36412,9 +38522,11 @@ public struct TDNativePageBlockExpandableBlockQuote: TDNativeObjectView, TDNativ
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(text: TDNativeRichText, credit: TDNativeRichText?) {
+    public init(blocks: [TDNativePageBlock], credit: TDNativeRichText?) {
         var arguments = tdlibkit.NativeArguments()
-        arguments.append_object(text.native.value)
+        var nativeValues0 = tdlibkit.NativeObjectArray()
+        for value in blocks { nativeValues0.append(value.native.value) }
+        arguments.append_object_vector(nativeValues0)
         arguments.append_object(credit?.native.value ?? tdlibkit.NativeObject())
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
@@ -36425,16 +38537,18 @@ public struct TDNativePageBlockExpandableBlockQuote: TDNativeObjectView, TDNativ
         self = value
     }
 
-    public static func make(text: TDNativeRichText, credit: TDNativeRichText?) -> Self? {
-        Self(text: text, credit: credit)
+    public static func make(blocks: [TDNativePageBlock], credit: TDNativeRichText?) -> Self? {
+        Self(blocks: blocks, credit: credit)
     }
 
-    public var text: TDNativeRichText {
-        let object = NativeOwnedObject(value: native.value.object_field(0))
-        guard let value = TDNativeRichText(native: object) else {
-            preconditionFailure("Required field text is null")
+    public var blocks: [TDNativePageBlock] {
+        let count = native.value.vector_count(0)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(0, element)
+            )
+            return TDNativePageBlock(native: object)
         }
-        return value
     }
 
     public var credit: TDNativeRichText? {
@@ -37845,6 +39959,39 @@ public struct TDNativeLinkPreviewTypeBackground: TDNativeObjectView, TDNativeObj
     public var backgroundType: TDNativeBackgroundType? {
         let object = NativeOwnedObject(value: native.value.object_field(1))
         return TDNativeBackgroundType(native: object)
+    }
+}
+
+public struct TDNativeLinkPreviewTypeBotInvite: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -205130197
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init() {
+        let arguments = tdlibkit.NativeArguments()
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeLinkPreviewTypeBotInvite")
+        }
+        self = value
+    }
+
+    public static func make() -> Self? {
+        Self()
     }
 }
 
@@ -45949,6 +48096,78 @@ public struct TDNativeMessageStory: TDNativeObjectView, TDNativeObjectBacked, @u
     public var viaMention: Bool { native.value.bool_field(2) }
 }
 
+public struct TDNativeMessageWidget: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1527832547
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(width: Int, height: Int, html: String, publicData: String, chatData: String, widgetId: Int64, caption: TDNativeFormattedText, showCaptionAboveMedia: Bool, isCopy: Bool, canSendQueries: Bool, canSendBackgroundQueries: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(width))
+        arguments.append_int32(nativeInt32(height))
+        arguments.append_buffer(nativeBuffer(html))
+        arguments.append_buffer(nativeBuffer(publicData))
+        arguments.append_buffer(nativeBuffer(chatData))
+        arguments.append_int64(widgetId)
+        arguments.append_object(caption.native.value)
+        arguments.append_bool(showCaptionAboveMedia)
+        arguments.append_bool(isCopy)
+        arguments.append_bool(canSendQueries)
+        arguments.append_bool(canSendBackgroundQueries)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeMessageWidget")
+        }
+        self = value
+    }
+
+    public static func make(width: Int, height: Int, html: String, publicData: String, chatData: String, widgetId: Int64, caption: TDNativeFormattedText, showCaptionAboveMedia: Bool, isCopy: Bool, canSendQueries: Bool, canSendBackgroundQueries: Bool) -> Self? {
+        Self(width: width, height: height, html: html, publicData: publicData, chatData: chatData, widgetId: widgetId, caption: caption, showCaptionAboveMedia: showCaptionAboveMedia, isCopy: isCopy, canSendQueries: canSendQueries, canSendBackgroundQueries: canSendBackgroundQueries)
+    }
+
+    public var width: Int { Int(native.value.int32_field(0)) }
+
+    public var height: Int { Int(native.value.int32_field(1)) }
+
+    public var html: String { swiftString(native.value.buffer_field(2)) }
+
+    public var publicData: String { swiftString(native.value.buffer_field(3)) }
+
+    public var chatData: String { swiftString(native.value.buffer_field(4)) }
+
+    public var widgetId: Int64 { native.value.int64_field(5) }
+
+    public var caption: TDNativeFormattedText {
+        let object = NativeOwnedObject(value: native.value.object_field(6))
+        guard let value = TDNativeFormattedText(native: object) else {
+            preconditionFailure("Required field caption is null")
+        }
+        return value
+    }
+
+    public var showCaptionAboveMedia: Bool { native.value.bool_field(7) }
+
+    public var isCopy: Bool { native.value.bool_field(8) }
+
+    public var canSendQueries: Bool { native.value.bool_field(9) }
+
+    public var canSendBackgroundQueries: Bool { native.value.bool_field(10) }
+}
+
 public struct TDNativeMessageChecklist: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 609926697
     let native: NativeOwnedObject
@@ -47684,6 +49903,42 @@ public struct TDNativeMessageManagedBotCreated: TDNativeObjectView, TDNativeObje
     public var managerBotUserId: Int64 { native.value.int64_field(1) }
 }
 
+public struct TDNativeMessageBotInvite: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1419148442
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(inviterUserId: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(inviterUserId)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeMessageBotInvite")
+        }
+        self = value
+    }
+
+    public static func make(inviterUserId: Int64) -> Self? {
+        Self(inviterUserId: inviterUserId)
+    }
+
+    public var inviterUserId: Int64 { native.value.int64_field(0) }
+}
+
 public struct TDNativeMessagePaymentSuccessful: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 1046878481
     let native: NativeOwnedObject
@@ -48404,7 +50659,7 @@ public struct TDNativeMessageGiveawayPrizeStars: TDNativeObjectView, TDNativeObj
 }
 
 public struct TDNativeMessageTonWalletTransfer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1872034960
+    public static let typeID: Int32 = 289627165
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -48420,7 +50675,7 @@ public struct TDNativeMessageTonWalletTransfer: TDNativeObjectView, TDNativeObje
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(senderUserId: Int64, transactionId: String, peerAddress: String, amount: Int64, comment: String, isCommentEncrypted: Bool) {
+    public init(senderUserId: Int64, transactionId: String, peerAddress: String, amount: Int64, comment: String, isCommentEncrypted: Bool, onRampProviderName: String) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int64(senderUserId)
         arguments.append_buffer(nativeBuffer(transactionId))
@@ -48428,6 +50683,7 @@ public struct TDNativeMessageTonWalletTransfer: TDNativeObjectView, TDNativeObje
         arguments.append_int64(amount)
         arguments.append_buffer(nativeBuffer(comment))
         arguments.append_bool(isCommentEncrypted)
+        arguments.append_buffer(nativeBuffer(onRampProviderName))
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
         )
@@ -48437,8 +50693,8 @@ public struct TDNativeMessageTonWalletTransfer: TDNativeObjectView, TDNativeObje
         self = value
     }
 
-    public static func make(senderUserId: Int64, transactionId: String, peerAddress: String, amount: Int64, comment: String, isCommentEncrypted: Bool) -> Self? {
-        Self(senderUserId: senderUserId, transactionId: transactionId, peerAddress: peerAddress, amount: amount, comment: comment, isCommentEncrypted: isCommentEncrypted)
+    public static func make(senderUserId: Int64, transactionId: String, peerAddress: String, amount: Int64, comment: String, isCommentEncrypted: Bool, onRampProviderName: String) -> Self? {
+        Self(senderUserId: senderUserId, transactionId: transactionId, peerAddress: peerAddress, amount: amount, comment: comment, isCommentEncrypted: isCommentEncrypted, onRampProviderName: onRampProviderName)
     }
 
     public var senderUserId: Int64 { native.value.int64_field(0) }
@@ -48452,6 +50708,8 @@ public struct TDNativeMessageTonWalletTransfer: TDNativeObjectView, TDNativeObje
     public var comment: String { swiftString(native.value.buffer_field(4)) }
 
     public var isCommentEncrypted: Bool { native.value.bool_field(5) }
+
+    public var onRampProviderName: String { swiftString(native.value.buffer_field(6)) }
 }
 
 public struct TDNativeMessageTonConnectRequest: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -48623,7 +50881,7 @@ public struct TDNativeMessageGift: TDNativeObjectView, TDNativeObjectBacked, @un
 }
 
 public struct TDNativeMessageUpgradedGift: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = 398364038
+    public static let typeID: Int32 = -921416442
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -48639,7 +50897,7 @@ public struct TDNativeMessageUpgradedGift: TDNativeObjectView, TDNativeObjectBac
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(gift: TDNativeUpgradedGift, senderId: TDNativeMessageSender?, receiverId: TDNativeMessageSender, origin: TDNativeUpgradedGiftOrigin, receivedGiftId: String, text: TDNativeFormattedText, isPrivate: Bool, isSaved: Bool, canBeTransferred: Bool, wasTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int, craftDate: Int) {
+    public init(gift: TDNativeUpgradedGift, senderId: TDNativeMessageSender?, receiverId: TDNativeMessageSender, origin: TDNativeUpgradedGiftOrigin, receivedGiftId: String, text: TDNativeFormattedText, isPrivate: Bool, isSaved: Bool, canBeTransferred: Bool, wasTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int, craftDate: Int) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_object(gift.native.value)
         arguments.append_object(senderId?.native.value ?? tdlibkit.NativeObject())
@@ -48655,7 +50913,7 @@ public struct TDNativeMessageUpgradedGift: TDNativeObjectView, TDNativeObjectBac
         arguments.append_int64(dropOriginalDetailsStarCount)
         arguments.append_int32(nativeInt32(nextTransferDate))
         arguments.append_int32(nativeInt32(nextResaleDate))
-        arguments.append_int32(nativeInt32(exportDate))
+        arguments.append_int32(nativeInt32(mintDate))
         arguments.append_int32(nativeInt32(craftDate))
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
@@ -48666,8 +50924,8 @@ public struct TDNativeMessageUpgradedGift: TDNativeObjectView, TDNativeObjectBac
         self = value
     }
 
-    public static func make(gift: TDNativeUpgradedGift, senderId: TDNativeMessageSender?, receiverId: TDNativeMessageSender, origin: TDNativeUpgradedGiftOrigin, receivedGiftId: String, text: TDNativeFormattedText, isPrivate: Bool, isSaved: Bool, canBeTransferred: Bool, wasTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, exportDate: Int, craftDate: Int) -> Self? {
-        Self(gift: gift, senderId: senderId, receiverId: receiverId, origin: origin, receivedGiftId: receivedGiftId, text: text, isPrivate: isPrivate, isSaved: isSaved, canBeTransferred: canBeTransferred, wasTransferred: wasTransferred, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, exportDate: exportDate, craftDate: craftDate)
+    public static func make(gift: TDNativeUpgradedGift, senderId: TDNativeMessageSender?, receiverId: TDNativeMessageSender, origin: TDNativeUpgradedGiftOrigin, receivedGiftId: String, text: TDNativeFormattedText, isPrivate: Bool, isSaved: Bool, canBeTransferred: Bool, wasTransferred: Bool, transferStarCount: Int64, dropOriginalDetailsStarCount: Int64, nextTransferDate: Int, nextResaleDate: Int, mintDate: Int, craftDate: Int) -> Self? {
+        Self(gift: gift, senderId: senderId, receiverId: receiverId, origin: origin, receivedGiftId: receivedGiftId, text: text, isPrivate: isPrivate, isSaved: isSaved, canBeTransferred: canBeTransferred, wasTransferred: wasTransferred, transferStarCount: transferStarCount, dropOriginalDetailsStarCount: dropOriginalDetailsStarCount, nextTransferDate: nextTransferDate, nextResaleDate: nextResaleDate, mintDate: mintDate, craftDate: craftDate)
     }
 
     public var gift: TDNativeUpgradedGift {
@@ -48725,7 +50983,7 @@ public struct TDNativeMessageUpgradedGift: TDNativeObjectView, TDNativeObjectBac
 
     public var nextResaleDate: Int { Int(native.value.int32_field(13)) }
 
-    public var exportDate: Int { Int(native.value.int32_field(14)) }
+    public var mintDate: Int { Int(native.value.int32_field(14)) }
 
     public var craftDate: Int { Int(native.value.int32_field(15)) }
 }
@@ -48917,6 +51175,75 @@ public struct TDNativeMessageUpgradedGiftPurchaseOfferRejected: TDNativeObjectVi
     public var offerMessageId: Int64 { native.value.int64_field(2) }
 
     public var wasExpired: Bool { native.value.bool_field(3) }
+}
+
+public struct TDNativeMessageUpgradedGiftOnChainPurchaseOffer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1249490428
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(gift: TDNativeUpgradedGift, isBuyer: Bool, state: TDNativeGiftOnChainPurchaseOfferState, offerAddress: String, gramAmount: Int64, feeBasisPoints: Int, expirationDate: Int, offerMessageId: Int64) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(gift.native.value)
+        arguments.append_bool(isBuyer)
+        arguments.append_object(state.native.value)
+        arguments.append_buffer(nativeBuffer(offerAddress))
+        arguments.append_int64(gramAmount)
+        arguments.append_int32(nativeInt32(feeBasisPoints))
+        arguments.append_int32(nativeInt32(expirationDate))
+        arguments.append_int64(offerMessageId)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeMessageUpgradedGiftOnChainPurchaseOffer")
+        }
+        self = value
+    }
+
+    public static func make(gift: TDNativeUpgradedGift, isBuyer: Bool, state: TDNativeGiftOnChainPurchaseOfferState, offerAddress: String, gramAmount: Int64, feeBasisPoints: Int, expirationDate: Int, offerMessageId: Int64) -> Self? {
+        Self(gift: gift, isBuyer: isBuyer, state: state, offerAddress: offerAddress, gramAmount: gramAmount, feeBasisPoints: feeBasisPoints, expirationDate: expirationDate, offerMessageId: offerMessageId)
+    }
+
+    public var gift: TDNativeUpgradedGift {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeUpgradedGift(native: object) else {
+            preconditionFailure("Required field gift is null")
+        }
+        return value
+    }
+
+    public var isBuyer: Bool { native.value.bool_field(1) }
+
+    public var state: TDNativeGiftOnChainPurchaseOfferState {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        guard let value = TDNativeGiftOnChainPurchaseOfferState(native: object) else {
+            preconditionFailure("Required field state is null")
+        }
+        return value
+    }
+
+    public var offerAddress: String { swiftString(native.value.buffer_field(3)) }
+
+    public var gramAmount: Int64 { native.value.int64_field(4) }
+
+    public var feeBasisPoints: Int { Int(native.value.int32_field(5)) }
+
+    public var expirationDate: Int { Int(native.value.int32_field(6)) }
+
+    public var offerMessageId: Int64 { native.value.int64_field(7) }
 }
 
 public struct TDNativeMessagePaidMessagesRefunded: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -52700,7 +55027,7 @@ public struct TDNativeInputPageBlockBlockQuote: TDNativeObjectView, TDNativeObje
 }
 
 public struct TDNativeInputPageBlockExpandableBlockQuote: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1893880215
+    public static let typeID: Int32 = -460413487
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -52716,9 +55043,11 @@ public struct TDNativeInputPageBlockExpandableBlockQuote: TDNativeObjectView, TD
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(text: TDNativeRichText, credit: TDNativeRichText?) {
+    public init(blocks: [TDNativeInputPageBlock], credit: TDNativeRichText?) {
         var arguments = tdlibkit.NativeArguments()
-        arguments.append_object(text.native.value)
+        var nativeValues0 = tdlibkit.NativeObjectArray()
+        for value in blocks { nativeValues0.append(value.native.value) }
+        arguments.append_object_vector(nativeValues0)
         arguments.append_object(credit?.native.value ?? tdlibkit.NativeObject())
         let object = NativeOwnedObject(
             value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
@@ -52729,16 +55058,18 @@ public struct TDNativeInputPageBlockExpandableBlockQuote: TDNativeObjectView, TD
         self = value
     }
 
-    public static func make(text: TDNativeRichText, credit: TDNativeRichText?) -> Self? {
-        Self(text: text, credit: credit)
+    public static func make(blocks: [TDNativeInputPageBlock], credit: TDNativeRichText?) -> Self? {
+        Self(blocks: blocks, credit: credit)
     }
 
-    public var text: TDNativeRichText {
-        let object = NativeOwnedObject(value: native.value.object_field(0))
-        guard let value = TDNativeRichText(native: object) else {
-            preconditionFailure("Required field text is null")
+    public var blocks: [TDNativeInputPageBlock] {
+        let count = native.value.vector_count(0)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(0, element)
+            )
+            return TDNativeInputPageBlock(native: object)
         }
-        return value
     }
 
     public var credit: TDNativeRichText? {
@@ -54573,6 +56904,117 @@ public struct TDNativeInputMessageChecklist: TDNativeObjectView, TDNativeObjectB
         }
         return value
     }
+}
+
+public struct TDNativeInputMessageWidget: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 999197869
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(width: Int, height: Int, html: String, publicData: String, chatData: String, caption: TDNativeFormattedText?, showCaptionAboveMedia: Bool, allowQueries: Bool, isShared: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int32(nativeInt32(width))
+        arguments.append_int32(nativeInt32(height))
+        arguments.append_buffer(nativeBuffer(html))
+        arguments.append_buffer(nativeBuffer(publicData))
+        arguments.append_buffer(nativeBuffer(chatData))
+        arguments.append_object(caption?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_bool(showCaptionAboveMedia)
+        arguments.append_bool(allowQueries)
+        arguments.append_bool(isShared)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeInputMessageWidget")
+        }
+        self = value
+    }
+
+    public static func make(width: Int, height: Int, html: String, publicData: String, chatData: String, caption: TDNativeFormattedText?, showCaptionAboveMedia: Bool, allowQueries: Bool, isShared: Bool) -> Self? {
+        Self(width: width, height: height, html: html, publicData: publicData, chatData: chatData, caption: caption, showCaptionAboveMedia: showCaptionAboveMedia, allowQueries: allowQueries, isShared: isShared)
+    }
+
+    public var width: Int { Int(native.value.int32_field(0)) }
+
+    public var height: Int { Int(native.value.int32_field(1)) }
+
+    public var html: String { swiftString(native.value.buffer_field(2)) }
+
+    public var publicData: String { swiftString(native.value.buffer_field(3)) }
+
+    public var chatData: String { swiftString(native.value.buffer_field(4)) }
+
+    public var caption: TDNativeFormattedText? {
+        let object = NativeOwnedObject(value: native.value.object_field(5))
+        return TDNativeFormattedText(native: object)
+    }
+
+    public var showCaptionAboveMedia: Bool { native.value.bool_field(6) }
+
+    public var allowQueries: Bool { native.value.bool_field(7) }
+
+    public var isShared: Bool { native.value.bool_field(8) }
+}
+
+public struct TDNativeInputMessageSharedWidget: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -271303570
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(widgetId: Int64, chatData: String, caption: TDNativeFormattedText?, showCaptionAboveMedia: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(widgetId)
+        arguments.append_buffer(nativeBuffer(chatData))
+        arguments.append_object(caption?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_bool(showCaptionAboveMedia)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeInputMessageSharedWidget")
+        }
+        self = value
+    }
+
+    public static func make(widgetId: Int64, chatData: String, caption: TDNativeFormattedText?, showCaptionAboveMedia: Bool) -> Self? {
+        Self(widgetId: widgetId, chatData: chatData, caption: caption, showCaptionAboveMedia: showCaptionAboveMedia)
+    }
+
+    public var widgetId: Int64 { native.value.int64_field(0) }
+
+    public var chatData: String { swiftString(native.value.buffer_field(1)) }
+
+    public var caption: TDNativeFormattedText? {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        return TDNativeFormattedText(native: object)
+    }
+
+    public var showCaptionAboveMedia: Bool { native.value.bool_field(3) }
 }
 
 public struct TDNativeInputMessageForwarded: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -57610,45 +60052,6 @@ public struct TDNativeInputStoryAreaTypeLocation: TDNativeObjectView, TDNativeOb
     }
 }
 
-public struct TDNativeInputStoryAreaTypeFoundVenue: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1395809130
-    let native: NativeOwnedObject
-
-    init?(native: NativeOwnedObject) {
-        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
-            return nil
-        }
-        self.native = native
-    }
-
-    public init?(_ object: TDUnknownObject) {
-        self.init(native: object.native)
-    }
-
-    public var typeID: Int32 { Self.typeID }
-
-    public init(queryId: Int64, resultId: String) {
-        var arguments = tdlibkit.NativeArguments()
-        arguments.append_int64(queryId)
-        arguments.append_buffer(nativeBuffer(resultId))
-        let object = NativeOwnedObject(
-            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
-        )
-        guard let value = Self(native: object) else {
-            preconditionFailure("Unable to construct TDNativeInputStoryAreaTypeFoundVenue")
-        }
-        self = value
-    }
-
-    public static func make(queryId: Int64, resultId: String) -> Self? {
-        Self(queryId: queryId, resultId: resultId)
-    }
-
-    public var queryId: Int64 { native.value.int64_field(0) }
-
-    public var resultId: String { swiftString(native.value.buffer_field(1)) }
-}
-
 public struct TDNativeInputStoryAreaTypePreviousVenue: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 1846693388
     let native: NativeOwnedObject
@@ -58703,7 +61106,7 @@ public struct TDNativeStoryInteractionInfo: TDNativeObjectView, TDNativeObjectBa
 }
 
 public struct TDNativeStory: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1551193142
+    public static let typeID: Int32 = -1192230650
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -58719,7 +61122,7 @@ public struct TDNativeStory: TDNativeObjectView, TDNativeObjectBacked, @unchecke
 
     public var typeID: Int32 { Self.typeID }
 
-    public init(id: Int, posterChatId: Int64, posterId: TDNativeMessageSender?, date: Int, isBeingPosted: Bool, isBeingEdited: Bool, isEdited: Bool, isPostedToChatPage: Bool, isVisibleOnlyForSelf: Bool, canBeAddedToAlbum: Bool, canBeDeleted: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeReplied: Bool, canSetPrivacySettings: Bool, canToggleIsPostedToChatPage: Bool, canGetStatistics: Bool, canGetInteractions: Bool, hasExpiredViewers: Bool, repostInfo: TDNativeStoryRepostInfo?, interactionInfo: TDNativeStoryInteractionInfo?, chosenReactionType: TDNativeReactionType?, privacySettings: TDNativeStoryPrivacySettings, content: TDNativeStoryContent, areas: [TDNativeStoryArea], caption: TDNativeFormattedText, albumIds: [Int]) {
+    public init(id: Int, posterChatId: Int64, posterId: TDNativeMessageSender?, date: Int, isBeingPosted: Bool, isBeingEdited: Bool, isEdited: Bool, isPostedToChatPage: Bool, isVisibleOnlyForSelf: Bool, canBeAddedToAlbum: Bool, canBeDeleted: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeReplied: Bool, canSetPrivacySettings: Bool, canToggleIsPostedToChatPage: Bool, canGetStatistics: Bool, canGetInteractions: Bool, hasExpiredViewers: Bool, repostInfo: TDNativeStoryRepostInfo?, interactionInfo: TDNativeStoryInteractionInfo?, chosenReactionType: TDNativeReactionType?, privacySettings: TDNativeStoryPrivacySettings, content: TDNativeStoryContent, areas: [TDNativeStoryArea], caption: TDNativeFormattedText, music: TDNativeAudio?, albumIds: [Int]) {
         var arguments = tdlibkit.NativeArguments()
         arguments.append_int32(nativeInt32(id))
         arguments.append_int64(posterChatId)
@@ -58749,8 +61152,9 @@ public struct TDNativeStory: TDNativeObjectView, TDNativeObjectBacked, @unchecke
         for value in areas { nativeValues24.append(value.native.value) }
         arguments.append_object_vector(nativeValues24)
         arguments.append_object(caption.native.value)
-        let nativeValues26 = albumIds.map(nativeInt32)
-        nativeValues26.withUnsafeBufferPointer { buffer in
+        arguments.append_object(music?.native.value ?? tdlibkit.NativeObject())
+        let nativeValues27 = albumIds.map(nativeInt32)
+        nativeValues27.withUnsafeBufferPointer { buffer in
             arguments.append_int32_vector(buffer.baseAddress, buffer.count)
         }
         let object = NativeOwnedObject(
@@ -58762,8 +61166,8 @@ public struct TDNativeStory: TDNativeObjectView, TDNativeObjectBacked, @unchecke
         self = value
     }
 
-    public static func make(id: Int, posterChatId: Int64, posterId: TDNativeMessageSender?, date: Int, isBeingPosted: Bool, isBeingEdited: Bool, isEdited: Bool, isPostedToChatPage: Bool, isVisibleOnlyForSelf: Bool, canBeAddedToAlbum: Bool, canBeDeleted: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeReplied: Bool, canSetPrivacySettings: Bool, canToggleIsPostedToChatPage: Bool, canGetStatistics: Bool, canGetInteractions: Bool, hasExpiredViewers: Bool, repostInfo: TDNativeStoryRepostInfo?, interactionInfo: TDNativeStoryInteractionInfo?, chosenReactionType: TDNativeReactionType?, privacySettings: TDNativeStoryPrivacySettings, content: TDNativeStoryContent, areas: [TDNativeStoryArea], caption: TDNativeFormattedText, albumIds: [Int]) -> Self? {
-        Self(id: id, posterChatId: posterChatId, posterId: posterId, date: date, isBeingPosted: isBeingPosted, isBeingEdited: isBeingEdited, isEdited: isEdited, isPostedToChatPage: isPostedToChatPage, isVisibleOnlyForSelf: isVisibleOnlyForSelf, canBeAddedToAlbum: canBeAddedToAlbum, canBeDeleted: canBeDeleted, canBeEdited: canBeEdited, canBeForwarded: canBeForwarded, canBeReplied: canBeReplied, canSetPrivacySettings: canSetPrivacySettings, canToggleIsPostedToChatPage: canToggleIsPostedToChatPage, canGetStatistics: canGetStatistics, canGetInteractions: canGetInteractions, hasExpiredViewers: hasExpiredViewers, repostInfo: repostInfo, interactionInfo: interactionInfo, chosenReactionType: chosenReactionType, privacySettings: privacySettings, content: content, areas: areas, caption: caption, albumIds: albumIds)
+    public static func make(id: Int, posterChatId: Int64, posterId: TDNativeMessageSender?, date: Int, isBeingPosted: Bool, isBeingEdited: Bool, isEdited: Bool, isPostedToChatPage: Bool, isVisibleOnlyForSelf: Bool, canBeAddedToAlbum: Bool, canBeDeleted: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeReplied: Bool, canSetPrivacySettings: Bool, canToggleIsPostedToChatPage: Bool, canGetStatistics: Bool, canGetInteractions: Bool, hasExpiredViewers: Bool, repostInfo: TDNativeStoryRepostInfo?, interactionInfo: TDNativeStoryInteractionInfo?, chosenReactionType: TDNativeReactionType?, privacySettings: TDNativeStoryPrivacySettings, content: TDNativeStoryContent, areas: [TDNativeStoryArea], caption: TDNativeFormattedText, music: TDNativeAudio?, albumIds: [Int]) -> Self? {
+        Self(id: id, posterChatId: posterChatId, posterId: posterId, date: date, isBeingPosted: isBeingPosted, isBeingEdited: isBeingEdited, isEdited: isEdited, isPostedToChatPage: isPostedToChatPage, isVisibleOnlyForSelf: isVisibleOnlyForSelf, canBeAddedToAlbum: canBeAddedToAlbum, canBeDeleted: canBeDeleted, canBeEdited: canBeEdited, canBeForwarded: canBeForwarded, canBeReplied: canBeReplied, canSetPrivacySettings: canSetPrivacySettings, canToggleIsPostedToChatPage: canToggleIsPostedToChatPage, canGetStatistics: canGetStatistics, canGetInteractions: canGetInteractions, hasExpiredViewers: hasExpiredViewers, repostInfo: repostInfo, interactionInfo: interactionInfo, chosenReactionType: chosenReactionType, privacySettings: privacySettings, content: content, areas: areas, caption: caption, music: music, albumIds: albumIds)
     }
 
     public var id: Int { Int(native.value.int32_field(0)) }
@@ -58856,9 +61260,14 @@ public struct TDNativeStory: TDNativeObjectView, TDNativeObjectBacked, @unchecke
         return value
     }
 
+    public var music: TDNativeAudio? {
+        let object = NativeOwnedObject(value: native.value.object_field(26))
+        return TDNativeAudio(native: object)
+    }
+
     public var albumIds: [Int] {
-        let count = native.value.vector_count(26)
-        return (0..<count).map { element in Int(native.value.vector_int32_at(26, element)) }
+        let count = native.value.vector_count(27)
+        return (0..<count).map { element in Int(native.value.vector_int32_at(27, element)) }
     }
 }
 
@@ -63884,6 +66293,158 @@ public struct TDNativeSpeechRecognitionResultError: TDNativeObjectView, TDNative
     }
 }
 
+public struct TDNativeSpeechRecognitionLanguages: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -1112642086
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(languageCodes: [String]) {
+        var arguments = tdlibkit.NativeArguments()
+        var nativeValues0 = tdlibkit.NativeBufferArray()
+        for value in languageCodes { nativeValues0.append(nativeBuffer(value)) }
+        arguments.append_buffer_vector(nativeValues0)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeSpeechRecognitionLanguages")
+        }
+        self = value
+    }
+
+    public static func make(languageCodes: [String]) -> Self? {
+        Self(languageCodes: languageCodes)
+    }
+
+    public var languageCodes: [String] {
+        let count = native.value.vector_count(0)
+        return (0..<count).map { element in swiftString(native.value.vector_buffer_at(0, element)) }
+    }
+}
+
+public struct TDNativeSpeechRecognitionModel: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1208042518
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(document: TDNativeDocument, languageCodes: [String], version: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(document.native.value)
+        var nativeValues1 = tdlibkit.NativeBufferArray()
+        for value in languageCodes { nativeValues1.append(nativeBuffer(value)) }
+        arguments.append_buffer_vector(nativeValues1)
+        arguments.append_int32(nativeInt32(version))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeSpeechRecognitionModel")
+        }
+        self = value
+    }
+
+    public static func make(document: TDNativeDocument, languageCodes: [String], version: Int) -> Self? {
+        Self(document: document, languageCodes: languageCodes, version: version)
+    }
+
+    public var document: TDNativeDocument {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeDocument(native: object) else {
+            preconditionFailure("Required field document is null")
+        }
+        return value
+    }
+
+    public var languageCodes: [String] {
+        let count = native.value.vector_count(1)
+        return (0..<count).map { element in swiftString(native.value.vector_buffer_at(1, element)) }
+    }
+
+    public var version: Int { Int(native.value.int32_field(2)) }
+}
+
+public struct TDNativeSpeechRecognitionModels: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 800651235
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(models: [TDNativeSpeechRecognitionModel], languageDetectionModel: TDNativeDocument?, voiceActivityDetectionModel: TDNativeDocument?) {
+        var arguments = tdlibkit.NativeArguments()
+        var nativeValues0 = tdlibkit.NativeObjectArray()
+        for value in models { nativeValues0.append(value.native.value) }
+        arguments.append_object_vector(nativeValues0)
+        arguments.append_object(languageDetectionModel?.native.value ?? tdlibkit.NativeObject())
+        arguments.append_object(voiceActivityDetectionModel?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeSpeechRecognitionModels")
+        }
+        self = value
+    }
+
+    public static func make(models: [TDNativeSpeechRecognitionModel], languageDetectionModel: TDNativeDocument?, voiceActivityDetectionModel: TDNativeDocument?) -> Self? {
+        Self(models: models, languageDetectionModel: languageDetectionModel, voiceActivityDetectionModel: voiceActivityDetectionModel)
+    }
+
+    public var models: [TDNativeSpeechRecognitionModel] {
+        let count = native.value.vector_count(0)
+        return (0..<count).compactMap { element in
+            let object = NativeOwnedObject(
+                value: native.value.vector_object_at(0, element)
+            )
+            return TDNativeSpeechRecognitionModel(native: object)
+        }
+    }
+
+    public var languageDetectionModel: TDNativeDocument? {
+        let object = NativeOwnedObject(value: native.value.object_field(1))
+        return TDNativeDocument(native: object)
+    }
+
+    public var voiceActivityDetectionModel: TDNativeDocument? {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        return TDNativeDocument(native: object)
+    }
+}
+
 public struct TDNativeBusinessConnection: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = -995703933
     let native: NativeOwnedObject
@@ -66346,6 +68907,252 @@ public struct TDNativeCallbackQueryAnswer: TDNativeObjectView, TDNativeObjectBac
     public var showAlert: Bool { native.value.bool_field(1) }
 
     public var url: String { swiftString(native.value.buffer_field(2)) }
+}
+
+public struct TDNativeWidgetQueryWallet: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -839692036
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(address: String, gramAmount: Int64, publicKey: Data, stateInit: Data) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(address))
+        arguments.append_int64(gramAmount)
+        arguments.append_buffer(nativeBuffer(publicKey))
+        arguments.append_buffer(nativeBuffer(stateInit))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetQueryWallet")
+        }
+        self = value
+    }
+
+    public static func make(address: String, gramAmount: Int64, publicKey: Data, stateInit: Data) -> Self? {
+        Self(address: address, gramAmount: gramAmount, publicKey: publicKey, stateInit: stateInit)
+    }
+
+    public var address: String { swiftString(native.value.buffer_field(0)) }
+
+    public var gramAmount: Int64 { native.value.int64_field(1) }
+
+    public var publicKey: Data { swiftData(native.value.buffer_field(2)) }
+
+    public var stateInit: Data { swiftData(native.value.buffer_field(3)) }
+}
+
+public struct TDNativeWidgetQueryTypeData: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 594102106
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(withWallet: Bool) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_bool(withWallet)
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetQueryTypeData")
+        }
+        self = value
+    }
+
+    public static func make(withWallet: Bool) -> Self? {
+        Self(withWallet: withWallet)
+    }
+
+    public var withWallet: Bool { native.value.bool_field(0) }
+}
+
+public struct TDNativeWidgetQueryTypeSignData: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -252898499
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(wallet: TDNativeWidgetQueryWallet, signData: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(wallet.native.value)
+        arguments.append_buffer(nativeBuffer(signData))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetQueryTypeSignData")
+        }
+        self = value
+    }
+
+    public static func make(wallet: TDNativeWidgetQueryWallet, signData: String) -> Self? {
+        Self(wallet: wallet, signData: signData)
+    }
+
+    public var wallet: TDNativeWidgetQueryWallet {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeWidgetQueryWallet(native: object) else {
+            preconditionFailure("Required field wallet is null")
+        }
+        return value
+    }
+
+    public var signData: String { swiftString(native.value.buffer_field(1)) }
+}
+
+public struct TDNativeWidgetQueryTypeSentTransaction: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 989539590
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(wallet: TDNativeWidgetQueryWallet, msgHash: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_object(wallet.native.value)
+        arguments.append_buffer(nativeBuffer(msgHash))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetQueryTypeSentTransaction")
+        }
+        self = value
+    }
+
+    public static func make(wallet: TDNativeWidgetQueryWallet, msgHash: String) -> Self? {
+        Self(wallet: wallet, msgHash: msgHash)
+    }
+
+    public var wallet: TDNativeWidgetQueryWallet {
+        let object = NativeOwnedObject(value: native.value.object_field(0))
+        guard let value = TDNativeWidgetQueryWallet(native: object) else {
+            preconditionFailure("Required field wallet is null")
+        }
+        return value
+    }
+
+    public var msgHash: String { swiftString(native.value.buffer_field(1)) }
+}
+
+public struct TDNativeWidgetQueryAnswer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1557837077
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(data: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(data))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetQueryAnswer")
+        }
+        self = value
+    }
+
+    public static func make(data: String) -> Self? {
+        Self(data: data)
+    }
+
+    public var data: String { swiftString(native.value.buffer_field(0)) }
+}
+
+public struct TDNativeWidgetPublicData: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1018965146
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(data: String, pollPeriod: Int) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(data))
+        arguments.append_int32(nativeInt32(pollPeriod))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeWidgetPublicData")
+        }
+        self = value
+    }
+
+    public static func make(data: String, pollPeriod: Int) -> Self? {
+        Self(data: data, pollPeriod: pollPeriod)
+    }
+
+    public var data: String { swiftString(native.value.buffer_field(0)) }
+
+    public var pollPeriod: Int { Int(native.value.int32_field(1)) }
 }
 
 public struct TDNativeCustomRequestResult: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
@@ -81771,6 +84578,42 @@ public struct TDNativeInternalLinkTypeBotAddToChannel: TDNativeObjectView, TDNat
     }
 }
 
+public struct TDNativeInternalLinkTypeBotInvite: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 998371539
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(botUsername: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_buffer(nativeBuffer(botUsername))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeInternalLinkTypeBotInvite")
+        }
+        self = value
+    }
+
+    public static func make(botUsername: String) -> Self? {
+        Self(botUsername: botUsername)
+    }
+
+    public var botUsername: String { swiftString(native.value.buffer_field(0)) }
+}
+
 public struct TDNativeInternalLinkTypeBotStart: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 1066950637
     let native: NativeOwnedObject
@@ -83596,7 +86439,7 @@ public struct TDNativeInternalLinkTypeTonConnect: TDNativeObjectView, TDNativeOb
 }
 
 public struct TDNativeInternalLinkTypeTonWalletTransfer: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
-    public static let typeID: Int32 = -1697768710
+    public static let typeID: Int32 = 9715338
     let native: NativeOwnedObject
 
     init?(native: NativeOwnedObject) {
@@ -92205,6 +95048,48 @@ public struct TDNativeUpdateChatDraftMessage: TDNativeObjectView, TDNativeObject
     }
 }
 
+public struct TDNativeUpdateChatTextCompositionParameters: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 1467980880
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(chatId: Int64, textCompositionParameters: TDNativeTextCompositionParameters?) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(chatId)
+        arguments.append_object(textCompositionParameters?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpdateChatTextCompositionParameters")
+        }
+        self = value
+    }
+
+    public static func make(chatId: Int64, textCompositionParameters: TDNativeTextCompositionParameters?) -> Self? {
+        Self(chatId: chatId, textCompositionParameters: textCompositionParameters)
+    }
+
+    public var chatId: Int64 { native.value.int64_field(0) }
+
+    public var textCompositionParameters: TDNativeTextCompositionParameters? {
+        let object = NativeOwnedObject(value: native.value.object_field(1))
+        return TDNativeTextCompositionParameters(native: object)
+    }
+}
+
 public struct TDNativeUpdateChatEmojiStatus: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = 2004444432
     let native: NativeOwnedObject
@@ -97966,6 +100851,45 @@ public struct TDNativeUpdateSpeechRecognitionTrial: TDNativeObjectView, TDNative
     public var nextResetDate: Int { Int(native.value.int32_field(3)) }
 }
 
+public struct TDNativeUpdateSpeechRecognitionInFile: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -922861464
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(recognitionId: Int64, partialText: String) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(recognitionId)
+        arguments.append_buffer(nativeBuffer(partialText))
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpdateSpeechRecognitionInFile")
+        }
+        self = value
+    }
+
+    public static func make(recognitionId: Int64, partialText: String) -> Self? {
+        Self(recognitionId: recognitionId, partialText: partialText)
+    }
+
+    public var recognitionId: Int64 { native.value.int64_field(0) }
+
+    public var partialText: String { swiftString(native.value.buffer_field(1)) }
+}
+
 public struct TDNativeUpdateGroupCallMessageLevels: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
     public static let typeID: Int32 = -882998951
     let native: NativeOwnedObject
@@ -98938,6 +101862,207 @@ public struct TDNativeUpdateNewBusinessCallbackQuery: TDNativeObjectView, TDNati
             preconditionFailure("Required field payload is null")
         }
         return value
+    }
+}
+
+public struct TDNativeUpdateNewWidgetQuery: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -43285453
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(id: Int64, senderUserId: Int64, chatId: Int64, messageId: Int64, chatInstance: Int64, chatType: String, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(id)
+        arguments.append_int64(senderUserId)
+        arguments.append_int64(chatId)
+        arguments.append_int64(messageId)
+        arguments.append_int64(chatInstance)
+        arguments.append_buffer(nativeBuffer(chatType))
+        arguments.append_object(queryType.native.value)
+        arguments.append_buffer(nativeBuffer(data))
+        arguments.append_int64(widgetId)
+        arguments.append_object(walletCard?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpdateNewWidgetQuery")
+        }
+        self = value
+    }
+
+    public static func make(id: Int64, senderUserId: Int64, chatId: Int64, messageId: Int64, chatInstance: Int64, chatType: String, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) -> Self? {
+        Self(id: id, senderUserId: senderUserId, chatId: chatId, messageId: messageId, chatInstance: chatInstance, chatType: chatType, queryType: queryType, data: data, widgetId: widgetId, walletCard: walletCard)
+    }
+
+    public var id: Int64 { native.value.int64_field(0) }
+
+    public var senderUserId: Int64 { native.value.int64_field(1) }
+
+    public var chatId: Int64 { native.value.int64_field(2) }
+
+    public var messageId: Int64 { native.value.int64_field(3) }
+
+    public var chatInstance: Int64 { native.value.int64_field(4) }
+
+    public var chatType: String { swiftString(native.value.buffer_field(5)) }
+
+    public var queryType: TDNativeWidgetQueryType {
+        let object = NativeOwnedObject(value: native.value.object_field(6))
+        guard let value = TDNativeWidgetQueryType(native: object) else {
+            preconditionFailure("Required field queryType is null")
+        }
+        return value
+    }
+
+    public var data: Data { swiftData(native.value.buffer_field(7)) }
+
+    public var widgetId: Int64 { native.value.int64_field(8) }
+
+    public var walletCard: TDNativeTonWalletCard? {
+        let object = NativeOwnedObject(value: native.value.object_field(9))
+        return TDNativeTonWalletCard(native: object)
+    }
+}
+
+public struct TDNativeUpdateNewInlineWidgetQuery: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = -843836421
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(id: Int64, senderUserId: Int64, inlineMessageId: String, chatInstance: Int64, chatType: String, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(id)
+        arguments.append_int64(senderUserId)
+        arguments.append_buffer(nativeBuffer(inlineMessageId))
+        arguments.append_int64(chatInstance)
+        arguments.append_buffer(nativeBuffer(chatType))
+        arguments.append_object(queryType.native.value)
+        arguments.append_buffer(nativeBuffer(data))
+        arguments.append_int64(widgetId)
+        arguments.append_object(walletCard?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpdateNewInlineWidgetQuery")
+        }
+        self = value
+    }
+
+    public static func make(id: Int64, senderUserId: Int64, inlineMessageId: String, chatInstance: Int64, chatType: String, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) -> Self? {
+        Self(id: id, senderUserId: senderUserId, inlineMessageId: inlineMessageId, chatInstance: chatInstance, chatType: chatType, queryType: queryType, data: data, widgetId: widgetId, walletCard: walletCard)
+    }
+
+    public var id: Int64 { native.value.int64_field(0) }
+
+    public var senderUserId: Int64 { native.value.int64_field(1) }
+
+    public var inlineMessageId: String { swiftString(native.value.buffer_field(2)) }
+
+    public var chatInstance: Int64 { native.value.int64_field(3) }
+
+    public var chatType: String { swiftString(native.value.buffer_field(4)) }
+
+    public var queryType: TDNativeWidgetQueryType {
+        let object = NativeOwnedObject(value: native.value.object_field(5))
+        guard let value = TDNativeWidgetQueryType(native: object) else {
+            preconditionFailure("Required field queryType is null")
+        }
+        return value
+    }
+
+    public var data: Data { swiftData(native.value.buffer_field(6)) }
+
+    public var widgetId: Int64 { native.value.int64_field(7) }
+
+    public var walletCard: TDNativeTonWalletCard? {
+        let object = NativeOwnedObject(value: native.value.object_field(8))
+        return TDNativeTonWalletCard(native: object)
+    }
+}
+
+public struct TDNativeUpdateNewWidgetCopyQuery: TDNativeObjectView, TDNativeObjectBacked, @unchecked Sendable {
+    public static let typeID: Int32 = 755000376
+    let native: NativeOwnedObject
+
+    init?(native: NativeOwnedObject) {
+        guard native.value.is_valid(), native.value.type_id() == Self.typeID else {
+            return nil
+        }
+        self.native = native
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public var typeID: Int32 { Self.typeID }
+
+    public init(id: Int64, senderUserId: Int64, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) {
+        var arguments = tdlibkit.NativeArguments()
+        arguments.append_int64(id)
+        arguments.append_int64(senderUserId)
+        arguments.append_object(queryType.native.value)
+        arguments.append_buffer(nativeBuffer(data))
+        arguments.append_int64(widgetId)
+        arguments.append_object(walletCard?.native.value ?? tdlibkit.NativeObject())
+        let object = NativeOwnedObject(
+            value: tdlibkit.NativeSchemaFactory.make_object(Self.typeID, arguments)
+        )
+        guard let value = Self(native: object) else {
+            preconditionFailure("Unable to construct TDNativeUpdateNewWidgetCopyQuery")
+        }
+        self = value
+    }
+
+    public static func make(id: Int64, senderUserId: Int64, queryType: TDNativeWidgetQueryType, data: Data, widgetId: Int64, walletCard: TDNativeTonWalletCard?) -> Self? {
+        Self(id: id, senderUserId: senderUserId, queryType: queryType, data: data, widgetId: widgetId, walletCard: walletCard)
+    }
+
+    public var id: Int64 { native.value.int64_field(0) }
+
+    public var senderUserId: Int64 { native.value.int64_field(1) }
+
+    public var queryType: TDNativeWidgetQueryType {
+        let object = NativeOwnedObject(value: native.value.object_field(2))
+        guard let value = TDNativeWidgetQueryType(native: object) else {
+            preconditionFailure("Required field queryType is null")
+        }
+        return value
+    }
+
+    public var data: Data { swiftData(native.value.buffer_field(3)) }
+
+    public var widgetId: Int64 { native.value.int64_field(4) }
+
+    public var walletCard: TDNativeTonWalletCard? {
+        let object = NativeOwnedObject(value: native.value.object_field(5))
+        return TDNativeTonWalletCard(native: object)
     }
 }
 
@@ -100750,6 +103875,47 @@ public enum TDNativeBlockList: TDNativeObjectView, TDNativeObjectBacked, Sendabl
     }
 }
 
+public enum TDNativeBotCallbackQueryMode: TDNativeObjectView, TDNativeObjectBacked, Sendable {
+    case botCallbackQueryModeDefault
+    case botCallbackQueryModeAuto
+    case botCallbackQueryModeInline
+
+    init?(native: NativeOwnedObject) {
+        switch native.value.type_id() {
+        case TDNativeBotCallbackQueryModeDefault.typeID:
+            self = .botCallbackQueryModeDefault
+        case TDNativeBotCallbackQueryModeAuto.typeID:
+            self = .botCallbackQueryModeAuto
+        case TDNativeBotCallbackQueryModeInline.typeID:
+            self = .botCallbackQueryModeInline
+        default:
+            return nil
+        }
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public static var typeID: Int32 { 0 }
+
+    var native: NativeOwnedObject {
+        switch self {
+        case .botCallbackQueryModeDefault: return TDNativeBotCallbackQueryModeDefault().native
+        case .botCallbackQueryModeAuto: return TDNativeBotCallbackQueryModeAuto().native
+        case .botCallbackQueryModeInline: return TDNativeBotCallbackQueryModeInline().native
+        }
+    }
+
+    public var typeID: Int32 {
+        switch self {
+        case .botCallbackQueryModeDefault: return TDNativeBotCallbackQueryModeInline.typeID
+        case .botCallbackQueryModeAuto: return TDNativeBotCallbackQueryModeInline.typeID
+        case .botCallbackQueryModeInline: return TDNativeBotCallbackQueryModeInline.typeID
+        }
+    }
+}
+
 public enum TDNativeBotCommandScope: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case botCommandScopeDefault
     case botCommandScopeAllPrivateChats
@@ -100810,6 +103976,122 @@ public enum TDNativeBotCommandScope: TDNativeObjectView, TDNativeObjectBacked, S
         case .botCommandScopeChat(let value): return value.typeID
         case .botCommandScopeChatAdministrators(let value): return value.typeID
         case .botCommandScopeChatMember(let value): return value.typeID
+        }
+    }
+}
+
+public enum TDNativeBotSetting: TDNativeObjectView, TDNativeObjectBacked, Sendable {
+    case botSettingIsInline(TDNativeBotSettingIsInline)
+    case botSettingInlineQueryPlaceholder(TDNativeBotSettingInlineQueryPlaceholder)
+    case botSettingNeedLocation(TDNativeBotSettingNeedLocation)
+    case botSettingInlineFeedback(TDNativeBotSettingInlineFeedback)
+    case botSettingCanJoinGroups(TDNativeBotSettingCanJoinGroups)
+    case botSettingCanReadAllGroupMessages(TDNativeBotSettingCanReadAllGroupMessages)
+    case botSettingCanConnectToBusiness(TDNativeBotSettingCanConnectToBusiness)
+    case botSettingCanManageBots(TDNativeBotSettingCanManageBots)
+    case botSettingSupportsGuestQueries(TDNativeBotSettingSupportsGuestQueries)
+    case botSettingIsGuard(TDNativeBotSettingIsGuard)
+    case botSettingHasTopics(TDNativeBotSettingHasTopics)
+    case botSettingAllowsUsersToCreateTopics(TDNativeBotSettingAllowsUsersToCreateTopics)
+    case botSettingHasTopicSidebar(TDNativeBotSettingHasTopicSidebar)
+    case botSettingCanCommunicateWithBots(TDNativeBotSettingCanCommunicateWithBots)
+    case botSettingCallbackQueryMode(TDNativeBotSettingCallbackQueryMode)
+
+    init?(native: NativeOwnedObject) {
+        switch native.value.type_id() {
+        case TDNativeBotSettingIsInline.typeID:
+            guard let value = TDNativeBotSettingIsInline(native: native) else { return nil }
+            self = .botSettingIsInline(value)
+        case TDNativeBotSettingInlineQueryPlaceholder.typeID:
+            guard let value = TDNativeBotSettingInlineQueryPlaceholder(native: native) else { return nil }
+            self = .botSettingInlineQueryPlaceholder(value)
+        case TDNativeBotSettingNeedLocation.typeID:
+            guard let value = TDNativeBotSettingNeedLocation(native: native) else { return nil }
+            self = .botSettingNeedLocation(value)
+        case TDNativeBotSettingInlineFeedback.typeID:
+            guard let value = TDNativeBotSettingInlineFeedback(native: native) else { return nil }
+            self = .botSettingInlineFeedback(value)
+        case TDNativeBotSettingCanJoinGroups.typeID:
+            guard let value = TDNativeBotSettingCanJoinGroups(native: native) else { return nil }
+            self = .botSettingCanJoinGroups(value)
+        case TDNativeBotSettingCanReadAllGroupMessages.typeID:
+            guard let value = TDNativeBotSettingCanReadAllGroupMessages(native: native) else { return nil }
+            self = .botSettingCanReadAllGroupMessages(value)
+        case TDNativeBotSettingCanConnectToBusiness.typeID:
+            guard let value = TDNativeBotSettingCanConnectToBusiness(native: native) else { return nil }
+            self = .botSettingCanConnectToBusiness(value)
+        case TDNativeBotSettingCanManageBots.typeID:
+            guard let value = TDNativeBotSettingCanManageBots(native: native) else { return nil }
+            self = .botSettingCanManageBots(value)
+        case TDNativeBotSettingSupportsGuestQueries.typeID:
+            guard let value = TDNativeBotSettingSupportsGuestQueries(native: native) else { return nil }
+            self = .botSettingSupportsGuestQueries(value)
+        case TDNativeBotSettingIsGuard.typeID:
+            guard let value = TDNativeBotSettingIsGuard(native: native) else { return nil }
+            self = .botSettingIsGuard(value)
+        case TDNativeBotSettingHasTopics.typeID:
+            guard let value = TDNativeBotSettingHasTopics(native: native) else { return nil }
+            self = .botSettingHasTopics(value)
+        case TDNativeBotSettingAllowsUsersToCreateTopics.typeID:
+            guard let value = TDNativeBotSettingAllowsUsersToCreateTopics(native: native) else { return nil }
+            self = .botSettingAllowsUsersToCreateTopics(value)
+        case TDNativeBotSettingHasTopicSidebar.typeID:
+            guard let value = TDNativeBotSettingHasTopicSidebar(native: native) else { return nil }
+            self = .botSettingHasTopicSidebar(value)
+        case TDNativeBotSettingCanCommunicateWithBots.typeID:
+            guard let value = TDNativeBotSettingCanCommunicateWithBots(native: native) else { return nil }
+            self = .botSettingCanCommunicateWithBots(value)
+        case TDNativeBotSettingCallbackQueryMode.typeID:
+            guard let value = TDNativeBotSettingCallbackQueryMode(native: native) else { return nil }
+            self = .botSettingCallbackQueryMode(value)
+        default:
+            return nil
+        }
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public static var typeID: Int32 { 0 }
+
+    var native: NativeOwnedObject {
+        switch self {
+        case .botSettingIsInline(let value): return value.native
+        case .botSettingInlineQueryPlaceholder(let value): return value.native
+        case .botSettingNeedLocation(let value): return value.native
+        case .botSettingInlineFeedback(let value): return value.native
+        case .botSettingCanJoinGroups(let value): return value.native
+        case .botSettingCanReadAllGroupMessages(let value): return value.native
+        case .botSettingCanConnectToBusiness(let value): return value.native
+        case .botSettingCanManageBots(let value): return value.native
+        case .botSettingSupportsGuestQueries(let value): return value.native
+        case .botSettingIsGuard(let value): return value.native
+        case .botSettingHasTopics(let value): return value.native
+        case .botSettingAllowsUsersToCreateTopics(let value): return value.native
+        case .botSettingHasTopicSidebar(let value): return value.native
+        case .botSettingCanCommunicateWithBots(let value): return value.native
+        case .botSettingCallbackQueryMode(let value): return value.native
+        }
+    }
+
+    public var typeID: Int32 {
+        switch self {
+        case .botSettingIsInline(let value): return value.typeID
+        case .botSettingInlineQueryPlaceholder(let value): return value.typeID
+        case .botSettingNeedLocation(let value): return value.typeID
+        case .botSettingInlineFeedback(let value): return value.typeID
+        case .botSettingCanJoinGroups(let value): return value.typeID
+        case .botSettingCanReadAllGroupMessages(let value): return value.typeID
+        case .botSettingCanConnectToBusiness(let value): return value.typeID
+        case .botSettingCanManageBots(let value): return value.typeID
+        case .botSettingSupportsGuestQueries(let value): return value.typeID
+        case .botSettingIsGuard(let value): return value.typeID
+        case .botSettingHasTopics(let value): return value.typeID
+        case .botSettingAllowsUsersToCreateTopics(let value): return value.typeID
+        case .botSettingHasTopicSidebar(let value): return value.typeID
+        case .botSettingCanCommunicateWithBots(let value): return value.typeID
+        case .botSettingCallbackQueryMode(let value): return value.typeID
         }
     }
 }
@@ -101668,6 +104950,7 @@ public enum TDNativeChatActionBar: TDNativeObjectView, TDNativeObjectBacked, Sen
     case chatActionBarAddContact
     case chatActionBarSharePhoneNumber
     case chatActionBarJoinRequest(TDNativeChatActionBarJoinRequest)
+    case chatActionBarBotInvite(TDNativeChatActionBarBotInvite)
 
     init?(native: NativeOwnedObject) {
         switch native.value.type_id() {
@@ -101686,6 +104969,9 @@ public enum TDNativeChatActionBar: TDNativeObjectView, TDNativeObjectBacked, Sen
         case TDNativeChatActionBarJoinRequest.typeID:
             guard let value = TDNativeChatActionBarJoinRequest(native: native) else { return nil }
             self = .chatActionBarJoinRequest(value)
+        case TDNativeChatActionBarBotInvite.typeID:
+            guard let value = TDNativeChatActionBarBotInvite(native: native) else { return nil }
+            self = .chatActionBarBotInvite(value)
         default:
             return nil
         }
@@ -101705,17 +104991,19 @@ public enum TDNativeChatActionBar: TDNativeObjectView, TDNativeObjectBacked, Sen
         case .chatActionBarAddContact: return TDNativeChatActionBarAddContact().native
         case .chatActionBarSharePhoneNumber: return TDNativeChatActionBarSharePhoneNumber().native
         case .chatActionBarJoinRequest(let value): return value.native
+        case .chatActionBarBotInvite(let value): return value.native
         }
     }
 
     public var typeID: Int32 {
         switch self {
         case .chatActionBarReportSpam(let value): return value.typeID
-        case .chatActionBarInviteMembers: return TDNativeChatActionBarJoinRequest.typeID
+        case .chatActionBarInviteMembers: return TDNativeChatActionBarBotInvite.typeID
         case .chatActionBarReportAddBlock(let value): return value.typeID
-        case .chatActionBarAddContact: return TDNativeChatActionBarJoinRequest.typeID
-        case .chatActionBarSharePhoneNumber: return TDNativeChatActionBarJoinRequest.typeID
+        case .chatActionBarAddContact: return TDNativeChatActionBarBotInvite.typeID
+        case .chatActionBarSharePhoneNumber: return TDNativeChatActionBarBotInvite.typeID
         case .chatActionBarJoinRequest(let value): return value.typeID
+        case .chatActionBarBotInvite(let value): return value.typeID
         }
     }
 }
@@ -103798,6 +107086,108 @@ public enum TDNativeGiftForResaleOrder: TDNativeObjectView, TDNativeObjectBacked
     }
 }
 
+public enum TDNativeGiftOnChainPurchaseOfferState: TDNativeObjectView, TDNativeObjectBacked, Sendable {
+    case giftOnChainPurchaseOfferStatePending
+    case giftOnChainPurchaseOfferStateSettled
+    case giftOnChainPurchaseOfferStateAccepted
+    case giftOnChainPurchaseOfferStateCanceling
+    case giftOnChainPurchaseOfferStateDeclined(TDNativeGiftOnChainPurchaseOfferStateDeclined)
+    case giftOnChainPurchaseOfferStateCanceled(TDNativeGiftOnChainPurchaseOfferStateCanceled)
+    case giftOnChainPurchaseOfferStateExpired(TDNativeGiftOnChainPurchaseOfferStateExpired)
+
+    init?(native: NativeOwnedObject) {
+        switch native.value.type_id() {
+        case TDNativeGiftOnChainPurchaseOfferStatePending.typeID:
+            self = .giftOnChainPurchaseOfferStatePending
+        case TDNativeGiftOnChainPurchaseOfferStateSettled.typeID:
+            self = .giftOnChainPurchaseOfferStateSettled
+        case TDNativeGiftOnChainPurchaseOfferStateAccepted.typeID:
+            self = .giftOnChainPurchaseOfferStateAccepted
+        case TDNativeGiftOnChainPurchaseOfferStateCanceling.typeID:
+            self = .giftOnChainPurchaseOfferStateCanceling
+        case TDNativeGiftOnChainPurchaseOfferStateDeclined.typeID:
+            guard let value = TDNativeGiftOnChainPurchaseOfferStateDeclined(native: native) else { return nil }
+            self = .giftOnChainPurchaseOfferStateDeclined(value)
+        case TDNativeGiftOnChainPurchaseOfferStateCanceled.typeID:
+            guard let value = TDNativeGiftOnChainPurchaseOfferStateCanceled(native: native) else { return nil }
+            self = .giftOnChainPurchaseOfferStateCanceled(value)
+        case TDNativeGiftOnChainPurchaseOfferStateExpired.typeID:
+            guard let value = TDNativeGiftOnChainPurchaseOfferStateExpired(native: native) else { return nil }
+            self = .giftOnChainPurchaseOfferStateExpired(value)
+        default:
+            return nil
+        }
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public static var typeID: Int32 { 0 }
+
+    var native: NativeOwnedObject {
+        switch self {
+        case .giftOnChainPurchaseOfferStatePending: return TDNativeGiftOnChainPurchaseOfferStatePending().native
+        case .giftOnChainPurchaseOfferStateSettled: return TDNativeGiftOnChainPurchaseOfferStateSettled().native
+        case .giftOnChainPurchaseOfferStateAccepted: return TDNativeGiftOnChainPurchaseOfferStateAccepted().native
+        case .giftOnChainPurchaseOfferStateCanceling: return TDNativeGiftOnChainPurchaseOfferStateCanceling().native
+        case .giftOnChainPurchaseOfferStateDeclined(let value): return value.native
+        case .giftOnChainPurchaseOfferStateCanceled(let value): return value.native
+        case .giftOnChainPurchaseOfferStateExpired(let value): return value.native
+        }
+    }
+
+    public var typeID: Int32 {
+        switch self {
+        case .giftOnChainPurchaseOfferStatePending: return TDNativeGiftOnChainPurchaseOfferStateExpired.typeID
+        case .giftOnChainPurchaseOfferStateSettled: return TDNativeGiftOnChainPurchaseOfferStateExpired.typeID
+        case .giftOnChainPurchaseOfferStateAccepted: return TDNativeGiftOnChainPurchaseOfferStateExpired.typeID
+        case .giftOnChainPurchaseOfferStateCanceling: return TDNativeGiftOnChainPurchaseOfferStateExpired.typeID
+        case .giftOnChainPurchaseOfferStateDeclined(let value): return value.typeID
+        case .giftOnChainPurchaseOfferStateCanceled(let value): return value.typeID
+        case .giftOnChainPurchaseOfferStateExpired(let value): return value.typeID
+        }
+    }
+}
+
+public enum TDNativeGiftOnChainSaleTransaction: TDNativeObjectView, TDNativeObjectBacked, Sendable {
+    case giftOnChainSaleTransactionFragment(TDNativeGiftOnChainSaleTransactionFragment)
+    case giftOnChainSaleTransactionFixedPrice(TDNativeGiftOnChainSaleTransactionFixedPrice)
+
+    init?(native: NativeOwnedObject) {
+        switch native.value.type_id() {
+        case TDNativeGiftOnChainSaleTransactionFragment.typeID:
+            guard let value = TDNativeGiftOnChainSaleTransactionFragment(native: native) else { return nil }
+            self = .giftOnChainSaleTransactionFragment(value)
+        case TDNativeGiftOnChainSaleTransactionFixedPrice.typeID:
+            guard let value = TDNativeGiftOnChainSaleTransactionFixedPrice(native: native) else { return nil }
+            self = .giftOnChainSaleTransactionFixedPrice(value)
+        default:
+            return nil
+        }
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public static var typeID: Int32 { 0 }
+
+    var native: NativeOwnedObject {
+        switch self {
+        case .giftOnChainSaleTransactionFragment(let value): return value.native
+        case .giftOnChainSaleTransactionFixedPrice(let value): return value.native
+        }
+    }
+
+    public var typeID: Int32 {
+        switch self {
+        case .giftOnChainSaleTransactionFragment(let value): return value.typeID
+        case .giftOnChainSaleTransactionFixedPrice(let value): return value.typeID
+        }
+    }
+}
+
 public enum TDNativeGiftPurchaseOfferState: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case giftPurchaseOfferStatePending
     case giftPurchaseOfferStateAccepted
@@ -104820,6 +108210,8 @@ public enum TDNativeInputMessageContent: TDNativeObjectView, TDNativeObjectBacke
     case inputMessageStakeDice(TDNativeInputMessageStakeDice)
     case inputMessageStory(TDNativeInputMessageStory)
     case inputMessageChecklist(TDNativeInputMessageChecklist)
+    case inputMessageWidget(TDNativeInputMessageWidget)
+    case inputMessageSharedWidget(TDNativeInputMessageSharedWidget)
     case inputMessageForwarded(TDNativeInputMessageForwarded)
 
     init?(native: NativeOwnedObject) {
@@ -104890,6 +108282,12 @@ public enum TDNativeInputMessageContent: TDNativeObjectView, TDNativeObjectBacke
         case TDNativeInputMessageChecklist.typeID:
             guard let value = TDNativeInputMessageChecklist(native: native) else { return nil }
             self = .inputMessageChecklist(value)
+        case TDNativeInputMessageWidget.typeID:
+            guard let value = TDNativeInputMessageWidget(native: native) else { return nil }
+            self = .inputMessageWidget(value)
+        case TDNativeInputMessageSharedWidget.typeID:
+            guard let value = TDNativeInputMessageSharedWidget(native: native) else { return nil }
+            self = .inputMessageSharedWidget(value)
         case TDNativeInputMessageForwarded.typeID:
             guard let value = TDNativeInputMessageForwarded(native: native) else { return nil }
             self = .inputMessageForwarded(value)
@@ -104928,6 +108326,8 @@ public enum TDNativeInputMessageContent: TDNativeObjectView, TDNativeObjectBacke
         case .inputMessageStakeDice(let value): return value.native
         case .inputMessageStory(let value): return value.native
         case .inputMessageChecklist(let value): return value.native
+        case .inputMessageWidget(let value): return value.native
+        case .inputMessageSharedWidget(let value): return value.native
         case .inputMessageForwarded(let value): return value.native
         }
     }
@@ -104956,6 +108356,8 @@ public enum TDNativeInputMessageContent: TDNativeObjectView, TDNativeObjectBacke
         case .inputMessageStakeDice(let value): return value.typeID
         case .inputMessageStory(let value): return value.typeID
         case .inputMessageChecklist(let value): return value.typeID
+        case .inputMessageWidget(let value): return value.typeID
+        case .inputMessageSharedWidget(let value): return value.typeID
         case .inputMessageForwarded(let value): return value.typeID
         }
     }
@@ -105560,7 +108962,6 @@ public enum TDNativeInputProfileShareTheme: TDNativeObjectView, TDNativeObjectBa
 
 public enum TDNativeInputStoryAreaType: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case inputStoryAreaTypeLocation(TDNativeInputStoryAreaTypeLocation)
-    case inputStoryAreaTypeFoundVenue(TDNativeInputStoryAreaTypeFoundVenue)
     case inputStoryAreaTypePreviousVenue(TDNativeInputStoryAreaTypePreviousVenue)
     case inputStoryAreaTypeSuggestedReaction(TDNativeInputStoryAreaTypeSuggestedReaction)
     case inputStoryAreaTypeMessage(TDNativeInputStoryAreaTypeMessage)
@@ -105573,9 +108974,6 @@ public enum TDNativeInputStoryAreaType: TDNativeObjectView, TDNativeObjectBacked
         case TDNativeInputStoryAreaTypeLocation.typeID:
             guard let value = TDNativeInputStoryAreaTypeLocation(native: native) else { return nil }
             self = .inputStoryAreaTypeLocation(value)
-        case TDNativeInputStoryAreaTypeFoundVenue.typeID:
-            guard let value = TDNativeInputStoryAreaTypeFoundVenue(native: native) else { return nil }
-            self = .inputStoryAreaTypeFoundVenue(value)
         case TDNativeInputStoryAreaTypePreviousVenue.typeID:
             guard let value = TDNativeInputStoryAreaTypePreviousVenue(native: native) else { return nil }
             self = .inputStoryAreaTypePreviousVenue(value)
@@ -105608,7 +109006,6 @@ public enum TDNativeInputStoryAreaType: TDNativeObjectView, TDNativeObjectBacked
     var native: NativeOwnedObject {
         switch self {
         case .inputStoryAreaTypeLocation(let value): return value.native
-        case .inputStoryAreaTypeFoundVenue(let value): return value.native
         case .inputStoryAreaTypePreviousVenue(let value): return value.native
         case .inputStoryAreaTypeSuggestedReaction(let value): return value.native
         case .inputStoryAreaTypeMessage(let value): return value.native
@@ -105621,7 +109018,6 @@ public enum TDNativeInputStoryAreaType: TDNativeObjectView, TDNativeObjectBacked
     public var typeID: Int32 {
         switch self {
         case .inputStoryAreaTypeLocation(let value): return value.typeID
-        case .inputStoryAreaTypeFoundVenue(let value): return value.typeID
         case .inputStoryAreaTypePreviousVenue(let value): return value.typeID
         case .inputStoryAreaTypeSuggestedReaction(let value): return value.typeID
         case .inputStoryAreaTypeMessage(let value): return value.typeID
@@ -105675,6 +109071,7 @@ public enum TDNativeInternalLinkType: TDNativeObjectView, TDNativeObjectBacked, 
     case internalLinkTypeAuthenticationCode(TDNativeInternalLinkTypeAuthenticationCode)
     case internalLinkTypeBackground(TDNativeInternalLinkTypeBackground)
     case internalLinkTypeBotAddToChannel(TDNativeInternalLinkTypeBotAddToChannel)
+    case internalLinkTypeBotInvite(TDNativeInternalLinkTypeBotInvite)
     case internalLinkTypeBotStart(TDNativeInternalLinkTypeBotStart)
     case internalLinkTypeBotStartInGroup(TDNativeInternalLinkTypeBotStartInGroup)
     case internalLinkTypeBusinessChat(TDNativeInternalLinkTypeBusinessChat)
@@ -105745,6 +109142,9 @@ public enum TDNativeInternalLinkType: TDNativeObjectView, TDNativeObjectBacked, 
         case TDNativeInternalLinkTypeBotAddToChannel.typeID:
             guard let value = TDNativeInternalLinkTypeBotAddToChannel(native: native) else { return nil }
             self = .internalLinkTypeBotAddToChannel(value)
+        case TDNativeInternalLinkTypeBotInvite.typeID:
+            guard let value = TDNativeInternalLinkTypeBotInvite(native: native) else { return nil }
+            self = .internalLinkTypeBotInvite(value)
         case TDNativeInternalLinkTypeBotStart.typeID:
             guard let value = TDNativeInternalLinkTypeBotStart(native: native) else { return nil }
             self = .internalLinkTypeBotStart(value)
@@ -105919,6 +109319,7 @@ public enum TDNativeInternalLinkType: TDNativeObjectView, TDNativeObjectBacked, 
         case .internalLinkTypeAuthenticationCode(let value): return value.native
         case .internalLinkTypeBackground(let value): return value.native
         case .internalLinkTypeBotAddToChannel(let value): return value.native
+        case .internalLinkTypeBotInvite(let value): return value.native
         case .internalLinkTypeBotStart(let value): return value.native
         case .internalLinkTypeBotStartInGroup(let value): return value.native
         case .internalLinkTypeBusinessChat(let value): return value.native
@@ -105983,6 +109384,7 @@ public enum TDNativeInternalLinkType: TDNativeObjectView, TDNativeObjectBacked, 
         case .internalLinkTypeAuthenticationCode(let value): return value.typeID
         case .internalLinkTypeBackground(let value): return value.typeID
         case .internalLinkTypeBotAddToChannel(let value): return value.typeID
+        case .internalLinkTypeBotInvite(let value): return value.typeID
         case .internalLinkTypeBotStart(let value): return value.typeID
         case .internalLinkTypeBotStartInGroup(let value): return value.typeID
         case .internalLinkTypeBusinessChat(let value): return value.typeID
@@ -106388,6 +109790,7 @@ public enum TDNativeLinkPreviewType: TDNativeObjectView, TDNativeObjectBacked, S
     case linkPreviewTypeArticle(TDNativeLinkPreviewTypeArticle)
     case linkPreviewTypeAudio(TDNativeLinkPreviewTypeAudio)
     case linkPreviewTypeBackground(TDNativeLinkPreviewTypeBackground)
+    case linkPreviewTypeBotInvite
     case linkPreviewTypeChannelBoost(TDNativeLinkPreviewTypeChannelBoost)
     case linkPreviewTypeChat(TDNativeLinkPreviewTypeChat)
     case linkPreviewTypeDirectMessagesChat(TDNativeLinkPreviewTypeDirectMessagesChat)
@@ -106443,6 +109846,8 @@ public enum TDNativeLinkPreviewType: TDNativeObjectView, TDNativeObjectBacked, S
         case TDNativeLinkPreviewTypeBackground.typeID:
             guard let value = TDNativeLinkPreviewTypeBackground(native: native) else { return nil }
             self = .linkPreviewTypeBackground(value)
+        case TDNativeLinkPreviewTypeBotInvite.typeID:
+            self = .linkPreviewTypeBotInvite
         case TDNativeLinkPreviewTypeChannelBoost.typeID:
             guard let value = TDNativeLinkPreviewTypeChannelBoost(native: native) else { return nil }
             self = .linkPreviewTypeChannelBoost(value)
@@ -106557,6 +109962,7 @@ public enum TDNativeLinkPreviewType: TDNativeObjectView, TDNativeObjectBacked, S
         case .linkPreviewTypeArticle(let value): return value.native
         case .linkPreviewTypeAudio(let value): return value.native
         case .linkPreviewTypeBackground(let value): return value.native
+        case .linkPreviewTypeBotInvite: return TDNativeLinkPreviewTypeBotInvite().native
         case .linkPreviewTypeChannelBoost(let value): return value.native
         case .linkPreviewTypeChat(let value): return value.native
         case .linkPreviewTypeDirectMessagesChat(let value): return value.native
@@ -106602,6 +110008,7 @@ public enum TDNativeLinkPreviewType: TDNativeObjectView, TDNativeObjectBacked, S
         case .linkPreviewTypeArticle(let value): return value.typeID
         case .linkPreviewTypeAudio(let value): return value.typeID
         case .linkPreviewTypeBackground(let value): return value.typeID
+        case .linkPreviewTypeBotInvite: return TDNativeLinkPreviewTypeWebApp.typeID
         case .linkPreviewTypeChannelBoost(let value): return value.typeID
         case .linkPreviewTypeChat(let value): return value.typeID
         case .linkPreviewTypeDirectMessagesChat(let value): return value.typeID
@@ -106792,6 +110199,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
     case messagePoll(TDNativeMessagePoll)
     case messageStakeDice(TDNativeMessageStakeDice)
     case messageStory(TDNativeMessageStory)
+    case messageWidget(TDNativeMessageWidget)
     case messageChecklist(TDNativeMessageChecklist)
     case messageInvoice(TDNativeMessageInvoice)
     case messageCall(TDNativeMessageCall)
@@ -106835,6 +110243,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
     case messageCustomServiceAction(TDNativeMessageCustomServiceAction)
     case messageGameScore(TDNativeMessageGameScore)
     case messageManagedBotCreated(TDNativeMessageManagedBotCreated)
+    case messageBotInvite(TDNativeMessageBotInvite)
     case messagePaymentSuccessful(TDNativeMessagePaymentSuccessful)
     case messagePaymentSuccessfulBot(TDNativeMessagePaymentSuccessfulBot)
     case messagePaymentRefunded(TDNativeMessagePaymentRefunded)
@@ -106854,6 +110263,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
     case messageRefundedUpgradedGift(TDNativeMessageRefundedUpgradedGift)
     case messageUpgradedGiftPurchaseOffer(TDNativeMessageUpgradedGiftPurchaseOffer)
     case messageUpgradedGiftPurchaseOfferRejected(TDNativeMessageUpgradedGiftPurchaseOfferRejected)
+    case messageUpgradedGiftOnChainPurchaseOffer(TDNativeMessageUpgradedGiftOnChainPurchaseOffer)
     case messagePaidMessagesRefunded(TDNativeMessagePaidMessagesRefunded)
     case messagePaidMessagePriceChanged(TDNativeMessagePaidMessagePriceChanged)
     case messageDirectMessagePriceChanged(TDNativeMessageDirectMessagePriceChanged)
@@ -106949,6 +110359,9 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case TDNativeMessageStory.typeID:
             guard let value = TDNativeMessageStory(native: native) else { return nil }
             self = .messageStory(value)
+        case TDNativeMessageWidget.typeID:
+            guard let value = TDNativeMessageWidget(native: native) else { return nil }
+            self = .messageWidget(value)
         case TDNativeMessageChecklist.typeID:
             guard let value = TDNativeMessageChecklist(native: native) else { return nil }
             self = .messageChecklist(value)
@@ -107073,6 +110486,9 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case TDNativeMessageManagedBotCreated.typeID:
             guard let value = TDNativeMessageManagedBotCreated(native: native) else { return nil }
             self = .messageManagedBotCreated(value)
+        case TDNativeMessageBotInvite.typeID:
+            guard let value = TDNativeMessageBotInvite(native: native) else { return nil }
+            self = .messageBotInvite(value)
         case TDNativeMessagePaymentSuccessful.typeID:
             guard let value = TDNativeMessagePaymentSuccessful(native: native) else { return nil }
             self = .messagePaymentSuccessful(value)
@@ -107130,6 +110546,9 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case TDNativeMessageUpgradedGiftPurchaseOfferRejected.typeID:
             guard let value = TDNativeMessageUpgradedGiftPurchaseOfferRejected(native: native) else { return nil }
             self = .messageUpgradedGiftPurchaseOfferRejected(value)
+        case TDNativeMessageUpgradedGiftOnChainPurchaseOffer.typeID:
+            guard let value = TDNativeMessageUpgradedGiftOnChainPurchaseOffer(native: native) else { return nil }
+            self = .messageUpgradedGiftOnChainPurchaseOffer(value)
         case TDNativeMessagePaidMessagesRefunded.typeID:
             guard let value = TDNativeMessagePaidMessagesRefunded(native: native) else { return nil }
             self = .messagePaidMessagesRefunded(value)
@@ -107228,6 +110647,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messagePoll(let value): return value.native
         case .messageStakeDice(let value): return value.native
         case .messageStory(let value): return value.native
+        case .messageWidget(let value): return value.native
         case .messageChecklist(let value): return value.native
         case .messageInvoice(let value): return value.native
         case .messageCall(let value): return value.native
@@ -107271,6 +110691,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messageCustomServiceAction(let value): return value.native
         case .messageGameScore(let value): return value.native
         case .messageManagedBotCreated(let value): return value.native
+        case .messageBotInvite(let value): return value.native
         case .messagePaymentSuccessful(let value): return value.native
         case .messagePaymentSuccessfulBot(let value): return value.native
         case .messagePaymentRefunded(let value): return value.native
@@ -107290,6 +110711,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messageRefundedUpgradedGift(let value): return value.native
         case .messageUpgradedGiftPurchaseOffer(let value): return value.native
         case .messageUpgradedGiftPurchaseOfferRejected(let value): return value.native
+        case .messageUpgradedGiftOnChainPurchaseOffer(let value): return value.native
         case .messagePaidMessagesRefunded(let value): return value.native
         case .messagePaidMessagePriceChanged(let value): return value.native
         case .messageDirectMessagePriceChanged(let value): return value.native
@@ -107341,6 +110763,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messagePoll(let value): return value.typeID
         case .messageStakeDice(let value): return value.typeID
         case .messageStory(let value): return value.typeID
+        case .messageWidget(let value): return value.typeID
         case .messageChecklist(let value): return value.typeID
         case .messageInvoice(let value): return value.typeID
         case .messageCall(let value): return value.typeID
@@ -107384,6 +110807,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messageCustomServiceAction(let value): return value.typeID
         case .messageGameScore(let value): return value.typeID
         case .messageManagedBotCreated(let value): return value.typeID
+        case .messageBotInvite(let value): return value.typeID
         case .messagePaymentSuccessful(let value): return value.typeID
         case .messagePaymentSuccessfulBot(let value): return value.typeID
         case .messagePaymentRefunded(let value): return value.typeID
@@ -107403,6 +110827,7 @@ public enum TDNativeMessageContent: TDNativeObjectView, TDNativeObjectBacked, Se
         case .messageRefundedUpgradedGift(let value): return value.typeID
         case .messageUpgradedGiftPurchaseOffer(let value): return value.typeID
         case .messageUpgradedGiftPurchaseOfferRejected(let value): return value.typeID
+        case .messageUpgradedGiftOnChainPurchaseOffer(let value): return value.typeID
         case .messagePaidMessagesRefunded(let value): return value.typeID
         case .messagePaidMessagePriceChanged(let value): return value.typeID
         case .messageDirectMessagePriceChanged(let value): return value.typeID
@@ -113651,6 +117076,15 @@ public enum TDNativeTonWalletTransactionType: TDNativeObjectView, TDNativeObject
     case tonWalletTransactionTypeTransfer(TDNativeTonWalletTransactionTypeTransfer)
     case tonWalletTransactionTypeNftTransfer(TDNativeTonWalletTransactionTypeNftTransfer)
     case tonWalletTransactionTypeTelegramGiftTransfer(TDNativeTonWalletTransactionTypeTelegramGiftTransfer)
+    case tonWalletTransactionTypeTelegramGiftPurchase(TDNativeTonWalletTransactionTypeTelegramGiftPurchase)
+    case tonWalletTransactionTypeTelegramGiftSale(TDNativeTonWalletTransactionTypeTelegramGiftSale)
+    case tonWalletTransactionTypeTelegramGiftListing(TDNativeTonWalletTransactionTypeTelegramGiftListing)
+    case tonWalletTransactionTypeTelegramGiftDelisting(TDNativeTonWalletTransactionTypeTelegramGiftDelisting)
+    case tonWalletTransactionTypeTelegramGiftOfferCreation(TDNativeTonWalletTransactionTypeTelegramGiftOfferCreation)
+    case tonWalletTransactionTypeTelegramGiftOfferAcceptance(TDNativeTonWalletTransactionTypeTelegramGiftOfferAcceptance)
+    case tonWalletTransactionTypeTelegramGiftOfferCancellation(TDNativeTonWalletTransactionTypeTelegramGiftOfferCancellation)
+    case tonWalletTransactionTypeTelegramGiftOfferDecline(TDNativeTonWalletTransactionTypeTelegramGiftOfferDecline)
+    case tonWalletTransactionTypeTelegramGiftOfferExpiration(TDNativeTonWalletTransactionTypeTelegramGiftOfferExpiration)
     case tonWalletTransactionTypeKeyChange
 
     init?(native: NativeOwnedObject) {
@@ -113667,6 +117101,33 @@ public enum TDNativeTonWalletTransactionType: TDNativeObjectView, TDNativeObject
         case TDNativeTonWalletTransactionTypeTelegramGiftTransfer.typeID:
             guard let value = TDNativeTonWalletTransactionTypeTelegramGiftTransfer(native: native) else { return nil }
             self = .tonWalletTransactionTypeTelegramGiftTransfer(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftPurchase.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftPurchase(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftPurchase(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftSale.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftSale(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftSale(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftListing.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftListing(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftListing(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftDelisting.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftDelisting(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftDelisting(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftOfferCreation.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftOfferCreation(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftOfferCreation(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftOfferAcceptance.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftOfferAcceptance(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftOfferAcceptance(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftOfferCancellation.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftOfferCancellation(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftOfferCancellation(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftOfferDecline.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftOfferDecline(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftOfferDecline(value)
+        case TDNativeTonWalletTransactionTypeTelegramGiftOfferExpiration.typeID:
+            guard let value = TDNativeTonWalletTransactionTypeTelegramGiftOfferExpiration(native: native) else { return nil }
+            self = .tonWalletTransactionTypeTelegramGiftOfferExpiration(value)
         case TDNativeTonWalletTransactionTypeKeyChange.typeID:
             self = .tonWalletTransactionTypeKeyChange
         default:
@@ -113686,6 +117147,15 @@ public enum TDNativeTonWalletTransactionType: TDNativeObjectView, TDNativeObject
         case .tonWalletTransactionTypeTransfer(let value): return value.native
         case .tonWalletTransactionTypeNftTransfer(let value): return value.native
         case .tonWalletTransactionTypeTelegramGiftTransfer(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftPurchase(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftSale(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftListing(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftDelisting(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftOfferCreation(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftOfferAcceptance(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftOfferCancellation(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftOfferDecline(let value): return value.native
+        case .tonWalletTransactionTypeTelegramGiftOfferExpiration(let value): return value.native
         case .tonWalletTransactionTypeKeyChange: return TDNativeTonWalletTransactionTypeKeyChange().native
         }
     }
@@ -113696,6 +117166,15 @@ public enum TDNativeTonWalletTransactionType: TDNativeObjectView, TDNativeObject
         case .tonWalletTransactionTypeTransfer(let value): return value.typeID
         case .tonWalletTransactionTypeNftTransfer(let value): return value.typeID
         case .tonWalletTransactionTypeTelegramGiftTransfer(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftPurchase(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftSale(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftListing(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftDelisting(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftOfferCreation(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftOfferAcceptance(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftOfferCancellation(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftOfferDecline(let value): return value.typeID
+        case .tonWalletTransactionTypeTelegramGiftOfferExpiration(let value): return value.typeID
         case .tonWalletTransactionTypeKeyChange: return TDNativeTonWalletTransactionTypeKeyChange.typeID
         }
     }
@@ -113880,6 +117359,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case updateChatBusinessBotManageBar(TDNativeUpdateChatBusinessBotManageBar)
     case updateChatAvailableReactions(TDNativeUpdateChatAvailableReactions)
     case updateChatDraftMessage(TDNativeUpdateChatDraftMessage)
+    case updateChatTextCompositionParameters(TDNativeUpdateChatTextCompositionParameters)
     case updateChatEmojiStatus(TDNativeUpdateChatEmojiStatus)
     case updateChatMessageSender(TDNativeUpdateChatMessageSender)
     case updateChatMessageAutoDeleteTime(TDNativeUpdateChatMessageAutoDeleteTime)
@@ -114010,6 +117490,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case updateStarRevenueStatus(TDNativeUpdateStarRevenueStatus)
     case updateGramRevenueStatus(TDNativeUpdateGramRevenueStatus)
     case updateSpeechRecognitionTrial(TDNativeUpdateSpeechRecognitionTrial)
+    case updateSpeechRecognitionInFile(TDNativeUpdateSpeechRecognitionInFile)
     case updateGroupCallMessageLevels(TDNativeUpdateGroupCallMessageLevels)
     case updateDiceEmojis(TDNativeUpdateDiceEmojis)
     case updateStakeDiceState(TDNativeUpdateStakeDiceState)
@@ -114030,6 +117511,9 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
     case updateNewCallbackQuery(TDNativeUpdateNewCallbackQuery)
     case updateNewInlineCallbackQuery(TDNativeUpdateNewInlineCallbackQuery)
     case updateNewBusinessCallbackQuery(TDNativeUpdateNewBusinessCallbackQuery)
+    case updateNewWidgetQuery(TDNativeUpdateNewWidgetQuery)
+    case updateNewInlineWidgetQuery(TDNativeUpdateNewInlineWidgetQuery)
+    case updateNewWidgetCopyQuery(TDNativeUpdateNewWidgetCopyQuery)
     case updateNewShippingQuery(TDNativeUpdateNewShippingQuery)
     case updateNewPreCheckoutQuery(TDNativeUpdateNewPreCheckoutQuery)
     case updateNewCustomEvent(TDNativeUpdateNewCustomEvent)
@@ -114146,6 +117630,9 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case TDNativeUpdateChatDraftMessage.typeID:
             guard let value = TDNativeUpdateChatDraftMessage(native: native) else { return nil }
             self = .updateChatDraftMessage(value)
+        case TDNativeUpdateChatTextCompositionParameters.typeID:
+            guard let value = TDNativeUpdateChatTextCompositionParameters(native: native) else { return nil }
+            self = .updateChatTextCompositionParameters(value)
         case TDNativeUpdateChatEmojiStatus.typeID:
             guard let value = TDNativeUpdateChatEmojiStatus(native: native) else { return nil }
             self = .updateChatEmojiStatus(value)
@@ -114536,6 +118023,9 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case TDNativeUpdateSpeechRecognitionTrial.typeID:
             guard let value = TDNativeUpdateSpeechRecognitionTrial(native: native) else { return nil }
             self = .updateSpeechRecognitionTrial(value)
+        case TDNativeUpdateSpeechRecognitionInFile.typeID:
+            guard let value = TDNativeUpdateSpeechRecognitionInFile(native: native) else { return nil }
+            self = .updateSpeechRecognitionInFile(value)
         case TDNativeUpdateGroupCallMessageLevels.typeID:
             guard let value = TDNativeUpdateGroupCallMessageLevels(native: native) else { return nil }
             self = .updateGroupCallMessageLevels(value)
@@ -114596,6 +118086,15 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case TDNativeUpdateNewBusinessCallbackQuery.typeID:
             guard let value = TDNativeUpdateNewBusinessCallbackQuery(native: native) else { return nil }
             self = .updateNewBusinessCallbackQuery(value)
+        case TDNativeUpdateNewWidgetQuery.typeID:
+            guard let value = TDNativeUpdateNewWidgetQuery(native: native) else { return nil }
+            self = .updateNewWidgetQuery(value)
+        case TDNativeUpdateNewInlineWidgetQuery.typeID:
+            guard let value = TDNativeUpdateNewInlineWidgetQuery(native: native) else { return nil }
+            self = .updateNewInlineWidgetQuery(value)
+        case TDNativeUpdateNewWidgetCopyQuery.typeID:
+            guard let value = TDNativeUpdateNewWidgetCopyQuery(native: native) else { return nil }
+            self = .updateNewWidgetCopyQuery(value)
         case TDNativeUpdateNewShippingQuery.typeID:
             guard let value = TDNativeUpdateNewShippingQuery(native: native) else { return nil }
             self = .updateNewShippingQuery(value)
@@ -114684,6 +118183,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateChatBusinessBotManageBar(let value): return value.native
         case .updateChatAvailableReactions(let value): return value.native
         case .updateChatDraftMessage(let value): return value.native
+        case .updateChatTextCompositionParameters(let value): return value.native
         case .updateChatEmojiStatus(let value): return value.native
         case .updateChatMessageSender(let value): return value.native
         case .updateChatMessageAutoDeleteTime(let value): return value.native
@@ -114814,6 +118314,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateStarRevenueStatus(let value): return value.native
         case .updateGramRevenueStatus(let value): return value.native
         case .updateSpeechRecognitionTrial(let value): return value.native
+        case .updateSpeechRecognitionInFile(let value): return value.native
         case .updateGroupCallMessageLevels(let value): return value.native
         case .updateDiceEmojis(let value): return value.native
         case .updateStakeDiceState(let value): return value.native
@@ -114834,6 +118335,9 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateNewCallbackQuery(let value): return value.native
         case .updateNewInlineCallbackQuery(let value): return value.native
         case .updateNewBusinessCallbackQuery(let value): return value.native
+        case .updateNewWidgetQuery(let value): return value.native
+        case .updateNewInlineWidgetQuery(let value): return value.native
+        case .updateNewWidgetCopyQuery(let value): return value.native
         case .updateNewShippingQuery(let value): return value.native
         case .updateNewPreCheckoutQuery(let value): return value.native
         case .updateNewCustomEvent(let value): return value.native
@@ -114886,6 +118390,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateChatBusinessBotManageBar(let value): return value.typeID
         case .updateChatAvailableReactions(let value): return value.typeID
         case .updateChatDraftMessage(let value): return value.typeID
+        case .updateChatTextCompositionParameters(let value): return value.typeID
         case .updateChatEmojiStatus(let value): return value.typeID
         case .updateChatMessageSender(let value): return value.typeID
         case .updateChatMessageAutoDeleteTime(let value): return value.typeID
@@ -115016,6 +118521,7 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateStarRevenueStatus(let value): return value.typeID
         case .updateGramRevenueStatus(let value): return value.typeID
         case .updateSpeechRecognitionTrial(let value): return value.typeID
+        case .updateSpeechRecognitionInFile(let value): return value.typeID
         case .updateGroupCallMessageLevels(let value): return value.typeID
         case .updateDiceEmojis(let value): return value.typeID
         case .updateStakeDiceState(let value): return value.typeID
@@ -115036,6 +118542,9 @@ public enum TDNativeUpdate: TDNativeObjectView, TDNativeObjectBacked, Sendable {
         case .updateNewCallbackQuery(let value): return value.typeID
         case .updateNewInlineCallbackQuery(let value): return value.typeID
         case .updateNewBusinessCallbackQuery(let value): return value.typeID
+        case .updateNewWidgetQuery(let value): return value.typeID
+        case .updateNewInlineWidgetQuery(let value): return value.typeID
+        case .updateNewWidgetCopyQuery(let value): return value.typeID
         case .updateNewShippingQuery(let value): return value.typeID
         case .updateNewPreCheckoutQuery(let value): return value.typeID
         case .updateNewCustomEvent(let value): return value.typeID
@@ -115158,6 +118667,8 @@ public enum TDNativeUpgradedGiftOrigin: TDNativeObjectView, TDNativeObjectBacked
     case upgradedGiftOriginPrepaidUpgrade
     case upgradedGiftOriginOffer(TDNativeUpgradedGiftOriginOffer)
     case upgradedGiftOriginCraft
+    case upgradedGiftOriginOnChainResale(TDNativeUpgradedGiftOriginOnChainResale)
+    case upgradedGiftOriginOnChainOffer(TDNativeUpgradedGiftOriginOnChainOffer)
 
     init?(native: NativeOwnedObject) {
         switch native.value.type_id() {
@@ -115178,6 +118689,12 @@ public enum TDNativeUpgradedGiftOrigin: TDNativeObjectView, TDNativeObjectBacked
             self = .upgradedGiftOriginOffer(value)
         case TDNativeUpgradedGiftOriginCraft.typeID:
             self = .upgradedGiftOriginCraft
+        case TDNativeUpgradedGiftOriginOnChainResale.typeID:
+            guard let value = TDNativeUpgradedGiftOriginOnChainResale(native: native) else { return nil }
+            self = .upgradedGiftOriginOnChainResale(value)
+        case TDNativeUpgradedGiftOriginOnChainOffer.typeID:
+            guard let value = TDNativeUpgradedGiftOriginOnChainOffer(native: native) else { return nil }
+            self = .upgradedGiftOriginOnChainOffer(value)
         default:
             return nil
         }
@@ -115198,18 +118715,22 @@ public enum TDNativeUpgradedGiftOrigin: TDNativeObjectView, TDNativeObjectBacked
         case .upgradedGiftOriginPrepaidUpgrade: return TDNativeUpgradedGiftOriginPrepaidUpgrade().native
         case .upgradedGiftOriginOffer(let value): return value.native
         case .upgradedGiftOriginCraft: return TDNativeUpgradedGiftOriginCraft().native
+        case .upgradedGiftOriginOnChainResale(let value): return value.native
+        case .upgradedGiftOriginOnChainOffer(let value): return value.native
         }
     }
 
     public var typeID: Int32 {
         switch self {
         case .upgradedGiftOriginUpgrade(let value): return value.typeID
-        case .upgradedGiftOriginTransfer: return TDNativeUpgradedGiftOriginCraft.typeID
+        case .upgradedGiftOriginTransfer: return TDNativeUpgradedGiftOriginOnChainOffer.typeID
         case .upgradedGiftOriginResale(let value): return value.typeID
-        case .upgradedGiftOriginBlockchain: return TDNativeUpgradedGiftOriginCraft.typeID
-        case .upgradedGiftOriginPrepaidUpgrade: return TDNativeUpgradedGiftOriginCraft.typeID
+        case .upgradedGiftOriginBlockchain: return TDNativeUpgradedGiftOriginOnChainOffer.typeID
+        case .upgradedGiftOriginPrepaidUpgrade: return TDNativeUpgradedGiftOriginOnChainOffer.typeID
         case .upgradedGiftOriginOffer(let value): return value.typeID
-        case .upgradedGiftOriginCraft: return TDNativeUpgradedGiftOriginCraft.typeID
+        case .upgradedGiftOriginCraft: return TDNativeUpgradedGiftOriginOnChainOffer.typeID
+        case .upgradedGiftOriginOnChainResale(let value): return value.typeID
+        case .upgradedGiftOriginOnChainOffer(let value): return value.typeID
         }
     }
 }
@@ -115704,6 +119225,50 @@ public enum TDNativeWebProxyCarrierMessage: TDNativeObjectView, TDNativeObjectBa
         switch self {
         case .webProxyCarrierMessageText(let value): return value.typeID
         case .webProxyCarrierMessageBinary(let value): return value.typeID
+        }
+    }
+}
+
+public enum TDNativeWidgetQueryType: TDNativeObjectView, TDNativeObjectBacked, Sendable {
+    case widgetQueryTypeData(TDNativeWidgetQueryTypeData)
+    case widgetQueryTypeSignData(TDNativeWidgetQueryTypeSignData)
+    case widgetQueryTypeSentTransaction(TDNativeWidgetQueryTypeSentTransaction)
+
+    init?(native: NativeOwnedObject) {
+        switch native.value.type_id() {
+        case TDNativeWidgetQueryTypeData.typeID:
+            guard let value = TDNativeWidgetQueryTypeData(native: native) else { return nil }
+            self = .widgetQueryTypeData(value)
+        case TDNativeWidgetQueryTypeSignData.typeID:
+            guard let value = TDNativeWidgetQueryTypeSignData(native: native) else { return nil }
+            self = .widgetQueryTypeSignData(value)
+        case TDNativeWidgetQueryTypeSentTransaction.typeID:
+            guard let value = TDNativeWidgetQueryTypeSentTransaction(native: native) else { return nil }
+            self = .widgetQueryTypeSentTransaction(value)
+        default:
+            return nil
+        }
+    }
+
+    public init?(_ object: TDUnknownObject) {
+        self.init(native: object.native)
+    }
+
+    public static var typeID: Int32 { 0 }
+
+    var native: NativeOwnedObject {
+        switch self {
+        case .widgetQueryTypeData(let value): return value.native
+        case .widgetQueryTypeSignData(let value): return value.native
+        case .widgetQueryTypeSentTransaction(let value): return value.native
+        }
+    }
+
+    public var typeID: Int32 {
+        switch self {
+        case .widgetQueryTypeData(let value): return value.typeID
+        case .widgetQueryTypeSignData(let value): return value.typeID
+        case .widgetQueryTypeSentTransaction(let value): return value.typeID
         }
     }
 }
@@ -117870,6 +121435,27 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func getSuitableCommunityChats() -> TDRequest<TDNativeChats> {
+        TDRequest(
+            make: {
+                let arguments = tdlibkit.NativeArguments()
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1870093801,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeChats(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Chats",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func loadDirectMessagesChatTopics(chatId: Int64, limit: Int) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -118317,6 +121903,27 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func getJoinedCommunities() -> TDRequest<TDNativeCommunities> {
+        TDRequest(
+            make: {
+                let arguments = tdlibkit.NativeArguments()
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    106980818,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeCommunities(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Communities",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func createCommunity(name: String, chatId: Int64, isChatHidden: Bool) -> TDRequest<TDNativeCommunityId> {
         TDRequest(
             make: {
@@ -118402,6 +122009,217 @@ public enum TDNativeRequests {
                 guard let value = TDNativeOk(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func setCommunityNotificationSettings(communityId: Int64, notificationSettings: TDNativeChatNotificationSettings) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_object(notificationSettings.native.value)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1727991282,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func addCommunityChat(communityId: Int64, chatId: Int64, isHidden: Bool) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_int64(chatId)
+                arguments.append_bool(isHidden)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -861733581,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func removeCommunityChat(communityId: Int64, chatId: Int64) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_int64(chatId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    898536429,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getCommunityAddChatRequests(communityId: Int64, offset: String, limit: Int) -> TDRequest<TDNativeCommunityAddChatRequests> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_buffer(nativeBuffer(offset))
+                arguments.append_int32(nativeInt32(limit))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1000408904,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeCommunityAddChatRequests(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "CommunityAddChatRequests",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func processCommunityAddChatRequest(communityId: Int64, chatId: Int64, approve: Bool) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_int64(chatId)
+                arguments.append_bool(approve)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1652704988,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func processCommunityAddChatRequests(communityId: Int64, approve: Bool) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_bool(approve)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1586127930,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func toggleCommunityAreChatsCollapsed(communityId: Int64, areChatsCollapsed: Bool) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_bool(areChatsCollapsed)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1708259775,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func toggleCommunityMemberIsBanned(communityId: Int64, memberId: TDNativeMessageSender, isBanned: Bool) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_object(memberId.native.value)
+                arguments.append_bool(isBanned)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    307460053,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getCommunityMemberChats(communityId: Int64, memberId: TDNativeMessageSender) -> TDRequest<TDNativeCommunityMemberChats> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(communityId)
+                arguments.append_object(memberId.native.value)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1898245376,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeCommunityMemberChats(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "CommunityMemberChats",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -119060,6 +122878,33 @@ public enum TDNativeRequests {
                 guard let value = TDNativeCount(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "Count",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getChatMessageCounts(chatId: Int64, topicId: TDNativeMessageTopic?, filters: [TDNativeSearchMessagesFilter], returnLocal: Bool) -> TDRequest<TDNativeChatMessageCounts> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                arguments.append_object(topicId?.native.value ?? tdlibkit.NativeObject())
+                var nativeValues2 = tdlibkit.NativeObjectArray()
+                for value in filters { nativeValues2.append(value.native.value) }
+                arguments.append_object_vector(nativeValues2)
+                arguments.append_bool(returnLocal)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1327429310,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeChatMessageCounts(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "ChatMessageCounts",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -119889,6 +123734,50 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func fixRecognizedTextWithAi(text: TDNativeFormattedText) -> TDRequest<TDNativeFormattedText> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_object(text.native.value)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1287522189,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeFormattedText(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "FormattedText",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func fixRecognizedRichMessageWithAi(message: TDNativeInputRichMessage) -> TDRequest<TDNativeRichMessage> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_object(message.native.value)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1417726111,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeRichMessage(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "RichMessage",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func recognizeSpeech(chatId: Int64, messageId: Int64) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -119928,6 +123817,73 @@ public enum TDNativeRequests {
                 guard let value = TDNativeOk(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func recognizeSpeechInFile(audioFile: TDNativeInputFile, recognitionId: Int64) -> TDRequest<TDNativeText> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_object(audioFile.native.value)
+                arguments.append_int64(recognitionId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1158465679,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeText(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Text",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getSpeechRecognitionLanguages(chatId: Int64) -> TDRequest<TDNativeSpeechRecognitionLanguages> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1967118600,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeSpeechRecognitionLanguages(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "SpeechRecognitionLanguages",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getSpeechRecognitionModels(version: Int) -> TDRequest<TDNativeSpeechRecognitionModels> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int32(nativeInt32(version))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -2101791440,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeSpeechRecognitionModels(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "SpeechRecognitionModels",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -120475,6 +124431,33 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func editMessageWidgetData(chatId: Int64, messageId: Int64, editPublicData: Bool, publicData: String, editChatData: Bool, chatData: String) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                arguments.append_int64(messageId)
+                arguments.append_bool(editPublicData)
+                arguments.append_buffer(nativeBuffer(publicData))
+                arguments.append_bool(editChatData)
+                arguments.append_buffer(nativeBuffer(chatData))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1935817582,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func editInlineMessageText(inlineMessageId: String, replyMarkup: TDNativeReplyMarkup?, inputMessageContent: TDNativeInputMessageContent) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -120595,6 +124578,56 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func editInlineMessageWidgetData(inlineMessageId: String, editPublicData: Bool, publicData: String, editChatData: Bool, chatData: String) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(inlineMessageId))
+                arguments.append_bool(editPublicData)
+                arguments.append_buffer(nativeBuffer(publicData))
+                arguments.append_bool(editChatData)
+                arguments.append_buffer(nativeBuffer(chatData))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1748954409,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func editWidgetData(widgetId: Int64, publicData: String, cacheTime: Int) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(widgetId)
+                arguments.append_buffer(nativeBuffer(publicData))
+                arguments.append_int32(nativeInt32(cacheTime))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1057345257,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func editEphemeralMessage(chatId: Int64, receiverUserId: Int64, ephemeralMessageId: Int, replyMarkup: TDNativeReplyMarkup?, inputMessageContent: TDNativeInputMessageContent?) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -120648,7 +124681,7 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func replyToCallbackQueryWithEphemeralMessage(callbackQueryId: Int64, replaceCallbackQueryMessage: Bool, protectContent: Bool, replyMarkup: TDNativeReplyMarkup?, inputMessageContent: TDNativeInputMessageContent) -> TDRequest<TDNativeOk> {
+    public static func replyToCallbackQueryWithEphemeralMessage(callbackQueryId: Int64, replaceCallbackQueryMessage: Bool, protectContent: Bool, replyMarkup: TDNativeReplyMarkup?, inputMessageContent: TDNativeInputMessageContent) -> TDRequest<TDNativeMessage> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
@@ -120658,14 +124691,14 @@ public enum TDNativeRequests {
                 arguments.append_object(replyMarkup?.native.value ?? tdlibkit.NativeObject())
                 arguments.append_object(inputMessageContent.native.value)
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    -77034825,
+                    1672608572,
                     arguments
                 )
             },
             decode: { object in
-                guard let value = TDNativeOk(native: object) else {
+                guard let value = TDNativeMessage(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
-                        expected: "Ok",
+                        expected: "Message",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -121814,18 +125847,21 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func getForumTopics(chatId: Int64, query: String, offsetDate: Int, offsetMessageId: Int64, offsetForumTopicId: Int, limit: Int) -> TDRequest<TDNativeForumTopics> {
+    public static func getForumTopics(chatId: Int64, query: String, iconCustomEmojiId: Int64, excludeOpen: Bool, excludeClosed: Bool, offsetDate: Int, offsetMessageId: Int64, offsetForumTopicId: Int, limit: Int) -> TDRequest<TDNativeForumTopics> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
                 arguments.append_int64(chatId)
                 arguments.append_buffer(nativeBuffer(query))
+                arguments.append_int64(iconCustomEmojiId)
+                arguments.append_bool(excludeOpen)
+                arguments.append_bool(excludeClosed)
                 arguments.append_int32(nativeInt32(offsetDate))
                 arguments.append_int64(offsetMessageId)
                 arguments.append_int32(nativeInt32(offsetForumTopicId))
                 arguments.append_int32(nativeInt32(limit))
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    1368275676,
+                    874715169,
                     arguments
                 )
             },
@@ -121833,6 +125869,28 @@ public enum TDNativeRequests {
                 guard let value = TDNativeForumTopics(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "ForumTopics",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getForumTopicPopularIcons(chatId: Int64) -> TDRequest<TDNativeStickers> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    262686390,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeStickers(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Stickers",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -122646,6 +126704,28 @@ public enum TDNativeRequests {
                 guard let value = TDNativeTextEntities(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "TextEntities",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getTextEmojiRanges(text: String) -> TDRequest<TDNativeTextRanges> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(text))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1507493223,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeTextRanges(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "TextRanges",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -123796,6 +127876,77 @@ public enum TDNativeRequests {
                 guard let value = TDNativeOk(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func answerWidgetQuery(widgetQueryId: Int64, data: String) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(widgetQueryId)
+                arguments.append_buffer(nativeBuffer(data))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1940154684,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getWidgetQueryAnswer(chatId: Int64, messageId: Int64, queryType: TDNativeWidgetQueryType, data: Data) -> TDRequest<TDNativeWidgetQueryAnswer> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                arguments.append_int64(messageId)
+                arguments.append_object(queryType.native.value)
+                arguments.append_buffer(nativeBuffer(data))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1345275611,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeWidgetQueryAnswer(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "WidgetQueryAnswer",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getWidgetPublicData(chatId: Int64, messageId: Int64) -> TDRequest<TDNativeWidgetPublicData> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                arguments.append_int64(messageId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    785502640,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeWidgetPublicData(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "WidgetPublicData",
                         actualTypeID: object.value.type_id()
                     )
                 }
@@ -125518,6 +129669,29 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func setChatTextCompositionParameters(chatId: Int64, textCompositionParameters: TDNativeTextCompositionParameters?) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(chatId)
+                arguments.append_object(textCompositionParameters?.native.value ?? tdlibkit.NativeObject())
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1907329161,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func setChatNotificationSettings(chatId: Int64, notificationSettings: TDNativeChatNotificationSettings) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -126616,7 +130790,7 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func postStory(chatId: Int64, content: TDNativeInputStoryContent, areas: TDNativeInputStoryAreas?, caption: TDNativeFormattedText?, privacySettings: TDNativeStoryPrivacySettings, albumIds: [Int], activePeriod: Int, fromStoryFullId: TDNativeStoryFullId?, isPostedToChatPage: Bool, protectContent: Bool) -> TDRequest<TDNativeStory> {
+    public static func postStory(chatId: Int64, content: TDNativeInputStoryContent, areas: TDNativeInputStoryAreas?, caption: TDNativeFormattedText?, music: TDNativeInputAudio?, privacySettings: TDNativeStoryPrivacySettings, albumIds: [Int], activePeriod: Int, fromStoryFullId: TDNativeStoryFullId?, isPostedToChatPage: Bool, protectContent: Bool) -> TDRequest<TDNativeStory> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
@@ -126624,9 +130798,10 @@ public enum TDNativeRequests {
                 arguments.append_object(content.native.value)
                 arguments.append_object(areas?.native.value ?? tdlibkit.NativeObject())
                 arguments.append_object(caption?.native.value ?? tdlibkit.NativeObject())
+                arguments.append_object(music?.native.value ?? tdlibkit.NativeObject())
                 arguments.append_object(privacySettings.native.value)
-                let nativeValues5 = albumIds.map(nativeInt32)
-                nativeValues5.withUnsafeBufferPointer { buffer in
+                let nativeValues6 = albumIds.map(nativeInt32)
+                nativeValues6.withUnsafeBufferPointer { buffer in
                     arguments.append_int32_vector(buffer.baseAddress, buffer.count)
                 }
                 arguments.append_int32(nativeInt32(activePeriod))
@@ -126634,7 +130809,7 @@ public enum TDNativeRequests {
                 arguments.append_bool(isPostedToChatPage)
                 arguments.append_bool(protectContent)
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    -1725643742,
+                    -313838892,
                     arguments
                 )
             },
@@ -126712,6 +130887,30 @@ public enum TDNativeRequests {
                 arguments.append_double(coverFrameTimestamp)
                 return tdlibkit.NativeSchemaFactory.make_function(
                     -1035823266,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func editStoryMusic(storyPosterChatId: Int64, storyId: Int, music: TDNativeInputAudio?) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(storyPosterChatId)
+                arguments.append_int32(nativeInt32(storyId))
+                arguments.append_object(music?.native.value ?? tdlibkit.NativeObject())
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1931178625,
                     arguments
                 )
             },
@@ -133231,6 +137430,56 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func inviteUsersToBot(botUserId: Int64, userIds: [Int64]) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(botUserId)
+                userIds.withUnsafeBufferPointer { buffer in
+                    arguments.append_int64_vector(buffer.baseAddress, buffer.count)
+                }
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1542262900,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func setBotSettings(botUserId: Int64, settings: [TDNativeBotSetting]) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(botUserId)
+                var nativeValues1 = tdlibkit.NativeObjectArray()
+                for value in settings { nativeValues1.append(value.native.value) }
+                arguments.append_object_vector(nativeValues1)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -91979029,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func setBotName(botUserId: Int64, languageCode: String, name: String) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
@@ -134127,15 +138376,16 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func toggleSupergroupIsForum(supergroupId: Int64, isForum: Bool, hasForumTabs: Bool) -> TDRequest<TDNativeOk> {
+    public static func toggleSupergroupIsForum(supergroupId: Int64, isForum: Bool, hasForumTabs: Bool, hasForumSidebar: Bool) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
                 arguments.append_int64(supergroupId)
                 arguments.append_bool(isForum)
                 arguments.append_bool(hasForumTabs)
+                arguments.append_bool(hasForumSidebar)
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    371064337,
+                    -549703817,
                     arguments
                 )
             },
@@ -135065,6 +139315,167 @@ public enum TDNativeRequests {
         )
     }
 
+    public static func sendGiftOnChainPurchaseOffer(giftName: String, gramAmount: Int64, duration: Int) -> TDRequest<TDNativeGiftOnChainPurchaseOfferTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(giftName))
+                arguments.append_int64(gramAmount)
+                arguments.append_int32(nativeInt32(duration))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1536373574,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainPurchaseOfferTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainPurchaseOfferTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func cancelGiftOnChainPurchaseOffer(messageId: Int64) -> TDRequest<TDNativeGiftOnChainPurchaseOfferTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(messageId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1197998866,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainPurchaseOfferTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainPurchaseOfferTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func acceptGiftOnChainPurchaseOffer(messageId: Int64) -> TDRequest<TDNativeGiftOnChainPurchaseOfferTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(messageId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -2115030761,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainPurchaseOfferTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainPurchaseOfferTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func declineGiftOnChainPurchaseOffer(messageId: Int64) -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_int64(messageId)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -139001943,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getGiftOnChainPurchaseTransaction(giftName: String, ownerId: TDNativeMessageSender, gramAmount: Int64, text: TDNativeFormattedText, isPrivate: Bool) -> TDRequest<TDNativeGiftOnChainSaleTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(giftName))
+                arguments.append_object(ownerId.native.value)
+                arguments.append_int64(gramAmount)
+                arguments.append_object(text.native.value)
+                arguments.append_bool(isPrivate)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    1590539584,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainSaleTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainSaleTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getGiftOnChainListingTransaction(giftName: String, gramAmount: Int64) -> TDRequest<TDNativeGiftOnChainSaleTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(giftName))
+                arguments.append_int64(gramAmount)
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1441566807,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainSaleTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainSaleTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func getGiftOnChainDelistingTransaction(giftName: String) -> TDRequest<TDNativeGiftOnChainSaleTransaction> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(giftName))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -1454498515,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeGiftOnChainSaleTransaction(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "GiftOnChainSaleTransaction",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
     public static func getReceivedGifts(businessConnectionId: String, ownerId: TDNativeMessageSender, collectionId: Int, excludeUnsaved: Bool, excludeSaved: Bool, excludeUnlimited: Bool, excludeUpgradable: Bool, excludeNonUpgradable: Bool, excludeUpgraded: Bool, excludeWithoutColors: Bool, excludeHosted: Bool, sortByPrice: Bool, offset: String, limit: Int) -> TDRequest<TDNativeReceivedGifts> {
         TDRequest(
             make: {
@@ -135190,13 +139601,13 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func getUpgradedGiftWithdrawalUrl(receivedGiftId: String) -> TDRequest<TDNativeHttpUrl> {
+    public static func getGiftMintingUrl(receivedGiftId: String) -> TDRequest<TDNativeHttpUrl> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
                 arguments.append_buffer(nativeBuffer(receivedGiftId))
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    -103064799,
+                    1536370658,
                     arguments
                 )
             },
@@ -135212,14 +139623,14 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func withdrawUpgradedGift(receivedGiftId: String, keepOnProfile: Bool) -> TDRequest<TDNativeOk> {
+    public static func mintGift(receivedGiftId: String, keepOnProfile: Bool) -> TDRequest<TDNativeOk> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
                 arguments.append_buffer(nativeBuffer(receivedGiftId))
                 arguments.append_bool(keepOnProfile)
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    -2103396691,
+                    1568160677,
                     arguments
                 )
             },
@@ -135326,7 +139737,7 @@ public enum TDNativeRequests {
         )
     }
 
-    public static func searchGiftsForResale(giftId: Int64, order: TDNativeGiftForResaleOrder, forCrafting: Bool, forStars: Bool, attributes: [TDNativeUpgradedGiftAttributeId], offset: String, limit: Int) -> TDRequest<TDNativeGiftsForResale> {
+    public static func searchGiftsForResale(giftId: Int64, order: TDNativeGiftForResaleOrder, forCrafting: Bool, forStars: Bool, forGrams: Bool, forFragment: Bool, attributes: [TDNativeUpgradedGiftAttributeId], offset: String, limit: Int) -> TDRequest<TDNativeGiftsForResale> {
         TDRequest(
             make: {
                 var arguments = tdlibkit.NativeArguments()
@@ -135334,13 +139745,15 @@ public enum TDNativeRequests {
                 arguments.append_object(order.native.value)
                 arguments.append_bool(forCrafting)
                 arguments.append_bool(forStars)
-                var nativeValues4 = tdlibkit.NativeObjectArray()
-                for value in attributes { nativeValues4.append(value.native.value) }
-                arguments.append_object_vector(nativeValues4)
+                arguments.append_bool(forGrams)
+                arguments.append_bool(forFragment)
+                var nativeValues6 = tdlibkit.NativeObjectArray()
+                for value in attributes { nativeValues6.append(value.native.value) }
+                arguments.append_object_vector(nativeValues6)
                 arguments.append_buffer(nativeBuffer(offset))
                 arguments.append_int32(nativeInt32(limit))
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    1947702322,
+                    -254519160,
                     arguments
                 )
             },
@@ -137008,7 +141421,30 @@ public enum TDNativeRequests {
                 arguments.append_buffer(nativeBuffer(regularTransferData))
                 arguments.append_buffer(nativeBuffer(gaslessTransferData))
                 return tdlibkit.NativeSchemaFactory.make_function(
-                    173682008,
+                    1666990190,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeTonWalletTransferResult(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "TonWalletTransferResult",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func sendTonWalletTransaction(regularTransactionData: Data, gaslessTransactionData: Data) -> TDRequest<TDNativeTonWalletTransferResult> {
+        TDRequest(
+            make: {
+                var arguments = tdlibkit.NativeArguments()
+                arguments.append_buffer(nativeBuffer(regularTransactionData))
+                arguments.append_buffer(nativeBuffer(gaslessTransactionData))
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    -596945176,
                     arguments
                 )
             },
@@ -137694,6 +142130,27 @@ public enum TDNativeRequests {
                 guard let value = TDNativeHttpUrl(native: object) else {
                     throw TDLibRuntimeError.unexpectedType(
                         expected: "HttpUrl",
+                        actualTypeID: object.value.type_id()
+                    )
+                }
+                return value
+            }
+        )
+    }
+
+    public static func withdrawGrams() -> TDRequest<TDNativeOk> {
+        TDRequest(
+            make: {
+                let arguments = tdlibkit.NativeArguments()
+                return tdlibkit.NativeSchemaFactory.make_function(
+                    2133917125,
+                    arguments
+                )
+            },
+            decode: { object in
+                guard let value = TDNativeOk(native: object) else {
+                    throw TDLibRuntimeError.unexpectedType(
+                        expected: "Ok",
                         actualTypeID: object.value.type_id()
                     )
                 }

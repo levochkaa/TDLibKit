@@ -1,15 +1,15 @@
 {
   "format_version": 2,
-  "tdlib_commit": "4c6377aa7386c39217878a9a56d581922ad37ca4",
-  "td_api_tl_sha256": "d8c530565eb7b908ee7f40580ccc468670ac87b0f6f4a8c141f84e25dcb6a2e9",
+  "tdlib_commit": "1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d",
+  "td_api_tl_sha256": "bf68db118f42010b1359dc6776128567d8de18fc793aa5280f10d2912384c1b1",
   "counts": {
-    "declarations": 3356,
-    "objects": 2280,
-    "functions": 1076,
-    "unions": 224,
-    "result_types": 797,
-    "fields": 7339,
-    "optional_object_fields": 615,
+    "declarations": 3464,
+    "objects": 2350,
+    "functions": 1114,
+    "unions": 229,
+    "result_types": 819,
+    "fields": 7624,
+    "optional_object_fields": 640,
     "max_vector_depth": 2
   },
   "unions": [
@@ -381,6 +381,14 @@
       ]
     },
     {
+      "name": "BotCallbackQueryMode",
+      "members": [
+        "botCallbackQueryModeDefault",
+        "botCallbackQueryModeAuto",
+        "botCallbackQueryModeInline"
+      ]
+    },
+    {
       "name": "BotCommand",
       "members": [
         "botCommand"
@@ -432,6 +440,26 @@
       "name": "BotMenuButton",
       "members": [
         "botMenuButton"
+      ]
+    },
+    {
+      "name": "BotSetting",
+      "members": [
+        "botSettingIsInline",
+        "botSettingInlineQueryPlaceholder",
+        "botSettingNeedLocation",
+        "botSettingInlineFeedback",
+        "botSettingCanJoinGroups",
+        "botSettingCanReadAllGroupMessages",
+        "botSettingCanConnectToBusiness",
+        "botSettingCanManageBots",
+        "botSettingSupportsGuestQueries",
+        "botSettingIsGuard",
+        "botSettingHasTopics",
+        "botSettingAllowsUsersToCreateTopics",
+        "botSettingHasTopicSidebar",
+        "botSettingCanCommunicateWithBots",
+        "botSettingCallbackQueryMode"
       ]
     },
     {
@@ -771,7 +799,8 @@
         "chatActionBarReportAddBlock",
         "chatActionBarAddContact",
         "chatActionBarSharePhoneNumber",
-        "chatActionBarJoinRequest"
+        "chatActionBarJoinRequest",
+        "chatActionBarBotInvite"
       ]
     },
     {
@@ -1124,6 +1153,12 @@
       ]
     },
     {
+      "name": "ChatMessageCounts",
+      "members": [
+        "chatMessageCounts"
+      ]
+    },
+    {
       "name": "ChatMessageSender",
       "members": [
         "chatMessageSender"
@@ -1342,9 +1377,27 @@
       ]
     },
     {
+      "name": "Communities",
+      "members": [
+        "communities"
+      ]
+    },
+    {
       "name": "Community",
       "members": [
         "community"
+      ]
+    },
+    {
+      "name": "CommunityAddChatRequest",
+      "members": [
+        "communityAddChatRequest"
+      ]
+    },
+    {
+      "name": "CommunityAddChatRequests",
+      "members": [
+        "communityAddChatRequests"
       ]
     },
     {
@@ -1369,6 +1422,12 @@
       "name": "CommunityId",
       "members": [
         "communityId"
+      ]
+    },
+    {
+      "name": "CommunityMemberChats",
+      "members": [
+        "communityMemberChats"
       ]
     },
     {
@@ -2041,6 +2100,31 @@
       ]
     },
     {
+      "name": "GiftOnChainPurchaseOfferState",
+      "members": [
+        "giftOnChainPurchaseOfferStatePending",
+        "giftOnChainPurchaseOfferStateSettled",
+        "giftOnChainPurchaseOfferStateAccepted",
+        "giftOnChainPurchaseOfferStateCanceling",
+        "giftOnChainPurchaseOfferStateDeclined",
+        "giftOnChainPurchaseOfferStateCanceled",
+        "giftOnChainPurchaseOfferStateExpired"
+      ]
+    },
+    {
+      "name": "GiftOnChainPurchaseOfferTransaction",
+      "members": [
+        "giftOnChainPurchaseOfferTransaction"
+      ]
+    },
+    {
+      "name": "GiftOnChainSaleTransaction",
+      "members": [
+        "giftOnChainSaleTransactionFragment",
+        "giftOnChainSaleTransactionFixedPrice"
+      ]
+    },
+    {
       "name": "GiftPurchaseLimits",
       "members": [
         "giftPurchaseLimits"
@@ -2499,6 +2583,8 @@
         "inputMessageStakeDice",
         "inputMessageStory",
         "inputMessageChecklist",
+        "inputMessageWidget",
+        "inputMessageSharedWidget",
         "inputMessageForwarded"
       ]
     },
@@ -2671,7 +2757,6 @@
       "name": "InputStoryAreaType",
       "members": [
         "inputStoryAreaTypeLocation",
-        "inputStoryAreaTypeFoundVenue",
         "inputStoryAreaTypePreviousVenue",
         "inputStoryAreaTypeSuggestedReaction",
         "inputStoryAreaTypeMessage",
@@ -2742,6 +2827,7 @@
         "internalLinkTypeAuthenticationCode",
         "internalLinkTypeBackground",
         "internalLinkTypeBotAddToChannel",
+        "internalLinkTypeBotInvite",
         "internalLinkTypeBotStart",
         "internalLinkTypeBotStartInGroup",
         "internalLinkTypeBusinessChat",
@@ -2925,6 +3011,7 @@
         "linkPreviewTypeArticle",
         "linkPreviewTypeAudio",
         "linkPreviewTypeBackground",
+        "linkPreviewTypeBotInvite",
         "linkPreviewTypeChannelBoost",
         "linkPreviewTypeChat",
         "linkPreviewTypeDirectMessagesChat",
@@ -3097,6 +3184,7 @@
         "messagePoll",
         "messageStakeDice",
         "messageStory",
+        "messageWidget",
         "messageChecklist",
         "messageInvoice",
         "messageCall",
@@ -3140,6 +3228,7 @@
         "messageCustomServiceAction",
         "messageGameScore",
         "messageManagedBotCreated",
+        "messageBotInvite",
         "messagePaymentSuccessful",
         "messagePaymentSuccessfulBot",
         "messagePaymentRefunded",
@@ -3159,6 +3248,7 @@
         "messageRefundedUpgradedGift",
         "messageUpgradedGiftPurchaseOffer",
         "messageUpgradedGiftPurchaseOfferRejected",
+        "messageUpgradedGiftOnChainPurchaseOffer",
         "messagePaidMessagesRefunded",
         "messagePaidMessagePriceChanged",
         "messageDirectMessagePriceChanged",
@@ -4689,6 +4779,24 @@
       ]
     },
     {
+      "name": "SpeechRecognitionLanguages",
+      "members": [
+        "speechRecognitionLanguages"
+      ]
+    },
+    {
+      "name": "SpeechRecognitionModel",
+      "members": [
+        "speechRecognitionModel"
+      ]
+    },
+    {
+      "name": "SpeechRecognitionModels",
+      "members": [
+        "speechRecognitionModels"
+      ]
+    },
+    {
       "name": "SpeechRecognitionResult",
       "members": [
         "speechRecognitionResultPending",
@@ -5308,6 +5416,12 @@
       ]
     },
     {
+      "name": "TextCompositionParameters",
+      "members": [
+        "textCompositionParameters"
+      ]
+    },
+    {
       "name": "TextCompositionStyle",
       "members": [
         "textCompositionStyle"
@@ -5371,6 +5485,18 @@
       "name": "TextQuote",
       "members": [
         "textQuote"
+      ]
+    },
+    {
+      "name": "TextRange",
+      "members": [
+        "textRange"
+      ]
+    },
+    {
+      "name": "TextRanges",
+      "members": [
+        "textRanges"
       ]
     },
     {
@@ -5528,6 +5654,12 @@
       ]
     },
     {
+      "name": "TonSmartContractInitialState",
+      "members": [
+        "tonSmartContractInitialState"
+      ]
+    },
+    {
       "name": "TonTransaction",
       "members": [
         "tonTransaction"
@@ -5569,6 +5701,12 @@
       "name": "TonWalletGaslessTransfersInfo",
       "members": [
         "tonWalletGaslessTransfersInfo"
+      ]
+    },
+    {
+      "name": "TonWalletMessage",
+      "members": [
+        "tonWalletMessage"
       ]
     },
     {
@@ -5615,6 +5753,15 @@
         "tonWalletTransactionTypeTransfer",
         "tonWalletTransactionTypeNftTransfer",
         "tonWalletTransactionTypeTelegramGiftTransfer",
+        "tonWalletTransactionTypeTelegramGiftPurchase",
+        "tonWalletTransactionTypeTelegramGiftSale",
+        "tonWalletTransactionTypeTelegramGiftListing",
+        "tonWalletTransactionTypeTelegramGiftDelisting",
+        "tonWalletTransactionTypeTelegramGiftOfferCreation",
+        "tonWalletTransactionTypeTelegramGiftOfferAcceptance",
+        "tonWalletTransactionTypeTelegramGiftOfferCancellation",
+        "tonWalletTransactionTypeTelegramGiftOfferDecline",
+        "tonWalletTransactionTypeTelegramGiftOfferExpiration",
         "tonWalletTransactionTypeKeyChange"
       ]
     },
@@ -5712,6 +5859,7 @@
         "updateChatBusinessBotManageBar",
         "updateChatAvailableReactions",
         "updateChatDraftMessage",
+        "updateChatTextCompositionParameters",
         "updateChatEmojiStatus",
         "updateChatMessageSender",
         "updateChatMessageAutoDeleteTime",
@@ -5842,6 +5990,7 @@
         "updateStarRevenueStatus",
         "updateGramRevenueStatus",
         "updateSpeechRecognitionTrial",
+        "updateSpeechRecognitionInFile",
         "updateGroupCallMessageLevels",
         "updateDiceEmojis",
         "updateStakeDiceState",
@@ -5862,6 +6011,9 @@
         "updateNewCallbackQuery",
         "updateNewInlineCallbackQuery",
         "updateNewBusinessCallbackQuery",
+        "updateNewWidgetQuery",
+        "updateNewInlineWidgetQuery",
+        "updateNewWidgetCopyQuery",
         "updateNewShippingQuery",
         "updateNewPreCheckoutQuery",
         "updateNewCustomEvent",
@@ -5971,7 +6123,9 @@
         "upgradedGiftOriginBlockchain",
         "upgradedGiftOriginPrepaidUpgrade",
         "upgradedGiftOriginOffer",
-        "upgradedGiftOriginCraft"
+        "upgradedGiftOriginCraft",
+        "upgradedGiftOriginOnChainResale",
+        "upgradedGiftOriginOnChainOffer"
       ]
     },
     {
@@ -6276,6 +6430,32 @@
       "name": "WelcomeMessage",
       "members": [
         "welcomeMessage"
+      ]
+    },
+    {
+      "name": "WidgetPublicData",
+      "members": [
+        "widgetPublicData"
+      ]
+    },
+    {
+      "name": "WidgetQueryAnswer",
+      "members": [
+        "widgetQueryAnswer"
+      ]
+    },
+    {
+      "name": "WidgetQueryType",
+      "members": [
+        "widgetQueryTypeData",
+        "widgetQueryTypeSignData",
+        "widgetQueryTypeSentTransaction"
+      ]
+    },
+    {
+      "name": "WidgetQueryWallet",
+      "members": [
+        "widgetQueryWallet"
       ]
     }
   ],
@@ -6707,6 +6887,49 @@
       "type_id": -933199172
     },
     {
+      "name": "textRange",
+      "result": "TextRange",
+      "fields": [
+        {
+          "name": "offset",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "length",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1166339562
+    },
+    {
+      "name": "textRanges",
+      "result": "TextRanges",
+      "fields": [
+        {
+          "name": "ranges",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "textRange"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 986061048
+    },
+    {
       "name": "formattedText",
       "result": "FormattedText",
       "fields": [
@@ -7083,6 +7306,46 @@
       ],
       "is_function": false,
       "type_id": -171516397
+    },
+    {
+      "name": "textCompositionParameters",
+      "result": "TextCompositionParameters",
+      "fields": [
+        {
+          "name": "translate_to_language_code",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "style_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "add_emojis",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fix_text",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1605903485
     },
     {
       "name": "termsOfService",
@@ -10156,6 +10419,14 @@
           "is_optional": false
         },
         {
+          "name": "has_topic_sidebar",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "allows_users_to_create_topics",
           "type": {
             "kind": "primitive",
@@ -10237,7 +10508,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 565626918
+      "type_id": 1974057584
     },
     {
       "name": "userTypeUnknown",
@@ -10355,6 +10626,267 @@
       ],
       "is_function": false,
       "type_id": 735061332
+    },
+    {
+      "name": "botCallbackQueryModeDefault",
+      "result": "BotCallbackQueryMode",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1156817645
+    },
+    {
+      "name": "botCallbackQueryModeAuto",
+      "result": "BotCallbackQueryMode",
+      "fields": [],
+      "is_function": false,
+      "type_id": -191620773
+    },
+    {
+      "name": "botCallbackQueryModeInline",
+      "result": "BotCallbackQueryMode",
+      "fields": [],
+      "is_function": false,
+      "type_id": 84536991
+    },
+    {
+      "name": "botSettingIsInline",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "is_inline",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1685864156
+    },
+    {
+      "name": "botSettingInlineQueryPlaceholder",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -807064985
+    },
+    {
+      "name": "botSettingNeedLocation",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "need_location",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -490009386
+    },
+    {
+      "name": "botSettingInlineFeedback",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "share_denominator",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 899867608
+    },
+    {
+      "name": "botSettingCanJoinGroups",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "can_join_groups",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -202738964
+    },
+    {
+      "name": "botSettingCanReadAllGroupMessages",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "can_read_all_group_messages",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1190983296
+    },
+    {
+      "name": "botSettingCanConnectToBusiness",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "can_connect_to_business",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1941034623
+    },
+    {
+      "name": "botSettingCanManageBots",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "can_manage_bots",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1712304750
+    },
+    {
+      "name": "botSettingSupportsGuestQueries",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "supports_guest_queries",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1089348077
+    },
+    {
+      "name": "botSettingIsGuard",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "is_guard",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1984882704
+    },
+    {
+      "name": "botSettingHasTopics",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "has_topics",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1513019491
+    },
+    {
+      "name": "botSettingAllowsUsersToCreateTopics",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "allows_users_to_create_topics",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1469505158
+    },
+    {
+      "name": "botSettingHasTopicSidebar",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "has_topic_sidebar",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -764573435
+    },
+    {
+      "name": "botSettingCanCommunicateWithBots",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "can_communicate_with_bots",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1575894452
+    },
+    {
+      "name": "botSettingCallbackQueryMode",
+      "result": "BotSetting",
+      "fields": [
+        {
+          "name": "mode",
+          "type": {
+            "kind": "object",
+            "name": "BotCallbackQueryMode"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 973422615
     },
     {
       "name": "botVerificationParameters",
@@ -12183,6 +12715,90 @@
       "type_id": -1637834462
     },
     {
+      "name": "giftOnChainPurchaseOfferStatePending",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [],
+      "is_function": false,
+      "type_id": 340661306
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateSettled",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -865518859
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateAccepted",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -2066909889
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateCanceling",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [],
+      "is_function": false,
+      "type_id": -1346504338
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateDeclined",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -936291812
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateCanceled",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fine_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1504306576
+    },
+    {
+      "name": "giftOnChainPurchaseOfferStateExpired",
+      "result": "GiftOnChainPurchaseOfferState",
+      "fields": [
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1312364028
+    },
+    {
       "name": "suggestedPostPriceStar",
       "result": "SuggestedPostPrice",
       "fields": [
@@ -13578,7 +14194,31 @@
           "is_optional": false
         },
         {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
           "name": "gram_only",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_fixed_on_chain",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "can_be_managed",
           "type": {
             "kind": "primitive",
             "name": "Bool"
@@ -13587,7 +14227,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 1593292808
+      "type_id": -915633831
     },
     {
       "name": "giftCollection",
@@ -13746,6 +14386,38 @@
       "fields": [],
       "is_function": false,
       "type_id": 1827738024
+    },
+    {
+      "name": "upgradedGiftOriginOnChainResale",
+      "result": "UpgradedGiftOrigin",
+      "fields": [
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1791951229
+    },
+    {
+      "name": "upgradedGiftOriginOnChainOffer",
+      "result": "UpgradedGiftOrigin",
+      "fields": [
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1462945660
     },
     {
       "name": "upgradedGiftAttributeRarityPerMille",
@@ -14394,6 +15066,14 @@
           "is_optional": true
         },
         {
+          "name": "uses_on_chain_resale",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "resale_parameters",
           "type": {
             "kind": "object",
@@ -14402,10 +15082,26 @@
           "is_optional": true
         },
         {
+          "name": "fee_basis_points",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
           "name": "can_send_purchase_offer",
           "type": {
             "kind": "primitive",
             "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "min_on_chain_purchase_offer_gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -14443,7 +15139,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 477673897
+      "type_id": -1539426161
     },
     {
       "name": "upgradedGiftValueInfo",
@@ -14522,7 +15218,7 @@
           "is_optional": false
         },
         {
-          "name": "minimum_price",
+          "name": "min_price",
           "type": {
             "kind": "primitive",
             "name": "int53"
@@ -14563,7 +15259,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1729877677
+      "type_id": -1360089164
     },
     {
       "name": "upgradedGiftDepositInfo",
@@ -14589,13 +15285,235 @@
           "name": "gram_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": 1648818475
+      "type_id": -1303529334
+    },
+    {
+      "name": "tonSmartContractInitialState",
+      "result": "TonSmartContractInitialState",
+      "fields": [
+        {
+          "name": "code",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -33140544
+    },
+    {
+      "name": "tonWalletMessage",
+      "result": "TonWalletMessage",
+      "fields": [
+        {
+          "name": "destination_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "send_mode",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "initial_state",
+          "type": {
+            "kind": "object",
+            "name": "tonSmartContractInitialState"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": 801658076
+    },
+    {
+      "name": "giftOnChainPurchaseOfferTransaction",
+      "result": "GiftOnChainPurchaseOfferTransaction",
+      "fields": [
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletMessage"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gasless_message",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletMessage"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "rent_budget_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "execution_allowance_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "forward_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fine_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 704800218
+    },
+    {
+      "name": "giftOnChainSaleTransactionFragment",
+      "result": "GiftOnChainSaleTransaction",
+      "fields": [
+        {
+          "name": "nft_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "payload",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_gasless_transfer_available",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -203291568
+    },
+    {
+      "name": "giftOnChainSaleTransactionFixedPrice",
+      "result": "GiftOnChainSaleTransaction",
+      "fields": [
+        {
+          "name": "sale_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "messages",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonWalletMessage"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gasless_messages",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "tonWalletMessage"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 392872657
     },
     {
       "name": "upgradeGiftResult",
@@ -14666,7 +15584,7 @@
           "is_optional": false
         },
         {
-          "name": "export_date",
+          "name": "mint_date",
           "type": {
             "kind": "primitive",
             "name": "int32"
@@ -14675,7 +15593,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 965145418
+      "type_id": -173300699
     },
     {
       "name": "craftGiftResultSuccess",
@@ -15287,7 +16205,7 @@
           "is_optional": false
         },
         {
-          "name": "export_date",
+          "name": "mint_date",
           "type": {
             "kind": "primitive",
             "name": "int32"
@@ -15312,7 +16230,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 1335050615
+      "type_id": -1837475239
     },
     {
       "name": "receivedGifts",
@@ -18002,7 +18920,7 @@
           "name": "gram_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -18040,7 +18958,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -655546174
+      "type_id": -302902556
     },
     {
       "name": "tonNftAttribute",
@@ -18248,7 +19166,7 @@
           "name": "gram_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -18273,7 +19191,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 239770335
+      "type_id": 1337170800
     },
     {
       "name": "inputTonWalletCardSticker",
@@ -18349,7 +19267,7 @@
           "name": "amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -18363,7 +19281,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1570430820
+      "type_id": -282211019
     },
     {
       "name": "tonWalletTransactionTypeTransfer",
@@ -18373,7 +19291,7 @@
           "name": "amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -18403,7 +19321,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -2077618700
+      "type_id": -1040037236
     },
     {
       "name": "tonWalletTransactionTypeNftTransfer",
@@ -18478,6 +19396,390 @@
       "type_id": -1432434212
     },
     {
+      "name": "tonWalletTransactionTypeTelegramGiftPurchase",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -678538001
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftSale",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -372613743
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftListing",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "old_price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -2088086645
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftDelisting",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 648045824
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftOfferCreation",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "counterparty_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "service_fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -209857978
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftOfferAcceptance",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "is_buyer",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "counterparty_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "service_fee_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -953398531
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftOfferCancellation",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "counterparty_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fine_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1515167139
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftOfferDecline",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "counterparty_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -460106
+    },
+    {
+      "name": "tonWalletTransactionTypeTelegramGiftOfferExpiration",
+      "result": "TonWalletTransactionType",
+      "fields": [
+        {
+          "name": "nft",
+          "type": {
+            "kind": "object",
+            "name": "tonNft"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "counterparty_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "price",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "refund_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -614834913
+    },
+    {
       "name": "tonWalletTransactionTypeKeyChange",
       "result": "TonWalletTransactionType",
       "fields": [],
@@ -18532,7 +19834,15 @@
           "name": "fee_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_suspected_spam",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
           },
           "is_optional": false
         },
@@ -18554,7 +19864,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -2081280655
+      "type_id": 197214810
     },
     {
       "name": "tonWalletTransactions",
@@ -18564,7 +19874,7 @@
           "name": "gram_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -18589,7 +19899,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1372826145
+      "type_id": -402386265
     },
     {
       "name": "tonConnectRequestStatePending",
@@ -19459,6 +20769,312 @@
       "type_id": 557679253
     },
     {
+      "name": "notificationSettingsScopePrivateChats",
+      "result": "NotificationSettingsScope",
+      "fields": [],
+      "is_function": false,
+      "type_id": 937446759
+    },
+    {
+      "name": "notificationSettingsScopeGroupChats",
+      "result": "NotificationSettingsScope",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1212142067
+    },
+    {
+      "name": "notificationSettingsScopeChannelChats",
+      "result": "NotificationSettingsScope",
+      "fields": [],
+      "is_function": false,
+      "type_id": 548013448
+    },
+    {
+      "name": "chatNotificationSettings",
+      "result": "ChatNotificationSettings",
+      "fields": [
+        {
+          "name": "use_default_mute_for",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "mute_for",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_sound",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sound_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_show_preview",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_preview",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_mute_stories",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "mute_stories",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_story_sound",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "story_sound_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_show_story_poster",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_story_poster",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_disable_pinned_message_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "disable_pinned_message_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_disable_mention_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "disable_mention_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1459533846
+    },
+    {
+      "name": "scopeNotificationSettings",
+      "result": "ScopeNotificationSettings",
+      "fields": [
+        {
+          "name": "mute_for",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sound_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_preview",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "use_default_mute_stories",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "mute_stories",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "story_sound_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_story_poster",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "disable_pinned_message_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "disable_mention_notifications",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 88369150
+    },
+    {
+      "name": "reactionNotificationSourceNone",
+      "result": "ReactionNotificationSource",
+      "fields": [],
+      "is_function": false,
+      "type_id": 366374940
+    },
+    {
+      "name": "reactionNotificationSourceContacts",
+      "result": "ReactionNotificationSource",
+      "fields": [],
+      "is_function": false,
+      "type_id": 555501621
+    },
+    {
+      "name": "reactionNotificationSourceAll",
+      "result": "ReactionNotificationSource",
+      "fields": [],
+      "is_function": false,
+      "type_id": 1241689234
+    },
+    {
+      "name": "reactionNotificationSettings",
+      "result": "ReactionNotificationSettings",
+      "fields": [
+        {
+          "name": "message_reaction_source",
+          "type": {
+            "kind": "object",
+            "name": "ReactionNotificationSource"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "story_reaction_source",
+          "type": {
+            "kind": "object",
+            "name": "ReactionNotificationSource"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "poll_vote_source",
+          "type": {
+            "kind": "object",
+            "name": "ReactionNotificationSource"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sound_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_preview",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 2074932258
+    },
+    {
       "name": "communityId",
       "result": "CommunityId",
       "fields": [
@@ -19649,10 +21265,18 @@
             "name": "communityPermissions"
           },
           "is_optional": false
+        },
+        {
+          "name": "are_chats_collapsed",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": 1684827592
+      "type_id": -1501636358
     },
     {
       "name": "communityChat",
@@ -19732,10 +21356,142 @@
             "name": "int32"
           },
           "is_optional": false
+        },
+        {
+          "name": "notification_settings",
+          "type": {
+            "kind": "object",
+            "name": "chatNotificationSettings"
+          },
+          "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": -88511019
+      "type_id": -917988141
+    },
+    {
+      "name": "communities",
+      "result": "Communities",
+      "fields": [
+        {
+          "name": "community_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int53"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -330512172
+    },
+    {
+      "name": "communityAddChatRequest",
+      "result": "CommunityAddChatRequest",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_hidden",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 2125404501
+    },
+    {
+      "name": "communityAddChatRequests",
+      "result": "CommunityAddChatRequests",
+      "fields": [
+        {
+          "name": "total_count",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "requests",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "communityAddChatRequest"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "next_offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 2015337973
+    },
+    {
+      "name": "communityMemberChats",
+      "result": "CommunityMemberChats",
+      "fields": [
+        {
+          "name": "owned_chat_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int53"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "joined_chat_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int53"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 2068259090
     },
     {
       "name": "userRating",
@@ -22074,6 +23830,14 @@
           "is_optional": false
         },
         {
+          "name": "has_forum_sidebar",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "restriction_info",
           "type": {
             "kind": "object",
@@ -22099,7 +23863,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1134998957
+      "type_id": -1673662503
     },
     {
       "name": "supergroupFullInfo",
@@ -24613,6 +26377,25 @@
       "type_id": -1682890519
     },
     {
+      "name": "chatMessageCounts",
+      "result": "ChatMessageCounts",
+      "fields": [
+        {
+          "name": "counts",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int32"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1440101430
+    },
+    {
       "name": "businessMessage",
       "result": "BusinessMessage",
       "fields": [
@@ -25238,312 +27021,6 @@
       ],
       "is_function": false,
       "type_id": 1395890392
-    },
-    {
-      "name": "notificationSettingsScopePrivateChats",
-      "result": "NotificationSettingsScope",
-      "fields": [],
-      "is_function": false,
-      "type_id": 937446759
-    },
-    {
-      "name": "notificationSettingsScopeGroupChats",
-      "result": "NotificationSettingsScope",
-      "fields": [],
-      "is_function": false,
-      "type_id": 1212142067
-    },
-    {
-      "name": "notificationSettingsScopeChannelChats",
-      "result": "NotificationSettingsScope",
-      "fields": [],
-      "is_function": false,
-      "type_id": 548013448
-    },
-    {
-      "name": "chatNotificationSettings",
-      "result": "ChatNotificationSettings",
-      "fields": [
-        {
-          "name": "use_default_mute_for",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "mute_for",
-          "type": {
-            "kind": "primitive",
-            "name": "int32"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_sound",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "sound_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_show_preview",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "show_preview",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_mute_stories",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "mute_stories",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_story_sound",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "story_sound_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_show_story_poster",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "show_story_poster",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_disable_pinned_message_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "disable_pinned_message_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_disable_mention_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "disable_mention_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        }
-      ],
-      "is_function": false,
-      "type_id": 1459533846
-    },
-    {
-      "name": "scopeNotificationSettings",
-      "result": "ScopeNotificationSettings",
-      "fields": [
-        {
-          "name": "mute_for",
-          "type": {
-            "kind": "primitive",
-            "name": "int32"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "sound_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "show_preview",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "use_default_mute_stories",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "mute_stories",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "story_sound_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "show_story_poster",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "disable_pinned_message_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "disable_mention_notifications",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        }
-      ],
-      "is_function": false,
-      "type_id": 88369150
-    },
-    {
-      "name": "reactionNotificationSourceNone",
-      "result": "ReactionNotificationSource",
-      "fields": [],
-      "is_function": false,
-      "type_id": 366374940
-    },
-    {
-      "name": "reactionNotificationSourceContacts",
-      "result": "ReactionNotificationSource",
-      "fields": [],
-      "is_function": false,
-      "type_id": 555501621
-    },
-    {
-      "name": "reactionNotificationSourceAll",
-      "result": "ReactionNotificationSource",
-      "fields": [],
-      "is_function": false,
-      "type_id": 1241689234
-    },
-    {
-      "name": "reactionNotificationSettings",
-      "result": "ReactionNotificationSettings",
-      "fields": [
-        {
-          "name": "message_reaction_source",
-          "type": {
-            "kind": "object",
-            "name": "ReactionNotificationSource"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "story_reaction_source",
-          "type": {
-            "kind": "object",
-            "name": "ReactionNotificationSource"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "poll_vote_source",
-          "type": {
-            "kind": "object",
-            "name": "ReactionNotificationSource"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "sound_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "show_preview",
-          "type": {
-            "kind": "primitive",
-            "name": "Bool"
-          },
-          "is_optional": false
-        }
-      ],
-      "is_function": false,
-      "type_id": 2074932258
     },
     {
       "name": "draftMessageContentText",
@@ -26850,6 +28327,14 @@
           "is_optional": true
         },
         {
+          "name": "text_composition_parameters",
+          "type": {
+            "kind": "object",
+            "name": "textCompositionParameters"
+          },
+          "is_optional": true
+        },
+        {
           "name": "client_data",
           "type": {
             "kind": "primitive",
@@ -26859,7 +28344,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 1014576710
+      "type_id": 765433541
     },
     {
       "name": "chats",
@@ -27117,6 +28602,38 @@
       ],
       "is_function": false,
       "type_id": 1037140744
+    },
+    {
+      "name": "chatActionBarBotInvite",
+      "result": "ChatActionBar",
+      "fields": [
+        {
+          "name": "can_unarchive",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "inviter_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "owner_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1533759998
     },
     {
       "name": "buttonStyleDefault",
@@ -30279,10 +31796,13 @@
       "result": "PageBlock",
       "fields": [
         {
-          "name": "text",
+          "name": "blocks",
           "type": {
-            "kind": "object",
-            "name": "RichText"
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "PageBlock"
+            }
           },
           "is_optional": false
         },
@@ -30296,7 +31816,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -936479389
+      "type_id": 172643964
     },
     {
       "name": "pageBlockPullQuote",
@@ -31166,6 +32686,13 @@
       ],
       "is_function": false,
       "type_id": 977838560
+    },
+    {
+      "name": "linkPreviewTypeBotInvite",
+      "result": "LinkPreviewType",
+      "fields": [],
+      "is_function": false,
+      "type_id": -205130197
     },
     {
       "name": "linkPreviewTypeChannelBoost",
@@ -35695,6 +37222,102 @@
       "type_id": 1514236353
     },
     {
+      "name": "messageWidget",
+      "result": "MessageContent",
+      "fields": [
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "html",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "caption",
+          "type": {
+            "kind": "object",
+            "name": "formattedText"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "show_caption_above_media",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_copy",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "can_send_queries",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "can_send_background_queries",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1527832547
+    },
+    {
       "name": "messageChecklist",
       "result": "MessageContent",
       "fields": [
@@ -36638,6 +38261,22 @@
       "type_id": -1519987394
     },
     {
+      "name": "messageBotInvite",
+      "result": "MessageContent",
+      "fields": [
+        {
+          "name": "inviter_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1419148442
+    },
+    {
       "name": "messagePaymentSuccessful",
       "result": "MessageContent",
       "fields": [
@@ -37456,7 +39095,7 @@
           "name": "amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -37475,10 +39114,18 @@
             "name": "Bool"
           },
           "is_optional": false
+        },
+        {
+          "name": "on_ramp_provider_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": -1872034960
+      "type_id": 289627165
     },
     {
       "name": "messageTonConnectRequest",
@@ -37813,7 +39460,7 @@
           "is_optional": false
         },
         {
-          "name": "export_date",
+          "name": "mint_date",
           "type": {
             "kind": "primitive",
             "name": "int32"
@@ -37830,7 +39477,7 @@
         }
       ],
       "is_function": false,
-      "type_id": 398364038
+      "type_id": -921416442
     },
     {
       "name": "messageRefundedUpgradedGift",
@@ -37951,6 +39598,78 @@
       ],
       "is_function": false,
       "type_id": 59315711
+    },
+    {
+      "name": "messageUpgradedGiftOnChainPurchaseOffer",
+      "result": "MessageContent",
+      "fields": [
+        {
+          "name": "gift",
+          "type": {
+            "kind": "object",
+            "name": "upgradedGift"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_buyer",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "object",
+            "name": "GiftOnChainPurchaseOfferState"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "offer_address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "fee_basis_points",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "expiration_date",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "offer_message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1249490428
     },
     {
       "name": "messagePaidMessagesRefunded",
@@ -39819,10 +41538,13 @@
       "result": "InputPageBlock",
       "fields": [
         {
-          "name": "text",
+          "name": "blocks",
           "type": {
-            "kind": "object",
-            "name": "RichText"
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "InputPageBlock"
+            }
           },
           "is_optional": false
         },
@@ -39836,7 +41558,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1893880215
+      "type_id": -460413487
     },
     {
       "name": "inputPageBlockPullQuote",
@@ -41048,6 +42770,126 @@
       ],
       "is_function": false,
       "type_id": -1722965261
+    },
+    {
+      "name": "inputMessageWidget",
+      "result": "InputMessageContent",
+      "fields": [
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "html",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "caption",
+          "type": {
+            "kind": "object",
+            "name": "formattedText"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "show_caption_above_media",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "allow_queries",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_shared",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 999197869
+    },
+    {
+      "name": "inputMessageSharedWidget",
+      "result": "InputMessageContent",
+      "fields": [
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "caption",
+          "type": {
+            "kind": "object",
+            "name": "formattedText"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "show_caption_above_media",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -271303570
     },
     {
       "name": "inputMessageForwarded",
@@ -42668,30 +44510,6 @@
       "type_id": -1433714887
     },
     {
-      "name": "inputStoryAreaTypeFoundVenue",
-      "result": "InputStoryAreaType",
-      "fields": [
-        {
-          "name": "query_id",
-          "type": {
-            "kind": "primitive",
-            "name": "int64"
-          },
-          "is_optional": false
-        },
-        {
-          "name": "result_id",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "is_optional": false
-        }
-      ],
-      "is_function": false,
-      "type_id": -1395809130
-    },
-    {
       "name": "inputStoryAreaTypePreviousVenue",
       "result": "InputStoryAreaType",
       "fields": [
@@ -43480,6 +45298,14 @@
           "is_optional": false
         },
         {
+          "name": "music",
+          "type": {
+            "kind": "object",
+            "name": "audio"
+          },
+          "is_optional": true
+        },
+        {
           "name": "album_ids",
           "type": {
             "kind": "vector",
@@ -43492,7 +45318,7 @@
         }
       ],
       "is_function": false,
-      "type_id": -1551193142
+      "type_id": -1192230650
     },
     {
       "name": "stories",
@@ -46874,6 +48700,95 @@
       "type_id": 164774908
     },
     {
+      "name": "speechRecognitionLanguages",
+      "result": "SpeechRecognitionLanguages",
+      "fields": [
+        {
+          "name": "language_codes",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -1112642086
+    },
+    {
+      "name": "speechRecognitionModel",
+      "result": "SpeechRecognitionModel",
+      "fields": [
+        {
+          "name": "document",
+          "type": {
+            "kind": "object",
+            "name": "document"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "language_codes",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "version",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1208042518
+    },
+    {
+      "name": "speechRecognitionModels",
+      "result": "SpeechRecognitionModels",
+      "fields": [
+        {
+          "name": "models",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "speechRecognitionModel"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "language_detection_model",
+          "type": {
+            "kind": "object",
+            "name": "document"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "voice_activity_detection_model",
+          "type": {
+            "kind": "object",
+            "name": "document"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": 800651235
+    },
+    {
       "name": "businessConnection",
       "result": "BusinessConnection",
       "fields": [
@@ -48848,6 +50763,150 @@
       ],
       "is_function": false,
       "type_id": 360867933
+    },
+    {
+      "name": "widgetQueryWallet",
+      "result": "WidgetQueryWallet",
+      "fields": [
+        {
+          "name": "address",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_key",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "state_init",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -839692036
+    },
+    {
+      "name": "widgetQueryTypeData",
+      "result": "WidgetQueryType",
+      "fields": [
+        {
+          "name": "with_wallet",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 594102106
+    },
+    {
+      "name": "widgetQueryTypeSignData",
+      "result": "WidgetQueryType",
+      "fields": [
+        {
+          "name": "wallet",
+          "type": {
+            "kind": "object",
+            "name": "widgetQueryWallet"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sign_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -252898499
+    },
+    {
+      "name": "widgetQueryTypeSentTransaction",
+      "result": "WidgetQueryType",
+      "fields": [
+        {
+          "name": "wallet",
+          "type": {
+            "kind": "object",
+            "name": "widgetQueryWallet"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "msg_hash",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 989539590
+    },
+    {
+      "name": "widgetQueryAnswer",
+      "result": "WidgetQueryAnswer",
+      "fields": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1557837077
+    },
+    {
+      "name": "widgetPublicData",
+      "result": "WidgetPublicData",
+      "fields": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "poll_period",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 1018965146
     },
     {
       "name": "customRequestResult",
@@ -55825,6 +57884,22 @@
       "type_id": 1401602752
     },
     {
+      "name": "internalLinkTypeBotInvite",
+      "result": "InternalLinkType",
+      "fields": [
+        {
+          "name": "bot_username",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": 998371539
+    },
+    {
       "name": "internalLinkTypeBotStart",
       "result": "InternalLinkType",
       "fields": [
@@ -56776,13 +58851,13 @@
           "name": "gram_amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         }
       ],
       "is_function": false,
-      "type_id": -1697768710
+      "type_id": 9715338
     },
     {
       "name": "internalLinkTypeUnknownDeepLink",
@@ -61161,6 +63236,30 @@
       "type_id": 1455190380
     },
     {
+      "name": "updateChatTextCompositionParameters",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "text_composition_parameters",
+          "type": {
+            "kind": "object",
+            "name": "textCompositionParameters"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": 1467980880
+    },
+    {
       "name": "updateChatEmojiStatus",
       "result": "Update",
       "fields": [
@@ -64382,6 +66481,30 @@
       "type_id": -11600703
     },
     {
+      "name": "updateSpeechRecognitionInFile",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "recognition_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "partial_text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": false,
+      "type_id": -922861464
+    },
+    {
       "name": "updateGroupCallMessageLevels",
       "result": "Update",
       "fields": [
@@ -64999,6 +67122,230 @@
       ],
       "is_function": false,
       "type_id": 336745316
+    },
+    {
+      "name": "updateNewWidgetQuery",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_instance",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_type",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "query_type",
+          "type": {
+            "kind": "object",
+            "name": "WidgetQueryType"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_card",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletCard"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": -43285453
+    },
+    {
+      "name": "updateNewInlineWidgetQuery",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "inline_message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_instance",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_type",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "query_type",
+          "type": {
+            "kind": "object",
+            "name": "WidgetQueryType"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_card",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletCard"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": -843836421
+    },
+    {
+      "name": "updateNewWidgetCopyQuery",
+      "result": "Update",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "sender_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "query_type",
+          "type": {
+            "kind": "object",
+            "name": "WidgetQueryType"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "wallet_card",
+          "type": {
+            "kind": "object",
+            "name": "tonWalletCard"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": false,
+      "type_id": 755000376
     },
     {
       "name": "updateNewShippingQuery",
@@ -67695,6 +70042,13 @@
       "type_id": -1870357515
     },
     {
+      "name": "getSuitableCommunityChats",
+      "result": "Chats",
+      "fields": [],
+      "is_function": true,
+      "type_id": 1870093801
+    },
+    {
       "name": "loadDirectMessagesChatTopics",
       "result": "Ok",
       "fields": [
@@ -68218,6 +70572,13 @@
       "type_id": -2128198899
     },
     {
+      "name": "getJoinedCommunities",
+      "result": "Communities",
+      "fields": [],
+      "is_function": true,
+      "type_id": 106980818
+    },
+    {
       "name": "createCommunity",
       "result": "CommunityId",
       "fields": [
@@ -68320,6 +70681,254 @@
       ],
       "is_function": true,
       "type_id": 1089063260
+    },
+    {
+      "name": "setCommunityNotificationSettings",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "notification_settings",
+          "type": {
+            "kind": "object",
+            "name": "chatNotificationSettings"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1727991282
+    },
+    {
+      "name": "addCommunityChat",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_hidden",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -861733581
+    },
+    {
+      "name": "removeCommunityChat",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 898536429
+    },
+    {
+      "name": "getCommunityAddChatRequests",
+      "result": "CommunityAddChatRequests",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "offset",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "limit",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1000408904
+    },
+    {
+      "name": "processCommunityAddChatRequest",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "approve",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1652704988
+    },
+    {
+      "name": "processCommunityAddChatRequests",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "approve",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1586127930
+    },
+    {
+      "name": "toggleCommunityAreChatsCollapsed",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "are_chats_collapsed",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1708259775
+    },
+    {
+      "name": "toggleCommunityMemberIsBanned",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "member_id",
+          "type": {
+            "kind": "object",
+            "name": "MessageSender"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_banned",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 307460053
+    },
+    {
+      "name": "getCommunityMemberChats",
+      "result": "CommunityMemberChats",
+      "fields": [
+        {
+          "name": "community_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "member_id",
+          "type": {
+            "kind": "object",
+            "name": "MessageSender"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1898245376
     },
     {
       "name": "deleteCommunity",
@@ -69264,6 +71873,49 @@
       ],
       "is_function": true,
       "type_id": 1641001101
+    },
+    {
+      "name": "getChatMessageCounts",
+      "result": "ChatMessageCounts",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "topic_id",
+          "type": {
+            "kind": "object",
+            "name": "MessageTopic"
+          },
+          "is_optional": true
+        },
+        {
+          "name": "filters",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "SearchMessagesFilter"
+            }
+          },
+          "is_optional": false
+        },
+        {
+          "name": "return_local",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1327429310
     },
     {
       "name": "getChatMessagePosition",
@@ -70234,6 +72886,38 @@
       "type_id": 1644383227
     },
     {
+      "name": "fixRecognizedTextWithAi",
+      "result": "FormattedText",
+      "fields": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "object",
+            "name": "formattedText"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1287522189
+    },
+    {
+      "name": "fixRecognizedRichMessageWithAi",
+      "result": "RichMessage",
+      "fields": [
+        {
+          "name": "message",
+          "type": {
+            "kind": "object",
+            "name": "inputRichMessage"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1417726111
+    },
+    {
       "name": "recognizeSpeech",
       "result": "Ok",
       "fields": [
@@ -70288,6 +72972,62 @@
       ],
       "is_function": true,
       "type_id": -287521867
+    },
+    {
+      "name": "recognizeSpeechInFile",
+      "result": "Text",
+      "fields": [
+        {
+          "name": "audio_file",
+          "type": {
+            "kind": "object",
+            "name": "InputFile"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "recognition_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1158465679
+    },
+    {
+      "name": "getSpeechRecognitionLanguages",
+      "result": "SpeechRecognitionLanguages",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1967118600
+    },
+    {
+      "name": "getSpeechRecognitionModels",
+      "result": "SpeechRecognitionModels",
+      "fields": [
+        {
+          "name": "version",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -2101791440
     },
     {
       "name": "getChatAvailableMessageSenders",
@@ -71190,6 +73930,62 @@
       "type_id": 332127881
     },
     {
+      "name": "editMessageWidgetData",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "edit_public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "edit_chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1935817582
+    },
+    {
       "name": "editInlineMessageText",
       "result": "Ok",
       "fields": [
@@ -71350,6 +74146,86 @@
       "type_id": -67565858
     },
     {
+      "name": "editInlineMessageWidgetData",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "inline_message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "edit_public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "edit_chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "chat_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1748954409
+    },
+    {
+      "name": "editWidgetData",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "widget_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "public_data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "cache_time",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1057345257
+    },
+    {
       "name": "editEphemeralMessage",
       "result": "Ok",
       "fields": [
@@ -71455,7 +74331,7 @@
     },
     {
       "name": "replyToCallbackQueryWithEphemeralMessage",
-      "result": "Ok",
+      "result": "Message",
       "fields": [
         {
           "name": "callback_query_id",
@@ -71499,7 +74375,7 @@
         }
       ],
       "is_function": true,
-      "type_id": -77034825
+      "type_id": 1672608572
     },
     {
       "name": "editMessageSchedulingState",
@@ -73034,6 +75910,30 @@
           "is_optional": false
         },
         {
+          "name": "icon_custom_emoji_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "exclude_open",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "exclude_closed",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "offset_date",
           "type": {
             "kind": "primitive",
@@ -73067,7 +75967,23 @@
         }
       ],
       "is_function": true,
-      "type_id": 1368275676
+      "type_id": 874715169
+    },
+    {
+      "name": "getForumTopicPopularIcons",
+      "result": "Stickers",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 262686390
     },
     {
       "name": "setForumTopicNotificationSettings",
@@ -73934,6 +76850,22 @@
       ],
       "is_function": true,
       "type_id": -341490693
+    },
+    {
+      "name": "getTextEmojiRanges",
+      "result": "TextRanges",
+      "fields": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1507493223
     },
     {
       "name": "parseTextEntities",
@@ -75351,6 +78283,94 @@
       ],
       "is_function": true,
       "type_id": -1153028490
+    },
+    {
+      "name": "answerWidgetQuery",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "widget_query_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1940154684
+    },
+    {
+      "name": "getWidgetQueryAnswer",
+      "result": "WidgetQueryAnswer",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "query_type",
+          "type": {
+            "kind": "object",
+            "name": "WidgetQueryType"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1345275611
+    },
+    {
+      "name": "getWidgetPublicData",
+      "result": "WidgetPublicData",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 785502640
     },
     {
       "name": "answerShippingQuery",
@@ -77258,6 +80278,30 @@
       "type_id": -555614927
     },
     {
+      "name": "setChatTextCompositionParameters",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "text_composition_parameters",
+          "type": {
+            "kind": "object",
+            "name": "textCompositionParameters"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": true,
+      "type_id": 1907329161
+    },
+    {
       "name": "setChatNotificationSettings",
       "result": "Ok",
       "fields": [
@@ -78367,6 +81411,14 @@
           "is_optional": true
         },
         {
+          "name": "music",
+          "type": {
+            "kind": "object",
+            "name": "inputAudio"
+          },
+          "is_optional": true
+        },
+        {
           "name": "privacy_settings",
           "type": {
             "kind": "object",
@@ -78419,7 +81471,7 @@
         }
       ],
       "is_function": true,
-      "type_id": -1725643742
+      "type_id": -313838892
     },
     {
       "name": "startLiveStory",
@@ -78556,6 +81608,38 @@
       ],
       "is_function": true,
       "type_id": -1035823266
+    },
+    {
+      "name": "editStoryMusic",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "story_poster_chat_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "story_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "music",
+          "type": {
+            "kind": "object",
+            "name": "inputAudio"
+          },
+          "is_optional": true
+        }
+      ],
+      "is_function": true,
+      "type_id": -1931178625
     },
     {
       "name": "setStoryPrivacySettings",
@@ -85187,6 +88271,60 @@
       "type_id": -662104110
     },
     {
+      "name": "inviteUsersToBot",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "bot_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "user_ids",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "primitive",
+              "name": "int53"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1542262900
+    },
+    {
+      "name": "setBotSettings",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "bot_user_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "settings",
+          "type": {
+            "kind": "vector",
+            "element": {
+              "kind": "object",
+              "name": "BotSetting"
+            }
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -91979029
+    },
+    {
       "name": "setBotName",
       "result": "Ok",
       "fields": [
@@ -86111,10 +89249,18 @@
             "name": "Bool"
           },
           "is_optional": false
+        },
+        {
+          "name": "has_forum_sidebar",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
         }
       ],
       "is_function": true,
-      "type_id": 371064337
+      "type_id": -549703817
     },
     {
       "name": "toggleSupergroupIsBroadcastGroup",
@@ -87132,6 +90278,174 @@
       "type_id": -1177407462
     },
     {
+      "name": "sendGiftOnChainPurchaseOffer",
+      "result": "GiftOnChainPurchaseOfferTransaction",
+      "fields": [
+        {
+          "name": "gift_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "duration",
+          "type": {
+            "kind": "primitive",
+            "name": "int32"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1536373574
+    },
+    {
+      "name": "cancelGiftOnChainPurchaseOffer",
+      "result": "GiftOnChainPurchaseOfferTransaction",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1197998866
+    },
+    {
+      "name": "acceptGiftOnChainPurchaseOffer",
+      "result": "GiftOnChainPurchaseOfferTransaction",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -2115030761
+    },
+    {
+      "name": "declineGiftOnChainPurchaseOffer",
+      "result": "Ok",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": {
+            "kind": "primitive",
+            "name": "int53"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -139001943
+    },
+    {
+      "name": "getGiftOnChainPurchaseTransaction",
+      "result": "GiftOnChainSaleTransaction",
+      "fields": [
+        {
+          "name": "gift_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "owner_id",
+          "type": {
+            "kind": "object",
+            "name": "MessageSender"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "text",
+          "type": {
+            "kind": "object",
+            "name": "formattedText"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "is_private",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": 1590539584
+    },
+    {
+      "name": "getGiftOnChainListingTransaction",
+      "result": "GiftOnChainSaleTransaction",
+      "fields": [
+        {
+          "name": "gift_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gram_amount",
+          "type": {
+            "kind": "primitive",
+            "name": "int64"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1441566807
+    },
+    {
+      "name": "getGiftOnChainDelistingTransaction",
+      "result": "GiftOnChainSaleTransaction",
+      "fields": [
+        {
+          "name": "gift_name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -1454498515
+    },
+    {
       "name": "getReceivedGifts",
       "result": "ReceivedGifts",
       "fields": [
@@ -87332,7 +90646,7 @@
       "type_id": 1818813417
     },
     {
-      "name": "getUpgradedGiftWithdrawalUrl",
+      "name": "getGiftMintingUrl",
       "result": "HttpUrl",
       "fields": [
         {
@@ -87345,10 +90659,10 @@
         }
       ],
       "is_function": true,
-      "type_id": -103064799
+      "type_id": 1536370658
     },
     {
-      "name": "withdrawUpgradedGift",
+      "name": "mintGift",
       "result": "Ok",
       "fields": [
         {
@@ -87369,7 +90683,7 @@
         }
       ],
       "is_function": true,
-      "type_id": -2103396691
+      "type_id": 1568160677
     },
     {
       "name": "getUpgradedGiftDepositInfo",
@@ -87495,6 +90809,22 @@
           "is_optional": false
         },
         {
+          "name": "for_grams",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "for_fragment",
+          "type": {
+            "kind": "primitive",
+            "name": "Bool"
+          },
+          "is_optional": false
+        },
+        {
           "name": "attributes",
           "type": {
             "kind": "vector",
@@ -87523,7 +90853,7 @@
         }
       ],
       "is_function": true,
-      "type_id": 1947702322
+      "type_id": -254519160
     },
     {
       "name": "getGiftCollections",
@@ -88992,7 +92322,7 @@
           "name": "amount",
           "type": {
             "kind": "primitive",
-            "name": "int53"
+            "name": "int64"
           },
           "is_optional": false
         },
@@ -89038,7 +92368,31 @@
         }
       ],
       "is_function": true,
-      "type_id": 173682008
+      "type_id": 1666990190
+    },
+    {
+      "name": "sendTonWalletTransaction",
+      "result": "TonWalletTransferResult",
+      "fields": [
+        {
+          "name": "regular_transaction_data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        },
+        {
+          "name": "gasless_transaction_data",
+          "type": {
+            "kind": "primitive",
+            "name": "bytes"
+          },
+          "is_optional": false
+        }
+      ],
+      "is_function": true,
+      "type_id": -596945176
     },
     {
       "name": "deleteTonWallet",
@@ -89806,6 +93160,13 @@
       ],
       "is_function": true,
       "type_id": -834016009
+    },
+    {
+      "name": "withdrawGrams",
+      "result": "Ok",
+      "fields": [],
+      "is_function": true,
+      "type_id": 2133917125
     },
     {
       "name": "getChatStatistics",

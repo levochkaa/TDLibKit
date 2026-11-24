@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: 4c6377aa7386c39217878a9a56d581922ad37ca4
+// TDLib commit: 1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d
 
 bool generated_bool_field(const api::Object *object, std::int32_t index) noexcept {
   if (object == nullptr) return false;
@@ -28,6 +28,15 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       switch (index) {
         case 3: return value->is_custom_;
         case 4: return value->is_creator_;
+        default: return false;
+      }
+    }
+    case api::textCompositionParameters::ID: {
+      const auto *value = checked<api::textCompositionParameters>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 2: return value->add_emojis_;
+        case 3: return value->fix_text_;
         default: return false;
       }
     }
@@ -232,14 +241,15 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         case 2: return value->can_read_all_group_messages_;
         case 3: return value->has_main_web_app_;
         case 4: return value->has_topics_;
-        case 5: return value->allows_users_to_create_topics_;
-        case 6: return value->can_manage_bots_;
-        case 7: return value->is_inline_;
-        case 9: return value->supports_guest_queries_;
-        case 10: return value->is_guard_;
-        case 11: return value->need_location_;
-        case 12: return value->can_connect_to_business_;
-        case 13: return value->can_be_added_to_attachment_menu_;
+        case 5: return value->has_topic_sidebar_;
+        case 6: return value->allows_users_to_create_topics_;
+        case 7: return value->can_manage_bots_;
+        case 8: return value->is_inline_;
+        case 10: return value->supports_guest_queries_;
+        case 11: return value->is_guard_;
+        case 12: return value->need_location_;
+        case 13: return value->can_connect_to_business_;
+        case 14: return value->can_be_added_to_attachment_menu_;
         default: return false;
       }
     }
@@ -256,6 +266,102 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 0: return value->is_restricted_;
+        default: return false;
+      }
+    }
+    case api::botSettingIsInline::ID: {
+      const auto *value = checked<api::botSettingIsInline>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->is_inline_;
+        default: return false;
+      }
+    }
+    case api::botSettingNeedLocation::ID: {
+      const auto *value = checked<api::botSettingNeedLocation>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->need_location_;
+        default: return false;
+      }
+    }
+    case api::botSettingCanJoinGroups::ID: {
+      const auto *value = checked<api::botSettingCanJoinGroups>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_join_groups_;
+        default: return false;
+      }
+    }
+    case api::botSettingCanReadAllGroupMessages::ID: {
+      const auto *value = checked<api::botSettingCanReadAllGroupMessages>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_read_all_group_messages_;
+        default: return false;
+      }
+    }
+    case api::botSettingCanConnectToBusiness::ID: {
+      const auto *value = checked<api::botSettingCanConnectToBusiness>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_connect_to_business_;
+        default: return false;
+      }
+    }
+    case api::botSettingCanManageBots::ID: {
+      const auto *value = checked<api::botSettingCanManageBots>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_manage_bots_;
+        default: return false;
+      }
+    }
+    case api::botSettingSupportsGuestQueries::ID: {
+      const auto *value = checked<api::botSettingSupportsGuestQueries>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->supports_guest_queries_;
+        default: return false;
+      }
+    }
+    case api::botSettingIsGuard::ID: {
+      const auto *value = checked<api::botSettingIsGuard>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->is_guard_;
+        default: return false;
+      }
+    }
+    case api::botSettingHasTopics::ID: {
+      const auto *value = checked<api::botSettingHasTopics>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->has_topics_;
+        default: return false;
+      }
+    }
+    case api::botSettingAllowsUsersToCreateTopics::ID: {
+      const auto *value = checked<api::botSettingAllowsUsersToCreateTopics>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->allows_users_to_create_topics_;
+        default: return false;
+      }
+    }
+    case api::botSettingHasTopicSidebar::ID: {
+      const auto *value = checked<api::botSettingHasTopicSidebar>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->has_topic_sidebar_;
+        default: return false;
+      }
+    }
+    case api::botSettingCanCommunicateWithBots::ID: {
+      const auto *value = checked<api::botSettingCanCommunicateWithBots>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_communicate_with_bots_;
         default: return false;
       }
     }
@@ -491,7 +597,9 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       const auto *value = checked<api::giftResaleParameters>(object);
       if (value == nullptr) return false;
       switch (index) {
-        case 2: return value->gram_only_;
+        case 3: return value->gram_only_;
+        case 4: return value->is_fixed_on_chain_;
+        case 5: return value->can_be_managed_;
         default: return false;
       }
     }
@@ -522,7 +630,8 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         case 10: return value->is_premium_;
         case 11: return value->is_theme_available_;
         case 18: return value->can_be_ton_wallet_card_background_;
-        case 25: return value->can_send_purchase_offer_;
+        case 24: return value->uses_on_chain_resale_;
+        case 27: return value->can_send_purchase_offer_;
         default: return false;
       }
     }
@@ -532,6 +641,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       switch (index) {
         case 2: return value->is_value_average_;
         case 8: return value->is_last_sale_on_fragment_;
+        default: return false;
+      }
+    }
+    case api::giftOnChainSaleTransactionFragment::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFragment>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 3: return value->is_gasless_transfer_available_;
         default: return false;
       }
     }
@@ -696,6 +813,22 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         default: return false;
       }
     }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_buyer_;
+        default: return false;
+      }
+    }
+    case api::tonWalletTransaction::ID: {
+      const auto *value = checked<api::tonWalletTransaction>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 6: return value->is_suspected_spam_;
+        default: return false;
+      }
+    }
     case api::tonWalletTransferResult::ID: {
       const auto *value = checked<api::tonWalletTransferResult>(object);
       if (value == nullptr) return false;
@@ -732,6 +865,47 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         default: return false;
       }
     }
+    case api::chatNotificationSettings::ID: {
+      const auto *value = checked<api::chatNotificationSettings>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->use_default_mute_for_;
+        case 2: return value->use_default_sound_;
+        case 4: return value->use_default_show_preview_;
+        case 5: return value->show_preview_;
+        case 6: return value->use_default_mute_stories_;
+        case 7: return value->mute_stories_;
+        case 8: return value->use_default_story_sound_;
+        case 10: return value->use_default_show_story_poster_;
+        case 11: return value->show_story_poster_;
+        case 12: return value->use_default_disable_pinned_message_notifications_;
+        case 13: return value->disable_pinned_message_notifications_;
+        case 14: return value->use_default_disable_mention_notifications_;
+        case 15: return value->disable_mention_notifications_;
+        default: return false;
+      }
+    }
+    case api::scopeNotificationSettings::ID: {
+      const auto *value = checked<api::scopeNotificationSettings>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 2: return value->show_preview_;
+        case 3: return value->use_default_mute_stories_;
+        case 4: return value->mute_stories_;
+        case 6: return value->show_story_poster_;
+        case 7: return value->disable_pinned_message_notifications_;
+        case 8: return value->disable_mention_notifications_;
+        default: return false;
+      }
+    }
+    case api::reactionNotificationSettings::ID: {
+      const auto *value = checked<api::reactionNotificationSettings>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 4: return value->show_preview_;
+        default: return false;
+      }
+    }
     case api::communityPermissions::ID: {
       const auto *value = checked<api::communityPermissions>(object);
       if (value == nullptr) return false;
@@ -765,6 +939,7 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 1: return value->have_access_;
+        case 7: return value->are_chats_collapsed_;
         default: return false;
       }
     }
@@ -774,6 +949,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       switch (index) {
         case 1: return value->can_view_history_;
         case 2: return value->is_hidden_;
+        default: return false;
+      }
+    }
+    case api::communityAddChatRequest::ID: {
+      const auto *value = checked<api::communityAddChatRequest>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_hidden_;
         default: return false;
       }
     }
@@ -940,6 +1123,7 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         case 18: return value->is_administered_direct_messages_group_;
         case 20: return value->has_direct_messages_group_;
         case 21: return value->has_forum_tabs_;
+        case 22: return value->has_forum_sidebar_;
         default: return false;
       }
     }
@@ -1120,47 +1304,6 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         default: return false;
       }
     }
-    case api::chatNotificationSettings::ID: {
-      const auto *value = checked<api::chatNotificationSettings>(object);
-      if (value == nullptr) return false;
-      switch (index) {
-        case 0: return value->use_default_mute_for_;
-        case 2: return value->use_default_sound_;
-        case 4: return value->use_default_show_preview_;
-        case 5: return value->show_preview_;
-        case 6: return value->use_default_mute_stories_;
-        case 7: return value->mute_stories_;
-        case 8: return value->use_default_story_sound_;
-        case 10: return value->use_default_show_story_poster_;
-        case 11: return value->show_story_poster_;
-        case 12: return value->use_default_disable_pinned_message_notifications_;
-        case 13: return value->disable_pinned_message_notifications_;
-        case 14: return value->use_default_disable_mention_notifications_;
-        case 15: return value->disable_mention_notifications_;
-        default: return false;
-      }
-    }
-    case api::scopeNotificationSettings::ID: {
-      const auto *value = checked<api::scopeNotificationSettings>(object);
-      if (value == nullptr) return false;
-      switch (index) {
-        case 2: return value->show_preview_;
-        case 3: return value->use_default_mute_stories_;
-        case 4: return value->mute_stories_;
-        case 6: return value->show_story_poster_;
-        case 7: return value->disable_pinned_message_notifications_;
-        case 8: return value->disable_mention_notifications_;
-        default: return false;
-      }
-    }
-    case api::reactionNotificationSettings::ID: {
-      const auto *value = checked<api::reactionNotificationSettings>(object);
-      if (value == nullptr) return false;
-      switch (index) {
-        case 4: return value->show_preview_;
-        default: return false;
-      }
-    }
     case api::chatTypeSupergroup::ID: {
       const auto *value = checked<api::chatTypeSupergroup>(object);
       if (value == nullptr) return false;
@@ -1284,6 +1427,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 1: return value->is_channel_;
+        default: return false;
+      }
+    }
+    case api::chatActionBarBotInvite::ID: {
+      const auto *value = checked<api::chatActionBarBotInvite>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->can_unarchive_;
         default: return false;
       }
     }
@@ -1751,6 +1902,17 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
         default: return false;
       }
     }
+    case api::messageWidget::ID: {
+      const auto *value = checked<api::messageWidget>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 7: return value->show_caption_above_media_;
+        case 8: return value->is_copy_;
+        case 9: return value->can_send_queries_;
+        case 10: return value->can_send_background_queries_;
+        default: return false;
+      }
+    }
     case api::messageInvoice::ID: {
       const auto *value = checked<api::messageInvoice>(object);
       if (value == nullptr) return false;
@@ -1928,6 +2090,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 3: return value->was_expired_;
+        default: return false;
+      }
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = checked<api::messageUpgradedGiftOnChainPurchaseOffer>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 1: return value->is_buyer_;
         default: return false;
       }
     }
@@ -2114,6 +2284,24 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 2: return value->clear_draft_;
+        default: return false;
+      }
+    }
+    case api::inputMessageWidget::ID: {
+      const auto *value = checked<api::inputMessageWidget>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 6: return value->show_caption_above_media_;
+        case 7: return value->allow_queries_;
+        case 8: return value->is_shared_;
+        default: return false;
+      }
+    }
+    case api::inputMessageSharedWidget::ID: {
+      const auto *value = checked<api::inputMessageSharedWidget>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 3: return value->show_caption_above_media_;
         default: return false;
       }
     }
@@ -2616,6 +2804,14 @@ bool generated_bool_field(const api::Object *object, std::int32_t index) noexcep
       if (value == nullptr) return false;
       switch (index) {
         case 1: return value->show_alert_;
+        default: return false;
+      }
+    }
+    case api::widgetQueryTypeData::ID: {
+      const auto *value = checked<api::widgetQueryTypeData>(object);
+      if (value == nullptr) return false;
+      switch (index) {
+        case 0: return value->with_wallet_;
         default: return false;
       }
     }
@@ -3598,6 +3794,15 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::textRange::ID: {
+      const auto *value = checked<api::textRange>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->offset_;
+        case 1: return value->length_;
+        default: return 0;
+      }
+    }
     case api::diffEntity::ID: {
       const auto *value = checked<api::diffEntity>(object);
       if (value == nullptr) return 0;
@@ -3857,7 +4062,15 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       const auto *value = checked<api::userTypeBot>(object);
       if (value == nullptr) return 0;
       switch (index) {
-        case 14: return value->active_user_count_;
+        case 15: return value->active_user_count_;
+        default: return 0;
+      }
+    }
+    case api::botSettingInlineFeedback::ID: {
+      const auto *value = checked<api::botSettingInlineFeedback>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->share_denominator_;
         default: return 0;
       }
     }
@@ -4220,7 +4433,8 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         case 5: return value->number_;
         case 6: return value->total_upgraded_count_;
         case 7: return value->max_upgraded_count_;
-        case 26: return value->craft_probability_per_mille_;
+        case 26: return value->fee_basis_points_;
+        case 29: return value->craft_probability_per_mille_;
         default: return 0;
       }
     }
@@ -4235,13 +4449,29 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::tonWalletMessage::ID: {
+      const auto *value = checked<api::tonWalletMessage>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->send_mode_;
+        default: return 0;
+      }
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferTransaction>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->expiration_date_;
+        default: return 0;
+      }
+    }
     case api::upgradeGiftResult::ID: {
       const auto *value = checked<api::upgradeGiftResult>(object);
       if (value == nullptr) return 0;
       switch (index) {
         case 6: return value->next_transfer_date_;
         case 7: return value->next_resale_date_;
-        case 8: return value->export_date_;
+        case 8: return value->mint_date_;
         default: return 0;
       }
     }
@@ -4317,7 +4547,7 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         case 11: return value->date_;
         case 19: return value->next_transfer_date_;
         case 20: return value->next_resale_date_;
-        case 21: return value->export_date_;
+        case 21: return value->mint_date_;
         case 23: return value->craft_date_;
         default: return 0;
       }
@@ -4566,6 +4796,14 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCreation>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 6: return value->expiration_date_;
+        default: return 0;
+      }
+    }
     case api::tonWalletTransaction::ID: {
       const auto *value = checked<api::tonWalletTransaction>(object);
       if (value == nullptr) return 0;
@@ -4661,6 +4899,22 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::chatNotificationSettings::ID: {
+      const auto *value = checked<api::chatNotificationSettings>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->mute_for_;
+        default: return 0;
+      }
+    }
+    case api::scopeNotificationSettings::ID: {
+      const auto *value = checked<api::scopeNotificationSettings>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->mute_for_;
+        default: return 0;
+      }
+    }
     case api::community::ID: {
       const auto *value = checked<api::community>(object);
       if (value == nullptr) return 0;
@@ -4676,6 +4930,22 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         case 2: return value->administrator_count_;
         case 3: return value->banned_count_;
         case 4: return value->add_chat_request_count_;
+        default: return 0;
+      }
+    }
+    case api::communityAddChatRequest::ID: {
+      const auto *value = checked<api::communityAddChatRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->date_;
+        default: return 0;
+      }
+    }
+    case api::communityAddChatRequests::ID: {
+      const auto *value = checked<api::communityAddChatRequests>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->total_count_;
         default: return 0;
       }
     }
@@ -5195,22 +5465,6 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         case 0: return value->active_count_;
         case 1: return value->paused_count_;
         case 2: return value->completed_count_;
-        default: return 0;
-      }
-    }
-    case api::chatNotificationSettings::ID: {
-      const auto *value = checked<api::chatNotificationSettings>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 1: return value->mute_for_;
-        default: return 0;
-      }
-    }
-    case api::scopeNotificationSettings::ID: {
-      const auto *value = checked<api::scopeNotificationSettings>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 0: return value->mute_for_;
         default: return 0;
       }
     }
@@ -5788,6 +6042,15 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageWidget::ID: {
+      const auto *value = checked<api::messageWidget>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->width_;
+        case 1: return value->height_;
+        default: return 0;
+      }
+    }
     case api::messageCall::ID: {
       const auto *value = checked<api::messageCall>(object);
       if (value == nullptr) return 0;
@@ -5937,7 +6200,7 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       switch (index) {
         case 12: return value->next_transfer_date_;
         case 13: return value->next_resale_date_;
-        case 14: return value->export_date_;
+        case 14: return value->mint_date_;
         case 15: return value->craft_date_;
         default: return 0;
       }
@@ -5947,6 +6210,15 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 3: return value->expiration_date_;
+        default: return 0;
+      }
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = checked<api::messageUpgradedGiftOnChainPurchaseOffer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 5: return value->fee_basis_points_;
+        case 6: return value->expiration_date_;
         default: return 0;
       }
     }
@@ -6172,6 +6444,15 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 1: return value->story_id_;
+        default: return 0;
+      }
+    }
+    case api::inputMessageWidget::ID: {
+      const auto *value = checked<api::inputMessageWidget>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->width_;
+        case 1: return value->height_;
         default: return 0;
       }
     }
@@ -6656,6 +6937,14 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::speechRecognitionModel::ID: {
+      const auto *value = checked<api::speechRecognitionModel>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->version_;
+        default: return 0;
+      }
+    }
     case api::businessConnection::ID: {
       const auto *value = checked<api::businessConnection>(object);
       if (value == nullptr) return 0;
@@ -6786,6 +7075,14 @@ std::int32_t generated_int32_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 1: return value->expiration_date_;
+        default: return 0;
+      }
+    }
+    case api::widgetPublicData::ID: {
+      const auto *value = checked<api::widgetPublicData>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->poll_period_;
         default: return 0;
       }
     }
@@ -8121,6 +8418,31 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::giftOnChainPurchaseOfferStateDeclined::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferStateDeclined>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->refund_amount_;
+        default: return 0;
+      }
+    }
+    case api::giftOnChainPurchaseOfferStateCanceled::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferStateCanceled>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->refund_amount_;
+        case 1: return value->fine_amount_;
+        default: return 0;
+      }
+    }
+    case api::giftOnChainPurchaseOfferStateExpired::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferStateExpired>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->refund_amount_;
+        default: return 0;
+      }
+    }
     case api::suggestedPostPriceStar::ID: {
       const auto *value = checked<api::suggestedPostPriceStar>(object);
       if (value == nullptr) return 0;
@@ -8277,6 +8599,7 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       switch (index) {
         case 0: return value->star_count_;
         case 1: return value->gram_cent_count_;
+        case 2: return value->gram_amount_;
         default: return 0;
       }
     }
@@ -8285,6 +8608,22 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->gift_message_id_;
+        default: return 0;
+      }
+    }
+    case api::upgradedGiftOriginOnChainResale::ID: {
+      const auto *value = checked<api::upgradedGiftOriginOnChainResale>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->gram_amount_;
+        default: return 0;
+      }
+    }
+    case api::upgradedGiftOriginOnChainOffer::ID: {
+      const auto *value = checked<api::upgradedGiftOriginOnChainOffer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->gram_amount_;
         default: return 0;
       }
     }
@@ -8318,8 +8657,9 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         case 1: return value->regular_gift_id_;
         case 2: return value->publisher_chat_id_;
         case 12: return value->used_theme_chat_id_;
-        case 28: return value->value_amount_;
-        case 29: return value->value_usd_amount_;
+        case 28: return value->min_on_chain_purchase_offer_gram_amount_;
+        case 31: return value->value_amount_;
+        case 32: return value->value_usd_amount_;
         default: return 0;
       }
     }
@@ -8331,13 +8671,40 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         case 4: return value->initial_sale_star_count_;
         case 5: return value->initial_sale_price_;
         case 7: return value->last_sale_price_;
-        case 9: return value->minimum_price_;
+        case 9: return value->min_price_;
         case 10: return value->average_sale_price_;
         default: return 0;
       }
     }
     case api::upgradedGiftDepositInfo::ID: {
       const auto *value = checked<api::upgradedGiftDepositInfo>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 2: return value->gram_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletMessage::ID: {
+      const auto *value = checked<api::tonWalletMessage>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->gram_amount_;
+        default: return 0;
+      }
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferTransaction>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 4: return value->rent_budget_amount_;
+        case 5: return value->execution_allowance_amount_;
+        case 6: return value->forward_amount_;
+        case 7: return value->fine_amount_;
+        default: return 0;
+      }
+    }
+    case api::giftOnChainSaleTransactionFragment::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFragment>(object);
       if (value == nullptr) return 0;
       switch (index) {
         case 2: return value->gram_amount_;
@@ -8739,6 +9106,87 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::tonWalletTransactionTypeTelegramGiftPurchase::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftPurchase>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftSale::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftSale>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftListing::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftListing>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->old_price_;
+        case 2: return value->price_;
+        case 3: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftDelisting::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftDelisting>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCreation>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->price_;
+        case 4: return value->amount_;
+        case 5: return value->service_fee_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 4: return value->price_;
+        case 5: return value->service_fee_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCancellation>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->price_;
+        case 4: return value->refund_amount_;
+        case 5: return value->fine_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferDecline>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->price_;
+        case 4: return value->refund_amount_;
+        default: return 0;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferExpiration>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->price_;
+        case 4: return value->refund_amount_;
+        default: return 0;
+      }
+    }
     case api::tonWalletTransaction::ID: {
       const auto *value = checked<api::tonWalletTransaction>(object);
       if (value == nullptr) return 0;
@@ -8821,6 +9269,32 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::chatNotificationSettings::ID: {
+      const auto *value = checked<api::chatNotificationSettings>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->sound_id_;
+        case 9: return value->story_sound_id_;
+        default: return 0;
+      }
+    }
+    case api::scopeNotificationSettings::ID: {
+      const auto *value = checked<api::scopeNotificationSettings>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->sound_id_;
+        case 5: return value->story_sound_id_;
+        default: return 0;
+      }
+    }
+    case api::reactionNotificationSettings::ID: {
+      const auto *value = checked<api::reactionNotificationSettings>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 3: return value->sound_id_;
+        default: return 0;
+      }
+    }
     case api::communityId::ID: {
       const auto *value = checked<api::communityId>(object);
       if (value == nullptr) return 0;
@@ -8842,6 +9316,15 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->chat_id_;
+        default: return 0;
+      }
+    }
+    case api::communityAddChatRequest::ID: {
+      const auto *value = checked<api::communityAddChatRequest>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->chat_id_;
+        case 2: return value->sender_user_id_;
         default: return 0;
       }
     }
@@ -9007,7 +9490,7 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->id_;
-        case 23: return value->paid_message_star_count_;
+        case 24: return value->paid_message_star_count_;
         default: return 0;
       }
     }
@@ -9282,32 +9765,6 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
-    case api::chatNotificationSettings::ID: {
-      const auto *value = checked<api::chatNotificationSettings>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 3: return value->sound_id_;
-        case 9: return value->story_sound_id_;
-        default: return 0;
-      }
-    }
-    case api::scopeNotificationSettings::ID: {
-      const auto *value = checked<api::scopeNotificationSettings>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 1: return value->sound_id_;
-        case 5: return value->story_sound_id_;
-        default: return 0;
-      }
-    }
-    case api::reactionNotificationSettings::ID: {
-      const auto *value = checked<api::reactionNotificationSettings>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 3: return value->sound_id_;
-        default: return 0;
-      }
-    }
     case api::draftMessage::ID: {
       const auto *value = checked<api::draftMessage>(object);
       if (value == nullptr) return 0;
@@ -9390,6 +9847,15 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->chat_id_;
+        default: return 0;
+      }
+    }
+    case api::chatActionBarBotInvite::ID: {
+      const auto *value = checked<api::chatActionBarBotInvite>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->inviter_user_id_;
+        case 2: return value->owner_user_id_;
         default: return 0;
       }
     }
@@ -9714,6 +10180,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageWidget::ID: {
+      const auto *value = checked<api::messageWidget>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 5: return value->widget_id_;
+        default: return 0;
+      }
+    }
     case api::messageInvoice::ID: {
       const auto *value = checked<api::messageInvoice>(object);
       if (value == nullptr) return 0;
@@ -9869,6 +10343,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageBotInvite::ID: {
+      const auto *value = checked<api::messageBotInvite>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->inviter_user_id_;
+        default: return 0;
+      }
+    }
     case api::messagePaymentSuccessful::ID: {
       const auto *value = checked<api::messagePaymentSuccessful>(object);
       if (value == nullptr) return 0;
@@ -10015,6 +10497,15 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = checked<api::messageUpgradedGiftOnChainPurchaseOffer>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 4: return value->gram_amount_;
+        case 7: return value->offer_message_id_;
+        default: return 0;
+      }
+    }
     case api::messagePaidMessagesRefunded::ID: {
       const auto *value = checked<api::messagePaidMessagesRefunded>(object);
       if (value == nullptr) return 0;
@@ -10153,6 +10644,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::inputMessageSharedWidget::ID: {
+      const auto *value = checked<api::inputMessageSharedWidget>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->widget_id_;
+        default: return 0;
+      }
+    }
     case api::inputMessageForwarded::ID: {
       const auto *value = checked<api::inputMessageForwarded>(object);
       if (value == nullptr) return 0;
@@ -10192,14 +10691,6 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       switch (index) {
         case 0: return value->chat_id_;
         case 1: return value->message_id_;
-        default: return 0;
-      }
-    }
-    case api::inputStoryAreaTypeFoundVenue::ID: {
-      const auto *value = checked<api::inputStoryAreaTypeFoundVenue>(object);
-      if (value == nullptr) return 0;
-      switch (index) {
-        case 0: return value->query_id_;
         default: return 0;
       }
     }
@@ -10405,6 +10896,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->inline_query_id_;
+        default: return 0;
+      }
+    }
+    case api::widgetQueryWallet::ID: {
+      const auto *value = checked<api::widgetQueryWallet>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->gram_amount_;
         default: return 0;
       }
     }
@@ -11290,6 +11789,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::updateChatTextCompositionParameters::ID: {
+      const auto *value = checked<api::updateChatTextCompositionParameters>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->chat_id_;
+        default: return 0;
+      }
+    }
     case api::updateChatEmojiStatus::ID: {
       const auto *value = checked<api::updateChatEmojiStatus>(object);
       if (value == nullptr) return 0;
@@ -11667,6 +12174,14 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::updateSpeechRecognitionInFile::ID: {
+      const auto *value = checked<api::updateSpeechRecognitionInFile>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->recognition_id_;
+        default: return 0;
+      }
+    }
     case api::updateAnimatedEmojiMessageClicked::ID: {
       const auto *value = checked<api::updateAnimatedEmojiMessageClicked>(object);
       if (value == nullptr) return 0;
@@ -11738,6 +12253,40 @@ std::int64_t generated_int64_field(const api::Object *object, std::int32_t index
         case 0: return value->id_;
         case 1: return value->sender_user_id_;
         case 4: return value->chat_instance_;
+        default: return 0;
+      }
+    }
+    case api::updateNewWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetQuery>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->id_;
+        case 1: return value->sender_user_id_;
+        case 2: return value->chat_id_;
+        case 3: return value->message_id_;
+        case 4: return value->chat_instance_;
+        case 8: return value->widget_id_;
+        default: return 0;
+      }
+    }
+    case api::updateNewInlineWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewInlineWidgetQuery>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->id_;
+        case 1: return value->sender_user_id_;
+        case 3: return value->chat_instance_;
+        case 7: return value->widget_id_;
+        default: return 0;
+      }
+    }
+    case api::updateNewWidgetCopyQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetCopyQuery>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->id_;
+        case 1: return value->sender_user_id_;
+        case 4: return value->widget_id_;
         default: return 0;
       }
     }
@@ -12221,6 +12770,15 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::textCompositionParameters::ID: {
+      const auto *value = checked<api::textCompositionParameters>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->translate_to_language_code_;
+        case 1: return &value->style_name_;
+        default: return nullptr;
+      }
+    }
     case api::passkey::ID: {
       const auto *value = checked<api::passkey>(object);
       if (value == nullptr) return nullptr;
@@ -12498,7 +13056,7 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       const auto *value = checked<api::userTypeBot>(object);
       if (value == nullptr) return nullptr;
       switch (index) {
-        case 8: return &value->inline_query_placeholder_;
+        case 9: return &value->inline_query_placeholder_;
         default: return nullptr;
       }
     }
@@ -12517,6 +13075,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       switch (index) {
         case 0: return &value->text_;
         case 1: return &value->url_;
+        default: return nullptr;
+      }
+    }
+    case api::botSettingInlineQueryPlaceholder::ID: {
+      const auto *value = checked<api::botSettingInlineQueryPlaceholder>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->placeholder_;
         default: return nullptr;
       }
     }
@@ -12779,7 +13345,7 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         case 15: return &value->owner_address_;
         case 16: return &value->owner_name_;
         case 17: return &value->gift_address_;
-        case 27: return &value->value_currency_;
+        case 30: return &value->value_currency_;
         default: return nullptr;
       }
     }
@@ -12798,6 +13364,49 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       switch (index) {
         case 0: return &value->nft_address_;
         case 1: return &value->payload_;
+        default: return nullptr;
+      }
+    }
+    case api::tonSmartContractInitialState::ID: {
+      const auto *value = checked<api::tonSmartContractInitialState>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->code_;
+        case 1: return &value->data_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletMessage::ID: {
+      const auto *value = checked<api::tonWalletMessage>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->destination_address_;
+        case 3: return &value->body_;
+        default: return nullptr;
+      }
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->offer_address_;
+        default: return nullptr;
+      }
+    }
+    case api::giftOnChainSaleTransactionFragment::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFragment>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->nft_address_;
+        case 1: return &value->payload_;
+        default: return nullptr;
+      }
+    }
+    case api::giftOnChainSaleTransactionFixedPrice::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFixedPrice>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->sale_address_;
         default: return nullptr;
       }
     }
@@ -13187,6 +13796,51 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCreation>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->offer_address_;
+        case 2: return &value->counterparty_address_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->offer_address_;
+        case 3: return &value->counterparty_address_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCancellation>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->offer_address_;
+        case 2: return &value->counterparty_address_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferDecline>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->offer_address_;
+        case 2: return &value->counterparty_address_;
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferExpiration>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->offer_address_;
+        case 2: return &value->counterparty_address_;
+        default: return nullptr;
+      }
+    }
     case api::tonWalletTransaction::ID: {
       const auto *value = checked<api::tonWalletTransaction>(object);
       if (value == nullptr) return nullptr;
@@ -13312,6 +13966,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 2: return &value->name_;
+        default: return nullptr;
+      }
+    }
+    case api::communityAddChatRequests::ID: {
+      const auto *value = checked<api::communityAddChatRequests>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->next_offset_;
         default: return nullptr;
       }
     }
@@ -13733,7 +14395,7 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 2: return &value->title_;
-        case 43: return &value->client_data_;
+        case 44: return &value->client_data_;
         default: return nullptr;
       }
     }
@@ -14675,6 +15337,16 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::messageWidget::ID: {
+      const auto *value = checked<api::messageWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->html_;
+        case 3: return &value->public_data_;
+        case 4: return &value->chat_data_;
+        default: return nullptr;
+      }
+    }
     case api::messageInvoice::ID: {
       const auto *value = checked<api::messageInvoice>(object);
       if (value == nullptr) return nullptr;
@@ -14848,6 +15520,7 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         case 1: return &value->transaction_id_;
         case 2: return &value->peer_address_;
         case 4: return &value->comment_;
+        case 6: return &value->on_ramp_provider_name_;
         default: return nullptr;
       }
     }
@@ -14876,6 +15549,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 4: return &value->received_gift_id_;
+        default: return nullptr;
+      }
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = checked<api::messageUpgradedGiftOnChainPurchaseOffer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 3: return &value->offer_address_;
         default: return nullptr;
       }
     }
@@ -15031,6 +15712,24 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::inputMessageWidget::ID: {
+      const auto *value = checked<api::inputMessageWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->html_;
+        case 3: return &value->public_data_;
+        case 4: return &value->chat_data_;
+        default: return nullptr;
+      }
+    }
+    case api::inputMessageSharedWidget::ID: {
+      const auto *value = checked<api::inputMessageSharedWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->chat_data_;
+        default: return nullptr;
+      }
+    }
     case api::chatActionWatchingAnimations::ID: {
       const auto *value = checked<api::chatActionWatchingAnimations>(object);
       if (value == nullptr) return nullptr;
@@ -15103,14 +15802,6 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 0: return &value->gift_name_;
-        default: return nullptr;
-      }
-    }
-    case api::inputStoryAreaTypeFoundVenue::ID: {
-      const auto *value = checked<api::inputStoryAreaTypeFoundVenue>(object);
-      if (value == nullptr) return nullptr;
-      switch (index) {
-        case 1: return &value->result_id_;
         default: return nullptr;
       }
     }
@@ -15763,6 +16454,48 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       switch (index) {
         case 0: return &value->text_;
         case 2: return &value->url_;
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryWallet::ID: {
+      const auto *value = checked<api::widgetQueryWallet>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->address_;
+        case 2: return &value->public_key_;
+        case 3: return &value->state_init_;
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryTypeSignData::ID: {
+      const auto *value = checked<api::widgetQueryTypeSignData>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->sign_data_;
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryTypeSentTransaction::ID: {
+      const auto *value = checked<api::widgetQueryTypeSentTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->msg_hash_;
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryAnswer::ID: {
+      const auto *value = checked<api::widgetQueryAnswer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->data_;
+        default: return nullptr;
+      }
+    }
+    case api::widgetPublicData::ID: {
+      const auto *value = checked<api::widgetPublicData>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->data_;
         default: return nullptr;
       }
     }
@@ -16567,6 +17300,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::internalLinkTypeBotInvite::ID: {
+      const auto *value = checked<api::internalLinkTypeBotInvite>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return &value->bot_username_;
+        default: return nullptr;
+      }
+    }
     case api::internalLinkTypeBotStart::ID: {
       const auto *value = checked<api::internalLinkTypeBotStart>(object);
       if (value == nullptr) return nullptr;
@@ -17271,6 +18012,14 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::updateSpeechRecognitionInFile::ID: {
+      const auto *value = checked<api::updateSpeechRecognitionInFile>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return &value->partial_text_;
+        default: return nullptr;
+      }
+    }
     case api::updateAnimationSearchParameters::ID: {
       const auto *value = checked<api::updateAnimationSearchParameters>(object);
       if (value == nullptr) return nullptr;
@@ -17335,6 +18084,33 @@ const std::string * generated_buffer_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 2: return &value->connection_id_;
+        default: return nullptr;
+      }
+    }
+    case api::updateNewWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 5: return &value->chat_type_;
+        case 7: return &value->data_;
+        default: return nullptr;
+      }
+    }
+    case api::updateNewInlineWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewInlineWidgetQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return &value->inline_message_id_;
+        case 4: return &value->chat_type_;
+        case 6: return &value->data_;
+        default: return nullptr;
+      }
+    }
+    case api::updateNewWidgetCopyQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetCopyQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 3: return &value->data_;
         default: return nullptr;
       }
     }
@@ -17851,6 +18627,14 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::botSettingCallbackQueryMode::ID: {
+      const auto *value = checked<api::botSettingCallbackQueryMode>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->mode_.get();
+        default: return nullptr;
+      }
+    }
     case api::botVerificationParameters::ID: {
       const auto *value = checked<api::botVerificationParameters>(object);
       if (value == nullptr) return nullptr;
@@ -18280,7 +19064,24 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         case 21: return value->backdrop_.get();
         case 22: return value->original_details_.get();
         case 23: return value->colors_.get();
-        case 24: return value->resale_parameters_.get();
+        case 25: return value->resale_parameters_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletMessage::ID: {
+      const auto *value = checked<api::tonWalletMessage>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 4: return value->initial_state_.get();
+        default: return nullptr;
+      }
+    }
+    case api::giftOnChainPurchaseOfferTransaction::ID: {
+      const auto *value = checked<api::giftOnChainPurchaseOfferTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->message_.get();
+        case 3: return value->gasless_message_.get();
         default: return nullptr;
       }
     }
@@ -18698,12 +19499,84 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::tonWalletTransactionTypeTelegramGiftPurchase::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftPurchase>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftSale::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftSale>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftListing::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftListing>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftDelisting::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftDelisting>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCreation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCreation>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferAcceptance::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferAcceptance>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferCancellation::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferCancellation>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferDecline::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferDecline>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
+    case api::tonWalletTransactionTypeTelegramGiftOfferExpiration::ID: {
+      const auto *value = checked<api::tonWalletTransactionTypeTelegramGiftOfferExpiration>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->nft_.get();
+        default: return nullptr;
+      }
+    }
     case api::tonWalletTransaction::ID: {
       const auto *value = checked<api::tonWalletTransaction>(object);
       if (value == nullptr) return nullptr;
       switch (index) {
-        case 6: return value->state_.get();
-        case 7: return value->type_.get();
+        case 7: return value->state_.get();
+        case 8: return value->type_.get();
         default: return nullptr;
       }
     }
@@ -18765,6 +19638,16 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::reactionNotificationSettings::ID: {
+      const auto *value = checked<api::reactionNotificationSettings>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->message_reaction_source_.get();
+        case 1: return value->story_reaction_source_.get();
+        case 2: return value->poll_vote_source_.get();
+        default: return nullptr;
+      }
+    }
     case api::communityMemberStatusAdministrator::ID: {
       const auto *value = checked<api::communityMemberStatusAdministrator>(object);
       if (value == nullptr) return nullptr;
@@ -18788,6 +19671,7 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 0: return value->photo_.get();
+        case 5: return value->notification_settings_.get();
         default: return nullptr;
       }
     }
@@ -18957,8 +19841,8 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         case 1: return value->usernames_.get();
         case 3: return value->status_.get();
         case 19: return value->verification_status_.get();
-        case 22: return value->restriction_info_.get();
-        case 24: return value->active_story_state_.get();
+        case 23: return value->restriction_info_.get();
+        case 25: return value->active_story_state_.get();
         default: return nullptr;
       }
     }
@@ -19234,16 +20118,6 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
-    case api::reactionNotificationSettings::ID: {
-      const auto *value = checked<api::reactionNotificationSettings>(object);
-      if (value == nullptr) return nullptr;
-      switch (index) {
-        case 0: return value->message_reaction_source_.get();
-        case 1: return value->story_reaction_source_.get();
-        case 2: return value->poll_vote_source_.get();
-        default: return nullptr;
-      }
-    }
     case api::draftMessageContentText::ID: {
       const auto *value = checked<api::draftMessageContentText>(object);
       if (value == nullptr) return nullptr;
@@ -19383,6 +20257,7 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         case 39: return value->video_chat_.get();
         case 40: return value->pending_join_requests_.get();
         case 42: return value->draft_message_.get();
+        case 43: return value->text_composition_parameters_.get();
         default: return nullptr;
       }
     }
@@ -19875,7 +20750,6 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       const auto *value = checked<api::pageBlockExpandableBlockQuote>(object);
       if (value == nullptr) return nullptr;
       switch (index) {
-        case 0: return value->text_.get();
         case 1: return value->credit_.get();
         default: return nullptr;
       }
@@ -20869,6 +21743,14 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::messageWidget::ID: {
+      const auto *value = checked<api::messageWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 6: return value->caption_.get();
+        default: return nullptr;
+      }
+    }
     case api::messageChecklist::ID: {
       const auto *value = checked<api::messageChecklist>(object);
       if (value == nullptr) return nullptr;
@@ -21094,6 +21976,15 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       switch (index) {
         case 0: return value->gift_.get();
         case 1: return value->price_.get();
+        default: return nullptr;
+      }
+    }
+    case api::messageUpgradedGiftOnChainPurchaseOffer::ID: {
+      const auto *value = checked<api::messageUpgradedGiftOnChainPurchaseOffer>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->gift_.get();
+        case 2: return value->state_.get();
         default: return nullptr;
       }
     }
@@ -21419,7 +22310,6 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       const auto *value = checked<api::inputPageBlockExpandableBlockQuote>(object);
       if (value == nullptr) return nullptr;
       switch (index) {
-        case 0: return value->text_.get();
         case 1: return value->credit_.get();
         default: return nullptr;
       }
@@ -21696,6 +22586,22 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::inputMessageWidget::ID: {
+      const auto *value = checked<api::inputMessageWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 5: return value->caption_.get();
+        default: return nullptr;
+      }
+    }
+    case api::inputMessageSharedWidget::ID: {
+      const auto *value = checked<api::inputMessageSharedWidget>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->caption_.get();
+        default: return nullptr;
+      }
+    }
     case api::inputMessageForwarded::ID: {
       const auto *value = checked<api::inputMessageForwarded>(object);
       if (value == nullptr) return nullptr;
@@ -21855,6 +22761,7 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         case 22: return value->privacy_settings_.get();
         case 23: return value->content_.get();
         case 25: return value->caption_.get();
+        case 26: return value->music_.get();
         default: return nullptr;
       }
     }
@@ -22130,6 +23037,23 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       if (value == nullptr) return nullptr;
       switch (index) {
         case 0: return value->error_.get();
+        default: return nullptr;
+      }
+    }
+    case api::speechRecognitionModel::ID: {
+      const auto *value = checked<api::speechRecognitionModel>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->document_.get();
+        default: return nullptr;
+      }
+    }
+    case api::speechRecognitionModels::ID: {
+      const auto *value = checked<api::speechRecognitionModels>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return value->language_detection_model_.get();
+        case 2: return value->voice_activity_detection_model_.get();
         default: return nullptr;
       }
     }
@@ -22414,6 +23338,22 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
       switch (index) {
         case 1: return value->result_.get();
         case 2: return value->chat_types_.get();
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryTypeSignData::ID: {
+      const auto *value = checked<api::widgetQueryTypeSignData>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->wallet_.get();
+        default: return nullptr;
+      }
+    }
+    case api::widgetQueryTypeSentTransaction::ID: {
+      const auto *value = checked<api::widgetQueryTypeSentTransaction>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0: return value->wallet_.get();
         default: return nullptr;
       }
     }
@@ -23553,6 +24493,14 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::updateChatTextCompositionParameters::ID: {
+      const auto *value = checked<api::updateChatTextCompositionParameters>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1: return value->text_composition_parameters_.get();
+        default: return nullptr;
+      }
+    }
     case api::updateChatEmojiStatus::ID: {
       const auto *value = checked<api::updateChatEmojiStatus>(object);
       if (value == nullptr) return nullptr;
@@ -24254,6 +25202,33 @@ const api::Object * generated_object_field(const api::Object *object, std::int32
         default: return nullptr;
       }
     }
+    case api::updateNewWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 6: return value->query_type_.get();
+        case 9: return value->wallet_card_.get();
+        default: return nullptr;
+      }
+    }
+    case api::updateNewInlineWidgetQuery::ID: {
+      const auto *value = checked<api::updateNewInlineWidgetQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 5: return value->query_type_.get();
+        case 8: return value->wallet_card_.get();
+        default: return nullptr;
+      }
+    }
+    case api::updateNewWidgetCopyQuery::ID: {
+      const auto *value = checked<api::updateNewWidgetCopyQuery>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 2: return value->query_type_.get();
+        case 5: return value->wallet_card_.get();
+        default: return nullptr;
+      }
+    }
     case api::updateNewShippingQuery::ID: {
       const auto *value = checked<api::updateNewShippingQuery>(object);
       if (value == nullptr) return nullptr;
@@ -24341,6 +25316,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->entities_.size();
+        default: return 0;
+      }
+    }
+    case api::textRanges::ID: {
+      const auto *value = checked<api::textRanges>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->ranges_.size();
         default: return 0;
       }
     }
@@ -24654,6 +25637,15 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::giftOnChainSaleTransactionFixedPrice::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFixedPrice>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->messages_.size();
+        case 2: return value->gasless_messages_.size();
+        default: return 0;
+      }
+    }
     case api::availableGifts::ID: {
       const auto *value = checked<api::availableGifts>(object);
       if (value == nullptr) return 0;
@@ -24933,6 +25925,31 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::communities::ID: {
+      const auto *value = checked<api::communities>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->community_ids_.size();
+        default: return 0;
+      }
+    }
+    case api::communityAddChatRequests::ID: {
+      const auto *value = checked<api::communityAddChatRequests>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->requests_.size();
+        default: return 0;
+      }
+    }
+    case api::communityMemberChats::ID: {
+      const auto *value = checked<api::communityMemberChats>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->owned_chat_ids_.size();
+        case 1: return value->joined_chat_ids_.size();
+        default: return 0;
+      }
+    }
     case api::emojiStatuses::ID: {
       const auto *value = checked<api::emojiStatuses>(object);
       if (value == nullptr) return 0;
@@ -25201,6 +26218,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::chatMessageCounts::ID: {
+      const auto *value = checked<api::chatMessageCounts>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->counts_.size();
+        default: return 0;
+      }
+    }
     case api::businessMessages::ID: {
       const auto *value = checked<api::businessMessages>(object);
       if (value == nullptr) return 0;
@@ -25439,6 +26464,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
     }
     case api::pageBlockBlockQuote::ID: {
       const auto *value = checked<api::pageBlockBlockQuote>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->blocks_.size();
+        default: return 0;
+      }
+    }
+    case api::pageBlockExpandableBlockQuote::ID: {
+      const auto *value = checked<api::pageBlockExpandableBlockQuote>(object);
       if (value == nullptr) return 0;
       switch (index) {
         case 0: return value->blocks_.size();
@@ -25855,6 +26888,14 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
         default: return 0;
       }
     }
+    case api::inputPageBlockExpandableBlockQuote::ID: {
+      const auto *value = checked<api::inputPageBlockExpandableBlockQuote>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->blocks_.size();
+        default: return 0;
+      }
+    }
     case api::inputPageBlockCollage::ID: {
       const auto *value = checked<api::inputPageBlockCollage>(object);
       if (value == nullptr) return 0;
@@ -26030,7 +27071,7 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
       if (value == nullptr) return 0;
       switch (index) {
         case 24: return value->areas_.size();
-        case 26: return value->album_ids_.size();
+        case 27: return value->album_ids_.size();
         default: return 0;
       }
     }
@@ -26238,6 +27279,30 @@ std::size_t generated_vector_count(const api::Object *object, std::int32_t index
       switch (index) {
         case 0: return value->user_ids_.size();
         case 1: return value->importer_count_.size();
+        default: return 0;
+      }
+    }
+    case api::speechRecognitionLanguages::ID: {
+      const auto *value = checked<api::speechRecognitionLanguages>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->language_codes_.size();
+        default: return 0;
+      }
+    }
+    case api::speechRecognitionModel::ID: {
+      const auto *value = checked<api::speechRecognitionModel>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 1: return value->language_codes_.size();
+        default: return 0;
+      }
+    }
+    case api::speechRecognitionModels::ID: {
+      const auto *value = checked<api::speechRecognitionModels>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0: return value->models_.size();
         default: return 0;
       }
     }
@@ -27094,6 +28159,16 @@ std::int32_t generated_vector_int32_at(const api::Object *object, std::int32_t i
         default: return 0;
       }
     }
+    case api::chatMessageCounts::ID: {
+      const auto *value = checked<api::chatMessageCounts>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0:
+          if (element >= value->counts_.size()) return 0;
+          return value->counts_[element];
+        default: return 0;
+      }
+    }
     case api::messageChecklistTasksDone::ID: {
       const auto *value = checked<api::messageChecklistTasksDone>(object);
       if (value == nullptr) return 0;
@@ -27171,7 +28246,7 @@ std::int32_t generated_vector_int32_at(const api::Object *object, std::int32_t i
       const auto *value = checked<api::story>(object);
       if (value == nullptr) return 0;
       switch (index) {
-        case 26:
+        case 27:
           if (element >= value->album_ids_.size()) return 0;
           return value->album_ids_[element];
         default: return 0;
@@ -27384,6 +28459,29 @@ std::int64_t generated_vector_int64_at(const api::Object *object, std::int32_t i
         case 4:
           if (element >= value->top_bidder_user_ids_.size()) return 0;
           return value->top_bidder_user_ids_[element];
+        default: return 0;
+      }
+    }
+    case api::communities::ID: {
+      const auto *value = checked<api::communities>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0:
+          if (element >= value->community_ids_.size()) return 0;
+          return value->community_ids_[element];
+        default: return 0;
+      }
+    }
+    case api::communityMemberChats::ID: {
+      const auto *value = checked<api::communityMemberChats>(object);
+      if (value == nullptr) return 0;
+      switch (index) {
+        case 0:
+          if (element >= value->owned_chat_ids_.size()) return 0;
+          return value->owned_chat_ids_[element];
+        case 1:
+          if (element >= value->joined_chat_ids_.size()) return 0;
+          return value->joined_chat_ids_[element];
         default: return 0;
       }
     }
@@ -27932,6 +29030,26 @@ const std::string * generated_vector_buffer_at(const api::Object *object, std::i
         default: return nullptr;
       }
     }
+    case api::speechRecognitionLanguages::ID: {
+      const auto *value = checked<api::speechRecognitionLanguages>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->language_codes_.size()) return nullptr;
+          return &value->language_codes_[element];
+        default: return nullptr;
+      }
+    }
+    case api::speechRecognitionModel::ID: {
+      const auto *value = checked<api::speechRecognitionModel>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->language_codes_.size()) return nullptr;
+          return &value->language_codes_[element];
+        default: return nullptr;
+      }
+    }
     case api::chatEventActiveUsernamesChanged::ID: {
       const auto *value = checked<api::chatEventActiveUsernamesChanged>(object);
       if (value == nullptr) return nullptr;
@@ -28059,6 +29177,16 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         case 0:
           if (element >= value->entities_.size()) return nullptr;
           return value->entities_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::textRanges::ID: {
+      const auto *value = checked<api::textRanges>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->ranges_.size()) return nullptr;
+          return value->ranges_[element].get();
         default: return nullptr;
       }
     }
@@ -28375,6 +29503,19 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         default: return nullptr;
       }
     }
+    case api::giftOnChainSaleTransactionFixedPrice::ID: {
+      const auto *value = checked<api::giftOnChainSaleTransactionFixedPrice>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->messages_.size()) return nullptr;
+          return value->messages_[element].get();
+        case 2:
+          if (element >= value->gasless_messages_.size()) return nullptr;
+          return value->gasless_messages_[element].get();
+        default: return nullptr;
+      }
+    }
     case api::availableGifts::ID: {
       const auto *value = checked<api::availableGifts>(object);
       if (value == nullptr) return nullptr;
@@ -28665,6 +29806,16 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         case 1:
           if (element >= value->chats_.size()) return nullptr;
           return value->chats_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::communityAddChatRequests::ID: {
+      const auto *value = checked<api::communityAddChatRequests>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 1:
+          if (element >= value->requests_.size()) return nullptr;
+          return value->requests_[element].get();
         default: return nullptr;
       }
     }
@@ -29177,6 +30328,16 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         default: return nullptr;
       }
     }
+    case api::pageBlockExpandableBlockQuote::ID: {
+      const auto *value = checked<api::pageBlockExpandableBlockQuote>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->blocks_.size()) return nullptr;
+          return value->blocks_[element].get();
+        default: return nullptr;
+      }
+    }
     case api::pageBlockEmbeddedPost::ID: {
       const auto *value = checked<api::pageBlockEmbeddedPost>(object);
       if (value == nullptr) return nullptr;
@@ -29558,6 +30719,16 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         default: return nullptr;
       }
     }
+    case api::inputPageBlockExpandableBlockQuote::ID: {
+      const auto *value = checked<api::inputPageBlockExpandableBlockQuote>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->blocks_.size()) return nullptr;
+          return value->blocks_[element].get();
+        default: return nullptr;
+      }
+    }
     case api::inputPageBlockCollage::ID: {
       const auto *value = checked<api::inputPageBlockCollage>(object);
       if (value == nullptr) return nullptr;
@@ -29924,6 +31095,16 @@ const api::Object * generated_vector_object_at(const api::Object *object, std::i
         case 0:
           if (element >= value->animations_.size()) return nullptr;
           return value->animations_[element].get();
+        default: return nullptr;
+      }
+    }
+    case api::speechRecognitionModels::ID: {
+      const auto *value = checked<api::speechRecognitionModels>(object);
+      if (value == nullptr) return nullptr;
+      switch (index) {
+        case 0:
+          if (element >= value->models_.size()) return nullptr;
+          return value->models_[element].get();
         default: return nullptr;
       }
     }
