@@ -9,8 +9,8 @@ let tdStatic: Target = useLocalTDStatic
     ? .binaryTarget(name: "TdStatic", path: "Artifacts/TdStatic.xcframework")
     : .binaryTarget(
         name: "TdStatic",
-        url: "https://github.com/levochkaa/TDLibKit/releases/download/2.0.2-tdlib-1.8.71-1b9efe84/TdStatic.xcframework.zip",
-        checksum: "2cc86022280e9f0f6330ae1cf95ebaf9e5afd8c790c65d7ec94b2d2cb7f7cb3d"
+        url: "https://github.com/levochkaa/TDLibKit/releases/download/2.0.2-tdlib-1.8.71-e7ac61dd/TdStatic.xcframework.zip",
+        checksum: "70608b6d0638841779238f741abf51412124b00f278b9c48fb024db42e6f7eac"
     )
 
 let package = Package(

@@ -1,5 +1,5 @@
 // Generated from Vendor/td/td/generate/scheme/td_api.tl. Do not edit.
-// TDLib commit: 1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d
+// TDLib commit: e7ac61dd69409c31b3c8c7367b33b07eecce701f
 
 import Foundation
 import TDLibCxxBridge

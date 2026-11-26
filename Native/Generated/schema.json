@@ -1,7 +1,7 @@
 {
   "format_version": 2,
-  "tdlib_commit": "1b9efe84d6e9a2e2f6eadeeea32b0726d2b8c25d",
-  "td_api_tl_sha256": "bf68db118f42010b1359dc6776128567d8de18fc793aa5280f10d2912384c1b1",
+  "tdlib_commit": "e7ac61dd69409c31b3c8c7367b33b07eecce701f",
+  "td_api_tl_sha256": "e39f13605b3d9c48f5641a8ae6015f145ba506fd5884dce4ee59ea1e21308bab",
   "counts": {
     "declarations": 3464,
     "objects": 2350,
